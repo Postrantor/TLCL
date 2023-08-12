@@ -58,7 +58,7 @@ To start vi, we simply type the following:
 
 > 要想启动 vi，只要简单地输入以下命令：
 
-```
+```sh
 [me@linuxbox ~]$ vi
 ```
 
@@ -66,7 +66,7 @@ And a screen like this should appear:
 
 > 一个像这样的屏幕应该出现：
 
-```
+```sh
 VIM - Vi Improved
 ....
 ```
@@ -75,7 +75,7 @@ Just as we did with nano earlier, the first thing to learn is how to exit. To ex
 
 > 首先要学的是怎样退出 vi。要退出 vi，输入下面的命令（注意冒号是命令的一部分）：
 
-```
+```sh
 :q
 ```
 
@@ -83,7 +83,7 @@ The shell prompt should return. If, for some reason, vi will not quit (usually b
 
 shell 提示符应该重新出现。如果由于某种原因，vi 不能退出（通常因为我们对文件做了修改，却没有保存文件）。 通过给命令加上叹号，我们可以告诉 vi 我们真要退出 vi。（注意感叹号是命令的一部分）
 
-```
+```sh
 :q!
 ```
 
@@ -125,7 +125,7 @@ Let's start up vi again, this time passing to it the name of a nonexistent file.
 
 > 再次启动 vi，这次传递给 vi 一个不存在的文件名。这也是用 vi 创建新文件的方法。
 
-```
+```sh
 [me@linuxbox ~]$ rm -f foo.txt
 [me@linuxbox ~]$ vi foo.txt
 ```
@@ -134,7 +134,7 @@ If all goes well, we should get a screen like this:
 
 > 如果一切正常，我们应该获得一个像这样的屏幕：
 
-```
+```sh
 ....
 "foo.txt" [New File]
 ```
@@ -155,7 +155,7 @@ In order to add some text to our file, we must first enter insert mode. To do th
 
 > 为了在文件中添加文本，我们需要先进入插入模式。按下"i"键进入插入模式。之后，我们应当 在屏幕底部看到如下的信息，如果 vi 运行在高级模式下（ vi 在兼容模式下不会显示这行信息）：
 
-```
+```sh
 -- INSERT --
 ```
 
@@ -163,7 +163,7 @@ Now we can enter some text. Try this:
 
 > 现在我们能输入一些文本了。试着输入这些文本：
 
-```
+```sh
 The quick brown fox jumped over the lazy dog.
 ```
 
@@ -179,7 +179,7 @@ To save the change we just made to our file, we must enter an ex command while i
 
 > 为了保存我们刚才对文件所做的修改，我们必须在命令模式下输入一个 ex 命令。 通过按下":"键，这很容易完成。按下冒号键之后，一个冒号字符应该出现在屏幕的底部：
 
-```
+```sh
 :
 ```
 
@@ -187,7 +187,7 @@ To write our modified file, we follow the colon with a "w" then Enter:
 
 > 为了写入我们修改的文件，我们在冒号之后输入"w"字符，然后按下回车键：
 
-```
+```sh
 :w
 ```
 
@@ -195,7 +195,7 @@ The file will be written to the hard drive and we should get a confirmation mess
 
 > 文件将会写入到硬盘，而且我们会在屏幕底部看到一行确认信息，就像这样：
 
-```
+```sh
 "foo.txt" [New] 1L, 46C written
 ```
 
@@ -1171,7 +1171,7 @@ Let's go back to our foo.txt file for a moment:
 
 > 让我们再次进入到我们的 foo.txt 文件：
 
-```
+```sh
 The quick brown fox jumped over the lazy dog.
 ```
 
@@ -1179,7 +1179,7 @@ If we wanted to add some text to the end of this sentence, we would discover tha
 
 > 如果我们想要在这个句子的末尾添加一些文本，我们会发现 i 命令不能完成任务，因为我们不能把 光标移到行尾。vi 提供了追加文本的命令，根据英文单词命名为"a"。如果我们把光标移动到行尾，输入"a", 光标就会越过行尾，同时 vi 会进入插入模式。这让我们能添加文本到行末：
 
-```
+```sh
 The quick brown fox jumped over the lazy dog. It was cool.
 ```
 
@@ -1195,7 +1195,7 @@ First, we'll move the cursor to the beginning of the line using the "0" (zero) c
 
 > 首先，使用"0"(零)命令，将光标移动到行首。现在我们输入"A"，然后输入下面这些文本：
 
-```
+```sh
 The quick brown fox jumped over the lazy dog. It was cool.
 Line 2
 Line 3
@@ -1427,7 +1427,7 @@ We can demonstrate this as follows: place the cursor on "Line 3" then press the 
 
 > 我们可以演示一下：把光标移到"Line 3"上，再按下小 o 按键。
 
-```
+```sh
 The quick brown fox jumped over the lazy dog. It was cool.
 Line 2
 Line 3
@@ -1444,7 +1444,7 @@ Press the O key to open the line above the cursor:
 
 > 按下大 O 按键在光标之上另起新的一行：
 
-```
+```sh
 The quick brown fox jumped over the lazy dog. It was cool.
 Line 2
 
@@ -2129,7 +2129,7 @@ Let's try the deletion again, this time using the d command. Again, move the cur
 
 > 我们再次执行删除命令，这次使用 d 命令。还是移动光标到单词"It"之上，按下的 dW 来删除单词：
 
-```
+```sh
 The quick brown fox jumped over the lazy dog. was cool.
 Line 2
 Line 3
@@ -2141,7 +2141,7 @@ Press d\$ to delete from the cursor position to the end of the line:
 
 > 按下 d\$删除从光标位置到行尾的文本：
 
-```
+```sh
 The quick brown fox jumped over the lazy dog.
 Line 2
 Line 3
@@ -2153,7 +2153,7 @@ Press dG to delete from the current line to the end of the file:
 
 > 按下 dG 按键删除从当前行到文件末尾的所有行：
 
-```
+```sh
 ~
 ....
 ```
@@ -2718,7 +2718,7 @@ Let's try some copy and paste. Place the cursor on the first line of the text an
 
 > 我们试着做些复制和粘贴工作。把光标放到文本第一行，输入 yy 来复制当前行。下一步，把光标移到 最后一行（G），输入小写的 p 把复制的一行粘贴到当前行的下面：
 
-```
+```sh
 The quick brown fox jumped over the lazy dog. It was cool.
 Line 2
 Line 3
@@ -2731,7 +2731,7 @@ Just as before, the u command will undo our change. With the cursor still positi
 
 > 和以前一样，u 命令会撤销我们的修改。这时光标仍位于文件的最后一行，输入大写的 P 命令把 所复制的文本粘贴到当前行之上：
 
-```
+```sh
 The quick brown fox jumped over the lazy dog. It was cool.
 Line 2
 Line 3
@@ -2756,7 +2756,7 @@ If we place the cursor on line 3 and type the J command, here's what happens:
 
 > 如果我们把光标放到 line 3 上，输入大写的 J 命令，看看发生什么情况：
 
-```
+```sh
 The quick brown fox jumped over the lazy dog. It was cool.
 Line 2
 Line 3 Line 4
@@ -2787,7 +2787,7 @@ To move the cursor to the next occurrence of a word or phrase, the / command is 
 
 > 移动光标到下一个出现的单词或短语上，使用 / 命令。这个命令和我们之前在 less 程序中学到 的一样。当你输入/命令后，一个"/"字符会出现在屏幕底部。接下来，输入要查找的单词或短语， 按下回车。光标就会移动到下一个包含所查找字符串的位置。通过 n 命令来重复先前的查找。 这里有个例子：
 
-```
+```sh
 The quick brown fox jumped over the lazy dog. It was cool.
 Line 2
 Line 3
@@ -2799,7 +2799,7 @@ Place the cursor on the first line of the file. Type:
 
 > 移动光标到文件的第一行。输入：
 
-```
+```sh
 /Line
 ```
 
@@ -2815,7 +2815,7 @@ vi uses an ex command to perform search and replace operations (called "substitu
 
 vi 使用 ex 命令来执行查找和替代操作。将整个文件中的单词"Line"更改为"line"， 输入以下命令：
 
-```
+```sh
 :%s/Line/line/g
 ```
 
@@ -3179,7 +3179,7 @@ After executing our search and replace command our file looks like this:
 
 > 执行完查找和替代命令之后，我们的文件看起来像这样：
 
-```
+```sh
 The quick brown fox jumped over the lazy dog. It was cool.
 line 2
 line 3
@@ -3191,7 +3191,7 @@ We can also specify a substitution command with user confirmation. This is done 
 
 > 我们也可以指定一个需要用户确认的替换命令。通过添加一个"c"字符到这个命令的末尾，来完成 这个替换命令。例如：
 
-```
+```sh
 :%s/line/Line/gc
 ```
 
@@ -3199,7 +3199,7 @@ This command will change our file back to its previous form; however, before eac
 
 > 这个命令会把我们的文件恢复先前的模样；然而，在执行每个替换命令之前，vi 会停下来， 通过下面的信息，来要求我们确认这个替换：
 
-```
+```sh
 replace with Line (y/n/a/q/l/^E/^Y)?
 ```
 
@@ -3647,7 +3647,7 @@ It's often useful to edit more than one file at a time. You might need to make c
 
 > 同时能够编辑多个文件是很有用的。你可能需要更改多个文件或者从一个文件复制内容到 另一个文件。通过 vi，我们可以打开多个文件来编辑，只要在命令行中指定要编辑的文件名。
 
-```
+```sh
 vi file1 file2 file3...
 ```
 
@@ -3655,7 +3655,7 @@ Let's exit our existing vi session and create a new file for editing. Type :wq t
 
 > 我们先退出已经存在的 vi 会话，然后创建一个新文件来编辑。输入:wq 来退出 vi 并且保存了所做的修改。 下一步，我们将在家目录下创建一个额外的用来玩耍的文件。通过获取从 ls 命令的输出，来创建这个文件。
 
-```
+```sh
 [me@linuxbox ~]$ ls -l /usr/bin > ls-output.txt
 ```
 
@@ -3663,7 +3663,7 @@ Let's edit our old file and our new one with vi:
 
 > 用 vi 来编辑我们的原文件和新创建的文件：
 
-```
+```sh
 [me@linuxbox ~]$ vi foo.txt ls-output.txt
 ```
 
@@ -3671,7 +3671,7 @@ vi will start up and we will see the first file on the screen:
 
 vi 启动，我们会看到第一个文件显示出来：
 
-```
+```sh
 The quick brown fox jumped over the lazy dog. It was cool.
 Line 2
 Line 3
@@ -3687,7 +3687,7 @@ To switch from one file to the next, use this ex command:
 
 > 从这个文件切换下一个文件，使用这个 ex 命令：
 
-```
+```sh
 :n
 ```
 
@@ -3695,7 +3695,7 @@ To move back to the previous file use:
 
 > 回到先前的文件使用：
 
-```
+```sh
 :N
 ```
 
@@ -3707,7 +3707,7 @@ In addition to the switching method described above, vim (and some versions of v
 
 > 另外，上面所描述的切换方法，vim（和一些版本的 vi）也提供了一些 ex 命令，这些命令使 多个文件更容易管理。我们可以查看正在编辑的文件列表，使用:buffers 命令。运行这个 命令后，屏幕顶部就会显示出一个文件列表：
 
-```
+```sh
 :buffers
 1 #     "foo.txt"                 line 1
 2 %a    "ls-output.txt"           line 0
@@ -3718,7 +3718,7 @@ To switch to another buffer (file), type :buffer followed by the number of the b
 
 > 要切换到另一个缓冲区（文件），输入 :buffer, 紧跟着你想要编辑的缓冲器编号。比如，要从包含文件 foo.txt 的 1 号缓冲区切换到包含文件 ls-output.txt 的 2 号缓冲区，我们会这样输入：
 
-```
+```sh
 :buffer 2
 ```
 
@@ -3738,7 +3738,7 @@ Start vi again with just one file:
 
 > 重新启动 vi 并只打开一个文件
 
-```
+```sh
 [me@linuxbox ~]$ vi foo.txt
 ```
 
@@ -3746,7 +3746,7 @@ To add our second file, enter:
 
 > 要加入我们的第二个文件，输入：
 
-```
+```sh
 :e ls-output.txt
 ```
 
@@ -3754,7 +3754,7 @@ And it should appear on the screen. The first file is still present as we can ve
 
 > 它应该显示在屏幕上。 我们可以这样来确认第一个文件仍然存在：
 
-```
+```sh
 :buffers
  1 # "foo.txt" line 1
  2 %a "ls-output.txt" line 0
@@ -3773,7 +3773,7 @@ Often while editing multiple files, we will want to copy a portion of one file i
 
 > 当我们编辑多个文件时，经常地要复制文件的一部分到另一个正在编辑的文件。使用之前我们学到的 拉（yank）和粘贴命令，这很容易完成。说明如下。以打开的两个文件为例，首先转换到缓冲区 1（foo.txt） ，输入：
 
-```
+```sh
 :buffer 1
 ```
 
@@ -3781,7 +3781,7 @@ which should give us this:
 
 > 我们应该得到如下输出：
 
-```
+```sh
 The quick brown fox jumped over the lazy dog. It was cool.
 Line 2
 Line 3
@@ -3797,7 +3797,7 @@ Switch to the second buffer by entering:
 
 > 转换到第二个缓冲区，输入：
 
-```
+```sh
 :buffer 2
 ```
 
@@ -3805,7 +3805,7 @@ The screen will now contain some file listings like this (only a portion is show
 
 > 现在屏幕会包含一些文件列表（这里只列出了一部分）：
 
-```
+```sh
 total 343700
 -rwxr-xr-x 1 root root    31316  2007-12-05  08:58 [
 ....
@@ -3815,7 +3815,7 @@ Move the cursor to the first line and paste the line we copied from the precedin
 
 > 移动光标到第一行，输入 p 命令把我们从前面文件中复制的一行粘贴到这个文件中：
 
-```
+```sh
 total 343700
 The quick brown fox jumped over the lazy dog. It was cool.
 -rwxr-xr-x 1 root root    31316  2007-12-05  08:58 [
@@ -3830,7 +3830,7 @@ It's also possible to insert an entire file into one that we are editing. To see
 
 > 我们也可以把整个文件插入到我们正在编辑的文件中。看一下实际操作，结束 vi 会话，重新 启动一个只打开一个文件的 vi 会话：
 
-```
+```sh
 [me@linuxbox ~]$ vi ls-output.txt
 ```
 
@@ -3838,7 +3838,7 @@ We will see our file listing again:
 
 > 再一次看到我们的文件列表：
 
-```
+```sh
 total 343700
 -rwxr-xr-x 1 root root    31316  2007-12-05  08:58 [
 ```
@@ -3847,7 +3847,7 @@ Move the cursor to the third line, then enter the following ex command:
 
 > 移动光标到第三行，然后输入以下 ex 命令：
 
-```
+```sh
 :r foo.txt
 ```
 
@@ -3855,7 +3855,7 @@ The :r command (short for "read") inserts the specified file before the cursor p
 
 > 这个:r 命令（是"read"的简称）把指定的文件插入到光标位置之前。现在屏幕应该看起来像这样：
 
-```
+```sh
 total 343700
 -rwxr-xr-x 1 root root     31316 2007-12-05  08:58 [
 ....
@@ -3884,7 +3884,7 @@ The :w command may also specify an optional filename. This acts like "Save As...
 
 > 这个:w 命令也可以指定可选的文件名。这个的作用就如"Save As..."。例如，如果我们 正在编辑 foo.txt 文件，想要保存一个副本，叫做 foo1.txt，那么我们可以执行以下命令：
 
-```
+```sh
 :w foo1.txt
 ```
 

@@ -39,7 +39,7 @@ Imagine that the file system is a maze shaped like an upside-down tree and we ar
 
 > 把文件系统想象成一个迷宫形状，就像一棵倒立的大树，我们站在迷宫的中间位置。 在任意时刻，我们处于一个目录里面，我们能看到这个目录包含的所有文件， 以及通往上面目录（父目录）的路径，和下面的各个子目录。我们所在的目录则称为 当前工作目录。我们使用 pwd（print working directory(的缩写)）命令，来显示当前工作目录。
 
-```
+```sh
 [me@linuxbox ~]$ pwd
 /home/me
 ```
@@ -54,7 +54,7 @@ To list the files and directories in the current working directory, we use the l
 
 > 列出一个目录包含的文件及子目录，使用 ls 命令。
 
-```
+```sh
 [me@linuxbox ~]$ ls
 Desktop Documents Music Pictures Public Templates Videos
 ```
@@ -75,7 +75,7 @@ An absolute pathname begins with the root directory and follows the tree branch 
 
 > 绝对路径开始于根目录，紧跟着目录树的一个个分支，一直到达所期望的目录或文件。 例如，你的系统中有一个目录，大多数系统程序都安装在这个目录下。这个目录的 路径名是 /usr/bin。它意味着从根目录（用开头的"/"表示）开始，有一个叫"usr" 的 目录包含了目录 "bin"。
 
-```
+```sh
 [me@linuxbox ~]$ cd /usr/bin
 [me@linuxbox bin]$ pwd
 /usr/bin
@@ -97,7 +97,7 @@ The "." symbol refers to the working directory and the ".." symbol refers to the
 
 > 符号 "." 指的是工作目录，".." 指的是工作目录的父目录。举个例子， 让我们再次把工作目录切换到 /usr/bin：
 
-```
+```sh
 [me@linuxbox ~]$ cd /usr/bin
 [me@linuxbox bin]$ pwd
 /usr/bin
@@ -107,7 +107,7 @@ Okay, now let's say that we wanted to change the working directory to the parent
 
 > 好了，比方说我们想更改工作目录到 /usr/bin 的父目录 /usr。可以通过两种方法来实现。可以使用以下绝对路径名：
 
-```
+```sh
 [me@linuxbox bin]$ cd /usr
 [me@linuxbox usr]$ pwd
 /usr
@@ -117,7 +117,7 @@ Or, with a relative pathname:
 
 > 或者， 也可以使用相对路径：
 
-```
+```sh
 [me@linuxbox bin]$ cd ..
 [me@linuxbox usr]$ pwd
 /usr
@@ -131,7 +131,7 @@ Likewise, we can change the working directory from /usr to /usr/bin in two diffe
 
 > 同样地，从目录 /usr/ 到 /usr/bin 也有两种途径。可以使用绝对路径：
 
-```
+```sh
 [me@linuxbox usr]$ cd /usr/bin
 [me@linuxbox bin]$ pwd
 /usr/bin
@@ -141,7 +141,7 @@ Or, with a relative pathname:
 
 > 或者，也可以用相对路径：
 
-```
+```sh
 [me@linuxbox usr]$ cd ./bin
 [me@linuxbox bin]$ pwd
 /usr/bin
@@ -151,7 +151,7 @@ Now, there is something important that I must point out here. In almost all case
 
 > 有一件很重要的事，我必须指出来。在几乎所有的情况下，你可以省略"./"。它是隐含的。输入：
 
-```
+```sh
 [me@linuxbox usr]$ cd bin
 ```
 

@@ -39,7 +39,7 @@ This has no effect on the expansion, but is required if the variable is adjacent
 
 > 虽然这对展开没有影响，但若该变量 a 与其它的文本相邻，可能会把 shell 搞糊涂了。在这个例子中，我们试图 创建一个文件名，通过把字符串 "\_file" 附加到变量 a 的值的后面。
 
-```
+```sh
 [me@linuxbox ~]$ a="foo"
 [me@linuxbox ~]$ echo "$a_file"
 ```
@@ -48,7 +48,7 @@ If we perform this sequence, the result will be nothing, because the shell will 
 
 > 如果我们执行这个序列，没有任何输出结果，因为 shell 会试着展开一个称为 a_file 的变量，而不是 a。通过 添加花括号可以解决这个问题：
 
-```
+```sh
 [me@linuxbox ~]$ echo "${a}_file"
 foo_file
 ```
@@ -71,7 +71,7 @@ If parameter is unset (i.e., does not exist) or is empty, this expansion results
 
 > 若 parameter 没有设置（例如，不存在）或者为空，展开结果是 word 的值。若 parameter 不为空，则展开结果是 parameter 的值。
 
-```
+```sh
 [me@linuxbox ~]$ foo=
 [me@linuxbox ~]$ echo ${foo:-"substitute value if unset"}
 if unset
@@ -90,7 +90,7 @@ If parameter is unset or empty, this expansion results in the value of word. In 
 
 > 若 parameter 没有设置或为空，展开结果是 word 的值。另外，word 的值会赋值给 parameter。 若 parameter 不为空，展开结果是 parameter 的值。
 
-```
+```sh
 [me@linuxbox ~]$ foo=
 [me@linuxbox ~]$ echo ${foo:="default value if unset"}
 default value if unset
@@ -117,7 +117,7 @@ If parameter is unset or empty, this expansion causes the script to exit with an
 
 > 若 parameter 没有设置或为空，这种展开导致脚本带有错误退出，并且 word 的内容会发送到标准错误。若 parameter 不为空， 展开结果是 parameter 的值。
 
-```
+```sh
 [me@linuxbox ~]$ foo=
 [me@linuxbox ~]$ echo ${foo:?"parameter is empty"}
 bash: foo: parameter is empty
@@ -136,7 +136,7 @@ If parameter is unset or empty, the expansion results in nothing. If parameter i
 
 > 若 parameter 没有设置或为空，展开结果为空。若 parameter 不为空， 展开结果是 word 的值会替换掉 parameter 的值；然而，parameter 的值不会改变。
 
-```
+```sh
 [me@linuxbox ~]$ foo=
 [me@linuxbox ~]$ echo ${foo:+"substitute value if set"}
 
@@ -159,7 +159,7 @@ This expansion returns the names of existing variables with names beginning with
 
 > 这种展开会返回以 prefix 开头的已有变量名。根据 bash 文档，这两种展开形式的执行结果相同。 这里，我们列出了所有以 BASH 开头的环境变量名：
 
-```
+```sh
 [me@linuxbox ~]$ echo ${!BASH*}
 BASH BASH_ARGC BASH_ARGV BASH_COMMAND BASH_COMPLETION
 BASH_COMPLETION_DIR BASH_LINENO BASH_SOURCE BASH_SUBSHELL
@@ -178,7 +178,7 @@ expands into the length of the string contained by parameter. Normally, paramete
 
 > 展开成由 parameter 所包含的字符串的长度。通常，parameter 是一个字符串；然而，如果 parameter 是 @ 或者是 \* 的话， 则展开结果是位置参数的个数。
 
-```
+```sh
 [me@linuxbox ~]$ foo="This string is long."
 [me@linuxbox ~]$ echo "'$foo' is ${#foo} characters long."
 'This string is long.' is 20 characters long.
@@ -192,7 +192,7 @@ These expansions are used to extract a portion of the string contained in parame
 
 > 这些展开用来从 parameter 所包含的字符串中提取一部分字符。提取的字符始于 第 offset 个字符（从字符串开头算起）直到字符串的末尾，除非指定提取的长度。
 
-```
+```sh
 [me@linuxbox ~]$ foo="This string is long."
 [me@linuxbox ~]$ echo ${foo:5}
 string is long.
@@ -208,7 +208,7 @@ If parameter is @, the result of the expansion is length positional parameters, 
 
 > 如果 parameter 是 @，展开结果是 length 个位置参数，从第 offset 个位置参数开始。
 
-```
+```sh
 [me@linuxbox ~]$ foo="This string is long."
 [me@linuxbox ~]$ echo ${foo: -5}
 long.
@@ -224,7 +224,7 @@ These expansions remove a leading portion of the string contained in parameter d
 
 > 这些展开会从 paramter 所包含的字符串中清除开头一部分文本，这些字符要匹配定义的 pattern。pattern 是 通配符模式，就如那些用在路径名展开中的模式。这两种形式的差异之处是该 \# 形式清除最短的匹配结果， 而该 \## 模式清除最长的匹配结果。
 
-```
+```sh
 [me@linuxbox ~]$ foo=file.txt.zip
 [me@linuxbox ~]$ echo ${foo#*.}
 txt.zip
@@ -240,7 +240,7 @@ These expansions are the same as the \# and \## expansions above, except they re
 
 > 这些展开和上面的 \# 和 \## 展开一样，除了它们清除的文本从 parameter 所包含字符串的末尾开始，而不是开头。
 
-```
+```sh
 [me@linuxbox ~]$ foo=file.txt.zip
 [me@linuxbox ~]$ echo ${foo%.*}
 file.txt
@@ -260,7 +260,7 @@ This expansion performs a search-and-replace upon the contents of parameter. If 
 
 > 这种形式的展开对 parameter 的内容执行查找和替换操作。如果找到了匹配通配符 pattern 的文本， 则用 string 的内容替换它。在正常形式下，只有第一个匹配项会被替换掉。在该 // 形式下，所有的匹配项都会被替换掉。 该 /# 要求匹配项出现在字符串的开头，而 /% 要求匹配项出现在字符串的末尾。/string 可能会省略掉，这样会 导致删除匹配的文本。
 
-```
+```sh
 [me@linuxbox~]$ foo=JPG.JPG
 [me@linuxbox ~]$ echo ${foo/JPG/jpg}
 jpg.JPG
@@ -276,7 +276,7 @@ Parameter expansion is a good thing to know. The string manipulation expansions 
 
 > 知道参数展开是件很好的事情。字符串操作展开可以用来替换其它常见命令比方说 sed 和 cut。 通过减少使用外部程序，展开提高了脚本的效率。举例说明，我们将修改在之前章节中讨论的 longest-word 程序， 用参数展开 \${#j} 取代命令 \$(echo \$j \| wc -c) 及其 subshell ，像这样：
 
-```
+```sh
 #!/bin/bash
 # longest-word3 : find longest string in a file
 for i; do
@@ -300,7 +300,7 @@ Next, we will compare the efficiency of the two versions by using the time comma
 
 > 下一步，我们将使用 time 命令来比较这两个脚本版本的效率：
 
-```
+```sh
 [me@linuxbox ~]$ time longest-word2 dirlist-usr-bin.txt
 dirlist-usr-bin.txt: 'scrollkeeper-get-extended-content-list' (38
 characters)
@@ -337,7 +337,7 @@ The declare command can be used to normalize strings to either upper or lowercas
 
 > 这个 declare 命令可以用来把字符串规范成大写或小写字符。使用 declare 命令，我们能强制一个 变量总是包含所需的格式，无论如何赋值给它。
 
-```
+```sh
 #!/bin/bash
 # ul-declare: demonstrate case conversion via declare
 declare -u upper
@@ -354,7 +354,7 @@ In the above script, we use declare to create two variables, upper and lower. We
 
 > 在上面的脚本中，我们使用 declare 命令来创建两个变量，upper 和 lower。我们把第一个命令行参数的值（位置参数 1）赋给 每一个变量，然后把变量值在屏幕上显示出来：
 
-```
+```sh
 [me@linuxbox ~]$ ul-declare aBc
 ABC
 abc
@@ -576,7 +576,7 @@ Here is a script that demonstrates these expansions:
 
 > 这里是一个脚本，演示了这些展开格式：
 
-```
+```sh
 #!/bin/bash
 # ul-param - demonstrate case conversion via parameter expansion
 if [[ $1 ]]; then
@@ -591,7 +591,7 @@ Here is the script in action:
 
 > 这里是脚本运行后的结果：
 
-```
+```sh
 [me@linuxbox ~]$ ul-param aBc
 abc
 aBc
@@ -609,7 +609,7 @@ We looked at arithmetic expansion in Chapter 7. It is used to perform various ar
 
 > 我们在第七章中已经接触过算术展开了。它被用来对整数执行各种算术运算。它的基本格式是：
 
-```
+```sh
 $((expression))
 ```
 
@@ -951,7 +951,7 @@ Some examples:
 
 > 一些例子：
 
-```
+```sh
 [me@linuxbox ~]$ echo $((0xff))
 255
 [me@linuxbox ~]$ echo $((2#11111111))
@@ -1410,7 +1410,7 @@ Since the shell's arithmetic only operates on integers, the results of division 
 
 > 因为 shell 算术只操作整型，所以除法运算的结果总是整数：
 
-```
+```sh
 [me@linuxbox ~]$ echo $(( 5 / 2 ))
 2
 ```
@@ -1419,7 +1419,7 @@ This makes the determination of a remainder in a division operation more importa
 
 > 这使得确定除法运算的余数更为重要：
 
-```
+```sh
 [me@linuxbox ~]$ echo $(( 5 % 2 ))
 1
 ```
@@ -1432,7 +1432,7 @@ Calculating the remainder is useful in loops. It allows an operation to be perfo
 
 > 在循环中计算余数是很有用处的。在循环执行期间，它允许某一个操作在指定的间隔内执行。在下面的例子中， 我们显示一行数字，并高亮显示 5 的倍数：
 
-```
+```sh
 #!/bin/bash
 # modulo : demonstrate the modulo operator
 for ((i = 0; i <= 20; i = i + 1)); do
@@ -1450,7 +1450,7 @@ When executed, the results look like this:
 
 > 当脚本执行后，输出结果看起来像这样：
 
-```
+```sh
 [me@linuxbox ~]$ modulo
 <0> 1 2 3 4 <5> 6 7 8 9 <10> 11 12 13 14 <15> 16 17 18 19 <20>
 ```
@@ -1461,7 +1461,7 @@ Although its uses may not be immediately apparent, arithmetic expressions may pe
 
 > 尽管它的使用不是那么明显，算术表达式可能执行赋值运算。虽然在不同的上下文中，我们已经执行了许多次赋值运算。 每次我们给变量一个值，我们就执行了一次赋值运算。我们也能在算术表达式中执行赋值运算：
 
-```
+```sh
 [me@linuxbox ~]$ foo=
 [me@linuxbox ~]$ echo $foo
 [me@linuxbox ~]$ if (( foo = 5 ));then echo "It is true."; fi
@@ -2146,7 +2146,7 @@ The operators may appear either at the front of a parameter or at the end. While
 
 > 自增和自减运算符可能会出现在参数的前面或者后面。然而它们都是把参数值加 1 或减 1，这两个位置有个微小的差异。 若运算符放置在参数的前面，参数值会在参数返回之前增加（或减少）。若放置在后面，则运算会在参数返回之后执行。 这相当奇怪，但这是它预期的行为。这里是个演示的例子：
 
-```
+```sh
 [me@linuxbox ~]$ foo=1
 [me@linuxbox ~]$ echo $((foo++))
 1
@@ -2158,7 +2158,7 @@ If we assign the value of one to the variable foo and then increment it with the
 
 > 如果我们把 1 赋值给变量 foo，然后通过把自增运算符 ++ 放到参数名 foo 之后来增加它，foo 返回 1。 然而，如果我们第二次查看变量 foo 的值，我们看到它的值增加了 1。若我们把 ++ 运算符放到参数 foo 之前， 我们得到更期望的行为：
 
-```
+```sh
 [me@linuxbox ~]$ foo=1
 [me@linuxbox ~]$ echo $((++foo))
 2
@@ -2174,7 +2174,7 @@ The ++ and \-- operators are often used in conjunction with loops. We will make 
 
 > 自增 ++ 和 自减 \-- 运算符经常和循环操作结合使用。我们将改进我们的 modulo 脚本，让代码更紧凑些：
 
-```
+```sh
 #!/bin/bash
 # modulo2 : demonstrate the modulo operator
 for ((i = 0; i <= 20; ++i )); do
@@ -2627,7 +2627,7 @@ Here we will demonstrate producing a list of powers of 2, using the left bitwise
 
 > 这里我们将演示产生 2 的幂列表的操作，使用位左移运算符：
 
-```
+```sh
 [me@linuxbox ~]$ for ((i=0;i<8;++i)); do echo $((1<<i)); done
 1
 2
@@ -3243,7 +3243,7 @@ When used for logical operations, expressions follow the rules of arithmetic log
 
 > 当表达式用于逻辑运算时，表达式遵循算术逻辑规则；也就是，表达式的计算结果是零，则认为假，而非零表达式认为真。 该 (( )) 复合命令把结果映射成 shell 正常的退出码：
 
-```
+```sh
 [me@linuxbox ~]$ if ((1)); then echo "true"; else echo "false"; fi
 true
 [me@linuxbox ~]$ if ((0)); then echo "true"; else echo "false"; fi
@@ -3254,7 +3254,7 @@ The strangest of the logical operators is the ternary operator. This operator (w
 
 > 最陌生的逻辑运算符就是这个三元运算符了。这个运算符（仿照于 C 编程语言里的三元运算符）执行一个单独的逻辑测试。 它用起来类似于 if/then/else 语句。它操作三个算术表达式（字符串不会起作用），并且若第一个表达式为真（或非零）， 则执行第二个表达式。否则，执行第三个表达式。我们可以在命令行中实验一下：
 
-```
+```sh
 [me@linuxbox~]$ a=0
 [me@linuxbox~]$ ((a<1?++a:--a))
 [me@linuxbox~]$ echo $a
@@ -3276,7 +3276,7 @@ When attempted, bash will declare an error:
 
 > 当企图这样做时，bash 会声明一个错误：
 
-```
+```sh
 [me@linuxbox ~]$ a=0
 [me@linuxbox ~]$ ((a<1?a+=1:a-=1))
 bash: ((: a<1?a+=1:a-=1: attempted assignment to non-variable (error token is "-=1")
@@ -3286,7 +3286,7 @@ This problem can be mitigated by surrounding the assignment expression with pare
 
 > 通过把赋值表达式用括号括起来，可以解决这个错误：
 
-```
+```sh
 [me@linuxbox ~]$ ((a<1?(a+=1):(a-=1)))
 ```
 
@@ -3294,7 +3294,7 @@ Next, we see a more complete example of using arithmetic operators in a script t
 
 > 下一步，我们看一个使用算术运算符更完备的例子，该示例产生一个简单的数字表格：
 
-```
+```sh
 #!/bin/bash
 # arith-loop: script to demonstrate arithmetic operators
 finished=0
@@ -3313,7 +3313,7 @@ In this script, we implement an until loop based on the value of the finished va
 
 > 在这个脚本中，我们基于变量 finished 的值实现了一个 until 循环。首先，把变量 finished 的值设为零（算术假）， 继续执行循环之道它的值变为非零。在循环体内，我们计算计数器 a 的平方和立方。在循环末尾，计算计数器变量 a 的值。 若它小于 10（最大迭代次数），则 a 的值加 1，否则给变量 finished 赋值为 1，使得变量 finished 算术为真， 从而终止循环。运行该脚本得到这样的结果：
 
-```
+```sh
 [me@linuxbox ~]$ arith-loop
 a    a**2     a**3
 =    ====     ====
@@ -3344,7 +3344,7 @@ Let's start with a simple example. We'll write a bc script to add 2 plus 2:
 
 > 让我们从一个简单的例子开始。我们将编写一个 bc 脚本来执行 2 加 2 运算：
 
-```
+```sh
 /* A very simple bc script */
 2 + 2
 ```
@@ -3359,7 +3359,7 @@ If we save the bc script above as foo.bc, we can run it this way:
 
 > 如果我们把上面的 bc 脚本保存为 foo.bc，然后我们就能这样运行它：
 
-```
+```sh
 [me@linuxbox ~]$ bc foo.bc
 bc 1.06.94
 Copyright 1991-1994, 1997, 1998, 2000, 2004, 2006 Free Software
@@ -3373,7 +3373,7 @@ If we look carefully, we can see the result at the very bottom, after the copyri
 
 > 如果我们仔细观察，我们看到算术结果在最底部，版权信息之后。可以通过 -q（quiet）选项禁止这些版权信息。 bc 也能够交互使用：
 
-```
+```sh
 [me@linuxbox ~]$ bc -q
 2 + 2
 4
@@ -3388,7 +3388,7 @@ It is also possible to pass a script to bc via standard input:
 
 > 也可能通过标准输入把一个脚本传递给 bc 程序：
 
-```
+```sh
 [me@linuxbox ~]$ bc < foo.bc
 4
 ```
@@ -3397,7 +3397,7 @@ The ability to take standard input means that we can use here documents, here st
 
 > 这种接受标准输入的能力，意味着我们可以使用 here 文档，here 字符串，和管道来传递脚本。这里是一个使用 here 字符串的例子：
 
-```
+```sh
 [me@linuxbox ~]$ bc <<< "2+2"
 4
 ```
@@ -3408,7 +3408,7 @@ As a real-world example, we will construct a script that performs a common calcu
 
 > 作为一个真实世界的例子，我们将构建一个脚本，用于计算每月的还贷金额。在下面的脚本中， 我们使用了 here 文档把一个脚本传递给 bc：
 
-```
+```sh
 #!/bin/bash
 # loan-calc : script to calculate monthly loan payments
 PROGNAME=$(basename $0)
@@ -3442,7 +3442,7 @@ When executed, the results look like this:
 
 > 当脚本执行后，输出结果像这样：
 
-```
+```sh
 [me@linuxbox ~]$ loan-calc 135000 0.0775 180
 475
 1270.7222490000

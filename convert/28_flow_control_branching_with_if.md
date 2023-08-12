@@ -7,7 +7,7 @@ In the last chapter, we were presented with a problem. How can we make our repor
 
 > 在上一章中，我们遇到一个问题。怎样使我们的报告生成器脚本能适应运行此脚本的用户的权限？ 这个问题的解决方案要求我们能找到一种方法，在脚本中基于测试条件结果，来"改变方向"。 用编程术语表达，就是我们需要程序可以分支。让我们考虑一个简单的用伪码表示的逻辑实例， 伪码是一种模拟的计算机语言，为的是便于人们理解：
 
-```
+```sh
 X=5
 If X = 5, then:
 Say “X equals 5.”
@@ -25,7 +25,7 @@ Using the shell, we can code the logic above as follows:
 
 > 使用 shell，我们可以编码上面的逻辑，如下所示：
 
-```
+```sh
 x=5
 if [ $x = 5 ]; then
     echo "x equals 5."
@@ -38,7 +38,7 @@ or we can enter it directly at the command line (slightly shortened):
 
 > 或者我们可以直接在命令行中输入以上代码（略有缩短）：
 
-```
+```sh
 [me@linuxbox ~]$ x=5
 [me@linuxbox ~]$ if [ $x = 5 ]; then echo "equals 5"; else echo "does
 not equal 5"; fi
@@ -57,7 +57,7 @@ The if statement has the following syntax:
 
 > 这个 if 语句语法如下：
 
-```
+```sh
 if commands; then
      commands
 [elif commands; then
@@ -77,7 +77,7 @@ Commands (including the scripts and shell functions we write) issue a value to t
 
 > 当命令执行完毕后，命令（包括我们编写的脚本和 shell 函数）会给系统发送一个值，叫做退出状态。 这个值是一个 0 到 255 之间的整数，说明命令执行成功或是失败。按照惯例，一个零值说明成功，其它所有值说明失败。 Shell 提供了一个参数，我们可以用它检查退出状态。用具体实例看一下：
 
-```
+```sh
 [me@linuxbox ~]$ ls -d /usr/bin
 /usr/bin
 [me@linuxbox ~]$ echo $?
@@ -96,7 +96,7 @@ The shell provides two extremely simple builtin commands that do nothing except 
 
 shell 提供了两个极其简单的内部命令，它们不做任何事情，除了以一个 0 或 1 退出状态来终止执行。 True 命令总是执行成功，而 false 命令总是执行失败：
 
-```
+```sh
 [me@linuxbox~]$ true
 [me@linuxbox~]$ echo $?
 0
@@ -109,7 +109,7 @@ We can use these commands to see how the if statement works. What the if stateme
 
 > 我们能够使用这些命令，来看一下 if 语句是怎样工作的。If 语句真正做的事情是计算命令执行成功或失败：
 
-```
+```sh
 [me@linuxbox ~]$ if true; then echo "It's true."; fi
 It's true.
 [me@linuxbox ~]$ if false; then echo "It's true."; fi
@@ -120,7 +120,7 @@ The command echo "It's true." is executed when the command following if executes
 
 > 当 if 之后的命令执行成功的时候，命令 echo "It's true." 将会执行，否则此命令不执行。 如果 if 之后跟随一系列命令，则将计算列表中的最后一个命令：
 
-```
+```sh
 [me@linuxbox ~]$ if false; true; then echo "It's true."; fi
 It's true.
 [me@linuxbox ~]$ if true; false; then echo "It's true."; fi
@@ -133,7 +133,7 @@ By far, the command used most frequently with if is test. The test command perfo
 
 > 到目前为止，经常与 if 一块使用的命令是 test。这个 test 命令执行各种各样的检查与比较。 它有两种等价模式：
 
-```
+```sh
 test expression
 ```
 
@@ -141,7 +141,7 @@ and the more popular:
 
 > 比较流行的格式是：
 
-```
+```sh
 [ expression ]
 ```
 
@@ -1427,7 +1427,7 @@ Here we have a script that demonstrates some of the file expressions:
 
 > 这里我们有一个脚本说明了一些文件表达式：
 
-```
+```sh
 #!/bin/bash
 # test-file: Evaluate the status of a file
 FILE=~/.bashrc
@@ -1462,7 +1462,7 @@ Similarly, shell functions can return an exit status by including an integer arg
 
 > 类似地，通过带有一个整数参数的 return 命令，shell 函数可以返回一个退出状态。如果我们打算把 上面的脚本转变为一个 shell 函数，为了在更大的程序中包含此函数，我们用 return 语句来代替 exit 命令， 则得到期望的行为：
 
-```
+```sh
 test_file () {
     # test-file: Evaluate the status of a file
     FILE=~/.bashrc
@@ -2027,7 +2027,7 @@ Here is a script that demonstrates them:
 
 > 这是一个演示这些问题的脚本：
 
-```
+```sh
 #!/bin/bash
 # test-string: evaluate the value of a string
 ANSWER=maybe
@@ -2488,7 +2488,7 @@ Here is a script that demonstrates them:
 
 > 这里是一个演示以上表达式用法的脚本：
 
-```
+```sh
 #!/bin/bash
 # test-integer: evaluate the value of an integer.
 INT=-5
@@ -2522,7 +2522,7 @@ Recent versions of bash include a compound command that acts as an enhanced repl
 
 > 目前的 bash 版本包括一个复合命令，作为加强的 test 命令替代物。它使用以下语法：
 
-```
+```sh
 [[ expression ]]
 ```
 
@@ -2530,7 +2530,7 @@ where, like test, expression is an expression that evaluates to either a true or
 
 > 这里，类似于 test，expression 是一个表达式，其计算结果为真或假。这个 `[[ ]]` 命令非常 相似于 test 命令（它支持所有的表达式），但是增加了一个重要的新的字符串表达式：
 
-```
+```sh
 string1 =~ regex
 ```
 
@@ -2538,7 +2538,7 @@ which returns true if string1 is matched by the extended regular expression rege
 
 > 其返回值为真，如果 string1 匹配扩展的正则表达式 regex。这就为执行比如数据验证等任务提供了许多可能性。 在我们前面的整数表达式示例中，如果常量 INT 包含除了整数之外的任何数据，脚本就会运行失败。这个脚本 需要一种方法来证明此常量包含一个整数。使用 `[[ ]]` 和 `=~` 字符串表达式操作符，我们能够这样来改进脚本：
 
-```
+```sh
 #!/bin/bash
 # test-integer2: evaluate the value of an integer.
 INT=-5
@@ -2571,7 +2571,7 @@ Another added feature of `[[ ]]` is that the `==` operator supports pattern matc
 
 `[[ ]]` 添加的另一个功能是 `==` 操作符支持类型匹配，正如路径名展开所做的那样。例如：
 
-```
+```sh
 [me@linuxbox ~]$ FILE=foo.bar
 [me@linuxbox ~]$ if [[ $FILE == foo.* ]]; then
 > echo "$FILE matches pattern 'foo.*'"
@@ -2593,7 +2593,7 @@ In addition to the `[[ ]]` compound command, bash also provides the `(( ))` comp
 
 `(( ))` 被用来执行算术真测试。如果算术计算的结果是非零值，则其测试值为真。
 
-```
+```sh
 [me@linuxbox ~]$ if ((1)); then echo "It is true."; fi
 It is true.
 [me@linuxbox ~]$ if ((0)); then echo "It is true."; fi
@@ -2604,7 +2604,7 @@ Using `(( ))`, we can slightly simplify the test-integer2 script like this:
 
 > 使用 `(( ))`，我们能够略微简化 test-integer2 脚本，像这样：
 
-```
+```sh
 #!/bin/bash
 # test-integer2a: evaluate the value of an integer.
 INT=-5
@@ -2983,7 +2983,7 @@ Here's an example of an AND operation. The following script determines if an int
 
 > 这里有一个 AND 操作的示例。下面的脚本决定了一个整数是否属于某个范围内的值：
 
-```
+```sh
 #!/bin/bash
 # test-integer3: determine if an integer is within a
 # specified range of values.
@@ -3006,7 +3006,7 @@ We also include parentheses around the expression, for grouping. If these were n
 
 > 我们也可以对表达式使用圆括号，为的是分组。如果不使用括号，那么否定只应用于第一个 表达式，而不是两个组合的表达式。用 test 可以这样来编码：
 
-```
+```sh
 if [ ! \( $INT -ge $MIN_VAL -a $INT -le $MAX_VAL \) ]; then
     echo "$INT is outside $MIN_VAL to $MAX_VAL."
 else
@@ -3052,7 +3052,7 @@ bash provides two control operators that can perform branching. The `&& (AND)` a
 
 bash 支持两种可以执行分支任务的控制操作符。 `&&（AND）` 和 `||（OR）` 操作符作用如同 复合命令 `[[ ]]` 中的逻辑操作符。这是语法：
 
-```
+```sh
 command1 && command2
 ```
 
@@ -3060,7 +3060,7 @@ and
 
 > 和
 
-```
+```sh
 command1 || command2
 ```
 
@@ -3072,7 +3072,7 @@ In practical terms, it means that we can do something like this:
 
 > 在实际中，它意味着我们可以做这样的事情：
 
-```
+```sh
 [me@linuxbox ~]$ mkdir temp && cd temp
 ```
 
@@ -3080,7 +3080,7 @@ This will create a directory named temp, and if it succeeds, the current working
 
 > 这会创建一个名为 temp 的目录，并且若它执行成功后，当前目录会更改为 temp。第二个命令会尝试 执行只有当 mkdir 命令执行成功之后。同样地，一个像这样的命令：
 
-```
+```sh
 [me@linuxbox ~]$ [ -d temp ] || mkdir temp
 ```
 
@@ -3088,7 +3088,7 @@ will test for the existence of the directory temp, and only if the test fails, w
 
 > 会测试目录 temp 是否存在，并且只有测试失败之后，才会创建这个目录。这种构造类型非常有助于在 脚本中处理错误，这个主题我们将会在随后的章节中讨论更多。例如，我们在脚本中可以这样做：
 
-```
+```sh
 [ -d temp ] || exit 1
 ```
 
@@ -3102,7 +3102,7 @@ We started this chapter with a question. How could we make our `sys_info_page` s
 
 > 这一章开始于一个问题。我们怎样使 `sys_info_page` 脚本来检测是否用户拥有权限来读取所有的 家目录？根据我们的 if 知识，我们可以解决这个问题，通过把这些代码添加到 `report_home_space` 函数中：
 
-```
+```sh
 report_home_space () {
     if [[ $(id -u) -eq 0 ]]; then
         cat <<- _EOF_

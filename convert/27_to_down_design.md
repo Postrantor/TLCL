@@ -93,7 +93,7 @@ If we had a command for each of these tasks, we could add them to our script sim
 
 > 如果对于每一个任务，我们都有相应的命令，那么通过命令替换，我们就能很容易地把它们添加到我们的脚本中：
 
-```
+```sh
 #!/bin/bash
 # Program to output a system information page
 TITLE="System Information Report For $HOSTNAME"
@@ -119,7 +119,7 @@ We could create these additional commands two ways. We could write three separat
 
 > 我们能够用两种方法来创建这些额外的命令。我们可以分别编写三个脚本，并把它们放置到 环境变量 PATH 所列出的目录下，或者我们也可以把这些脚本作为 shell 函数嵌入到我们的程序中。 我们之前已经提到过，shell 函数是位于其它脚本中的"微脚本"，作为自主程序。Shell 函数有两种语法形式：
 
-```
+```sh
 function name {
     commands
     return
@@ -139,7 +139,7 @@ Both forms are equivalent and may be used interchangeably. Below we see a script
 
 > 两种形式是等价的，可以交替使用。下面我们将查看一个说明 shell 函数使用方法的脚本：
 
-```
+```sh
 1     #!/bin/bash
 2
 3     # Shell function demo
@@ -164,7 +164,7 @@ We'll add minimal shell function definitions to our script:
 
 > 我们将给脚本添加最小的 shell 函数定义：
 
-```
+```sh
 #!/bin/bash
 # Program to output a system information page
 TITLE="System Information Report For $HOSTNAME"
@@ -213,7 +213,7 @@ Here is an example script that demonstrates how local variables are defined and 
 
 > 这里有一个实例脚本，其说明了怎样来定义和使用局部变量：
 
-```
+```sh
 #!/bin/bash
 # local-vars: script to demonstrate local variables
 foo=0 # global variable foo
@@ -238,7 +238,7 @@ As we can see, local variables are defined by preceding the variable name with t
 
 > 正如我们所看到的，通过在变量名之前加上单词 local，来定义局部变量。这就创建了一个只对其所在的 shell 函数起作用的变量。在这个 shell 函数之外，这个变量不再存在。当我们运行这个脚本的时候， 我们会看到这样的结果：
 
-```
+```sh
 [me@linuxbox ~]$ local-vars
 global:  foo = 0
 funct_1: foo = 1
@@ -261,7 +261,7 @@ While developing our program, it is useful to keep the program in a runnable sta
 
 > 当开发程序的时候，保持程序的可执行状态非常有用。这样做，并且经常测试，我们就可以在程序 开发过程的早期检测到错误。这将使调试问题容易多了。例如，如果我们运行这个程序，做一个小的修改， 然后再次执行这个程序，最后发现一个问题，非常有可能这个最新的修改就是问题的来源。通过添加空函数， 程序员称之为 stub，我们可以在早期阶段证明程序的逻辑流程。当构建一个 stub 的时候， 能够包含一些为程序员提供反馈信息的代码是一个不错的主意，这些信息展示了正在执行的逻辑流程。 现在看一下我们脚本的输出结果：
 
-```
+```sh
 [me@linuxbox ~]$ sys_info_page
 <HTML>
 <HEAD>
@@ -281,7 +281,7 @@ we see that there are some blank lines in our output after the time stamp, but w
 
 > 我们看到时间戳之后的输出结果中有一些空行，但是我们不能确定这些空行产生的原因。如果我们 修改这些函数，让它们包含一些反馈信息：
 
-```
+```sh
 report_uptime () {
   echo "Function report_uptime executed."
   return
@@ -300,7 +300,7 @@ and run the script again:
 
 > 然后再次运行这个脚本：
 
-```
+```sh
 [me@linuxbox ~]$ sys_info_page
 <HTML>
 <HEAD>
@@ -324,7 +324,7 @@ With our function framework in place and working, it's time to flesh out some of
 
 > 我们的函数框架已经各就各位并且能工作，是时候更新一些函数代码了。首先，是 report_uptime 函数：
 
-```
+```sh
 report_uptime () {
   cat <<- _EOF_
   <H2>System Uptime</H2>
@@ -350,7 +350,7 @@ tags to preserve the formatting of the command. The report_disk_space function i
 
 > 标签包围， 为的是保持命令的输出格式。这个 report_disk_space 函数类似：
 
-```
+```sh
 report_disk_space () {
   cat <<- _EOF_
   <H2>Disk Space Utilization</H2>
@@ -364,7 +364,7 @@ This function uses the df -h command to determine the amount of disk space. Last
 
 > 这个函数使用 df -h 命令来确定磁盘空间的数量。最后，我们将建造 report_home_space 函数：
 
-```
+```sh
 report_home_space () {
   cat <<- _EOF_
   <H2>Home Space Utilization</H2>

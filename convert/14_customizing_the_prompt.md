@@ -19,7 +19,7 @@ Our default prompt looks something like this:
 
 > 我们默认的提示符看起来像这样：
 
-```
+```sh
 [me@linuxbox ~]$
 ```
 
@@ -27,7 +27,7 @@ Notice that it contains our user name, our host name and our current working dir
 
 > 注意它包含我们的用户名，主机名和当前工作目录，但是它又是怎样得到这些东西的呢？ 结果证明非常简单。提示符是由一个环境变量定义的，叫做 PS1（是"prompt string one" 的简写）。我们可以通过 echo 命令来查看 PS1 的内容。
 
-```
+```sh
 [me@linuxbox ~]$ echo $PS1
 [\u@\h \W]\$
 ```
@@ -1376,7 +1376,7 @@ With this list of special characters, we can change the prompt to see the effect
 
 > 参照这个特殊字符列表，我们可以更改提示符来看一下效果。首先， 我们把原来提示符字符串的内容备份一下，以备之后恢复原貌。为了完成备份， 我们把已有的字符串复制到另一个 shell 变量中，这个变量是我们自己创造的。
 
-```
+```sh
 [me@linuxbox ~]$ ps1_old="$PS1"
 ```
 
@@ -1384,7 +1384,7 @@ We create a new variable called ps1_old and assign the value of PS1 to it. We ca
 
 > 我们新创建了一个叫做 ps1_old 的变量，并把变量 PS1 的值赋 ps1_old。通过 echo 命令可以证明 我们的确复制了 PS1 的值。
 
-```
+```sh
 [me@linuxbox ~]$ echo $ps1_old
 [\u@\h \W]\$
 ```
@@ -1393,7 +1393,7 @@ We can restore the original prompt at any time during our terminal session by si
 
 > 在终端会话中，我们能在任一时间复原提示符，只要简单地反向操作就可以了。
 
-```
+```sh
 [me@linuxbox ~]$ PS1="$ps1_old"
 ```
 
@@ -1401,7 +1401,7 @@ Now that we are ready to proceed, let's see what happens if we have an empty pro
 
 > 现在，我们准备开始，让我们看看如果有一个空的字符串会发生什么：
 
-```
+```sh
 [me@linuxbox ~]$ PS1=
 ```
 
@@ -1409,7 +1409,7 @@ If we assign nothing to the prompt string, we get nothing. No prompt string at a
 
 > 如果我们没有给提示字符串赋值，那么我们什么也看不到。根本没有提示字符串！提示符仍然在那里， 但是什么也不显示，正如我们所要求的那样。我们将用一个最小的提示符来代替它：
 
-```
+```sh
 PS1="\$ "
 ```
 
@@ -1421,7 +1421,7 @@ Let's add a bell to our prompt:
 
 > 在提示符中添加一个响铃：
 
-```
+```sh
 $ PS1="\a\$ "
 ```
 
@@ -1433,7 +1433,7 @@ Next, let's try to make an informative prompt with some host name and time-of-da
 
 > 下一步，让我们试着创建一个信息丰富的提示符，包含主机名和当天时间的信息。
 
-```
+```sh
 $ PS1="\A \h \$ "
 17:33 linuxbox $
 ```
@@ -1466,7 +1466,7 @@ Character color is controlled by sending the terminal emulator an ANSI escape co
 
 > 字符颜色是由发送到终端仿真器的一个嵌入到了要显示的字符流中的 ANSI 转义编码来控制的。 这个控制编码不会"打印"到屏幕上，而是被终端解释为一个指令。正如我们在上表看到的字符序列， 这个 \[ 和 \] 序列被用来封装这些非打印字符。一个 ANSI 转义编码以一个八进制 033（这个编码是由 退出按键产生的）开头，其后跟着一个可选的字符属性，在之后是一个指令。例如，把文本颜色 设为正常（attribute = 0），黑色文本的编码如下：
 
-```
+```sh
 \033[0;30m
 ```
 
@@ -2378,7 +2378,7 @@ Let's try to make a red prompt. We'll insert the escape code at the beginning:
 
 > 让我们试着制作一个红色提示符。我们将在开头加入转义编码：
 
-```
+```sh
 <me@linuxbox ~>$ PS1='\[\033[0;31m\]<\u@\h \W>\$'
 <me@linuxbox ~>$
 ```
@@ -2387,7 +2387,7 @@ That works, but notice that all the text that we type after the prompt is also r
 
 > 我们的提示符生效了，但是注意我们在提示符之后输入的文本也是红色的。为了修改这个问题， 我们将添加另一个转义编码到这个提示符的末尾来告诉终端仿真器恢复到原来的颜色。
 
-```
+```sh
 <me@linuxbox ~>$ PS1='\[\033[0;31m\]<\u@\h \W>\$\[\033[0m\]'
 <me@linuxbox ~>$
 ```
@@ -2824,7 +2824,7 @@ We can create a prompt with a red background by applying a simple change to the 
 
 > 我们可以创建一个带有红色背景的提示符，只是对第一个转义编码做个简单的修改。
 
-```
+```sh
 <me@linuxbox ~>$ PS1='\[\033[0;41m\]<\u@\h \W>\$\[\033[0m\] '
 <me@linuxbox ~>$
 ```
@@ -3449,7 +3449,7 @@ Using the codes above, we'll construct a prompt that draws a red bar at the top 
 
 > 使用上面的编码，我们将构建一个提示符，每次当这个提示符出现的时候，会在屏幕的上方画出一个 包含时钟（由黄色文本渲染）的红色长条。构建好的提示符的编码就是这串看起来很唬人的字符串：
 
-```
+```sh
 PS1='\[\033[s\033[0;0H\033[0;41m\033[K\033[1;33m\t\033[0m\033[u\]
 <\u@\h \W>\$ '
 ```
@@ -4146,7 +4146,7 @@ Obviously, we don't want to be typing that monster all the time, so we'll want t
 
 > 显然地，我们不想总是敲入那个怪物，所以我们将要把这个提示符存储在某个地方。通过把它 添加到我们的.bashrc 文件，可以使这个提示符永久存在。为了达到目的，把下面这两行添加到.bashrc 文件中。
 
-```
+```sh
 PS1='\[\033[s\033[0;0H\033[0;41m\033[K\033[1;33m\t\033[0m\033[u\]<\u@\h \W>\$ '
 export PS1
 ```

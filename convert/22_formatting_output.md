@@ -32,7 +32,7 @@ The nl program is a rather arcane tool used to perform a simple task. It numbers
 
 nl 程序是一个相当神秘的工具，用作一个简单的任务。它添加文件的行数。在它最简单的用途中，它相当于 cat -n:
 
-```
+```sh
 [me@linuxbox ~]$ nl distros.txt | head
 ```
 
@@ -1052,7 +1052,7 @@ Admittedly, we probably won't be numbering lines that often, but we can use nl t
 
 > 坦诚的说，我们大概不会那么频繁地去数行数，但是我们能用 nl 去查看我们怎么将多个工具结合在一个去完成更复杂的任务。 我们将在之前章节的基础上做一个 Linux 发行版的报告。因为我们将使用 nl，包含它的 header/body/footer 标记将会十分有用。 我们将把它加到上一章的 sed 脚本来做这个。使用我们的文本编辑器，我们将脚本改成一下并且把它保存成 distros-nl.sed:
 
-```
+```sh
 # sed script to produce Linux distributions report
 1 i\
 \\:\\:\\:\
@@ -1079,7 +1079,7 @@ Next, we'll produce our enhanced report by combining sort, sed, and nl:
 
 > 下一步，我们将结合 sort, sed, nl 来生成我们改进的报告：
 
-```
+```sh
 [me@linuxbox ~]$ sort -k 1,1 -k 2n distros.txt | sed -f distros-nl.sed | nl
         Linux Distributions Report
         Name    Ver.    Released
@@ -1110,7 +1110,7 @@ We can repeat the command and experiment with different options for nl. Some int
 
 > 我们能够重复命令并且实验不同的 nl 选项。一些有趣的方式：
 
-```
+```sh
 nl -n rz
 ```
 
@@ -1118,7 +1118,7 @@ and
 
 > 和
 
-```
+```sh
 nl -w 3 -s ' '
 ```
 
@@ -1128,7 +1128,7 @@ Folding is the process of breaking lines of text at a specified width. Like our 
 
 > 折叠是将文本的行限制到特定的宽的过程。像我们的其他命令，fold 接受一个或多个文件及标准输入。如果我们将 一个简单的文本流 fold，我们可以看到它工作的方式：
 
-```
+```sh
 [me@linuxbox ~]$ echo "The quick brown fox jumped over the lazy dog." | fold -w 12
 The quick br
 own fox jump
@@ -1140,7 +1140,7 @@ Here we see fold in action. The text sent by the echo command is broken into seg
 
 > 这里我们看到了 fold 的行为。这个用 echo 命令发送的文本用 -w 选项分解成块。在这个例子中，我们设定了行宽为 12 个字符。 如果没有字符设置，默认是 80。注意到文本行不会因为单词边界而不会被分解。增加的 -s 选项将让 fold 分解到最后可用的空白 字符，即会考虑单词边界。
 
-```
+```sh
 [me@linuxbox ~]$ echo "The quick brown fox jumped over the lazy dog."
 | fold -w 12 -s
 The quick
@@ -1160,7 +1160,7 @@ To demonstrate, we'll need some text. Let's lift some from the fmt info page:
 
 > 为了解释，我们将需要一些文本。让我们抄一些 fmt 主页上的东西吧：
 
-```
+```sh
 ‘fmt’ reads from the specified FILE arguments (or standard input if
 none are given), and writes to standard output.
 
@@ -1184,7 +1184,7 @@ We'll copy this text into our text editor and save the file as fmt-info.txt. Now
 
 > 我们将把这段文本复制进我们的文本编辑器并且保存文件名为 fmt-info.txt。现在，让我们重新格式这个文本并且让它成为一个 50 个字符宽的项目。我们能用 -w 选项对文件进行处理：
 
-```
+```sh
 [me@linuxbox ~]$ fmt -w 50 fmt-info.txt | head
 'fmt' reads from the specified FILE arguments
 (or standard input if
@@ -1220,7 +1220,7 @@ The -p option is particularly interesting. With it, we can format selected porti
 
 > 这个 -p 选项尤为有趣。通过它，我们可以格式文件选中的部分，通过在开头使用一样的符号。 很多编程语言使用锚标记（#）去提醒注释的开始，而且它可以通过这个选项来被格式。让我们创建一个有用到注释的程序。
 
-```
+```sh
 [me@linuxbox ~]$ cat > fmt-code.txt
 # This file contains code with comments.
 
@@ -1237,7 +1237,7 @@ Our sample file contains comments which begin the string "\# " (a \# followed by
 
 > 我们的示例文件包含了用 "\#" 开始的注释（一个 \# 后跟着一个空白符）和代码。现在，使用 fmt，我们能格式注释并且 不让代码被触及。
 
-```
+```sh
 [me@linuxbox ~]$ fmt -w 50 -p '# ' fmt-code.txt
 # This file contains code with comments.
 
@@ -1263,7 +1263,7 @@ We'll demonstrate pr by formatting our distros.txt file into a series of very sh
 
 > 下面我们将演示 pr 的用法。我们准备将 distros.txt 这个文件分成若干张很短的页面（仅展示前两张页面）：
 
-```
+```sh
 [me@linuxbox ~]$ pr -l 15 -w 65 distros.txt
 2008-12-11 18:27        distros.txt         Page 1
 
@@ -1299,7 +1299,7 @@ printf (from the phrase "print formatted") was originally developed for the C pr
 
 printf (来自短语"格式化打印" "print formatted") 最初为 C 语言设计，后来在包括 shell 的多种语言中运用。事实上，在 bash 中, printf 是内置的。 printf 这样工作:
 
-```
+```sh
 printf “format” arguments
 ```
 
@@ -1307,7 +1307,7 @@ The command is given a string containing a format description which is then appl
 
 > 首先，发送包含有格式化描述的字符串的指令，接着，这些描述被应用于参数列表上。格式化的结果在标准输出中显示。下面是一个小例子：
 
-```
+```sh
 [me@linuxbox ~]$ printf "I formatted the string: %s\n" foo
 I formatted the string: foo
 ```
@@ -1316,7 +1316,7 @@ The format string may contain literal text (like "I formatted the string:"), esc
 
 > 格式字符串可能包含文字文本（如"我格式化了这个字符串：" "I formatted the string:"），转义序列（例如 `\n`{=tex}，换行符）和以％字符开头的序列，这被称为转换规范。在上面的例子中，转换规范 ％s 用于格式化字符串 "foo" 并将其输出在命令行中。我们再来看一遍：
 
-```
+```sh
 [me@linuxbox ~]$ printf "I formatted '%s' as a string.\n" foo
 I formatted 'foo' as a string.
 ```
@@ -1813,7 +1813,7 @@ We'll demonstrate the effect each of the conversion specifiers on the string "38
 
 > 下面我们以字符串 "380" 为例，展示每种转换符的效果。
 
-```
+```sh
 [me@linuxbox ~]$ printf "%d, %f, %o, %s, %x, %X\n" 380 380 380 380 380 380
 380, 380.000000, 574, 380, 17c, 17C
 ```
@@ -1822,7 +1822,7 @@ Since we specified six conversion specifiers, we must also supply six arguments 
 
 > 由于我们指定了六个转换符，我们还必须为 printf 提供六个参数进行处理。下面六个结果展示了每个转换符的效果。 可将可选组件添加到转换符以调整输出。 完整的转换规范包含以下内容：
 
-```
+```sh
 %[flags][width][.precision]conversion_specification
 ```
 
@@ -1919,6 +1919,7 @@ type. For o (octal number) conversion, the output is prefixed with 0. For x and 
 ```
 
 - -- (dash) Left-align the output. By default, printf right-aligns output.
+
   ```{=html}
   </p>
   ```
@@ -1928,6 +1929,7 @@ type. For o (octal number) conversion, the output is prefixed with 0. For x and 
   ```
 
   ' ' -- (space) Produce a leading space for positive numbers.
+
   ```{=html}
   </p>
   ```
@@ -1937,6 +1939,7 @@ type. For o (octal number) conversion, the output is prefixed with 0. For x and 
   ```
 
   - -- (plus sign) Sign positive numbers. By default, printf only signs negative numbers.
+
     ```{=html}
     </p>
     ```
@@ -1958,6 +1961,7 @@ type. For o (octal number) conversion, the output is prefixed with 0. For x and 
     ```
 
     width
+
     ```{=html}
     </td>
     ```
@@ -1967,6 +1971,7 @@ type. For o (octal number) conversion, the output is prefixed with 0. For x and 
     ```
 
     A number specifying the minimum field width.
+
     ```{=html}
     </td>
     ```
@@ -1984,6 +1989,7 @@ type. For o (octal number) conversion, the output is prefixed with 0. For x and 
     ```
 
     .precision
+
     ```{=html}
     </td>
     ```
@@ -1993,6 +1999,7 @@ type. For o (octal number) conversion, the output is prefixed with 0. For x and 
     ```
 
     For floating point numbers, specify the number of digits of precision to be output after the decimal point. For string conversion, precision specifies the number of characters to output.
+
     ```{=html}
     </td>
     ```
@@ -2092,6 +2099,7 @@ flags
 ```
 
 - -- (破折号) 左对齐输出。默认情况下，printf 右对齐输出。
+
   ```{=html}
   </p>
   ```
@@ -2101,6 +2109,7 @@ flags
   ```
 
   ' ' -- (空格) 在正数前空一格。
+
   ```{=html}
   </p>
   ```
@@ -2110,6 +2119,7 @@ flags
   ```
 
   - -- (加号) 在正数前添加加号。默认情况下，printf 只在负数前添加符号。
+
     ```{=html}
     </p>
     ```
@@ -2131,6 +2141,7 @@ flags
     ```
 
     width
+
     ```{=html}
     </td>
     ```
@@ -2140,6 +2151,7 @@ flags
     ```
 
     指定最小字段宽度的数。
+
     ```{=html}
     </td>
     ```
@@ -2157,6 +2169,7 @@ flags
     ```
 
     .precision
+
     ```{=html}
     </td>
     ```
@@ -2166,6 +2179,7 @@ flags
     ```
 
     对于浮点数，指定小数点后的精度位数。对于字符串转换，指定要输出的字符数。
+
     ```{=html}
     </td>
     ```
@@ -3182,7 +3196,7 @@ Again, printf is used mostly in scripts where it is employed to format tabular d
 
 > 再次强调，printf 主要用在脚本中，用于格式化表格数据，而不是直接用于命令行。但是我们仍然可以展示如何使用它来解决各种格式化问题。 首先，我们输出一些由制表符分隔的字段：
 
-```
+```sh
 [me@linuxbox ~]$ printf "%s\t%s\t%s\n" str1 str2 str3
 str1 str2 str3
 ```
@@ -3191,7 +3205,7 @@ By inserting `\t (`{=tex}the escape sequence for a tab), we achieve the desired 
 
 > 通过插入 `\t（`{=tex}tab 的转义序列），我们实现了所需的效果。接下来，我们让一些数字的格式变得整齐：
 
-```
+```sh
 [me@linuxbox ~]$ printf "Line: %05d %15.3f Result: %+15d\n" 1071
 3.14156295 32589
 Line: 01071 3.142 Result: +32589
@@ -3201,7 +3215,7 @@ This shows the effect of minimum field width on the spacing of the fields. Or ho
 
 > 这显示了最小字符宽度对字符间距的影响。或者，让我们看看如何格式化一个小网页：
 
-```
+```sh
 [me@linuxbox ~]$ printf "<html>\n\t<head>\n\t\t<title>%s</title>\n
 \t</head>\n\t<body>\n\t\t<p>%s</p>\n\t</body>\n</html>\n" "Page Tit
 le" "Page Content"
@@ -3265,7 +3279,7 @@ For a moment, let's consider the humble man page. It lives in the /usr/share/man
 
 > 现在，我们来看一下这个简单的手册页。它位于/usr/share/man 目录，是一个 gzip 压缩文本文件。解压后，我们将看到以下内容（显示了 ls 手册的第 1 节）：
 
-```
+```sh
 [me@linuxbox ~]$ zcat /usr/share/man/man1/ls.1.gz | head
 .\" DO NOT MODIFY THIS FILE! It was generated by help2man 1.35.
 .TH LS "1" "April 2008" "GNU coreutils 6.10" "User Commands"
@@ -3283,7 +3297,7 @@ Compared to the man page in its normal presentation, we can begin to see a corre
 
 > 与默认手册页进行比较，我们可以开始看到标记语言与其结果之间的相关性：
 
-```
+```sh
 [me@linuxbox ~]$ man ls | head
 LS(1) User Commands LS(1)
 NAME
@@ -3297,7 +3311,7 @@ The reason this is of interest is that man pages are rendered by groff, using th
 
 > 令人感兴趣的原因是手册页由 groff 渲染，使用 mandoc 宏包。事实上，我们可以用以下流水线来模拟 man 命令：
 
-```
+```sh
 [me@linuxbox ~]$ zcat /usr/share/man/man1/ls.1.gz | groff -mandoc -T
 ascii | head
 LS(1) User Commands LS(1)
@@ -3311,7 +3325,7 @@ Here we use the groff program with the options set to specify the mandoc macro p
 
 > 在这里，我们使用 groff 程序和选项集来指定 mandoc 宏程序包和 ASCII 的输出驱动程序。groff 可以产生多种格式的输出。 如果没有指定格式，默认情况下会输出 PostScript 格式：
 
-```
+```sh
 [me@linuxbox ~]$ zcat /usr/share/man/man1/ls.1.gz | groff -mandoc |
 head
 %!PS-Adobe-3.0
@@ -3330,7 +3344,7 @@ We briefly mentioned PostScript in the previous chapter, and will again in the n
 
 > 我们在前一章中简要介绍了 PostScript，并将在下一章中再次介绍。 PostScript 是一种页面描述语言，用于将打印页面的内容描述给类似排字机的设备。 如果我们输出命令并将其存储到一个文件中（假设我们正在使用带有 Desktop 目录的图形桌面）：
 
-```
+```sh
 [me@linuxbox ~]$ zcat /usr/share/man/man1/ls.1.gz | groff -mandoc >
 ~/Desktop/foo.ps
 ```
@@ -3347,7 +3361,7 @@ What we see is a nicely typeset man page for ls! In fact, it's possible to conve
 
 > 我们看到的是一个排版很好的 ls 手册页面！事实上，可以使用以下命令将 PostScript 输出的文件转换为 PDF（便携式文档格式）文件：
 
-```
+```sh
 [me@linuxbox ~]$ ps2pdf ~/Desktop/foo.ps ~/Desktop/ls.pdf
 ```
 
@@ -3359,7 +3373,7 @@ ps2pdf 程序是 ghostscript 包的一部分，它安装在大多数支持打印
 
 Tip: Linux systems often include many command line programs for file format conversion. They are often named using the convention of format2format. Try using the command 提示：Linux 系统通常包含许多用于文件格式转换的命令行程序。它们通常以 format2format 命名。尝试使用该命令
 
-```
+```sh
 ls /usr/bin/*[[:alpha:]]2[[:alpha:]]*
 ```
 
@@ -3377,7 +3391,7 @@ First, we need to modify our sed script to add the necessary requests that tbl r
 
 > 首先，我们需要修改我们的 sed 脚本来添加 tbl 所需的请求。 使用文本编辑器，我们将将 distros.sed 更改为以下内容：
 
-```
+```sh
 # sed script to produce Linux distributions report
 1 i\
 .TS\
@@ -3398,7 +3412,7 @@ Note that for the script to work properly, care must been taken to see that the 
 
 > 请注意，为使脚本正常工作，必须注意单词"Name Version Released"由 tab 分隔，而不是空格。 我们将生成的文件保存为 distros-tbl.sed. tbl 使用 .TS 和 .TE 请求来启动和结束表格。 .TS 请求后面的行定义了表格的全局属性，就我们的示例而言，它在页面上水平居中并含外边框。 定义的其余行描述每行的布局。现在，如果我们再次使用新的 sed 脚本运行我们新的报告生成流水线，我们将得到以下内容：
 
-```
+```sh
 [me@linuxbox ~]$ sort -k 1,1 -k 2n distros.txt | sed -f distros-tbl
 .sed | groff -t -T ascii 2>/dev/null
 +------------------------------+
@@ -3433,7 +3447,7 @@ The format of the output is the best we can expect if we are limited to the capa
 
 > 如果仅限于终端屏幕或打字机式打印机，这样的输出格式是我们能期望的最好的。 如果我们指定 PostScript 输出并以图形方式查看生成的输出，我们将得到一个更加满意的结果：
 
-```
+```sh
 [me@linuxbox ~]$ sort -k 1,1 -k 2n distros.txt | sed -f distros-tbl
 .sed | groff -t > ~/Desktop/foo.ps
 ```

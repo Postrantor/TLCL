@@ -755,7 +755,7 @@ Example: To search a yum repository for the emacs text editor, this command coul
 
 > 例如：搜索一个 yum 包仓库来查找 emacs 文本编辑器，使用以下命令：
 
-```
+```sh
 yum search emacs
 ```
 
@@ -973,7 +973,7 @@ Example: To install the emacs text editor from an apt repository:
 
 > 例如：从一个 apt 包仓库来安装 emacs 文本编辑器：
 
-```
+```sh
 apt-get update; apt-get install emacs
 ```
 
@@ -1191,7 +1191,7 @@ Example: If the emacs-22.1-7.fc7-i386.rpm package file had been downloaded from 
 
 > 例如：如果已经从一个并非包仓库的网站下载了软件包文件 emacs-22.1-7.fc7-i386.rpm， 则可以通过这种方法来安装它：
 
-```
+```sh
 rpm -i emacs-22.1-7.fc7-i386.rpm
 ```
 
@@ -1417,7 +1417,7 @@ Example: To uninstall the emacs package from a Debian-style system:
 
 > 例如：从 Debian 风格的系统中卸载 emacs 软件包：
 
-```
+```sh
 apt-get remove emacs
 ```
 
@@ -1635,7 +1635,7 @@ Example: To apply any available updates to the installed packages on a Debian-st
 
 > 例如：更新安装在 Debian 风格系统中的软件包：
 
-```
+```sh
 apt-get update; apt-get upgrade
 ```
 
@@ -1853,7 +1853,7 @@ Example: Updating an existing installation of emacs to the version contained in 
 
 > 例如：把 Red Hat 系统中所安装的 emacs 的版本更新到软件包文件 emacs-22.1-7.fc7-i386.rpmz 所包含的 emacs 版本。
 
-```
+```sh
 rpm -U emacs-22.1-7.fc7-i386.rpm
 ```
 
@@ -2289,7 +2289,7 @@ Example: To determine if the emacs package is installed on a Debian style system
 
 > 例如：确定是否 Debian 风格的系统中安装了这个 emacs 软件包：
 
-```
+```sh
 dpkg --status emacs
 ```
 
@@ -2507,7 +2507,7 @@ Example: To see a description of the emacs package on a Debian-style system:
 
 > 例如：查看 Debian 风格的系统中 emacs 软件包的说明信息：
 
-```
+```sh
 apt-cache show emacs
 ```
 
@@ -2725,7 +2725,7 @@ Example: To see what package installed the /usr/bin/vim file on a Red Hat system
 
 > 例如：在 Red Hat 系统中，查看哪个软件包安装了/usr/bin/vim 这个文件
 
-```
+```sh
 rpm -qf /usr/bin/vim
 ```
 

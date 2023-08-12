@@ -54,7 +54,7 @@ There is a file named /etc/fstab that lists the devices (typically hard disk par
 
 > 有一个叫做 /etc/fstab 的文件可以列出系统启动时要挂载的设备（典型地，硬盘分区）。下面是 来自于 Fedora 7 系统的/etc/fstab 文件实例：
 
-```
+```sh
 LABEL=/12               /               ext3        defaults        1   1
 LABEL=/home             /home           ext3        defaults        1   2
 LABEL=/boot             /boot           ext3        defaults        1   2
@@ -69,7 +69,7 @@ Most of the file systems listed in this example file are virtual and are not app
 
 > 在这个实例中所列出的大多数文件系统是虚拟的，并不适用于我们的讨论。就我们的目的而言， 前三个是我们感兴趣的：
 
-```
+```sh
 LABEL=/12               /               ext3        defaults        1   1
 LABEL=/home             /home           ext3        defaults        1   2
 LABEL=/boot             /boot           ext3        defaults        1   2
@@ -653,7 +653,7 @@ The mount command is used to mount file systems. Entering the command without ar
 
 > 这个 mount 命令被用来挂载文件系统。执行这个不带参数的命令，将会显示 一系列当前挂载的文件系统：
 
-```
+```sh
 [me@linuxbox ~]$ mount
 /dev/sda2 on / type ext3 (rw)
 proc on /proc type proc (rw)
@@ -678,7 +678,7 @@ For our first experiment, we will work with a CD-ROM. First, let's look at a sys
 
 > 第一次实验，我们将使用一张 CD-ROM。首先，在插入 CD-ROM 之前，我们将看一下系统：
 
-```
+```sh
 [me@linuxbox ~]$ mount
 /dev/mapper/VolGroup00-LogVol00 on / type ext3 (rw)
 proc on /proc type proc (rw)
@@ -694,7 +694,7 @@ This listing is from a CentOS 5 system, which is using LVM (Logical Volume Manag
 
 > 这个列表来自于 CentOS 5 系统，使用 LVM（逻辑卷管理器）来创建它的根文件系统。正如许多现在的 Linux 发行版一样，这个 系统试图自动挂载插入的 CD-ROM。当我们插入光盘后，我们看看下面的输出：
 
-```
+```sh
 [me@linuxbox ~]$ mount
 /dev/mapper/VolGroup00-LogVol00 on / type ext3 (rw)
 proc on /proc type proc (rw)
@@ -724,7 +724,7 @@ Now that we have the device name of the CD-ROM drive, let's unmount the disk and
 
 > 现在我们拥有 CD-ROM 光盘的设备名字，让我们卸载这张光盘，并把它重新挂载到文件系统树 的另一个位置。我们需要超级用户身份（使用系统相应的命令）来进行操作，并且用 umount（注意这个命令的拼写）来卸载光盘：
 
-```
+```sh
 [me@linuxbox ~]$ su -
 Password:
 [root@linuxbox ~]# umount /dev/hdc
@@ -734,7 +734,7 @@ The next step is to create a new mount point for the disk. A mount point is simp
 
 > 下一步是创建一个新的光盘挂载点。简单地说，一个挂载点就是文件系统树中的一个目录。它没有 什么特殊的。它甚至不必是一个空目录，如果你把设备挂载到了一个非空目录上，你将不能看到 这个目录中原来的内容，直到你卸载这个设备。就我们的目的而言，我们将创建一个新目录：
 
-```
+```sh
 [root@linuxbox ~]# mkdir /mnt/cdrom
 ```
 
@@ -742,7 +742,7 @@ Finally, we mount the CD-ROM at the new mount point. The -t option is used to sp
 
 > 最后，我们把这个 CD-ROW 挂载到一个新的挂载点上。这个 -t 选项用来指定文件系统类型：
 
-```
+```sh
 [root@linuxbox ~]# mount -t iso9660 /dev/hdc /mnt/cdrom
 ```
 
@@ -750,7 +750,7 @@ Afterward, we can examine the contents of the CD-ROM via the new mount point:
 
 > 之后，我们可以通过这个新挂载点来查看 CD-ROW 的内容：
 
-```
+```sh
 [root@linuxbox ~]# cd /mnt/cdrom
 [root@linuxbox cdrom]# ls
 ```
@@ -759,7 +759,7 @@ Notice what happens when we try to unmount the CD-ROM:
 
 > 注意当我们试图卸载这个 CD-ROW 时，发生了什么事情。
 
-```
+```sh
 [root@linuxbox cdrom]# umount /dev/hdc
 umount: /mnt/cdrom: device is busy
 ```
@@ -768,7 +768,7 @@ Why is this? The reason is that we cannot unmount a device if the device is bein
 
 > 这是怎么回事呢？原因是我们不能卸载一个设备，如果某个用户或进程正在使用这个设备的话。在这种 情况下，我们把工作目录更改到了 CD-ROW 的挂载点，这个挂载点导致设备忙碌。我们可以很容易地修复这个问题 通过把工作目录改到其它目录而不是这个挂载点。
 
-```
+```sh
 [root@linuxbox cdrom]# cd
 [root@linuxbox ~]# umount /dev/hdc
 ```
@@ -807,7 +807,7 @@ First, let's look at how the system names devices. If we list the contents of th
 
 > 首先，让我们看一下系统怎样来命名设备。如果我们列出目录/dev（所有设备的住所）的内容，我们 会看到许许多多的设备：
 
-```
+```sh
 [me@linuxbox ~]$ ls /dev
 ```
 
@@ -1191,7 +1191,7 @@ In addition, we often see symbolic links such as /dev/cdrom, /dev/dvd and /dev/ 
 
 > 另外，我们经常看到符号链接比如说 /dev/cdrom，/dev/dvd 和/dev/floppy，它们指向实际的 设备文件，提供这些链接是为了方便使用。如果你工作的系统不能自动挂载可移动的设备，你可以使用 下面的技巧来决定当可移动设备连接后，它是怎样被命名的。首先，启动一个实时查看文件 /var/log/messages （你可能需要超级用户权限）：
 
-```
+```sh
 [me@linuxbox ~]$ sudo tail -f /var/log/messages
 ```
 
@@ -1199,7 +1199,7 @@ The last few lines of the file will be displayed and then pause. Next, plug in t
 
 > 这个文件的最后几行会被显示，然后停止。下一步，插入这个可移动的设备。在 这个例子里，我们将使用一个 16MB 闪存。瞬间，内核就会发现这个设备， 并且探测它：
 
-```
+```sh
 Jul 23 10:07:53 linuxbox kernel: usb 3-2: new full speed USB device
 using uhci_hcd and address 2
 Jul 23 10:07:53 linuxbox kernel: usb 3-2: configuration #1 chosen
@@ -1233,7 +1233,7 @@ After the display pauses again, type Ctrl-c to get the prompt back. The interest
 
 > 显示再次停止之后，输入 Ctrl-c，重新得到提示符。输出结果的有趣部分是一再提及"\[sdb\]"， 这正好符和我们期望的 SCSI 磁盘设备名称。知道这一点后，有两行输出变得颇具启发性：
 
-```
+```sh
 Jul 23 10:07:59 linuxbox kernel: sdb: sdb1
 Jul 23 10:07:59 linuxbox kernel: sd 3:0:0:0: [sdb] Attached SCSI
 removable disk
@@ -1251,7 +1251,7 @@ With our device name in hand, we can now mount the flash drive:
 
 > 既然知道了设备名称，我们就可以挂载这个闪存驱动器了：
 
-```
+```sh
 [me@linuxbox ~]$ sudo mkdir /mnt/flash
 [me@linuxbox ~]$ sudo mount /dev/sdb1 /mnt/flash
 [me@linuxbox ~]$ df
@@ -1283,7 +1283,7 @@ The fdisk program allows us to interact directly with disk-like devices (such as
 
 > 这个 fdisk 程序允许我们直接在底层与类似磁盘的设备（比如说硬盘驱动器和闪存驱动器）进行交互。 使用这个工具可以在设备上编辑，删除，和创建分区。以我们的闪存驱动器为例， 首先我们必须卸载它（如果需要的话），然后调用 fdisk 程序，如下所示：
 
-```
+```sh
 [me@linuxbox ~]$ sudo umount /dev/sdb1
 [me@linuxbox ~]$ sudo fdisk /dev/sdb
 ```
@@ -1292,7 +1292,7 @@ Notice that we must specify the device in terms of the entire device, not by par
 
 > 注意我们必须指定设备名称，就整个设备而言，而不是通过分区号。这个程序启动后，我们 将看到以下提示：
 
-```
+```sh
 Command (m for help):
 ```
 
@@ -1300,7 +1300,7 @@ Entering an "m" will display the program menu:
 
 > 输入"m"会显示程序菜单：
 
-```
+```sh
 Command action
 a       toggle a bootable flag
 ....
@@ -1310,7 +1310,7 @@ The first thing we want to do is examine the existing partition layout. We do th
 
 > 我们想要做的第一件事情是检查已存在的分区布局。输入"p"会打印出这个设备的分区表：
 
-```
+```sh
 Command (m for help): p
 
 Disk /dev/sdb: 16 MB, 16006656 bytes
@@ -1325,7 +1325,7 @@ In this example, we see a 16 MB device with a single partition (1) that uses 100
 
 > 在此例中，我们看到一个 16MB 的设备只有一个分区(1)，此分区占用了可用的 1008 个柱面中的 1006 个, 并被标识为 Windows 95 FAT32 分区。有些程序会使用这个标志符来限制一些可以对磁盘所做的操作， 但大多数情况下更改这个标志符没有危害。为了叙述方便，我们将会更改它， 以此来表明是个 Linux 分区。在更改之前，首先我们必须找到被用来识别一个 Linux 分区的 ID 号码。 在上面列表中，我们看到 ID 号码"b"被用来指定这个已存在的分区。要查看可用的分区类型列表， 参考之前的程序菜单。我们会看到以下选项：
 
-```
+```sh
 l   list known partition types
 ```
 
@@ -1337,7 +1337,7 @@ Going back to the menu, we see this choice to change a partition ID:
 
 > 回到之前的菜单，看到这个选项来更改分区 ID 号：
 
-```
+```sh
 t   change a partition's system id
 ```
 
@@ -1345,7 +1345,7 @@ We enter "t" at the prompt enter the new ID:
 
 > 我们先输入"t"，再输入新的 ID 号：
 
-```
+```sh
 Command (m for help): t
 Selected partition 1
 Hex code (type L to list codes): 83
@@ -1356,7 +1356,7 @@ This completes all the changes that we need to make. Up to this point, the devic
 
 > 这就完成了我们需要做得所有修改。到目前为止，还没有接触这个设备（所有修改都存储在内存中， 而不是在此物理设备中），所以我们将会把修改过的分区表写入此设备，再退出。为此，我们输入 在提示符下输入"w":
 
-```
+```sh
 Command (m for help): w
 The partition table has been altered!
 Calling ioctl() to re-read partition table.
@@ -1377,7 +1377,7 @@ With our partition editing done (lightweight though it might have been) it's tim
 
 > 完成了分区编辑工作（它或许是轻量级的），是时候在我们的闪存驱动器上创建一个新的文件系统了。 为此，我们会使用 mkfs（"make file system"的简写），它能创建各种格式的文件系统。 在此设备上创建一个 ext3 文件系统，我们使用"-t" 选项来指定这个"ext3"系统类型，随后是我们要格式化的设备分区名称：
 
-```
+```sh
 [me@linuxbox ~]$ sudo mkfs -t ext3 /dev/sdb1
 mke2fs 1.40.2 (12-Jul-2007)
 Filesystem label=
@@ -1405,7 +1405,7 @@ The program will display a lot of information when ext3 is the chosen file syste
 
 > 当 ext3 被选为文件系统类型时，这个程序会显示许多信息。若把这个设备重新格式化为它最初的 FAT32 文件 系统，指定"vfat"作为文件系统类型：
 
-```
+```sh
 [me@linuxbox ~]$ sudo mkfs -t vfat /dev/sdb1
 ```
 
@@ -1427,7 +1427,7 @@ To check our flash drive (which should be unmounted first), we could do the foll
 
 > 检查我们的闪存驱动器（首先应该卸载），我们能执行下面的操作：
 
-```
+```sh
 [me@linuxbox ~]$ sudo fsck /dev/sdb1
 fsck 1.40.8 (13-Mar-2008)
 e2fsck 1.40.8 (13-Mar-2008)
@@ -1452,7 +1452,7 @@ For those of us still using computers old enough to be equipped with floppy disk
 
 > 对于那些还在使用配备了软盘驱动器的计算机的用户，我们也能管理这些设备。准备一 张可用的空白软盘要分两个步骤。首先，对这张软盘执行低级格式化，然后创建一个文件系统。 为了完成格式化，我们使用 fdformat 程序，同时指定软盘设备名称（通常为/dev/fd0）：
 
-```
+```sh
 [me@linuxbox ~]$ sudo fdformat /dev/fd0
 Double-sided, 80 tracks, 18 sec/track. Total capacity 1440 kB.
 Formatting ... done
@@ -1463,7 +1463,7 @@ Next, we apply a FAT file system to the diskette with mkfs:
 
 > 接下来，通过 mkfs 命令，给这个软盘创建一个 FAT 文件系统：
 
-```
+```sh
 [me@linuxbox ~]$ sudo mkfs -t msdos /dev/fd0
 ```
 
@@ -1481,7 +1481,7 @@ The dd program performs this task. It copies blocks of data from one place to an
 
 > 这个 dd 程序能执行此任务。它可以把数据块从一个地方复制到另一个地方。它使用独特的语法（由于历史原因） ，经常它被这样使用：
 
-```
+```sh
 dd if=input_file of=output_file [bs=block_size [count=blocks]]
 ```
 
@@ -1489,7 +1489,7 @@ Let's say we had two USB flash drives of the same size and we wanted to exactly 
 
 > 比方说我们有两个相同容量的 USB 闪存驱动器，并且要精确地把第一个驱动器（中的内容） 复制给第二个。如果连接两个设备到计算机上，它们各自被分配到设备/dev/sdb 和 /dev/sdc 上，这样我们就能通过下面的命令把第一个驱动器中的所有数据复制到第二个 驱动器中。
 
-```
+```sh
 dd if=/dev/sdb of=/dev/sdc
 ```
 
@@ -1497,7 +1497,7 @@ Alternately, if only the first device were attached to the computer, we could co
 
 > 或者，如果只有第一个驱动器被连接到计算机上，我们可以把它的内容复制到一个普通文件中供 以后恢复或复制数据：
 
-```
+```sh
 dd if=/dev/sdb of=flash_drive.img
 ```
 
@@ -1521,7 +1521,7 @@ If we want to make an iso image of an existing CD-ROM, we can use dd to read all
 
 > 如果想要制作一张现有 CD-ROM 的 iso 映像，我们可以使用 dd 命令来读取 CD-ROW 中的所有数据块， 并把它们复制到本地文件中。比如说我们有一张 Ubuntu CD，用它来制作一个 iso 文件，以后我们可以用它来制作更多的拷贝。插入这张 CD 之后，确定 它的设备名称（假定是/dev/cdrom），然后像这样来制作 iso 文件：
 
-```
+```sh
 dd if=/dev/cdrom of=ubuntu.iso
 ```
 
@@ -1535,7 +1535,7 @@ To create an iso image file containing the contents of a directory, we use the g
 
 > 创建一个包含目录内容的 iso 映像文件，我们使用 genisoimage 程序。为此，我们首先创建 一个目录，这个目录中包含了要包括到此映像中的所有文件，然后执行这个 genisoimage 命令 来创建映像文件。例如，如果我们已经创建一个叫做 \~/cd-rom-files 的目录，然后用文件 填充此目录，再通过下面的命令来创建一个叫做 cd-rom.iso 映像文件：
 
-```
+```sh
 genisoimage -o cd-rom.iso -R -J ~/cd-rom-files
 ```
 
@@ -1563,7 +1563,7 @@ There is a trick that we can use to mount an iso image while it is still on our 
 
 > 有一个诀窍，我们可以用它来挂载 iso 映像文件，虽然此文件仍然在我们的硬盘中，但我们 当作它已经在光盘中了。添加 "-o loop" 选项来挂载（同时带有必需的 "-t iso9660" 文件系统类型）， 挂载这个映像文件就好像它是一台设备，把它连接到文件系统树上：
 
-```
+```sh
 mkdir /mnt/iso_image
 mount -t iso9660 -o loop image.iso /mnt/iso_image
 ```
@@ -1578,7 +1578,7 @@ Rewritable CD-RW media needs to be erased or blanked before it can be reused. To
 
 > 可重写入的 CD-RW 媒介在被重使用之前需要擦除或清空。为此，我们可以用 wodim 命令，指定 设备名称和清空的类型。此 wodim 程序提供了几种清空类型。最小（且最快）的是 "fast" 类型：
 
-```
+```sh
 wodim dev=/dev/cdrw blank=fast
 ```
 
@@ -1588,7 +1588,7 @@ To write an image, we again use wodim, specifying the name of the optical media 
 
 > 写入一个映像文件，我们再次使用 wodim 命令，指定光盘设备名称和映像文件名：
 
-```
+```sh
 wodim dev=/dev/cdrw image.iso
 ```
 
@@ -1608,7 +1608,7 @@ It's often useful to verify the integrity of an iso image that we have downloade
 
 > 通常验证一下我们已经下载的 iso 映像文件的完整性很有用处。在大多数情况下，iso 映像文件的贡献者也会提供 一个 checksum 文件。一个 checksum 是一个神奇的数学运算的计算结果，这个数学计算会产生一个能表示目标文件内容的数字。 如果目标文件的内容即使更改一个二进制位，checksum 的结果将会非常不一样。 生成 checksum 数字的最常见方法是使用 md5sum 程序。当你使用 md5sum 程序的时候， 它会产生一个独一无二的十六进制数字：
 
-```
+```sh
 md5sum image.iso
 34e354760f9bb7fbf85c96f6a3f94ece    image.iso
 ```
@@ -1621,7 +1621,7 @@ In addition to checking the integrity of a downloaded file, we can use md5sum to
 
 > 除了检查下载文件的完整性之外，我们也可以使用 md5sum 程序验证新写入的光学存储介质。 为此，首先我们计算映像文件的 checksum 数值，然后计算此光学存储介质的 checksum 数值。 这种验证光学介质的技巧是限定只对光学存储介质中包含映像文件的部分计算 checksum 数值。 通过确定映像文件所包含的 2048 个字节块的数目（光学存储介质总是以 2048 个字节块的方式写入） 并从存储介质中读取那么多的字节块，我们就可以完成操作。 某些类型的存储介质，并不需要这样做。一个以 disk-at-once 模式写入的 CD-R ，可以用下面的方式检验：
 
-```
+```sh
 md5sum /dev/cdrom
 34e354760f9bb7fbf85c96f6a3f94ece    /dev/cdrom
 ```
@@ -1630,6 +1630,6 @@ Many types of media, such as DVDs require a precise calculation of the number of
 
 > 许多存储介质类型，如 DVD 需要精确地计算字节块的数目。在下面的例子中，我们检验了映像文件 dvd-image.iso 以及 DVD 光驱中磁盘 /dev/dvd 文件的完整性。你能弄明白这是怎么回事吗？
 
-```
+```sh
 md5sum dvd-image.iso; dd if=/dev/dvd bs=2048 count=$(( $(stat -c "%s" dvd-image.iso) / 2048 )) | md5sum
 ```

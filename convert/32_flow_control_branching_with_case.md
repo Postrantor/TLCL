@@ -13,7 +13,7 @@ The bash multiple-choice compound command is called case. It has the following s
 
 Bash 的多选复合命令称为 case。它的语法规则如下所示：
 
-```
+```sh
 case word in
     [pattern [| pattern]...) commands ;;]...
 esac
@@ -23,7 +23,7 @@ If we look at the read-menu program from Chapter 28, we see the logic used to ac
 
 > 如果我们看一下第 28 章中的读菜单程序，我们就知道了用来应对一个用户选项的逻辑流程：
 
-```
+```sh
 #!/bin/bash
 # read-menu: a menu driven system information program
 clear
@@ -69,7 +69,7 @@ Using case, we can replace this logic with something simpler:
 
 > 使用 case 语句，我们可以用更简单的代码替换这种逻辑：
 
-```
+```sh
 #!/bin/bash
 # case-menu: a menu driven system information program
 clear
@@ -490,7 +490,7 @@ Here is an example of patterns at work:
 
 > 这里是一个模式使用实例：
 
-```
+```sh
 #!/bin/bash
 read -p "enter word > "
 case $REPLY in
@@ -506,7 +506,7 @@ It is also possible to combine multiple patterns using the vertical bar characte
 
 > 还可以使用竖线字符作为分隔符，把多个模式结合起来。这就创建了一个 "或" 条件模式。这对于处理诸如大小写字符很有用处。例如：
 
-```
+```sh
 #!/bin/bash
 # case-menu: a menu driven system information program
 clear
@@ -551,7 +551,7 @@ In versions of bash prior to 4.0, case allowed only one action to be performed o
 
 > 早于版本号 4.0 的 bash，case 语法只允许执行与一个成功匹配的模式相关联的动作。 匹配成功之后，命令将会终止。这里我们看一个测试一个字符的脚本：
 
-```
+```sh
 #!/bin/bash
 # case4-1: test a character
 read -n 1 -p "Type a character > "
@@ -572,7 +572,7 @@ Running this script produces this:
 
 > 运行这个脚本，输出这些内容：
 
-```
+```sh
 [me@linuxbox ~]$ case4-1
 Type a character > a
 'a' is lower case.
@@ -582,7 +582,7 @@ The script works for the most part, but fails if a character matches more than o
 
 > 大多数情况下这个脚本工作是正常的，但若输入的字符不止与一个 POSIX 字符集匹配的话，这时脚本就会出错。 例如，字符 "a" 既是小写字母，也是一个十六进制的数字。早于 4.0 的 bash，对于 case 语法绝不能匹配 多个测试条件。现在的 bash 版本，添加 ";;&" 表达式来终止每个行动，所以现在我们可以做到这一点：
 
-```
+```sh
 #!/bin/bash
 # case4-2: test a character
 read -n 1 -p "Type a character > "
@@ -603,7 +603,7 @@ When we run this script, we get this:
 
 > 当我们运行这个脚本的时候，我们得到这些：
 
-```
+```sh
 [me@linuxbox ~]$ case4-2
 Type a character > a
 'a' is lower case.

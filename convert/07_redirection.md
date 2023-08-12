@@ -44,7 +44,7 @@ I/O redirection allows us to redefine where standard output goes. To redirect st
 
 I/O 重定向允许我们来重定义标准输出的地点。我们使用 "\>" 重定向符后接文件名将标准输出重定向到除屏幕 以外的另一个文件。为什么我们要这样做呢？因为有时候把一个命令的运行结果存储到 一个文件很有用处。例如，我们可以告诉 shell 把 ls 命令的运行结果输送到文件 ls-output.txt 中去， 由文件代替屏幕。
 
-```
+```sh
 [me@linuxbox ~]$ ls -l /usr/bin > ls-output.txt
 ```
 
@@ -52,7 +52,7 @@ Here, we created a long listing of the /usr/bin directory and sent the results t
 
 > 这里，我们创建了一个长长的目录 /usr/bin 列表，并且输送程序运行结果到文件 ls-output.txt 中。 我们检查一下重定向的命令输出结果：
 
-```
+```sh
 [me@linuxbox ~]$ ls -l ls-output.txt
 -rw-rw-r-- 1   me   me    167878 2008-02-01 15:07 ls-output.txt
 ```
@@ -61,7 +61,7 @@ Good; a nice, large, text file. If we look at the file with less, we will see th
 
 > 好；一个不错的大型文本文件。如果我们用 less 阅读器来查看这个文件，我们会看到文件 ls-output.txt 的确包含 ls 命令的执行结果。
 
-```
+```sh
 [me@linuxbox ~]$ less ls-output.txt
 ```
 
@@ -69,7 +69,7 @@ Now, let's repeat our redirection test, but this time with a twist. We'll change
 
 > 现在，重复我们的重定向测试，但这次有改动。我们把目录换成一个不存在的目录。
 
-```
+```sh
 [me@linuxbox ~]$ ls -l /bin/usr > ls-output.txt
 ls: cannot access /bin/usr: No such file or directory
 ```
@@ -78,7 +78,7 @@ We received an error message. This makes sense since we specified the non-existe
 
 > 我们收到一个错误信息。这讲得通，因为我们指定了一个不存在的目录 /bin/usr ， 但是为什么这条错误信息显示在屏幕上而不是被重定向到文件 ls-output.txt？答案是， ls 程序不把它的错误信息输送到标准输出。像许多写得正规的 Unix 程序，ls 会把 错误信息送到标准错误输出。因为我们只是重定向了标准输出，而没有重定向标准错误输出， 所以错误信息被送到屏幕。马上，我们将知道怎样重定向标准错误输出，但是首先看一下 我们的输出文件发生了什么事情。
 
-```
+```sh
 me@linuxbox ~]$ ls -l ls-output.txt
 -rw-rw-r-- 1 me   me    0 2008-02-01 15:08 ls-output.txt
 ```
@@ -87,7 +87,7 @@ The file now has zero length! This is because, when we redirect output with the 
 
 > 文件长度为零！这是因为，当我们使用 "\>" 重定向符来重定向输出结果时，目标文件总是从开头被重写。 因为我们 ls 命令没有产生运行结果，只有错误信息，重定向操作开始重写文件，然后 由于错误而停止，导致文件内容清空。事实上，如果我们需要清空一个文件内容（或者创建一个 新的空文件），可以使用这样的技巧：
 
-```
+```sh
 [me@linuxbox ~]$ > ls-output.txt
 ```
 
@@ -99,7 +99,7 @@ So, how can we append redirected output to a file instead of overwriting the fil
 
 > 所以，怎样才能把重定向结果追加到文件内容后面，而不是从开头重写文件？为了这个目的， 我们使用"\>\>"重定向符，像这样：
 
-```
+```sh
 [me@linuxbox ~]$ ls -l /usr/bin >> ls-output.txt
 ```
 
@@ -107,7 +107,7 @@ Using the "\>\>" operator will result in the output being appended to the file. 
 
 > 使用"\>\>"操作符，将导致输出结果添加到文件内容之后。如果文件不存在，文件会 被创建，就如使用了"\>"操作符。来试一下：
 
-```
+```sh
 [me@linuxbox ~]$ ls -l /usr/bin >> ls-output.txt
 [me@linuxbox ~]$ ls -l /usr/bin >> ls-output.txt
 [me@linuxbox ~]$ ls -l /usr/bin >> ls-output.txt
@@ -125,7 +125,7 @@ Redirecting standard error lacks the ease of a dedicated redirection operator. T
 
 > 标准错误输出重定向没有专用的重定向操作符。为了重定向标准错误输出，我们必须用到其文件描述符。 一个程序的输出会流入到几个带编号的文件中。这些文件的前 三个称作标准输入、标准输出和标准错误输出，shell 内部分别将其称为文件描述符 0、1 和 2。shell 使用文件描述符提供 了一种表示法来重定向文件。因为标准错误输出和文件描述符 2 一样，我们用这种 表示法来重定向标准错误输出：
 
-```
+```sh
 [me@linuxbox ~]$ ls -l /bin/usr 2> ls-error.txt
 ```
 
@@ -139,7 +139,7 @@ There are cases in which we may wish to capture all of the output of a command t
 
 > 有时我们希望将一个命令的所有输出保存到一个文件。为此，我们 必须同时重定向标准输出和标准错误输出。有两种方法来完成任务。第一个是传统的方法， 在旧版本 shell 中也有效：
 
-```
+```sh
 [me@linuxbox ~]$ ls -l /bin/usr > ls-output.txt 2>&1
 ```
 
@@ -153,7 +153,7 @@ Notice that the order of the redirections is significant. The redirection of sta
 
 > 注意重定向的顺序安排非常重要。标准错误输出的重定向必须总是出现在标准输出 重定向之后，要不然它不起作用。上面的例子，
 
-```
+```sh
 >ls-output.txt 2>&1
 ```
 
@@ -161,7 +161,7 @@ redirects standard error to the file ls-output.txt, but if the order is changed 
 
 > 重定向标准错误输出到文件 ls-output.txt，但是如果命令顺序改为：
 
-```
+```sh
 2>&1 >ls-output.txt
 ```
 
@@ -175,7 +175,7 @@ Recent versions of bash provide a second, more streamlined method for performing
 
 > 现在的 bash 版本提供了第二种方法，更精简合理的方法来执行这种联合的重定向。
 
-```
+```sh
 [me@linuxbox ~]$ ls -l /bin/usr &> ls-output.txt
 ```
 
@@ -189,7 +189,7 @@ Sometimes "silence is golden," and we don't want output from a command, we just 
 
 > 有时候"沉默是金"，我们不想要一个命令的输出结果，只想把它们扔掉。这种情况 尤其适用于错误和状态信息。具体做法是重定向输出结果到一个叫做"/dev/null"的特殊文件。这个文件是系统设备，叫做数字存储桶，它可以 接受输入，并且对输入不做任何处理。为了丢掉命令错误信息，我们这样做：
 
-```
+```sh
 [me@linuxbox ~]$ ls -l /bin/usr 2> /dev/null
 ```
 
@@ -213,7 +213,7 @@ The cat command reads one or more files and copies them to standard output like 
 
 cat 命令读取一个或多个文件，然后复制它们到标准输出，就像这样:
 
-```
+```sh
 cat [file]
 ```
 
@@ -221,7 +221,7 @@ In most cases, you can think of cat as being analogous to the TYPE command in DO
 
 > 在大多数情况下，你可以认为 cat 命令相似于 DOS 中的 TYPE 命令。你可以使用 cat 来显示 文件而没有分页，例如：
 
-```
+```sh
 [me@linuxbox ~]$ cat ls-output.txt
 ```
 
@@ -235,7 +235,7 @@ we could join them back together with this command:
 
 > 我们能用这个命令把它们连接起来：
 
-```
+```sh
 cat movie.mpeg.0* > movie.mpeg
 ```
 
@@ -247,7 +247,7 @@ This is all well and good, but what does this have to do with standard input? No
 
 > 这很好，但是这和标准输入有什么关系呢？没有任何关系，让我们试着做些其他的工作。 如果我们输入不带参数的"cat"命令，会发生什么呢：
 
-```
+```sh
 [me@linuxbox ~]$ cat
 ```
 
@@ -259,7 +259,7 @@ If cat is not given any arguments, it reads from standard input and since standa
 
 > 如果 cat 没有给出任何参数，它会从标准输入读入数据，又因为标准输入默认情况下连接到键盘， 它正在等待我们输入数据！试试这个：
 
-```
+```sh
 [me@linuxbox ~]$ cat
 The quick brown fox jumped over the lazy dog.
 ```
@@ -268,7 +268,7 @@ Next, type a Ctrl-d (i.e., hold down the Ctrl key and press "d") to tell cat tha
 
 > 下一步，输入 Ctrl-d（按住 Ctrl 键同时按下"d"），来告诉 cat，在标准输入中， 它已经到达文件末尾（EOF）：
 
-```
+```sh
 [me@linuxbox ~]$ cat
 The quick brown fox jumped over the lazy dog.
 The quick brown fox jumped over the lazy dog.
@@ -278,7 +278,7 @@ In the absence of filename arguments, cat copies standard input to standard outp
 
 > 由于没有文件名参数，cat 复制标准输入到标准输出，所以我们看到文本行重复出现。 我们可以使用这种行为来创建简短的文本文件。比方说，我们想创建一个叫做"lazy_dog.txt" 的文件，这个文件包含例子中的文本。我们这样做：
 
-```
+```sh
 [me@linuxbox ~]$ cat > lazy_dog.txt
 The quick brown fox jumped over the lazy dog.
 ```
@@ -287,7 +287,7 @@ Type the command followed by the text we want in to place in the file. Remember 
 
 > 输入命令，其后输入要放入文件中的文本。记住，最后输入 Ctrl-d。通过使用这个命令，我们 实现了世界上最低能的文字处理器！看一下运行结果，我们使用 cat 来复制文件内容到 标准输出：
 
-```
+```sh
 [me@linuxbox ~]$ cat lazy_dog.txt
 The quick brown fox jumped over the lazy dog.
 ```
@@ -296,7 +296,7 @@ Now that we know how cat accepts standard input, in addition to filename argumen
 
 > 现在我们知道 cat 怎样接受标准输入，除了文件名参数，让我们试着重定向标准输入：
 
-```
+```sh
 [me@linuxbox ~]$ cat < lazy_dog.txt
 The quick brown fox jumped over the lazy dog.
 ```
@@ -315,7 +315,7 @@ The ability of commands to read data from standard input and send to standard ou
 
 > 命令从标准输入读取数据并输送到标准输出的能力被一个称为管道线的 shell 功能所利用。 使用管道操作符"\|"（竖杠），一个命令的标准输出可以通过管道送至另一个命令的标准输入：
 
-```
+```sh
 command1 | command2
 ```
 
@@ -323,7 +323,7 @@ To fully demonstrate this, we are going to need some commands. Remember how we s
 
 > 为了全面地说明这个命令，我们需要一些命令。是否记得我们说过，我们已经知道有一个 命令接受标准输入？它是 less 命令。我们用 less 来一页一页地显示任何命令的输出，命令把 它的运行结果输送到标准输出：
 
-```
+```sh
 [me@linuxbox ~]$ ls -l /usr/bin | less
 ```
 
@@ -337,7 +337,7 @@ Pipelines are often used to perform complex operations on data. It is possible t
 
 > 管道线经常用来对数据完成复杂的操作。有可能会把几个命令放在一起组成一个管道线。 通常，以这种方式使用的命令被称为过滤器。过滤器接受输入，以某种方式改变它，然后 输出它。第一个我们想试验的过滤器是 sort。想象一下，我们想把目录/bin 和/usr/bin 中 的可执行程序都联合在一起，再把它们排序，然后浏览执行结果：
 
-```
+```sh
 [me@linuxbox ~]$ ls /bin /usr/bin | sort | less
 ```
 
@@ -351,7 +351,7 @@ The uniq command is often used in conjunction with sort. uniq accepts a sorted l
 
 uniq 命令经常和 sort 命令结合在一起使用。uniq 从标准输入或单个文件名参数接受数据有序 列表（详情查看 uniq 手册页），默认情况下，从数据列表中删除任何重复行。所以，为了确信 我们的列表中不包含重复句子（这是说，出现在目录/bin 和/usr/bin 中重名的程序），我们添加 uniq 到我们的管道线中：
 
-```
+```sh
 [me@linuxbox ~]$ ls /bin /usr/bin | sort | uniq | less
 ```
 
@@ -359,7 +359,7 @@ In this example, we use uniq to remove any duplicates from the output of the sor
 
 > 在这个例子中，我们使用 uniq 从 sort 命令的输出结果中，来删除任何重复行。如果我们想看到 重复内容，让 uniq 命令带上"-d"选项，就像这样：
 
-```
+```sh
 [me@linuxbox ~]$ ls /bin /usr/bin | sort | uniq -d | less
 ```
 
@@ -369,7 +369,7 @@ The wc (word count) command is used to display the number of lines, words, and b
 
 wc（字数统计）命令是用来显示文件所包含的行数、字数和字节数。例如：
 
-```
+```sh
 [me@linuxbox ~]$ wc ls-output.txt
 7902 64566 503634 ls-output.txt
 ```
@@ -378,7 +378,7 @@ In this case it prints out three numbers: lines, words, and bytes contained in l
 
 > 在这个例子中，wc 打印出来三个数字：包含在文件 ls-output.txt 中的行数，单词数和字节数， 正如我们先前的命令，如果 wc 不带命令行参数，它接受标准输入。"-l"选项限制命令输出只能 报道行数。添加 wc 到管道线来统计数据，是个很便利的方法。查看我们的有序列表中程序个数， 我们可以这样做：
 
-```
+```sh
 [me@linuxbox ~]$ ls /bin /usr/bin | sort | uniq | wc -l
 2728
 ```
@@ -389,7 +389,7 @@ grep is a powerful program used to find text patterns within files. It's used li
 
 grep 是个很强大的程序，用来找到文件中的匹配文本。这样使用 grep 命令：
 
-```
+```sh
 grep pattern [file...]
 ```
 
@@ -401,7 +401,7 @@ Let's say we want to find all the files in our list of programs that had the wor
 
 > 比如说，我们想在我们的程序列表中，找到文件名中包含单词"zip"的所有文件。这样一个搜索， 可能让我们了解系统中的一些程序与文件压缩有关系。这样做：
 
-```
+```sh
 [me@linuxbox ~]$ ls /bin /usr/bin | sort | uniq | grep zip
 bunzip2
 bzip2
@@ -419,7 +419,7 @@ Sometimes you don't want all of the output from a command. You may only want the
 
 > 有时候你不需要一个命令的所有输出。可能你只想要前几行或者后几行的输出内容。 head 命令打印文件的前十行，而 tail 命令打印文件的后十行。默认情况下，两个命令 都打印十行文本，但是可以通过"-n"选项来调整命令打印的行数。
 
-```
+```sh
 [me@linuxbox ~]$ head -n 5 ls-output.txt
 total 343496
 ...
@@ -431,7 +431,7 @@ These can be used in pipelines as well:
 
 > 它们也能用在管道线中：
 
-```
+```sh
 [me@linuxbox ~]$ ls /usr/bin | tail -n 5
 znew
 ...
@@ -441,7 +441,7 @@ tail has an option which allows you to view files in real-time. This is useful f
 
 tail 有一个选项允许你实时地浏览文件。当观察日志文件的进展时，这很有用，因为 它们同时在被写入。在以下的例子里，我们要查看目录/var/log 里面的信息文件。在 一些 Linux 发行版中，要求有超级用户权限才能阅读这些文件，因为文件 /var/log/messages 可能包含安全信息。
 
-```
+```sh
 [me@linuxbox ~]$ tail -f /var/log/messages
 Feb 8 13:40:05 twin4 dhclient: DHCPACK from 192.168.1.1
 ....
@@ -457,7 +457,7 @@ In keeping with our plumbing metaphor, Linux provides a command called tee which
 
 > 为了和我们的管道隐喻保持一致，Linux 提供了一个叫做 tee 的命令，这个命令制造了 一个"tee"（三通管件，做水管工人会对这个非常熟悉），安装到我们的管道上。tee 程序从标准输入读入数据，并且同时复制数据 到标准输出（允许数据继续随着管道线流动）和一个或多个文件。当在某个中间处理 阶段来捕捉一个管道线的内容时，这很有帮助。这里，我们重复执行一个先前的例子， 这次包含 tee 命令，在 grep 过滤管道线的内容之前，来捕捉整个目录列表到文件 ls.txt：
 
-```
+```sh
 [me@linuxbox ~]$ ls /usr/bin | tee ls.txt | grep zip
 bunzip2
 bzip2

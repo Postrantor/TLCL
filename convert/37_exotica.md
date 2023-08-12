@@ -17,7 +17,7 @@ Group command:
 
 > 组命令：
 
-```
+```sh
 { command1; command2; [command3; ...] }
 ```
 
@@ -25,7 +25,7 @@ Subshell:
 
 > 子 shell：
 
-```
+```sh
 (command1; command2; [command3;...])
 ```
 
@@ -37,7 +37,7 @@ So what are group commands and subshells good for? While they have an important 
 
 > 那么组命令和子 shell 命令对什么有好处呢？ 尽管它们有一个很重要的差异（我们马上会接触到），但它们都是用来管理重定向的。 让我们考虑一个对多个命令执行重定向的脚本片段。
 
-```
+```sh
 ls -l > output.txt
 echo "Listing of foo.txt" >> output.txt
 cat foo.txt >> output.txt
@@ -47,7 +47,7 @@ This is pretty straightforward. Three commands with their output redirected to a
 
 > 这些代码相当简洁明了。三个命令的输出都重定向到一个名为 output.txt 的文件中。 使用一个组命令，我们可以重新编 写这些代码，如下所示：
 
-```
+```sh
 { ls -l; echo "Listing of foo.txt"; cat foo.txt; } > output.txt
 ```
 
@@ -55,7 +55,7 @@ Using a subshell is similar:
 
 > 使用一个子 shell 是相似的：
 
-```
+```sh
 (ls -l; echo "Listing of foo.txt"; cat foo.txt) > output.txt
 ```
 
@@ -63,7 +63,7 @@ Using this technique we have saved ourselves some typing, but where a group comm
 
 > 使用这样的技术，我们为我们自己节省了一些打字时间，但是组命令和子 shell 真正闪光的地方是与管道线相结合。 当构建一个管道线命令的时候，通常把几个命令的输出结果合并成一个流是很有用的。 组命令和子 shell 使这种操作变得很简单：
 
-```
+```sh
 { ls -l; echo "Listing of foo.txt"; cat foo.txt; } | lpr
 ```
 
@@ -75,7 +75,7 @@ In the script that follows, we will use groups commands and look at several prog
 
 > 在下面的脚本中，我们将使用组命令，看几个与关联数组结合使用的编程技巧。这个脚本，称为 array-2，当给定一个目录名，打印出目录中的文件列表， 伴随着每个文件的文件所有者和组所有者。在文件列表的末尾，脚本打印出属于每个所有者和组的文件数目。 这里我们看到的（为简单起见而缩短的）结果，是给定脚本的目录为 /usr/bin 的时候：
 
-```
+```sh
 [me@linuxbox ~]$ array-2 /usr/bin
 /usr/bin/2to3-2.6                 root        root
 /usr/bin/2to3                     root        root
@@ -115,7 +115,7 @@ Here is a listing (with line numbers) of the script:
 
 > 这里是脚本代码列表（带有行号）：
 
-```
+```sh
 1     #!/bin/bash
 2
 3     # array-2: Use arrays to tally file owners
@@ -216,7 +216,7 @@ We saw an example of the subshell environment problem in Chapter 28, when we dis
 
 > 我们在第 20 章中看到过一个子 shell 运行环境问题的例子，当我们发现管道线中的一个 read 命令 不按我们所期望的那样工作的时候。为了重现问题，我们构建一个像这样的管道线：
 
-```
+```sh
 echo "foo" | read
 echo $REPLY
 ```
@@ -229,7 +229,7 @@ For processes that produce standard output:
 
 > 一种适用于产生标准输出的进程：
 
-```
+```sh
 <(list)
 ```
 
@@ -237,7 +237,7 @@ or, for processes that intake standard input:
 
 > 另一种适用于接受标准输入的进程：
 
-```
+```sh
 >(list)
 ```
 
@@ -249,7 +249,7 @@ To solve our problem with read, we can employ process substitution like this:
 
 > 为了解决我们的 read 命令问题，我们可以雇佣进程替换，像这样：
 
-```
+```sh
 read < <(echo "foo")
 echo $REPLY
 ```
@@ -258,7 +258,7 @@ Process substitution allows us to treat the output of a subshell as an ordinary 
 
 > 进程替换允许我们把一个子 shell 的输出结果当作一个用于重定向的普通文件。事实上，因为它是一种展开形式，我们可以检验它的真实值：
 
-```
+```sh
 [me@linuxbox ~]$ echo <(echo "foo")
 /dev/fd/63
 ```
@@ -271,7 +271,7 @@ Process substitution is often used with loops containing read. Here is an exampl
 
 > 进程替换经常被包含 read 命令的循环用到。这里是一个 read 循环的例子，处理一个目录列表的内容，内容创建于一个子 shell：
 
-```
+```sh
 #!/bin/bash
 # pro-sub : demo of process substitution
 while read attr links owner group size date time filename; do
@@ -295,7 +295,7 @@ When executed, the script produces output like this:
 
 > 当脚本执行后，脚本产生像这样的输出：
 
-```
+```sh
 [me@linuxbox ~]$ pro_sub | head -n 20
 Filename: addresses.ldif
 Size: 14540
@@ -332,7 +332,7 @@ bash provides a mechanism for this purpose known as a trap. Traps are implemente
 
 > 为满足这样需求，bash 提供了一种机制，众所周知的 trap。陷阱正好由内部命令 trap 实现。 trap 使用如下语法：
 
-```
+```sh
 trap argument signal [signal...]
 ```
 
@@ -344,7 +344,7 @@ Here is a simple example:
 
 > 这里是一个简单的例子：
 
-```
+```sh
 #!/bin/bash
 # trap-demo : simple signal handling demo
 trap "echo 'I am ignoring you.'" SIGINT SIGTERM
@@ -358,7 +358,7 @@ This script defines a trap that will execute an echo command each time either th
 
 > 这个脚本定义一个陷阱，当脚本运行的时候，这个陷阱每当接受到一个 SIGINT 或 SIGTERM 信号时，就会执行一个 echo 命令。 当用户试图通过按下 Ctrl-c 组合键终止脚本运行的时候，该程序的执行结果看起来像这样：
 
-```
+```sh
 [me@linuxbox ~]$ trap-demo
 Iteration 1 of 5
 Iteration 2 of 5
@@ -377,7 +377,7 @@ Constructing a string to form a useful sequence of commands can be awkward, so i
 
 > 构建一个字符串来形成一个有用的命令序列是很笨拙的，所以通常的做法是指定一个 shell 函数作为命令。在这个例子中， 为每一个信号指定了一个单独的 shell 函数来处理：
 
-```
+```sh
 #!/bin/bash
 # trap-demo2 : simple signal handling demo
 exit_on_signal_SIGINT () {
@@ -404,7 +404,7 @@ When the user presses Ctrl-c during the execution of this script, the results lo
 
 > 当用户在这个脚本执行期间，按下 Ctrl-c 组合键的时候，输出结果看起来像这样：
 
-```
+```sh
 [me@linuxbox ~]$ trap-demo2
 Iteration 1 of 5
 Iteration 2 of 5
@@ -463,7 +463,7 @@ We will demonstrate the wait command first. To do this, we will need two scripts
 
 > 首先我们将演示一下 wait 命令的用法。为此，我们需要两个脚本，一个父脚本：
 
-```
+```sh
 #!/bin/bash
 # async-parent : Asynchronous execution demo (parent)
 echo "Parent: starting..."
@@ -483,7 +483,7 @@ and a child script:
 
 > 和一个子脚本：
 
-```
+```sh
 #!/bin/bash
 # async-child : Asynchronous execution demo (child)
 echo "Child: child is running..."
@@ -503,7 +503,7 @@ When executed, the parent and child scripts produce the following output:
 
 > 当执行后，父子脚本产生如下输出：
 
-```
+```sh
 [me@linuxbox ~]$ async-parent
 Parent: starting...
 Parent: launching child script...
@@ -534,7 +534,7 @@ Named pipes behave like files, but actually form first-in first-out (FIFO) buffe
 
 > 命名管道的行为类似于文件，但实际上形成了先入先出（FIFO）的缓冲。和普通（未命令的）管道一样， 数据从一端进入，然后从另一端出现。通过命名管道，有可能像这样设置一些东西：
 
-```
+```sh
 process1 > named_pipe
 ```
 
@@ -542,7 +542,7 @@ and
 
 > 和
 
-```
+```sh
 process2 < named_pipe
 ```
 
@@ -550,7 +550,7 @@ and it will behave as if:
 
 > 表现出来就像这样：
 
-```
+```sh
 process1 | process2
 ```
 
@@ -560,7 +560,7 @@ First, we must create a named pipe. This is done using the mkfifo command:
 
 > 首先，我们必须创建一个命名管道。使用 mkfifo 命令能够创建命名管道：
 
-```
+```sh
 [me@linuxbox ~]$ mkfifo pipe1
 [me@linuxbox ~]$ ls -l pipe1
 prw-r--r-- 1 me
@@ -578,7 +578,7 @@ To demonstrate how the named pipe works, we will need two terminal windows (or a
 
 > 为了演示命名管道是如何工作的，我们将需要两个终端窗口（或用两个虚拟控制台代替）。 在第一个终端中，我们输入一个简单命令，并把命令的输出重定向到命名管道：
 
-```
+```sh
 [me@linuxbox ~]$ ls -l > pipe1
 ```
 
@@ -586,7 +586,7 @@ After we press the Enter key, the command will appear to hang. This is because t
 
 > 我们按下 Enter 按键之后，命令将会挂起。这是因为在管道的另一端没有任何对象来接收数据。这种现象被称为管道阻塞。一旦我们绑定一个进程到管道的另一端，该进程开始从管道中读取输入的时候，管道阻塞现象就不存在了。 使用第二个终端窗口，我们输入这个命令：
 
-```
+```sh
 [me@linuxbox ~]$ cat < pipe1
 ```
 

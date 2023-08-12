@@ -31,7 +31,7 @@ Array variables are named just like other bash variables, and are created automa
 
 > 数组变量就像其它 bash 变量一样命名，当被访问的时候，它们会被自动地创建。这里是一个例子：
 
-```
+```sh
 [me@linuxbox ~]$ a[1]=foo
 [me@linuxbox ~]$ echo ${a[1]}
 foo
@@ -45,7 +45,7 @@ An array can also be created with the declare command:
 
 > 也可以用 declare 命令创建一个数组：
 
-```
+```sh
 [me@linuxbox ~]$ declare -a a
 ```
 
@@ -59,7 +59,7 @@ Values may be assigned in one of two ways. Single values may be assigned using t
 
 > 有两种方式可以给数组赋值。单个值赋值使用以下语法：
 
-```
+```sh
 name[subscript]=value
 ```
 
@@ -71,7 +71,7 @@ Multiple values may be assigned using the following syntax:
 
 > 多个值赋值使用下面的语法：
 
-```
+```sh
 name=(value1 value2 ...)
 ```
 
@@ -79,7 +79,7 @@ where name is the name of the array and value... are values assigned sequentiall
 
 > 这里的 name 是数组的名字，value... 是要按照顺序赋给数组的值，从元素 0 开始。例如，如果我们希望 把星期几的英文简写赋值给数组 days，我们可以这样做：
 
-```
+```sh
 [me@linuxbox ~]$ days=(Sun Mon Tue Wed Thu Fri Sat)
 ```
 
@@ -87,7 +87,7 @@ It is also possible to assign values to a specific element by specifying a subsc
 
 > 还可以通过指定下标，把值赋给数组中的特定元素：
 
-```
+```sh
 [me@linuxbox ~]$ days=([0]=Sun [1]=Mon [2]=Tue [3]=Wed [4]=Thu [5]=Fri [6]=Sat)
 ```
 
@@ -101,7 +101,7 @@ Let's consider a simple data-gathering and presentation example. We will constru
 
 > 让我们考虑一个简单的数据收集和展示的例子。我们将构建一个脚本，用来检查一个特定目录中文件的修改次数。 从这些数据中，我们的脚本将输出一张表，显示这些文件最后是在一天中的哪个小时被修改的。这样一个脚本 可以被用来确定什么时段一个系统最活跃。这个脚本，称为 hours，输出这样的结果：
 
-```
+```sh
 [me@linuxbox ~]$ hours .
 Hour Files Hour Files
 ---- ----- ---- ----
@@ -124,7 +124,7 @@ We execute the hours program, specifying the current directory as the target. It
 
 > 当执行该 hours 程序时，指定当前目录作为目标目录。它打印出一张表显示一天（0-23 小时）每小时内， 有多少文件做了最后修改。程序代码如下所示：
 
-```
+```sh
 #!/bin/bash
 # hours : script to count files by modification time
 usage () {
@@ -181,7 +181,7 @@ The subscripts \* and @ can be used to access every element in an array. As with
 
 > 下标 \* 和 @ 可以被用来访问数组中的每一个元素。与位置参数一样，@ 表示法在两者之中更有用处。 这里是一个演示：
 
-```
+```sh
 [me@linuxbox ~]$ animals=("a dog" "a cat" "a fish")
 [me@linuxbox ~]$ for i in ${animals[*]}; do echo $i; done
 a
@@ -215,7 +215,7 @@ Using parameter expansion, we can determine the number of elements in an array i
 
 > 使用参数展开，我们能够确定数组元素的个数，与计算字符串长度的方式几乎相同。这里是一个例子:
 
-```
+```sh
 [me@linuxbox ~]$ a[100]=foo
 [me@linuxbox ~]$ echo ${#a[@]} # number of array elements
 1
@@ -241,7 +241,7 @@ where array is the name of an array variable. Like the other expansions that use
 
 > 这里的 array 是一个数组变量的名字。和其它使用符号 \* 和 @ 的展开一样，用引号引起来的 @ 格式是最有用的， 因为它能展开成分离的词。
 
-```
+```sh
 [me@linuxbox ~]$ foo=([2]=a [4]=b [6]=c)
 [me@linuxbox ~]$ for i in "${foo[@]}"; do echo $i; done
 a
@@ -259,7 +259,7 @@ Knowing the number of elements in an array is no help if we need to append value
 
 > 如果我们需要在数组末尾附加数据，那么知道数组中元素的个数是没用的，因为通过 \* 和 @ 表示法返回的数值不能 告诉我们使用的最大数组索引。幸运地是，shell 为我们提供了一种解决方案。通过使用 += 赋值运算符， 我们能够自动地把值附加到数组末尾。这里，我们把三个值赋给数组 foo，然后附加另外三个。
 
-```
+```sh
 [me@linuxbox~]$ foo=(a b c)
 [me@linuxbox~]$ echo ${foo[@]}
 a b c
@@ -274,7 +274,7 @@ Just as with spreadsheets, it is often necessary to sort the values in a column 
 
 > 就像电子表格，经常有必要对一列数据进行排序。Shell 没有这样做的直接方法，但是通过一点儿代码，并不难实现。
 
-```
+```sh
 #!/bin/bash
 # array-sort : Sort an array
 a=(f e d c b a)
@@ -287,7 +287,7 @@ When executed, the script produces this:
 
 > 当执行之后，脚本产生这样的结果：
 
-```
+```sh
 [me@linuxbox ~]$ array-sort
 Original array: f e d c b a
 Sorted array:
@@ -304,7 +304,7 @@ To delete an array, use the unset command:
 
 > 删除一个数组，使用 unset 命令：
 
-```
+```sh
 [me@linuxbox ~]$ foo=(a b c d e f)
 [me@linuxbox ~]$ echo ${foo[@]}
 a b c d e f
@@ -317,7 +317,7 @@ unset may also be used to delete single array elements:
 
 > 也可以使用 unset 命令删除单个的数组元素：
 
-```
+```sh
 [me@linuxbox~]$ foo=(a b c d e f)
 [me@linuxbox~]$ echo ${foo[@]}
 a b c d e f
@@ -334,7 +334,7 @@ Interestingly, the assignment of an empty value to an array does not empty its c
 
 > 有趣地是，给一个数组赋空值不会清空数组内容：
 
-```
+```sh
 [me@linuxbox ~]$ foo=(a b c d e f)
 [me@linuxbox ~]$ foo=
 [me@linuxbox ~]$ echo ${foo[@]}
@@ -345,7 +345,7 @@ Any reference to an array variable without a subscript refers to element zero of
 
 > 任何没有下标的对数组变量的引用都指向数组元素 0：
 
-```
+```sh
 [me@linuxbox~]$ foo=(a b c d e f)
 [me@linuxbox~]$ echo ${foo[@]}
 a b c d e f
@@ -360,7 +360,7 @@ Recent versions of bash now support associative arrays. Associative arrays use s
 
 > 现在最新的 bash 版本支持关联数组了。关联数组使用字符串而不是整数作为数组索引。 这种功能给出了一种有趣的新方法来管理数据。例如，我们可以创建一个叫做 "colors" 的数组，并用颜色名字作为索引。
 
-```
+```sh
 declare -A colors
 colors["red"]="#ff0000"
 colors["green"]="#00ff00"
@@ -375,7 +375,7 @@ Associative array elements are accessed in much the same way as integer indexed 
 
 > 访问关联数组元素的方式几乎与整数索引数组相同：
 
-```
+```sh
 echo ${colors["blue"]}
 ```
 
@@ -393,7 +393,7 @@ Arrays and loops have a natural affinity and are often used together. The
 
 > 数组和循环有一种天然的姻亲关系，它们经常被一起使用。该
 
-```
+```sh
 for ((expr; expr; expr))
 ```
 

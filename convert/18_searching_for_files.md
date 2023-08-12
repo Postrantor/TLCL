@@ -34,7 +34,7 @@ The locate program performs a rapid database search of pathnames and outputs eve
 
 > 这个 locate 程序会执行一次快速的路径名数据库搜索，并且输出每个与给定子字符串相匹配的路径名。比如说，我们想要找到所有名字以"zip"开头的程序。因为我们正在查找程序，可以假定包含 程序的目录以"bin/"结尾。因此，我们试着以这种方式使用 locate 命令，来找到我们的文件：
 
-```
+```sh
 [me@linuxbox ~]$ locate bin/zip
 ```
 
@@ -42,7 +42,7 @@ locate will search its database of pathnames and output any that contain the str
 
 locate 命令将会搜索它的路径名数据库，输出任一个包含字符串"bin/zip"的路径名：
 
-```
+```sh
 /usr/bin/zip
 /usr/bin/zipcloak
 /usr/bin/zipgrep
@@ -55,7 +55,7 @@ If the search requirement is not so simple, locate can be combined with other to
 
 > 如果搜索要求没有这么简单，locate 可以结合其它工具，比如说 grep 命令，来设计更加 有趣的搜索：
 
-```
+```sh
 [me@linuxbox ~]$ locate zip | grep bin
 /bin/bunzip2
 /bin/bzip2
@@ -99,7 +99,7 @@ In its simplest use, find is given one or more names of directories to search. F
 
 > 在它的最简单的使用方式中，find 命令接收一个或多个目录名来执行搜索。例如，输出我们的家目录的路径名列表（包括文件及目录，译者注）。
 
-```
+```sh
 [me@linuxbox ~]$ find ~
 ```
 
@@ -107,7 +107,7 @@ On most active user accounts, this will produce a large list. Since the list is 
 
 > 对于活跃的用户帐号，这将产生一张很大的列表。因为这张列表被发送到标准输出， 我们可以把这个列表管道到其它的程序中。让我们使用 wc 程序来计算出文件的数量：
 
-```
+```sh
 [me@linuxbox ~]$ find ~ | wc -l
 47068
 ```
@@ -122,7 +122,7 @@ Let's say that we want a list of directories from our search. To do this, we cou
 
 > 比如说我们想在我们的搜索中得到目录列表。我们可以添加以下测试条件：
 
-```
+```sh
 [me@linuxbox ~]$ find ~ -type d | wc -l
 1695
 ```
@@ -131,7 +131,7 @@ Adding the test -type d limited the search to directories. Conversely, we could 
 
 > 添加测试条件 -type d 限制了只搜索目录。相反地，我们可以使用这个测试条件来限定搜索普通文件：
 
-```
+```sh
 [me@linuxbox ~]$ find ~ -type f | wc -l
 38737
 ```
@@ -516,7 +516,7 @@ We can also search by file size and filename by adding some additional tests: Le
 
 > 我们也可以通过加入一些额外的测试条件，根据文件大小和文件名来搜索：让我们查找所有文件名匹配 通配符模式"\*.JPG"和文件大小大于 1M 的普通文件：
 
-```
+```sh
 [me@linuxbox ~]$ find ~ -type f -name "*.JPG" -size +1M | wc -l
 840
 ```
@@ -2067,7 +2067,7 @@ Even with all the tests that find provides, we may still need a better way to de
 
 > 即使拥有了 find 命令提供的所有测试条件，我们还需要一个更好的方式来描述测试条件之间的逻辑关系。例如， 如果我们需要确定是否一个目录中的所有的文件和子目录拥有安全权限，怎么办呢？ 我们可以查找权限不是 0600 的文件和权限不是 0700 的目录。幸运地是，find 命令提供了 一种方法来结合测试条件，通过使用逻辑操作符来创建更复杂的逻辑关系。 为了表达上述的测试条件，我们可以这样做：
 
-```
+```sh
 [me@linuxbox ~]$ find ~ \( -type f -not -perm 0600 \) -or \( -type d -not -perm 0700 \)
 ```
 
@@ -2395,7 +2395,7 @@ With this list of operators in hand, let's deconstruct our find command. When vi
 
 > 通过这张操作符列表，我们重建 find 命令。从最外层看，我们看到测试条件被分为两组，由一个 -or 操作符分开：
 
-```
+```sh
 ( expression 1 ) -or ( expression 2 )
 ```
 
@@ -2403,7 +2403,7 @@ This makes sense, since we are searching for files with a certain set of permiss
 
 > 这看起来合理，因为我们正在搜索具有不同权限集合的文件和目录。如果我们文件和目录两者都查找， 那为什么要用 -or 来代替 -and 呢？因为 find 命令扫描文件和目录时，会计算每一个对象，看看它是否 匹配指定的测试条件。我们想要知道它是具有错误权限的文件还是有错误权限的目录。它不可能同时符合这 两个条件。所以如果展开组合起来的表达式，我们能这样解释它：
 
-```
+```sh
 ( file with bad perms ) -or ( directory with bad perms )
 ```
 
@@ -2411,7 +2411,7 @@ Our next challenge is how to test for "bad permissions." How do we do that? Actu
 
 > 下一个挑战是怎样来检查"错误权限"，这个怎样做呢？事实上我们不从这个角度入手。我们将测试 "不是正确权限"，因为我们知道什么是"正确权限"。对于文件，我们定义正确权限为 0600， 目录则为 0700。测试具有"不正确"权限的文件表达式为：
 
-```
+```sh
 -type f -and -not -perms 0600
 ```
 
@@ -2419,7 +2419,7 @@ and for directories:
 
 > 对于目录，表达式为：
 
-```
+```sh
 -type d -and -not -perms 0700
 ```
 
@@ -2427,7 +2427,7 @@ As noted in the table of operators above, the -and operator can be safely remove
 
 > 正如上述操作符列表中提到的，这个-and 操作符能够被安全地删除，因为它是默认使用的操作符。 所以如果我们把这两个表达式连起来，就得到最终的命令：
 
-```
+```sh
 find ~ ( -type f -not -perms 0600 ) -or ( -type d -not -perms 0700 )
 ```
 
@@ -2439,7 +2439,7 @@ There is another feature of logical operators that is important to understand. L
 
 > 逻辑操作符还有另外一个特性要重点理解。比方说我们有两个由逻辑操作符分开的表达式：
 
-```
+```sh
 expr1 -operator expr2
 ```
 
@@ -3193,7 +3193,7 @@ As with the tests, there are many more actions. See the find man page for full d
 
 > 和测试条件一样，还有更多的操作。查看 find 命令手册得到更多细节。在第一个例子里， 我们这样做：
 
-```
+```sh
 find ~
 ```
 
@@ -3201,7 +3201,7 @@ which produced a list of every file and subdirectory contained within our home d
 
 > 这个命令输出了我们家目录中包含的每个文件和子目录。它会输出一个列表，因为会默认使用 -print 操作 ，如果没有指定其它操作的话。因此我们的命令也可以这样表述：
 
-```
+```sh
 find ~ -print
 ```
 
@@ -3209,7 +3209,7 @@ We can use find to delete files that meet certain criteria. For example, to dele
 
 > 我们可以使用 find 命令来删除符合一定条件的文件。例如，来删除扩展名为".BAK"（这通常用来指定备份文件） 的文件，我们可以使用这个命令：
 
-```
+```sh
 find ~ -type f -name '*.BAK' -delete
 ```
 
@@ -3229,7 +3229,7 @@ Before we go on, let's take another look at how the logical operators affect act
 
 > 在我们继续之前，让我们看一下逻辑运算符是怎样影响操作的。考虑以下命令：
 
-```
+```sh
 find ~ -type f -name '*.BAK' -print
 ```
 
@@ -3237,7 +3237,7 @@ As we have seen, this command will look for every regular file (-type f) whose n
 
 > 正如我们所见到的，这个命令会查找每个文件名以 .BAK (-name '\*.BAK') 结尾的普通文件 (-type f)， 并把每个匹配文件的相对路径名输出到标准输出 (-print)。然而，此命令按这个方式执行的原因，是 由每个测试和操作之间的逻辑关系决定的。记住，在每个测试和操作之间会默认应用 -and 逻辑运算符。 我们也可以这样表达这个命令，使逻辑关系更容易看出：
 
-```
+```sh
 find ~ -type f -and -name '*.BAK' -and -print
 ```
 
@@ -3489,7 +3489,7 @@ Since the logical relationship between the tests and actions determines which of
 
 > 因为测试和行为之间的逻辑关系决定了哪一个会被执行，我们可以看出知道测试和行为的顺序很重要。例如， 如果我们重新安排测试和行为之间的顺序，让 -print 行为是第一个，那么这个命令执行起来会截然不同：
 
-```
+```sh
 find ~ -print -and -type f -and -name '*.BAK'
 ```
 
@@ -3503,7 +3503,7 @@ In addition to the predefined actions, we can also invoke arbitrary commands. Th
 
 > 除了预定义的行为之外，我们也可以调用任意的命令。传统方式是通过 -exec 行为。这个 行为像这样工作：
 
-```
+```sh
 -exec command {} ;
 ```
 
@@ -3511,7 +3511,7 @@ where command is the name of a command, {} is a symbolic representation of the c
 
 > 这里的 command 就是指一个命令的名字，{} 是当前路径名的符号表示，分号是必要的分隔符 表明命令的结束。这里是一个使用 -exec 行为的例子，其作用如之前讨论的 -delete 行为：
 
-```
+```sh
 -exec rm '{}' ';'
 ```
 
@@ -3523,7 +3523,7 @@ It's also possible to execute a user defined action interactively. By using the 
 
 > 我们也可以交互式地执行一个用户定义的行为。通过使用 -ok 行为来代替 -exec，在执行每个指定的命令之前， 会提示用户：
 
-```
+```sh
 find ~ -type f -name 'foo*' -ok ls -l '{}' ';'
 < ls ... /home/me/bin/foo > ? y
 -rwxr-xr-x 1 me    me 224 2007-10-29 18:44 /home/me/bin/foo
@@ -3541,7 +3541,7 @@ When the -exec action is used, it launches a new instance of the specified comma
 
 > 当 -exec 行为被使用的时候，若每次找到一个匹配的文件，它会启动一个新的指定命令的实例。 我们可能更愿意把所有的搜索结果结合起来，再运行一个命令的实例。例如，与其像这样执行命令：
 
-```
+```sh
 ls -l file1
 ls -l file2
 ```
@@ -3550,7 +3550,7 @@ we may prefer to execute it this way:
 
 > 我们更喜欢这样执行命令：
 
-```
+```sh
 ls -l file1 file2
 ```
 
@@ -3562,7 +3562,7 @@ By changing the trailing semicolon character to a plus sign, we activate the abi
 
 > 通过把末尾的分号改为加号，就激活了 find 命令的一个功能，把搜索结果结合为一个参数列表， 然后用于所期望的命令的一次执行。再看一下之前的例子，这个例子中：
 
-```
+```sh
 find ~ -type f -name 'foo*' -exec ls -l '{}' ';'
 -rwxr-xr-x 1 me     me 224 2007-10-29 18:44 /home/me/bin/foo
 -rw-r--r-- 1 me     me 0 2008-09-19 12:53 /home/me/foo.txt
@@ -3572,7 +3572,7 @@ will execute ls each time a matching file is found. By changing the command to:
 
 > 每次找到一个匹配的文件， 就会执行一次 ls 命令。通过把命令改为：
 
-```
+```sh
 find ~ -type f -name 'foo*' -exec ls -l '{}' +
 -rwxr-xr-x 1 me     me 224 2007-10-29 18:44 /home/me/bin/foo
 -rw-r--r-- 1 me     me 0 2008-09-19 12:53 /home/me/foo.txt
@@ -3588,7 +3588,7 @@ The xargs command performs an interesting function. It accepts input from standa
 
 > 这个 xargs 命令会执行一个有趣的函数。它从标准输入接受输入，并把输入转换为一个特定命令的 参数列表。对于我们的例子，我们可以这样使用它：
 
-```
+```sh
 find ~ -type f -name 'foo*' -print | xargs ls -l
 -rwxr-xr-x 1 me     me 224 2007-10-29 18:44 /home/me/bin/foo
 -rw-r--r-- 1 me     me 0 2008-09-19 12:53 /home/me/foo.txt
@@ -3630,7 +3630,7 @@ First, let's create a playground with lots of subdirectories and files:
 
 > 首先，让我们创建一个包含许多子目录和文件的操练场：
 
-```
+```sh
 [me@linuxbox ~]$ mkdir -p playground/dir-{00{1..9},0{10..99},100}
 [me@linuxbox ~]$ touch playground/dir-{00{1..9},0{10..99},100}/file-{A..Z}
 ```
@@ -3651,7 +3651,7 @@ In our playground, we created one hundred instances of a file named file-A. Let'
 
 > 在我们的操练场中，我们创建了一百个名为 file-A 的文件实例。让我们找到它们：
 
-```
+```sh
 [me@linuxbox ~]$ find playground -type f -name 'file-A'
 ```
 
@@ -3659,7 +3659,7 @@ Note that unlike ls, find does not produce results in sorted order. Its order is
 
 > 注意不同于 ls 命令，find 命令的输出结果是无序的。其顺序由存储设备的布局决定。为了确定实际上 我们拥有一百个此文件的实例，我们可以用这种方式来确认：
 
-```
+```sh
 [me@linuxbox ~]$ find playground -type f -name 'file-A' | wc -l
 ```
 
@@ -3667,7 +3667,7 @@ Next, let's look at finding files based on their modification times. This will b
 
 > 下一步，让我们看一下基于文件的修改时间来查找文件。当创建备份文件或者以年代顺序来 组织文件的时候，这会很有帮助。为此，首先我们将创建一个参考文件，我们将与其比较修改时间：
 
-```
+```sh
 [me@linuxbox ~]$ touch playground/timestamp
 ```
 
@@ -3675,7 +3675,7 @@ This creates an empty file named timestamp and sets its modification time to the
 
 > 这个创建了一个空文件，名为 timestamp，并且把它的修改时间设置为当前时间。我们能够验证 它通过使用另一个方便的命令，stat，是一款加大马力的 ls 命令版本。这个 stat 命令会展示系统对 某个文件及其属性所知道的所有信息：
 
-```
+```sh
 [me@linuxbox ~]$ stat playground/timestamp
 File: 'playground/timestamp'
 Size: 0 Blocks: 0 IO Block: 4096 regular empty file
@@ -3690,7 +3690,7 @@ If we touch the file again and then examine it with stat, we will see that the f
 
 > 如果我们再次 touch 这个文件，然后用 stat 命令检测它，我们会发现所有文件的时间已经更新了。
 
-```
+```sh
 [me@linuxbox ~]$ touch playground/timestamp
 [me@linuxbox ~]$ stat playground/timestamp
 File: 'playground/timestamp'
@@ -3706,7 +3706,7 @@ Next, let's use find to update some of our playground files:
 
 > 下一步，让我们使用 find 命令来更新一些操练场中的文件：
 
-```
+```sh
 [me@linuxbox ~]$ find playground -type f -name 'file-B' -exec touch '{}' ';'
 ```
 
@@ -3714,7 +3714,7 @@ This updates all files in the playground named file-B. Next we'll use find to id
 
 > 这会更新操练场中所有名为 file-B 的文件。接下来我们会使用 find 命令 通过把所有文件与参考文件 timestamp 做比较，来找到已更新的文件：
 
-```
+```sh
 [me@linuxbox ~]$ find playground -type f -newer playground/timestamp
 ```
 
@@ -3726,7 +3726,7 @@ Finally, let's go back to the bad permissions test we performed earlier and appl
 
 > 最后，让我们回到之前那个错误权限的例子中，把它应用于操练场里：
 
-```
+```sh
 [me@linuxbox ~]$ find playground \( -type f -not -perm 0600 \) -or \( -type d -not -perm 0700 \)
 ```
 
@@ -3734,7 +3734,7 @@ This command lists all one hundred directories and twenty-six hundred files in p
 
 > 这个命令列出了操练场中所有一百个目录和二百六十个文件（还有 timestamp 和操练场本身，共 2702 个） ，因为没有一个符合我们"正确权限"的定义。通过对运算符和行为知识的了解，我们可以给这个命令 添加行为，对实战场中的文件和目录应用新的权限。
 
-```
+```sh
 [me@linuxbox ~]$ find playground \( -type f -not -perm 0600 -exec chmod 0600 '{}' ';' \)
    -or \( -type d -not -perm 0711 -exec chmod 0700 '{}' ';' \)
 ```

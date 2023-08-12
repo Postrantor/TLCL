@@ -19,7 +19,7 @@ The ls command is probably the most used command, and for good reason. With it, 
 
 ls 可能是用户最常使用的命令了，这自有它的道理。通过它，我们可以知道目录的内容，以及各种各样重要文件和目录的 属性。正如我们已经见到的，只要简单地输入 ls 就能看到在当前目录下所有文件和子目录的列表。
 
-```
+```sh
 [me@linuxbox ~]$ ls
 Desktop Documents Music Pictures Publica Templates Videos
 ```
@@ -28,7 +28,7 @@ Besides the current working directory, we can specify the directory to list, lik
 
 > 除了当前工作目录以外，也可以指定别的目录，就像这样：
 
-```
+```sh
 me@linuxbox ~]$ ls /usr
 bin games   kerberos    libexec  sbin   src
 etc include lib         local    share  tmp
@@ -38,7 +38,7 @@ Or even specify multiple directories. In this example we will list both the user
 
 > 甚至可以列出多个指定目录的内容。在这个例子中，将会列出用户家目录（用字符"\~"代表）和/usr 目录的内容：
 
-```
+```sh
 [me@linuxbox ~]$ ls ~ /usr
 /home/me:
 Desktop  Documents  Music  Pictures  Public  Templates  Videos
@@ -52,7 +52,7 @@ We can also change the format of the output to reveal more detail:
 
 > 我们也可以改变输出格式，来得到更多的细节：
 
-```
+```sh
 [me@linuxbox ~]$ ls -l
 total 56
 drwxrwxr-x 2  me  me  4096  2007-10-26  17:20  Desktop
@@ -74,7 +74,7 @@ This brings us to a very important point about how most commands work. Commands 
 
 > 我们将学习一个非常重要的知识点，看看大多数命令都是如何工作的。命令名经常会带有一个或多个用来改变命令行为的选项， 更进一步，选项后面会带有一个或多个参数，这些参数是命令作用的对象。所以大多数命令看起来像这样：
 
-```
+```sh
 command -options arguments
 ```
 
@@ -82,7 +82,7 @@ Most commands use options consisting of a single character preceded by a dash, f
 
 > 大多数命令使用的选项，是由一个中划线加上一个字符组成，例如，"-l"，但是许多命令，包括来自于 GNU 项目的命令，也支持长选项，长选项由两个中划线加上一个字组成。当然， 许多命令也允许把多个短选项串在一起使用。下面这个例子，ls 命令有两个选项， "l" 选项产生长格式输出，"t"选项按文件修改时间的先后来排序。
 
-```
+```sh
 [me@linuxbox ~]$ ls -lt
 ```
 
@@ -90,7 +90,7 @@ We'll add the long option "--reverse" to reverse the order of the sort:
 
 > 加上长选项 "--reverse"，则结果会以相反的顺序输出：
 
-```
+```sh
 [me@linuxbox ~]$ ls -lt --reverse
 ```
 
@@ -812,7 +812,7 @@ As we saw before, the "-l" option causes ls to display its results in long forma
 
 > 正如我们先前知道的，"-l"选项导致 ls 的输出结果以长格式输出。这种格式包含大量的有用信息。下面的例子目录来自 于 Ubuntu 系统：
 
-```
+```sh
 -rw-r--r-- 1 root root 3576296 2007-04-03 11:05 Experience ubuntu.ogg
 -rw-r--r-- 1 root root 1186219 2007-04-03 11:05 kubuntu-leaflet.png
 -rw-r--r-- 1 root root   47584 2007-04-03 11:05 logo-Edubuntu.png
@@ -1320,7 +1320,7 @@ As we explore the system it will be useful to know what files contain. To do thi
 
 > 随着探究操作系统的进行，知道文件包含的内容是很有用的。我们将用 file 命令来确定文件的类型。我们之前讨论过， 在 Linux 系统中，并不要求文件名来反映文件的内容。然而，一个类似 "picture.jpg" 的文件名，我们会期望它包含 JPEG 压缩图像，但 Linux 却不这样要求它。可以这样调用 file 命令：
 
-```
+```sh
 file filename
 ```
 
@@ -1328,7 +1328,7 @@ When invoked, the file command will print a brief description of the file's cont
 
 > 当调用 file 命令后，file 命令会打印出文件内容的简单描述。例如：
 
-```
+```sh
 [me@linuxbox ~]$ file picture.jpg
 picture.jpg: JPEG image data, JFIF standard 1.01
 ```
@@ -1371,7 +1371,7 @@ The less command is used like this:
 
 less 命令是这样使用的：
 
-```
+```sh
 less filename
 ```
 
@@ -1379,7 +1379,7 @@ Once started, the less program allows you to scroll forward and backward through
 
 > 一旦运行起来，less 程序允许你前后滚动文件。例如，要查看一个定义了系统中全部用户身份的文件，输入以下命令：
 
-```
+```sh
 [me@linuxbox ~]$ less /etc/passwd
 ```
 
@@ -3710,7 +3710,7 @@ As we look around, we are likely to see a directory listing with an entry like t
 
 > 在我们到处查看时，我们可能会看到一个目录，列出像这样的一条信息：
 
-```
+```sh
 lrwxrwxrwx 1 root root 11 2007-08-11 07:34 libc.so.6 -> libc-2.6.so
 ```
 

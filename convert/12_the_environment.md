@@ -33,7 +33,7 @@ We can use either the set builtin in bash or the printenv program to see what is
 
 > 我们可以用 bash 的内建命令 set，或者是 printenv 程序来查看环境变量。set 命令可以 显示 shell 或环境变量，而 printenv 只是显示环境变量。因为环境变量列表比较长，最好 把每个命令的输出通过管道传递给 less 来阅读：
 
-```
+```sh
 [me@linuxbox ~]$ printenv | less
 ```
 
@@ -41,7 +41,7 @@ Doing so, we should get something that looks like this:
 
 > 执行以上命令之后，我们应该能得到类似以下内容：
 
-```
+```sh
 KDE_MULTIHEAD=false
 SSH_AGENT_PID=6666
 HOSTNAME=linuxbox
@@ -70,7 +70,7 @@ What we see is a list of environment variables and their values. For example, we
 
 > 我们所看到的是环境变量及其值的列表。例如，我们看到一个叫做 USER 的变量，这个变量值是 "me"。printenv 命令也能够列出特定变量的值：
 
-```
+```sh
 [me@linuxbox ~]$ printenv USER
 me
 ```
@@ -79,7 +79,7 @@ The set command, when used without options or arguments, will display both the s
 
 > 当使用没有带选项和参数的 set 命令时，shell 变量，环境变量，和定义的 shell 函数 都会被显示。不同于 printenv 命令，set 命令的输出很友好地按照首字母顺序排列：
 
-```
+```sh
 [me@linuxbox ~]$ set | less
 ```
 
@@ -87,7 +87,7 @@ It is also possible to view the contents of a variable using the echo command, l
 
 > 也可以通过 echo 命令来查看一个变量的内容，像这样：
 
-```
+```sh
 [me@linuxbox ~]$ echo $HOME
 /home/me
 ```
@@ -96,7 +96,7 @@ One element of the environment that neither set nor printenv displays is aliases
 
 > 别名无法通过使用 set 或 printenv 来查看。 用不带参数的 alias 来查看别名:
 
-```
+```sh
 [me@linuxbox ~]$ alias
 alias l.='ls -d .* --color=tty'
 alias ll='ls -l --color=tty'
@@ -1491,7 +1491,7 @@ If we take a look inside a typical .bash_profile (taken from a CentOS 4 system),
 
 > 如果我们看一下典型的 .bash_profile 文件（来自于 CentOS 4 系统），它看起来像这样：
 
-```
+```sh
 # .bash_profile
 # Get the aliases and functions
 if [ -f ~/.bashrc ]; then
@@ -1506,7 +1506,7 @@ Lines that begin with a "\#" are comments and are not read by the shell. These a
 
 > 以"#"开头的行是注释，shell 不会读取它们。它们在那里是为了方便人们阅读。第一件有趣的事情 发生在第四行，伴随着以下代码：
 
-```
+```sh
 if [ -f ~/.bashrc ]; then
 . ~/.bashrc
 fi
@@ -1516,7 +1516,7 @@ This is called an if compound command, which we will cover fully when we get to 
 
 > 这叫做一个 if 复合命令，我们将会在第五部分详细地介绍它，现在我们对它翻译一下：
 
-```
+```sh
 If the file ~/.bashrc exists, then
 read the ~/.bashrc file.
 ```
@@ -1533,7 +1533,7 @@ The PATH variable is often (but not always, depending on the distribution) set b
 
 PATH 变量经常（但不总是，依赖于发行版）在 /etc/profile 启动文件中设置，通过这些代码：
 
-```
+```sh
 PATH=$PATH:$HOME/bin
 ```
 
@@ -1541,7 +1541,7 @@ PATH is modified to add the directory \$HOME/bin to the end of the list. This is
 
 > 修改 PATH 变量，添加目录 \$HOME/bin 到目录列表的末尾。这是一个参数展开的实例， 参数展开我们在第八章中提到过。为了说明这是怎样工作的，试试下面的例子：
 
-```
+```sh
 [me@linuxbox ~]$ foo="This is some"
 [me@linuxbox ~]$ echo $foo
 This is some
@@ -1562,7 +1562,7 @@ Lastly, we have:
 
 > 最后，有下面一行代码：
 
-```
+```sh
 export PATH
 ```
 
@@ -1606,7 +1606,7 @@ All text editors can be invoked from the command line by typing the name of the 
 
 > 所有的文本编辑器都可以通过在命令行中输入编辑器的名字，加上你所想要编辑的文件来唤醒。如果所 输入的文件名不存在，编辑器则会假定你想要创建一个新文件。下面是一个使用 gedit 的例子：
 
-```
+```sh
 [me@linuxbox ~]$ gedit some_file
 ```
 
@@ -1618,7 +1618,7 @@ All graphical text editors are pretty self-explanatory, so we won't cover them h
 
 > 所有的图形文本编辑器很大程度上都是不需要解释的，所以我们在这里不会介绍它们。反之，我们将集中精力在 我们第一个基于文本的文本编辑器，nano。让我们启动 nano，并且编辑文件 .bashrc。但是在我们这样 做之前，先练习一些"安全计算"。当我们编辑一个重要的配置文件时，首先创建一个这个文件的备份 总是一个不错的主意。这样能避免我们在编辑文件时弄乱文件。创建文件 .bashrc 的备份文件，这样做：
 
-```
+```sh
 [me@linuxbox ~]$ cp .bashrc .bashrc.bak
 ```
 
@@ -1630,7 +1630,7 @@ Now that we have a backup file, we'll start the editor:
 
 > 现在我们有了一个备份文件，我们启动 nano 编辑器吧：
 
-```
+```sh
 [me@linuxbox ~]$ nano .bashrc
 ```
 
@@ -1638,7 +1638,7 @@ Once nano starts, we'll get a screen like this:
 
 > 一旦 nano 编辑器启动后，我们将会得到一个像下面一样的屏幕：
 
-```
+```sh
 GNU nano 2.0.3
 ....
 ```
@@ -1655,7 +1655,7 @@ The second command we need to know is how to save our work. With nano it's Ctrl-
 
 > 第二个我们需要知道的命令是怎样保存我们的劳动成果。对于 nano 来说是 Ctrl-o。既然我们 已经获得了这些知识，接下来我们准备做些编辑工作。使用下箭头按键和 / 或下翻页按键，移动 鼠标到文件的最后一行，然后添加以下几行到文件 .bashrc 中：
 
-```
+```sh
 umask 0002
 export HISTCONTROL=ignoredups
 export HISTSIZE=1000
@@ -2047,7 +2047,7 @@ As we can see, many of our additions are not intuitively obvious, so it would be
 
 > 正如我们所看到的，我们添加的许多代码的意思直觉上并不是明显的，所以添加注释到我们的文件 .bashrc 中是 一个好主意，可以帮助人们理解。使用编辑器，更改我们添加的代码，让它们看起来像这样：
 
-```
+```sh
 # Change umask to make directory sharing easier
 umask 0002
  # Ignore duplicates in command history and increase
@@ -2096,7 +2096,7 @@ The changes we have made to our .bashrc will not take affect until we close our 
 
 > 我们对于文件 .bashrc 的修改不会生效，直到我们关闭终端会话，再重新启动一个新的会话， 因为 .bashrc 文件只是在刚开始启动终端会话时读取。然而，我们可以强迫 bash 重新读取修改过的 .bashrc 文件，使用下面的命令：
 
-```
+```sh
 [me@linuxbox ~]$ source .bashrc
 ```
 
@@ -2104,7 +2104,7 @@ After doing this, we should be able to see the effect of our changes. Try out on
 
 > 运行上面命令之后，我们就应该能够看到所做修改的效果了。试试其中一个新的别名：
 
-```
+```sh
 [me@linuxbox ~]$ ll
 ```
 

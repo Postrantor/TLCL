@@ -58,7 +58,7 @@ Data is sent to a typewriter-like printer in a simple stream of bytes containing
 
 > 接着，一台类打字机的打印机会收到以简单字节流的形式传送来的数据，其中就包含要打印的字符。例如要打印一个字母 a，计算机就会发送 ASCII 码 97，如果要移动打印机的滑动架和纸张，就需要使用回车、换行、换页等的小编号 ASCII 控制码。使用控制码，还能实现一些之前受限制的字体效果，比如粗体，就是让打印机先打印一个字符，然后退格再打印一遍来得到颜色较深的效果的。用 nroff 来产生一个手册页然后用 cat -A 检查输出，我们就能亲眼看看这种效果了：
 
-```
+```sh
 [me@linuxbox ~]$ zcat /usr/share/man/man1/ls.1.gz | nroff -man | cat -A | head
 LS(1) User Commands LS(1)
 $
@@ -843,7 +843,7 @@ pr is often used in pipelines as a filter. In this example, we will produce a di
 
 > 我们通常用管道配合 pr 命令来做筛选。下面的例子中我们会列出目录 /usr/bin 并用 pr 将其格式化为 3 列输出的标题页：
 
-```
+```sh
 [me@linuxbox ~]$ ls /usr/bin | pr -3 -w 65 | head
 2012-02-18 14:00                    Page 1
 [                   apturl          bsd-write
@@ -865,7 +865,7 @@ The lpr program can be used to send files to the printer. It may also be used in
 
 lpr 程序可以用来把文件传送给打印机。由于它能接收标准输入，所以能用管道来协同工作。例如，要打印刚才多列目录列表的结果，我们只需这样：
 
-```
+```sh
 [me@linuxbox ~]$ ls /usr/bin | pr -3 | lpr
 ```
 
@@ -873,13 +873,13 @@ The report would be sent to the system's default printer. To send the file to a 
 
 > 报告会送到系统默认的打印机，如果要送到别的打印机，可以使用 -P 参数：
 
-```
+```sh
 lpr -P printer_name
 ```
 
 printer_name 表示这台打印机的名称。若要查看系统已知的打印机列表：
 
-```
+```sh
 [me@linuxbox ~]$ lpstat -a
 ```
 
@@ -1813,7 +1813,7 @@ We'll produce our directory listing again, this time printing 12 CPI and 8 LPI w
 
 > 再次打印我们的目录列表，这次我们设置 12 CPI、8 LPI 和一个半英寸的左边距。注意这里我必须调整 pr 选项来适应新的页面大小：
 
-```
+```sh
 [me@linuxbox ~]$ ls /usr/bin | pr -4 -w 90 -l 88 | lp -o page-left=36 -o cpi=12 -o lpi=8
 ```
 
@@ -1827,7 +1827,7 @@ The a2ps program is interesting. As we can surmise from its name, it's a format 
 
 a2ps 程序很有趣。单从名字上看，这是个格式转换程序，但它的功能不止于此。程序名字的本意为 ASCII to PostScript，它是用来为 PostScript 打印机准备要打印的文本文件的。多年后，程序的功能得到了提升，名字的含义也变成了 Anything to PostScript。尽管名为格式转换程序，但它实际的功能却是打印。它的默认输出不是标准输出，而是系统的默认打印机。程序的默认行为被称为"漂亮的打印机"，这意味着它可以改善输出的外观。我们能用程序在桌面上创建一个 PostScript 文件：
 
-```
+```sh
 [me@linuxbox ~]$ ls /usr/bin | pr -3 -t | a2ps -o ~/Desktop/ls.ps -L 66
 [stdin (plain): 11 pages on 6 sheets]
 [Total: 11 pages on 6 sheets] saved into the file `/home/me/Desktop/ls.ps'
@@ -3415,7 +3415,7 @@ The lpstat program is useful for determining the names and availability of print
 
 lpstat 程序可用于确定系统中打印机的名字和有效性。例如，我们系统中有一台实体打印机（名叫 printer）和一台 PDF 虚拟打印机（名叫 PDF），我们可以像这样查看打印机状态：
 
-```
+```sh
 [me@linuxbox ~]$ lpstat -a
 PDF accepting requests since Mon 05 Dec 2011 03:05:59 PM EST
 printer accepting requests since Tue 21 Feb 2012 08:43:22 AM EST
@@ -3425,7 +3425,7 @@ Further, we could determine a more detailed description of the print system conf
 
 > 接着，我们可以查看打印系统更具体的配置信息：
 
-```
+```sh
 [me@linuxbox ~]$ lpstat -s
 system default destination: printer
 device for PDF: cups-pdf:/
@@ -3874,7 +3874,7 @@ To see the status of a printer queue, the lpq program is used. This allows us to
 
 > 使用 lpq 程序可以查看打印机队列的状态，从中我们可以看到队列的状态和所包含的打印任务。下面的例子显示了一台名叫 printer 的系统默认打印机包含一个空队列的情况：
 
-```
+```sh
 [me@linuxbox ~]$ lpq
 printer is ready
 no entries
@@ -3884,7 +3884,7 @@ If we do not specify a printer (using the -P option), the system's default print
 
 > 如果我们不指定打印机（用 -P 参数），就会显示系统默认打印机。如果给打印机添加一项任务再查看队列，我们就会看到下列结果：
 
-```
+```sh
 [me@linuxbox ~]$ ls *.txt | pr -3 | lp
 request id is printer-603 (1 file(s))
 [me@linuxbox ~]$ lpq
@@ -3899,7 +3899,7 @@ CUPS supplies two programs used to terminate print jobs and remove them from the
 
 CUPS 提供两个程序来从打印队列中终止并移除打印任务。一个是 Berkeley 风格的（lprm），另一个是 System V 的（cancel）。在支持的选项上两者有较小的区别但是功能却几乎相同。以上面的打印任务为例，我们可以像这样终止并移除任务：
 
-```
+```sh
 [me@linuxbox ~]$ cancel 603
 [me@linuxbox ~]$ lpq
 printer is ready

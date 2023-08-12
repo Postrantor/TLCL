@@ -7,7 +7,7 @@ The scripts we have written so far lack a feature common in most computer progra
 
 > 到目前为止我们编写的脚本都缺乏一项在大多数计算机程序中都很常见的功能－交互性。也就是， 程序与用户进行交互的能力。虽然许多程序不必是可交互的，但一些程序却得到益处，能够直接 接受用户的输入。以这个前面章节中的脚本为例：
 
-```
+```sh
 #!/bin/bash
 # test-integer2: evaluate the value of an integer.
 INT=-5
@@ -42,7 +42,7 @@ The read builtin command is used to read a single line of standard input. This c
 
 > 这个 read 内部命令被用来从标准输入读取单行数据。这个命令可以用来读取键盘输入，当使用 重定向的时候，读取文件中的一行数据。这个命令有以下语法形式：
 
-```
+```sh
 read [-options] [variable...]
 ```
 
@@ -54,7 +54,7 @@ Basically, `read` assigns fields from standard input to the specified variables.
 
 > 基本上，read 会把来自标准输入的字段赋值给具体的变量。如果我们修改我们的整数求值脚本，让其使用 read ，它可能看起来像这样：
 
-```
+```sh
 #!/bin/bash
 # read-integer: evaluate the value of an integer.
 echo -n "Please enter an integer -> "
@@ -84,7 +84,7 @@ We use `echo` with the `-n` option (which suppresses the trailing newline on out
 
 > 我们使用带有 -n 选项（其会删除输出结果末尾的换行符）的 echo 命令，来显示提示信息， 然后使用 read 来读入变量 int 的数值。运行这个脚本得到以下输出：
 
-```
+```sh
 [me@linuxbox ~]$ read-integer
 Please enter an integer -> 5
 5 is positive.
@@ -95,7 +95,7 @@ read can assign input to multiple variables, as shown in this script:
 
 read 可以给多个变量赋值，正如下面脚本中所示：
 
-```
+```sh
 #!/bin/bash
 # read-multiple: read multiple values from keyboard
 echo -n "Enter one or more values > "
@@ -111,7 +111,7 @@ In this script, we assign and display up to five values. Notice how `read` behav
 
 > 在这个脚本中，我们给五个变量赋值并显示其结果。注意当给定不同个数的数值后，read 怎样操作：
 
-```
+```sh
 [me@linuxbox ~]$ read-multiple
 Enter one or more values > a b c d e
 var1 = 'a'
@@ -139,7 +139,7 @@ If `read` receives fewer than the expected number, the extra variables are empty
 
 > 如果 read 命令接受到变量值数目少于期望的数字，那么额外的变量值为空，而多余的输入数据则会 被包含到最后一个变量中。如果 read 命令之后没有列出变量名，则一个 shell 变量，REPLY，将会包含 所有的输入：
 
-```
+```sh
 #!/bin/bash
 # read-single: read multiple values into default variable
 echo -n "Enter one or more values > "
@@ -151,7 +151,7 @@ Running this script results in this:
 
 > 这个脚本的输出结果是：
 
-```
+```sh
 [me@linuxbox ~]$ read-single
 Enter one or more values > a b c d
 REPLY = 'a b c d'
@@ -795,7 +795,7 @@ Using the various options, we can do interesting things with read. For example, 
 
 > 使用各种各样的选项，我们能用 read 完成有趣的事情。例如，通过-p 选项，我们能够提供提示信息：
 
-```
+```sh
 #!/bin/bash
 # read-single: read multiple values into default variable
 read -p "Enter one or more values > "
@@ -806,7 +806,7 @@ With the -t and -s options we can write a script that reads "secret" input and t
 
 > 通过 -t 和 -s 选项，我们可以编写一个这样的脚本，读取"秘密"输入，并且如果在特定的时间内 输入没有完成，就终止输入。
 
-```
+```sh
 #!/bin/bash
 # read-secret: input a secret pass phrase
 if read -t 10 -sp "Enter secret pass phrase > " secret_pass; then
@@ -831,7 +831,7 @@ We can adjust the value of *IFS* to control the separation of fields input to `r
 
 > 我们可以调整 *IFS* 的值来控制输入字段的分离。例如，这个 /etc/passwd 文件包含的数据行 使用冒号作为字段分隔符。通过把 *IFS* 的值更改为单个冒号，我们可以使用 read 读取 /etc/passwd 中的内容，并成功地把字段分给不同的变量。这个就是做这样的事情：
 
-```
+```sh
 #!/bin/bash
 # read-ifs: read fields from a file
 FILE=/etc/passwd
@@ -855,7 +855,7 @@ This script prompts the user to enter the user name of an account on the system,
 
 > 这个脚本提示用户输入系统中一个帐户的用户名，然后显示在文件 /etc/passwd/ 文件中关于用户记录的 不同字段。这个脚本包含有趣的两行。 第一个是：
 
-```
+```sh
 file_info=$(grep "^$user_name:" $FILE)
 ```
 
@@ -867,7 +867,7 @@ The second interesting line is this one:
 
 > 第二个有意思的一行是：
 
-```
+```sh
 IFS=":" read user pw uid gid name home shell <<< "$file_info"
 ```
 
@@ -879,7 +879,7 @@ The shell allows one or more variable assignments to take place immediately befo
 
 Shell 允许在一个命令之前给一个或多个变量赋值。这些赋值会暂时改变之后的命令的环境变量。 在这种情况下，IFS 的值被改成一个冒号。等效的，我们也可以这样写：
 
-```
+```sh
 OLD_IFS="$IFS"
 IFS=":"
 read user pw uid gid name home shell <<< "$file_info"
@@ -894,7 +894,7 @@ The `<<<` operator indicates a here string. A here string is like a here documen
 
 > 这个 `<<<` 操作符指示一个 here 字符串。一个 here 字符串就像一个 here 文档，只是比较简短，由 单个字符串组成。在这个例子中，来自 /etc/passwd 文件的数据发送给 read 命令的标准输入。 我们可能想知道为什么选择这种相当晦涩的方法而不是：
 
-```
+```sh
 echo "$file_info" | IFS=":" read user pw uid gid name home shell
 ```
 
@@ -934,7 +934,7 @@ Here we have an example program that validates various kinds of input:
 
 > 这里我们有一个校正各种输入的示例程序：
 
-```
+```sh
 #!/bin/bash
 # read-validate: validate input
 invalid_input () {
@@ -981,7 +981,7 @@ A common type of interactivity is called menu-driven. In menu-driven programs, t
 
 > 一种常见的交互类型称为菜单驱动。在菜单驱动程序中，呈现给用户一系列选择，并要求用户选择一项。 例如，我们可以想象一个展示以下信息的程序：
 
-```
+```sh
 Please Select:
 1.Display System Information
 2.Display Disk Space
@@ -994,7 +994,7 @@ Using what we learned from writing our sys_info_page program, we can construct a
 
 > 使用我们从编写 sys_info_page 程序中所学到的知识，我们能够构建一个菜单驱动程序来执行 上述菜单中的任务：
 
-```
+```sh
 #!/bin/bash
 # read-menu: a menu driven system information program
 clear

@@ -17,7 +17,7 @@ In the following the discussions, we will use this script to demonstrate common 
 
 > 在以下讨论中，我们将使用下面这个脚本，来说明常见的错误类型：
 
-```
+```sh
 #!/bin/bash
 # trouble: script to demonstrate common errors
 number=1
@@ -32,7 +32,7 @@ As written, this script runs successfully:
 
 > 参看脚本内容，我们知道这个脚本执行成功了：
 
-```
+```sh
 [me@linuxbox ~]$ trouble
 Number is equal to 1.
 ```
@@ -43,7 +43,7 @@ If we edit our script and remove the trailing quote from the argument following 
 
 > 如果我们编辑我们的脚本，并从跟随第一个 echo 命令的参数中，删除其末尾的双引号：
 
-```
+```sh
 #!/bin/bash
 # trouble: script to demonstrate common errors
 number=1
@@ -58,7 +58,7 @@ watch what happens:
 
 > 观察发生了什么：
 
-```
+```sh
 [me@linuxbox ~]$ trouble
 /home/me/bin/trouble: line 10: unexpected EOF while looking for
 matching `"'
@@ -73,7 +73,7 @@ In long scripts, this kind of error can be quite hard to find. Using an editor w
 
 > 在冗长的脚本中，此类错误很难找到。使用带有语法高亮的编辑器将会帮助查找错误。如果安装了 vim 的完整版， 通过输入下面的命令，可以使语法高亮生效：
 
-```
+```sh
 :syntax on
 ```
 
@@ -83,7 +83,7 @@ Another common mistake is forgetting to complete a compound command, such as if 
 
 > 另一个常见错误是忘记补全一个复合命令，比如说 if 或者是 while。让我们看一下，如果 我们删除 if 命令中测试之后的分号，会出现什么情况：
 
-```
+```sh
 #!/bin/bash
 # trouble: script to demonstrate common errors
 number=1
@@ -98,7 +98,7 @@ The result is this:
 
 > 结果是这样的：
 
-```
+```sh
 [me@linuxbox ~]$ trouble
 /home/me/bin/trouble: line 9: syntax error near unexpected token
 `else'
@@ -115,7 +115,7 @@ It's possible to have errors that only occur intermittently in a script. Sometim
 
 > 可能有这样的错误，它们仅会间歇性地出现在一个脚本中。有时候这个脚本执行正常，其它时间会失败， 这是因为展开结果造成的。如果我们归还我们丢掉的分号，并把 number 的数值更改为一个空变量，我们 可以示范一下：
 
-```
+```sh
 #!/bin/bash
 # trouble: script to demonstrate common errors
 number=
@@ -130,7 +130,7 @@ Running the script with this change results in the output:
 
 > 运行这个做了修改的脚本，得到以下输出：
 
-```
+```sh
 [me@linuxbox ~]$ trouble
 /home/me/bin/trouble: line 7: [: =: unary operator expected
 Number is not equal to 1.
@@ -140,7 +140,7 @@ We get this rather cryptic error message, followed by the output of the second e
 
 > 我们得到一个相当神秘的错误信息，其后是第二个 echo 命令的输出结果。这问题是由于 test 命令中 number 变量的展开结果造成的。当此命令：
 
-```
+```sh
 [ $number = 1 ]
 ```
 
@@ -148,7 +148,7 @@ undergoes expansion with number being empty, the result is this:
 
 > 经过展开之后，number 变为空值，结果就是这样：
 
-```
+```sh
 [  = 1 ]
 ```
 
@@ -160,7 +160,7 @@ This problem can be corrected by adding quotes around the first argument in the 
 
 > 通过为 test 命令中的第一个参数添加双引号，可以更正这个问题：
 
-```
+```sh
 [ "$number" = 1 ]
 ```
 
@@ -168,7 +168,7 @@ Then when expansion occurs, the result will be this:
 
 > 然后当展开操作发生地时候，执行结果将会是这样：
 
-```
+```sh
 [ "" = 1 ]
 ```
 
@@ -197,7 +197,7 @@ It is important to verify assumptions when programming. This means a careful eva
 
 > 当编程的时候，验证假设非常重要。这意味着要仔细地计算脚本所使用的程序和命令的退出状态。 这里有个基于一个真实的故事的实例。为了在一台重要的服务器中执行维护任务，一位不幸的系统管理员写了一个脚本。 这个脚本包含下面两行代码：
 
-```
+```sh
 cd $dir_name
 rm *
 ```
@@ -210,7 +210,7 @@ Let's look at some ways this design could be improved. First, it might be wise t
 
 > 让我们看一些能够提高这个设计的方法。首先，在 cd 命令执行成功之后，再运行 rm 命令，可能是明智的选择。
 
-```
+```sh
 cd $dir_name && rm *
 ```
 
@@ -218,7 +218,7 @@ This way, if the cd command fails, the rm command is not carried out. This is be
 
 > 这样，如果 cd 命令运行失败后，rm 命令将不会执行。这样比较好，但是仍然有可能未设置变量 dir_name 或其变量值为空，从而导致删除了用户家目录下面的所有文件。这个问题也能够避免，通过检验变量 dir_name 中包含的目录名是否真正地存在：
 
-```
+```sh
 [[ -d $dir_name ]] && cd $dir_name && rm *
 ```
 
@@ -226,7 +226,7 @@ Often, it is best to terminate the script with an error when an situation such a
 
 > 通常，当某种情况（比如上述问题）发生的时候，最好是终止脚本执行，并对这种情况提示错误信息：
 
-```
+```sh
 if [[ -d $dir_name ]]; then
     if cd $dir_name; then
         rm *
@@ -250,7 +250,7 @@ A general rule of good programming is that if a program accepts input, it must b
 
 > 一个良好的编程习惯是如果一个程序可以接受输入数据，那么这个程序必须能够应对它所接受的任意数据。这 通常意味着必须非常仔细地筛选输入数据，以确保只有有效的输入数据才能被程序用来做进一步地处理。在前面章节 中我们学习 read 命令的时候，我们遇到过一个这样的例子。一个脚本中包含了下面一条测试语句， 用来验证一个选择菜单：
 
-```
+```sh
 [[ $REPLY =~ ^[0-3]$ ]]
 ```
 
@@ -284,7 +284,7 @@ Let's look at the file deletion problem above and see how this could be coded fo
 
 > 让我们看一下上面的文件删除问题，为了轻松测试，看看如何修改这些代码。测试原本那个代码片段将是危险的，因为它的目的是要删除文件， 但是我们可以修改代码，让测试安全：
 
-```
+```sh
 if [[ -d $dir_name ]]; then
     if cd $dir_name; then
         echo rm * # TESTING
@@ -342,7 +342,7 @@ In some scripts, particularly long ones, it is sometimes useful to isolate the a
 
 > 在一些脚本中，尤其是一些代码比较长的脚本，有时候隔离脚本中与出现的问题相关的代码区域对查找问题很有帮助。 隔离的代码区域并不总是真正的错误所在，但是隔离往往可以深入了解实际的错误原因。可以用来隔离代码的一项 技巧是"添加注释"。例如，我们的文件删除代码可以修改成这样，从而决定注释掉的这部分代码是否导致了一个错误：
 
-```
+```sh
 if [[ -d $dir_name ]]; then
     if cd $dir_name; then
         rm *
@@ -370,7 +370,7 @@ One tracing method involves placing informative messages in a script that displa
 
 > 一种追踪方法涉及到在脚本中添加可以显示程序执行位置的提示性信息。我们可以添加提示信息到我们的代码片段中：
 
-```
+```sh
 echo "preparing to delete files" >&2
 if [[ -d $dir_name ]]; then
     if cd $dir_name; then
@@ -395,7 +395,7 @@ Now when the script is executed, it's possible to see that the file deletion has
 
 > 当这个脚本执行的时候，就可能看到文件删除操作已经完成了：
 
-```
+```sh
 [me@linuxbox ~]$ deletion-script
 preparing to delete files
 deleting files
@@ -407,7 +407,7 @@ bash also provides a method of tracing, implemented by the -x option and the set
 
 bash 还提供了一种名为追踪的方法，这种方法可通过 -x 选项和 set 命令加上 -x 选项两种途径实现。 拿我们之前的 trouble 脚本为例，给该脚本的第一行语句添加 -x 选项，我们就能追踪整个脚本。
 
-```
+```sh
 #!/bin/bash -x
 # trouble: script to demonstrate common errors
 number=1
@@ -422,7 +422,7 @@ When executed, the results look like this:
 
 > 当脚本执行后，输出结果看起来像这样:
 
-```
+```sh
 [me@linuxbox ~]$ trouble
 + number=1
 + '[' 1 = 1 ']'
@@ -434,7 +434,7 @@ With tracing enabled, we see the commands performed with expansions applied. The
 
 > 追踪生效后，我们看到脚本命令展开后才执行。行首的加号表明追踪的迹象，使其与常规输出结果区分开来。 加号是追踪输出的默认字符。它包含在 PS4（提示符 4）shell 变量中。可以调整这个变量值让提示信息更有意义。 这里，我们修改该变量的内容，让其包含脚本中追踪执行到的当前行的行号。注意这里必须使用单引号是为了防止变量展开，直到 提示符真正使用的时候，就不需要了。
 
-```
+```sh
 [me@linuxbox ~]$ export PS4='$LINENO + '
 [me@linuxbox ~]$ trouble
 5 + number=1
@@ -447,7 +447,7 @@ To perform a trace on a selected portion of a script, rather than the entire scr
 
 > 我们可以使用 set 命令加上 -x 选项，为脚本中的一块选择区域，而不是整个脚本启用追踪。
 
-```
+```sh
 #!/bin/bash
 # trouble: script to demonstrate common errors
 number=1
@@ -470,7 +470,7 @@ It is often useful, along with tracing, to display the content of variables to s
 
 > 伴随着追踪，在脚本执行的时候显示变量的内容，以此知道脚本内部的工作状态，往往是很用的。 使用额外的 echo 语句通常会奏效。
 
-```
+```sh
 #!/bin/bash
 # trouble: script to demonstrate common errors
 number=1

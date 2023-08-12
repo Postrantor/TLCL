@@ -25,7 +25,7 @@ So far, we have used grep with fixed strings, like so:
 
 > 到目前为止，我们已经使用 grep 程序查找了固定的字符串，就像这样:
 
-```
+```sh
 [me@linuxbox ~]$ ls /usr/bin | grep zip
 ```
 
@@ -37,7 +37,7 @@ The grep program accepts options and arguments this way:
 
 grep 程序以这样的方式来接受选项和参数：
 
-```
+```sh
 grep [options] regex [file...]
 ```
 
@@ -537,7 +537,7 @@ In order to more fully explore grep, let's create some text files to search:
 
 > 为了更好的探究 grep 程序，让我们创建一些文本文件来搜寻：
 
-```
+```sh
 [me@linuxbox ~]$ ls /bin > dirlist-bin.txt
 [me@linuxbox ~]$ ls /usr/bin > dirlist-usr-bin.txt
 [me@linuxbox ~]$ ls /sbin > dirlist-sbin.txt
@@ -551,7 +551,7 @@ We can perform a simple search of our list of files like this:
 
 > 我们能够对我们的文件列表执行简单的搜索，像这样：
 
-```
+```sh
 [me@linuxbox ~]$ grep bzip dirlist*.txt
 dirlist-bin.txt:bzip2
 dirlist-bin.txt:bzip2recover
@@ -561,7 +561,7 @@ In this example, grep searches all of the listed files for the string bzip and f
 
 > 在这个例子里，grep 程序在所有列出的文件中搜索字符串 bzip，然后找到两个匹配项，其都在 文件 dirlist-bin.txt 中。如果我们只是对包含匹配项的文件列表，而不是对匹配项本身感兴趣 的话，我们可以指定-l 选项：
 
-```
+```sh
 [me@linuxbox ~]$ grep -l bzip dirlist*.txt
 dirlist-bin.txt
 ```
@@ -570,7 +570,7 @@ Conversely, if we wanted only to see a list of the files that did not contain a 
 
 > 相反地，如果我们只想查看不包含匹配项的文件列表，我们可以这样操作：
 
-```
+```sh
 [me@linuxbox ~]$ grep -L bzip dirlist*.txt
 dirlist-sbin.txt
 dirlist-usr-bin.txt
@@ -583,7 +583,7 @@ While it may not seem apparent, our grep searches have been using regular expres
 
 > 它可能看起来不明显，但是我们的 grep 程序一直使用了正则表达式，虽然是非常简单的例子。 这个正则表达式"bzip"意味着，匹配项所在行至少包含 4 个字符，并且按照字符 "b"、"z"、 "i" 和 "p"的顺序 出现在匹配行的某处，字符之间没有其它的字符。字符串"bzip"中的所有字符都是原义字符，因此 它们匹配本身。除了原义字符之外，正则表达式也可能包含元字符，其被用来指定更复杂的匹配项。 正则表达式元字符由以下字符组成：
 
-```
+```sh
 ^ $ . [ ] { } - ? * + ( ) | \
 ```
 
@@ -605,7 +605,7 @@ The first metacharacter we will look at is the dot or period character, which is
 
 > 我们将要查看的第一个元字符是圆点字符，其被用来匹配任意字符。如果我们在正则表达式中包含它， 它将会匹配在此位置的任意一个字符。这里有个例子：
 
-```
+```sh
 [me@linuxbox ~]$ grep -h '.zip' dirlist*.txt
 bunzip2
 bzip2
@@ -631,7 +631,7 @@ The caret and dollar sign characters are treated as anchors in regular expressio
 
 > 在正则表达式中，插入符号和美元符号被看作是锚点。这意味着正则表达式 只有在文本行的开头或末尾被找到时，才算发生一次匹配。
 
-```
+```sh
 [me@linuxbox ~]$ grep -h '^zip' dirlist*.txt
 zip
 zipcloak
@@ -688,7 +688,7 @@ In addition to matching any character at a given position in our regular express
 
 > 除了能够在正则表达式中的给定位置匹配任意字符之外，通过使用中括号表达式， 我们也能够从一个指定的字符集合中匹配单个字符。通过中括号表达式，我们能够指定 一个待匹配字符集合（包含在不加中括号的情况下会被解释为元字符的字符）。在这个例子里，使用了一个两个字符的集合：
 
-```
+```sh
 [me@linuxbox ~]$ grep -h '[bg]zip' dirlist*.txt
 bzip2
 bzip2recover
@@ -709,7 +709,7 @@ If the first character in a bracket expression is a caret (\^), the remaining ch
 
 > 如果在中括号表示式中的第一个字符是一个插入字符（\^），则剩余的字符被看作是不会在给定的字符位置出现的 字符集合。通过修改之前的例子，我们试验一下：
 
-```
+```sh
 [me@linuxbox ~]$ grep -h '[^bg]zip' dirlist*.txt
 bunzip2
 gunzip
@@ -736,7 +736,7 @@ If we wanted to construct a regular expression that would find every file in our
 
 > 如果我们想要构建一个正则表达式，它可以在我们的列表中找到每个以大写字母开头的文件，我们 可以这样做：
 
-```
+```sh
 [me@linuxbox ~]$ grep -h '^[ABCDEFGHIJKLMNOPQRSTUVWXZY]' dirlist*.txt
 ```
 
@@ -744,7 +744,7 @@ It's just a matter of putting all twenty-six upper case letters in a bracket exp
 
 > 这只是一个在正则表达式中输入 26 个大写字母的问题。但是输入所有字母非常令人烦恼，所以有另外一种方式：
 
-```
+```sh
 [me@linuxbox ~]$ grep -h '^[A-Z]' dirlist*.txt
 MAKEDEV
 ControlPanel
@@ -763,7 +763,7 @@ By using a three character range, we can abbreviate the twenty-six letters. Any 
 
 > 通过使用一个三个符区域，我们能够缩写 26 个字母。任意字符的区域都能按照这种方式表达，包括多个区域， 比如下面这个表达式就匹配了所有以字母和数字开头的文件名：
 
-```
+```sh
 [me@linuxbox ~]$ grep -h '^[A-Za-z0-9]' dirlist*.txt
 ```
 
@@ -771,7 +771,7 @@ In character ranges, we see that the dash character is treated specially, so how
 
 > 在字符区域中，我们看到这个连字符被特殊对待，所以我们怎样在一个正则表达式中包含一个连字符呢？ 方法就是使连字符成为表达式中的第一个字符。考虑一下这两个例子：
 
-```
+```sh
 [me@linuxbox ~]$ grep -h '[A-Z]' dirlist*.txt
 ```
 
@@ -779,7 +779,7 @@ This will match every filename containing an upper case letter. While:
 
 > 这会匹配包含一个大写字母的文件名。然而：
 
-```
+```sh
 [me@linuxbox ~]$ grep -h '[-AZ]' dirlist*.txt
 ```
 
@@ -797,7 +797,7 @@ Back in Chapter 5, we looked at how wildcards are used to perform pathname expan
 
 > 回到第 5 章，我们看看通配符怎样被用来完成路径名展开操作。在那次讨论中，我们说过在 某种程度上，那个字符区域被使用的方式几乎与在正则表达式中的用法一样，但是有一个问题：
 
-```
+```sh
 [me@linuxbox ~]$ ls /usr/sbin/[ABCDEFGHIJKLMNOPQRSTUVWXYZ]*
 /usr/sbin/MAKEFLOPPIES
 /usr/sbin/NetworkManagerDispatcher
@@ -808,7 +808,7 @@ Back in Chapter 5, we looked at how wildcards are used to perform pathname expan
 
 （依赖于不同的 Linux 发行版，我们将得到不同的文件列表，有可能是一个空列表。这个例子来自于 Ubuntu） 这个命令产生了期望的结果------只有以大写字母开头的文件名，但是：
 
-```
+```sh
 [me@linuxbox ~]$ ls /usr/sbin/[A-Z]*
 /usr/sbin/biosdecode
 /usr/sbin/chat
@@ -828,7 +828,7 @@ Back when Unix was first developed, it only knew about ASCII characters, and thi
 
 > 追溯到 Unix 刚刚开发的时候，它只知道 ASCII 字符，并且 Unix 特性也如实反映了这一事实。在 ASCII 中，前 32 个字符（数字 0－31）都是控制码（如 tabs、backspaces 和回车）。随后的 32 个字符（32－63）包含可打印的字符，包括大多数的标点符号和数字 0 到 9。再随后的 32 个字符（64－95）包含大写字符和一些更多的标点符号。最后的 31 个字符（96－127）包含小写字母和更多的标点符号。基于这种安排方式，使用 ASCII 的系统的排序规则像下面这样：
 
-```
+```sh
 ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
 ```
 
@@ -836,7 +836,7 @@ This differs from proper dictionary order, which is like this:
 
 > 这个不同于正常的字典顺序，其像这样：
 
-```
+```sh
 aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ
 ```
 
@@ -848,7 +848,7 @@ To support this ability, the POSIX standards introduced a concept called a local
 
 > 为了支持这种功能，posix 标准引入了"locale"概念，它能针对不同地区选择合适的字符集。：
 
-```
+```sh
 [me@linuxbox ~]$ echo $LANG
 en_US.UTF-8
 ```
@@ -1689,7 +1689,7 @@ Using character classes, we can repeat our directory listing and see an improved
 
 > 通过使用字符集，我们重做上述的例题，看到一个改进的结果：
 
-```
+```sh
 [me@linuxbox ~]$ ls /usr/sbin/[[:upper:]]*
 /usr/sbin/MAKEFLOPPIES
 /usr/sbin/NetworkManagerDispatcher
@@ -1768,7 +1768,7 @@ What's the difference between BRE and ERE? It's a matter of metacharacters. With
 
 BRE 和 ERE 之间有什么区别呢？这是关于元字符的问题。BRE 可以辨别以下元字符：
 
-```
+```sh
 ^ $ . [ ] *
 ```
 
@@ -1776,7 +1776,7 @@ All other characters are considered literals. With ERE, the following metacharac
 
 > 其它的所有字符被认为是文本字符。ERE 添加了以下元字符（以及与其相关的功能）:
 
-```
+```sh
 ( ) { } ? + |
 ```
 
@@ -1808,7 +1808,7 @@ The first of the extended regular expression features we will discuss is called 
 
 > 我们将要讨论的扩展表达式的第一个特性叫做 alternation（交替），其是一款允许从一系列表达式 之间选择匹配项的实用程序。就像中括号表达式允许从一系列指定的字符之间匹配单个字符那样， alternation 允许从一系列字符串或者是其它的正则表达式中选择匹配项。为了说明问题， 我们将会结合 echo 程序来使用 grep 命令。首先，让我们试一个普通的字符串匹配：
 
-```
+```sh
 [me@linuxbox ~]$ echo "AAA" | grep AAA
 AAA
 [me@linuxbox ~]$ echo "BBB" | grep AAA
@@ -1823,7 +1823,7 @@ Now we'll add alternation, signified by the vertical bar metacharacter:
 
 > 现在我们将添加 alternation，以竖杠线元字符为标记：
 
-```
+```sh
 [me@linuxbox ~]$ echo "AAA" | grep -E 'AAA|BBB'
 AAA
 [me@linuxbox ~]$ echo "BBB" | grep -E 'AAA|BBB'
@@ -1836,7 +1836,7 @@ Here we see the regular expression 'AAA\|BBB' which means "match either the stri
 
 > 这里我们看到正则表达式'AAA\|BBB'，这意味着"匹配字符串 AAA 或者是字符串 BBB"。注意因为这是 一个扩展的特性，我们给 grep 命令（虽然我们能以 egrep 程序来代替）添加了-E 选项，并且我们 把这个正则表达式用单引号引起来，为的是阻止 shell 把竖杠线元字符解释为一个 pipe 操作符。 Alternation 并不局限于两种选择：
 
-```
+```sh
 [me@linuxbox ~]$ echo "AAA" | grep -E 'AAA|BBB|CCC'
 AAA
 ```
@@ -1845,7 +1845,7 @@ To combine alternation with other regular expression elements, we can use () to 
 
 > 为了把 alternation 和其它正则表达式元素结合起来，我们可以使用()来分离 alternation。
 
-```
+```sh
 [me@linuxbox ~]$ grep -Eh '^(bz|gz|zip)' dirlist*.txt
 ```
 
@@ -1853,7 +1853,7 @@ This expression will match the filenames in our lists that start with either "bz
 
 > 这个表达式将会在我们的列表中匹配以"bz"，或"gz"，或"zip"开头的文件名。如果我们删除了圆括号， 这个表达式的意思：
 
-```
+```sh
 [me@linuxbox ~]$ grep -Eh '^bz|gz|zip' dirlist*.txt
 ```
 
@@ -1873,7 +1873,7 @@ This quantifier means, in effect, "make the preceding element optional." Let's s
 
 > 这个限定符意味着，实际上，"使前面的元素可有可无。"比方说我们想要查看一个电话号码的真实性， 如果它匹配下面两种格式的任意一种，我们就认为这个电话号码是真实的：
 
-```
+```sh
 (nnn) nnn-nnnn
 
 nnn nnn-nnnn
@@ -1883,7 +1883,7 @@ where "n" is a numeral. We could construct a regular expression like this:
 
 > 这里的"n"是一个数字。我们可以构建一个像这样的正则表达式：
 
-```
+```sh
 ^\(?[0-9][0-9][0-9]\)?  [0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$
 ```
 
@@ -1895,7 +1895,7 @@ Let's try it:
 
 > 让我们试一下：
 
-```
+```sh
 [me@linuxbox ~]$ echo "(555) 123-4567" | grep -E '^\(?[0-9][0-9][0-9]\)? [0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$'
 (555) 123-4567
 [me@linuxbox ~]$ echo "555 123-4567" | grep -E '^\(?[0-9][0-9][0-9]\)? [0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$'
@@ -1914,7 +1914,7 @@ Like the ? metacharacter, the \* is used to denote an optional item; however, un
 
 > 像 ? 元字符一样，这个 \* 被用来表示一个可选的字符；然而，又与 ? 不同，匹配的字符可以出现 任意多次，不仅是一次。比方说我们想要知道是否一个字符串是一句话；也就是说，字符串开始于 一个大写字母，然后包含任意多个大写和小写的字母和空格，最后以句号收尾。为了匹配这个（非常粗略的） 语句的定义，我们能够使用一个像这样的正则表达式：
 
-```
+```sh
 [[:upper:]][[:upper:][:lower:] ]*.
 ```
 
@@ -1922,7 +1922,7 @@ The expression consists of three items: a bracket expression containing the \[:u
 
 > 这个表达式由三个元素组成：一个包含\[:upper:\]字符集的中括号表达式，一个包含\[:upper:\]和\[:lower:\] 两个字符集以及一个空格的中括号表达式，和一个被反斜杠字符转义过的圆点。第二个元素末尾带有一个 \*元字符，所以在开头的大写字母之后，可能会跟随着任意数目的大写和小写字母和空格，并且匹配：
 
-```
+```sh
 [me@linuxbox ~]$ echo "This works." | grep -E '[[:upper:]][[:upper:][:lower:] ]*\.'
 This works.
 [me@linuxbox ~]$ echo "This Works." | grep -E '[[:upper:]][[:upper:][:lower:] ]*\.'
@@ -1941,7 +1941,7 @@ The + metacharacter works much like the \*, except it requires at least one inst
 
 \+ 元字符的作用与 \* 非常相似，除了它要求前面的元素至少出现一次匹配。这个正则表达式只匹配 那些由一个或多个字母字符组构成的文本行，字母字符之间由单个空格分开：
 
-```
+```sh
 ^([[:alpha:]]+ ?)+$
 [me@linuxbox ~]$ echo "This that" | grep -E '^([[:alpha:]]+ ?)+$'
 This that
@@ -2282,13 +2282,13 @@ Going back to our earlier example with the phone numbers, we can use this method
 
 > 回到之前处理电话号码的例子，我们能够使用这种指定重复次数的方法来简化我们最初的正则表达式：
 
-```
+```sh
 ^\(?[0-9][0-9][0-9]\)?  [0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$
 ```
 
 > 简化为：
 
-```
+```sh
 ^\(?[0-9]{3}\)?  [0-9]{3}-[0-9]{4}$
 ```
 
@@ -2296,7 +2296,7 @@ Let's try it:
 
 > 让我们试一下：
 
-```
+```sh
 [me@linuxbox ~]$ echo "(555) 123-4567" | grep -E '^\(?[0-9]{3}\)? [0-9]{3}-[0-9]{4}$'
 (555) 123-4567
 [me@linuxbox ~]$ echo "555 123-4567" | grep -E '^\(?[0-9]{3}\)? [0-9]{3}-[0-9]{4}$'
@@ -2321,7 +2321,7 @@ In our earlier example, we looked at single phone numbers and checked them for p
 
 > 在我们先前的例子中，我们查看过单个电话号码，并且检查了它们的格式。一个更现实的 情形是检查一个数字列表，所以我们先创建一个列表。我们将念一个神奇的咒语到命令行中。 它会很神奇，因为我们还没有涵盖所涉及的大部分命令，但是不要担心。我们将在后面的章节里面 讨论那些命令。这就是那个咒语：
 
-```
+```sh
 [me@linuxbox ~]$ for i in {1..10}; do echo "(${RANDOM:0:3}) ${RANDOM:0:3}-${RANDOM:0:4}" >> phonelist.txt; done
 ```
 
@@ -2329,7 +2329,7 @@ This command will produce a file named phonelist.txt containing ten phone number
 
 > 这个命令会创建一个包含 10 个电话号码的名为 phonelist.txt 的文件。每次重复这个命令的时候，另外 10 个号码会被添加到这个列表中。我们也能够更改命令开头附近的数值 10，来生成或多或少的电话号码。如果我们查看这个文件的内容，然而我们会发现一个问题：
 
-```
+```sh
 [me@linuxbox ~]$ cat phonelist.txt
 (232) 298-2265
 (624) 381-1078
@@ -2351,7 +2351,7 @@ One useful method of validation would be to scan the file for invalid numbers an
 
 > 一个有用的验证方法是扫描这个文件，查找无效的号码，并把搜索结果显示到屏幕上：
 
-```
+```sh
 [me@linuxbox ~]$ grep -Ev '^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$'    phonelist.txt
 (292) 108-518
 (129) 44-1379
@@ -2368,7 +2368,7 @@ The find command supports a test based on a regular expression. There is an impo
 
 > 这个 find 命令支持一个基于正则表达式的测试。当在使用正则表达式方面比较 find 和 grep 命令的时候， 还有一个重要问题要牢记在心。当某一行包含的字符串匹配上了一个表达式的时候，grep 命令会打印出这一行， 然而 find 命令要求路径名精确地匹配这个正则表达式。在下面的例子里面，我们将使用带有一个正则 表达式的 find 命令，来查找每个路径名，其包含的任意字符都不是以下字符集中的一员。
 
-```
+```sh
 [-\_./0-9a-zA-Z]
 ```
 
@@ -2376,7 +2376,7 @@ Such a scan would reveal pathnames that contain embedded spaces and other potent
 
 > 这样一种扫描会发现包含空格和其它潜在不规范字符的路径名：
 
-```
+```sh
 [me@linuxbox ~]$ find . -regex '.*[^-\_./0-9a-zA-Z].*'
 ```
 
@@ -2390,7 +2390,7 @@ The locate program supports both basic (the \--regexp option) and extended (the 
 
 > 这个 locate 程序支持基本的（\--regexp 选项）和扩展的（\--regex 选项）正则表达式。通过 locate 命令，我们能够执行许多与先前操作 dirlist 文件时相同的操作：
 
-```
+```sh
 [me@linuxbox ~]$ locate --regex 'bin/(bz|gz|zip)'
 /bin/bzcat
 /bin/bzcmp
@@ -2423,7 +2423,7 @@ less and vim both share the same method of searching for text. Pressing the / ke
 
 less 和 vim 两者享有相同的文本查找方法。按下/按键，然后输入正则表达式，来执行搜索任务。 如果我们使用 less 程序来浏览我们的 phonelist.txt 文件：
 
-```
+```sh
 [me@linuxbox ~]$ less phonelist.txt
 ```
 
@@ -2431,7 +2431,7 @@ Then search for our validation expression:
 
 > 然后查找我们有效的表达式：
 
-```
+```sh
 (232) 298-2265
 (624) 381-1078
 (540) 126-1980
@@ -2452,7 +2452,7 @@ less will highlight the strings that match, leaving the invalid ones easy to spo
 
 less 将会高亮匹配到的字符串，这样就很容易看到无效的电话号码：
 
-```
+```sh
 (232) 298-2265
 (624) 381-1078
 (540) 126-1980
@@ -2473,7 +2473,7 @@ vim, on the other hand, supports basic regular expressions, so our search expres
 
 > 另一方面，vim 支持基本的正则表达式，所以我们用于搜索的表达式看起来像这样：
 
-```
+```sh
 /([0-9]\{3\}) [0-9]\{3\}-[0-9]\{4\}
 ```
 
@@ -2485,7 +2485,7 @@ Depending on the particular configuration of vim on our system, the matching wil
 
 > 依赖于系统中 vim 的特殊配置，匹配项将会被高亮。如若不是，试试这个命令模式：
 
-```
+```sh
 :hlsearch
 ```
 
@@ -2507,7 +2507,7 @@ In this chapter, we've seen a few of the many uses of regular expressions. We ca
 
 > 在这章中，我们已经看到几个使用正则表达式例子。如果我们使用正则表达式来搜索那些使用正则表达式的应用程序， 我们可以找到更多的使用实例。通过查找手册页，我们就能找到：
 
-```
+```sh
 [me@linuxbox ~]$ cd /usr/share/man/man1
 [me@linuxbox man1]$ zgrep -El 'regex|regular expression' *.gz
 ```

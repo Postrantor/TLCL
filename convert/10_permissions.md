@@ -42,7 +42,7 @@ When we were exploring the system back in Chapter 4, we may have encountered a p
 
 > 在第四章探究文件系统时，当我们试图查看一个像/etc/shadow 那样的文件的时候，我们会遇到一个问题。
 
-```
+```sh
 [me@linuxbox ~]$ file /etc/shadow
 /etc/shadow:  regular file, no read permission
 [me@linuxbox ~]$ less /etc/shadow
@@ -57,7 +57,7 @@ In the Unix security model, a user may own files and directories. When a user ow
 
 > 在 Unix 安全模型中，一个用户可能拥有文件和目录。当一个用户拥有一个文件或目录时， 用户对这个文件或目录的访问权限拥有控制权。用户反过来又属于一个由一个或多个 用户组成的用户组，用户组成员由文件和目录的所有者授予对文件和目录的访问权限。除了 对一个用户组授予权限之外，文件所有者可能会给所有的人授权，在 Unix 术语中，"所有的人" 也被称作"整个世界"（ world ）。可以用 id 命令，来找到关于你自己身份的信息：
 
-```
+```sh
 [me@linuxbox ~]$ id
 uid=500(me) gid=500(me) groups=500(me)
 ```
@@ -66,7 +66,7 @@ Let's look at the output. When user accounts are created, users are assigned a n
 
 > 让我们看一下输出结果。当用户创建帐户之后，系统会给用户分配一个号码，叫做用户 ID 或者 uid，然后，为了符合人类的习惯，这个 ID 映射到一个用户名。系统又会给这个用户 分配一个原始的组 ID(即 gid)。一个用户可以属于多个组。上面的例子来自于 Fedora 系统， 下面 Ubuntu 的输出结果看起来有点儿不同：
 
-```
+```sh
 [me@linuxbox ~]$ id
 uid=1000(me) gid=1000(me)
 groups=4(adm),20(dialout),24(cdrom),25(floppy),29(audio),30(dip),44(v
@@ -95,7 +95,7 @@ Access rights to files and directories are defined in terms of read access, writ
 
 > 对于文件和目录的访问权力是根据"读权限"、"写权限"和"执行权限"来定义的。如果我们看一下 ls 命令的输出结果，我们能得到一些线索，这是怎样实现的：
 
-```
+```sh
 [me@linuxbox ~]$ > foo.txt
 [me@linuxbox ~]$ ls -l foo.txt
 -rw-rw-r-- 1 me   me   0 2008-03-06 14:52 foo.txt
@@ -1427,7 +1427,7 @@ By using three octal digits, we can set the file mode for the owner, group owner
 
 > 通过使用 3 个八进制数字，我们能够设置文件所有者、用户组和其他人的权限：
 
-```
+```sh
 [me@linuxbox ~]$ > foo.txt
 [me@linuxbox ~]$ ls -l foo.txt
 -rw-rw-r-- 1 me    me    0  2008-03-06 14:52 foo.txt
@@ -2110,7 +2110,7 @@ The umask command controls the default permissions given to a file when it is cr
 
 > 当创建一个文件时，umask 命令控制着文件的默认权限。umask 命令使用八进制表示法来表达 从文件模式属性中删除一个位掩码。大家看下面的例子：
 
-```
+```sh
 [me@linuxbox ~]$ rm -f foo.txt
 [me@linuxbox ~]$ umask
 0002
@@ -2127,7 +2127,7 @@ We can see that both the owner and group both get read and write permission, whi
 
 > 我们可以看到文件所有者和用户组都得到读权限和写权限，而其他人只是得到读权限。 其他人没有得到写权限的原因是由掩码值决定的。重复我们的实验，这次自己设置掩码值：
 
-```
+```sh
 [me@linuxbox ~]$ rm foo.txt
 [me@linuxbox ~]$ umask 0000
 [me@linuxbox ~]$ > foo.txt
@@ -2151,7 +2151,7 @@ Again, where a 1 appears in the binary value, the corresponding attribute is uns
 
 > 又一次，二进制中数字 1 出现的位置，相对应的属性被删除。再试一下其它的掩码值（一些带数字 7 的） ，习惯于掩码的工作原理。当你实验完成之后，要记得清理现场：
 
-```
+```sh
 [me@linuxbox ~]$ rm foo.txt; umask 0002
 ```
 
@@ -2240,7 +2240,7 @@ The su command is used to start a shell as another user. The command syntax look
 
 su 命令用来以另一个用户的身份来启动 shell。这个命令语法看起来像这样：
 
-```
+```sh
 su [-[l]] [user]
 ```
 
@@ -2248,7 +2248,7 @@ If the "-l" option is included, the resulting shell session is a login shell for
 
 > 如果包含"-l"选项，那么会为指定用户启动一个需要登录的 shell。这意味着会加载此用户的 shell 环境， 并且工作目录会更改到这个用户的家目录。这通常是我们所需要的。如果不指定用户，那么就假定是 超级用户。注意（不可思议地），选项"-l"可以缩写为"-"，这是经常用到的形式。启动超级用户的 shell， 我们可以这样做：
 
-```
+```sh
 [me@linuxbox ~]$ su -
 Password:
 [root@linuxbox ~]#
@@ -2258,7 +2258,7 @@ After entering the command, we are prompted for the superuser's password. If it 
 
 > 按下回车符之后，shell 提示我们输入超级用户的密码。如果密码输入正确，出现一个新的 shell 提示符， 这表明这个 shell 具有超级用户特权（提示符的末尾字符是"#"而不是"\$"），并且当前工作目录是超级用户的家目录 （通常是/root）。一旦进入一个新的 shell，我们能执行超级用户所使用的命令。当工作完成后， 输入"exit"，则返回到原来的 shell:
 
-```
+```sh
 [root@linuxbox ~]# exit
 [me@linuxbox ~]$
 ```
@@ -2267,7 +2267,7 @@ It is also possible to execute a single command rather than starting a new inter
 
 > 以这样的方式使用 su 命令，也可以只执行单个命令，而不是启动一个新的可交互的 shell：
 
-```
+```sh
 su -c 'command'
 ```
 
@@ -2275,7 +2275,7 @@ Using this form, a single command line is passed to the new shell for execution.
 
 > 使用这种模式，命令传递到一个新 shell 中执行。把命令用单引号引起来很重要，因为我们不想 命令在我们的 shell 中展开，但需要在新 shell 中展开。
 
-```
+```sh
 [me@linuxbox ~]$ su -c 'ls -l /root/*'
 Password:
 -rw------- 1 root root    754 2007-08-11 03:19 /root/anaconda-ks.cfg
@@ -2291,7 +2291,7 @@ The sudo command is like su in many ways, but has some important additional capa
 
 sudo 命令在很多方面都相似于 su 命令，但是 sudo 还有一些非常重要的功能。管理员能够配置 sudo 命令，从而允许一个普通用户以不同的身份（通常是超级用户），通过一种非常可控的方式 来执行命令。尤其是，只有一个用户可以执行一个或多个特殊命令时，（更体现了 sudo 命令的方便性）。 另一个重要差异是 sudo 命令不要求超级用户的密码。使用 sudo 命令时，用户使用他/她自己的密码 来认证。比如说，例如，sudo 命令经过配置，允许我们运行一个虚构的备份程序，叫做"backup_script"， 这个程序要求超级用户权限。通过 sudo 命令，这个程序会像这样运行：
 
-```
+```sh
 [me@linuxbox ~]$ sudo backup_script
 Password:
 System Backup Starting...
@@ -2305,7 +2305,7 @@ To see what privileges are granted by sudo, use the "-l" option to list them:
 
 > 想知道 sudo 命令可以授予哪些权限，使用"-l"选项，列出所有权限：
 
-```
+```sh
 [me@linuxbox ~]$ sudo -l
 User me may run the following commands on this host:
 (ALL) ALL
@@ -2337,7 +2337,7 @@ The chown command is used to change the owner and group owner of a file or direc
 
 chown 命令被用来更改文件或目录的所有者和用户组。使用这个命令需要超级用户权限。chown 命令 的语法看起来像这样：
 
-```
+```sh
 chown [owner][:[group]] file...
 ```
 
@@ -2665,7 +2665,7 @@ Let's say that we have two users; janet, who has access to superuser privileges 
 
 > 比方说，我们有两个用户，janet 拥有超级用户访问权限，而 tony 没有。用户 janet 想要从 她的家目录复制一个文件到用户 tony 的家目录。因为用户 janet 想要 tony 能够编辑这个文件， janet 把这个文件的所有者更改为 tony:
 
-```
+```sh
 [janet@linuxbox ~]$ sudo cp myfile.txt ~tony
 Password:
 [janet@linuxbox ~]$ sudo ls -l ~tony/myfile.txt
@@ -2705,7 +2705,7 @@ Next, bill creates the directory for the music files:
 
 > 下一步，bill 创建了存储音乐文件的目录：
 
-```
+```sh
 [bill@linuxbox ~]$ sudo mkdir /usr/local/share/Music
 password:
 ```
@@ -2714,7 +2714,7 @@ Since bill is manipulating files outside his home directory, superuser privilege
 
 > 因为 bill 正在他的家目录之外操作文件，所以需要超级用户权限。这个目录创建之后，它具有 以下所有权和权限：
 
-```
+```sh
 [bill@linuxbox ~]$ ls -ld /usr/local/share/Music
 drwxr-xr-x 2 root root 4096 2008-03-21 18:05 /usr/local/share/Music
 ```
@@ -2723,7 +2723,7 @@ As we can see, the directory is owned by root and has 755 permissions. To make t
 
 > 正如我们所见到的，这个目录由 root 用户拥有，并且具有权限 755。为了使这个目录共享，允许（用户 karen）写入，bill 需要更改目录用户组所有权和权限：
 
-```
+```sh
 [bill@linuxbox ~]$ sudo chown :music /usr/local/share/Music
 [bill@linuxbox ~]$ sudo chmod 775 /usr/local/share/Music
 [bill@linuxbox ~]$ ls -ld /usr/local/share/Music
@@ -2738,7 +2738,7 @@ But we still have a problem. With the current permissions, files and directories
 
 > 但是我们仍然会遇到问题。通过我们目前所拥有的权限，在 Music 目录中创建的文件，只具有用户 bill 和 karen 的普通权限：
 
-```
+```sh
 [bill@linuxbox ~]$ > /usr/local/share/Music/test_file
 [bill@linuxbox ~]$ ls -l /usr/local/share/Music
 -rw-r--r-- 1 bill    bill    0 2008-03-24 20:03 test_file
@@ -2752,7 +2752,7 @@ Second, each file and directory created by one member will be set to the primary
 
 > 第二个问题是，用户组成员创建的文件和目录的用户组，将会设置为用户的主要组，而不是用户组 music。 通过设置此目录的 setgid 位来解决这个问题：
 
-```
+```sh
 [bill@linuxbox ~]$ sudo chmod g+s /usr/local/share/Music
 [bill@linuxbox ~]$ ls -ld /usr/local/share/Music
 drwxrwsr-x 2 root music 4096 2008-03-24 20:03 /usr/local/share/Music
@@ -2762,7 +2762,7 @@ Now we test to see if the new permissions fix the problem. bill sets his umask t
 
 > 现在测试一下，看看是否新的权限解决了这个问题。bill 把他的掩码值设为 0002，删除 先前的测试文件，并创建了一个新的测试文件和目录：
 
-```
+```sh
 [bill@linuxbox ~]$ umask 0002
 
 [bill@linuxbox ~]$ rm /usr/local/share/Music/test_file
@@ -2789,7 +2789,7 @@ The last topic we'll cover in this chapter is setting passwords for yourself (an
 
 > 这一章最后一个话题，我们将讨论自己帐号的密码（和其他人的密码，如果你具有超级用户权限）。 使用 passwd 命令，来设置或更改用户密码。命令语法如下所示：
 
-```
+```sh
 passwd [user]
 ```
 
@@ -2797,7 +2797,7 @@ To change your password, just enter the passwd command. You will be prompted for
 
 > 只要输入 passwd 命令，就能更改你的密码。shell 会提示你输入你的旧密码和你的新密码：
 
-```
+```sh
 [me@linuxbox ~]$ passwd
 (current) UNIX password:
 New UNIX password:
@@ -2807,7 +2807,7 @@ The passwd command will try to enforce use of "strong" passwords. This means the
 
 passwd 命令将会试着强迫你使用"强"密码。这意味着它会拒绝接受太短的密码、与先前相似的密码、 字典中的单词作为密码或者是太容易猜到的密码：
 
-```
+```sh
 [me@linuxbox ~]$ passwd
 (current) UNIX password:
 New UNIX password:

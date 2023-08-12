@@ -2,9 +2,6 @@
 layout: book
 title: 引言
 ---
-> [!NOTE]
-> 通过正则表达式匹配中文字符：`^[\u4e00-\u9fa5]+`
-
 I want to tell you a story.
 
 > 我想给大家讲个故事。
@@ -15,7 +12,7 @@ No, not the story of how, in 1991, Linus Torvalds wrote the first version of the
 
 No, I want to tell you the story of how you can take back control of your computer.
 
-> 我想告诉大家一个你如何才能夺回计算机管理权的故事。
+> 我想告诉大家一个你**如何才能夺回计算机管理权的故事**。
 
 When I began working with computers as a college student in the late 1970s, there was a revolution going on. The invention of the microprocessor had made it possible for ordinary people like you and me to actually own a computer. It's hard for many people today to imagine what the world was like when only big business and big government ran all the computers. Let's just say, you couldn't get much done.
 

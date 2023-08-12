@@ -44,7 +44,7 @@ bash can express a similar idea. Let's say we wanted to display five numbers in 
 
 bash 能够表达相似的想法。比方说我们想要按照顺序从 1 到 5 显示五个数字。可如下构造一个 bash 脚本：
 
-```
+```sh
 #!/bin/bash
 # while-count: display a series of numbers
 count=1
@@ -59,7 +59,7 @@ When executed, this script displays the following:
 
 > 当执行的时候，这个脚本显示如下信息：
 
-```
+```sh
 [me@linuxbox ~]$ while-count
 1
 2
@@ -73,7 +73,7 @@ The syntax of the `while` command is:
 
 while 命令的语法是：
 
-```
+```sh
 while commands; do commands; done
 ```
 
@@ -85,7 +85,7 @@ We can use a `while` loop to improve the read-menu program from the previous cha
 
 > 我们可以使用一个 while 循环，来提高前面章节的 read-menu 程序：
 
-```
+```sh
 #!/bin/bash
 # while-menu: a menu driven system information program
 DELAY=3 # Number of seconds to display results
@@ -137,7 +137,7 @@ bash provides two builtin commands that can be used to control program flow insi
 
 bash 提供了两个内部命令，它们可以用来在循环内部控制程序流程。 break 命令立即终止一个循环， 且程序继续执行循环之后的语句。 continue 命令导致程序跳过循环中剩余的语句，且程序继续执行 下一次循环。这里我们看看采用了 break 和 continue 两个命令的 while-menu 程序版本：
 
-```
+```sh
 #!/bin/bash
 # while-menu2: a menu driven system information program
 DELAY=3 # Number of seconds to display results
@@ -195,7 +195,7 @@ The `until` command is much like `while`, except instead of exiting a loop when 
 
 until 命令与 while 非常相似，除了当遇到一个非零退出状态的时候， while 退出循环， 而 until 不退出。一个 until 循环会继续执行直到它接受了一个退出状态零。在我们的 while-count 脚本中， 我们继续执行循环直到 count 变量的数值小于或等于 5。我们可以得到相同的结果，通过在脚本中使用 until 命令：
 
-```
+```sh
 #!/bin/bash
 # until-count: display a series of numbers
 count=1
@@ -216,7 +216,7 @@ By changing the test expression to `$count -gt 5`, until will terminate the loop
 
 while 和 until 能够处理标准输入。这就可以使用 while 和 until 处理文件。在下面的例子中， 我们将显示在前面章节中使用的 distros.txt 文件的内容：
 
-```
+```sh
 #!/bin/bash
 # while-read: read lines from a file
 while read distro version release; do
@@ -231,7 +231,7 @@ To redirect a file to the loop, we place the redirection operator after the `don
 
 > 为了重定向文件到循环中，我们把重定向操作符放置到 done 语句之后。循环将使用 read 从重定向文件中读取 字段。这个 read 命令读取每个文本行之后，将会退出，其退出状态为零，直到到达文件末尾。到时候，它的 退出状态为非零数值，因此终止循环。也有可能把标准输入管道到循环中。
 
-```
+```sh
 #!/bin/bash
 # while-read2: read lines from a file
 sort -k 1,1 -k 2n distros.txt | while read distro version release; do

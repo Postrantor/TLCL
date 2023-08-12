@@ -21,7 +21,7 @@ The first thing we need to know is the format of a well-formed HTML document. It
 
 > 首先我们需要知道的事是一个规则的 HTML 文档的格式。它看起来像这样：
 
-```
+```sh
 <HTML>
       <HEAD>
             <TITLE>Page Title</TITLE>
@@ -36,7 +36,7 @@ If we enter this into our text editor and save the file as foo.html, we can use 
 
 > 如果我们将这些内容输入到文本编辑器中，并把文件保存为 foo.html，然后我们就能在 Firefox 中 使用下面的 URL 来查看文件内容：
 
-```
+```sh
 file:///home/username/foo.html
 ```
 
@@ -44,7 +44,7 @@ The first stage of our program will be able to output this HTML file to standard
 
 > 程序的第一个阶段将这个 HTML 文件输出到标准输出。我们可以编写一个程序，相当容易地完成这个任务。 启动我们的文本编辑器，然后创建一个名为 \~/bin/sys_info_page 的新文件：
 
-```
+```sh
 [me@linuxbox ~]$ vim ~/bin/sys_info_page
 ```
 
@@ -52,7 +52,7 @@ and enter the following program:
 
 > 随后输入下面的程序：
 
-```
+```sh
 #!/bin/bash
 # Program to output a system information page
 echo "<HTML>"
@@ -69,7 +69,7 @@ Our first attempt at this problem contains a shebang, a comment (always a good i
 
 > 我们第一次尝试解决这个问题，程序包含了一个 shebang，一条注释（总是一个好主意）和一系列的 echo 命令，每个命令负责输出一行文本。保存文件之后，我们将让它成为可执行文件，再尝试运行它：
 
-```
+```sh
 [me@linuxbox ~]$ chmod 755 ~/bin/sys_info_page
 [me@linuxbox ~]$ sys_info_page
 ```
@@ -78,7 +78,7 @@ When the program runs, we should see the text of the HTML document displayed on 
 
 > 当程序运行的时候，我们应该看到 HTML 文本在屏幕上显示出来，因为脚本中的 echo 命令会将输出 发送到标准输出。我们再次运行这个程序，把程序的输出重定向到文件 sys_info_page.html 中， 从而我们可以通过网络浏览器来查看输出结果：
 
-```
+```sh
 [me@linuxbox ~]$ sys_info_page > sys_info_page.html
 [me@linuxbox ~]$ firefox sys_info_page.html
 ```
@@ -91,7 +91,7 @@ When writing programs, it's always a good idea to strive for simplicity and clar
 
 > 在编写程序的时候，尽量做到简单明了，这总是一个好主意。当一个程序易于阅读和理解的时候， 维护它也就更容易，更不用说，通过减少键入量，可以使程序更容易书写了。我们当前的程序版本 工作正常，但是它可以更简单些。实际上，我们可以把所有的 echo 命令结合成一个 echo 命令，当然 这样能更容易地添加更多的文本行到程序的输出中。那么，把我们的程序修改为：
 
-```
+```sh
 #!/bin/bash
 # Program to output a system information page
 echo "<HTML>
@@ -108,7 +108,7 @@ A quoted string may include newlines, and therefore contain multiple lines of te
 
 > 一个带引号的字符串可能包含换行符，因此可以包含多个文本行。Shell 会持续读取文本直到它遇到 右引号。它在命令行中也是这样工作的：
 
-```
+```sh
 [me@linuxbox ~]$ echo "<HTML>
 
 >         <HEAD>
@@ -130,7 +130,7 @@ Now that our program can generate a minimal document, let's put some data in the
 
 > 现在我们的程序能生成一个最小的文档，让我们给报告添加些数据吧。为此，我们将做 以下修改：
 
-```
+```sh
 #!/bin/bash
 # Program to output a system information page
 echo "<HTML>
@@ -153,7 +153,7 @@ There is an issue with our script, however. Notice how the string "System Inform
 
 > 然而，我们的脚本存在一个问题。请注意字符串 "System Information Report" 是怎样被重复使用的？对于这个微小的脚本而言，它不是一个问题，但是让我们设想一下， 我们的脚本非常冗长，并且我们有许多这个字符串的实例。如果我们想要更换一个标题，我们必须 对脚本中的许多地方做修改，这会是很大的工作量。如果我们能整理一下脚本，让这个字符串只 出现一次而不是多次，会怎样呢？这样会使今后的脚本维护工作更加轻松。我们可以这样做：
 
-```
+```sh
 #!/bin/bash
 # Program to output a system information page
 title="System Information Report"
@@ -175,7 +175,7 @@ So, how do we create a variable? Simple, we just use it. When the shell encounte
 
 > 那么，我们怎样来创建一个变量呢？很简单，我们只管使用它。当 shell 碰到一个变量的时候，它会 自动地创建它。这不同于许多编程语言，它们中的变量在使用之前，必须显式的声明或是定义。关于 这个问题，shell 要求非常宽松，这可能会导致一些问题。例如，考虑一下在命令行中发生的这种情形：
 
-```
+```sh
 [me@linuxbox ~]$ foo="yes"
 [me@linuxbox ~]$ echo $foo
 yes
@@ -187,7 +187,7 @@ We first assign the value "yes" to the variable foo, then display its value with
 
 > 首先我们把 "yes" 赋给变量 foo，然后用 echo 命令来显示变量值。接下来，我们显示拼写错误的变量名 "fool" 的变量值，然后得到一个空值。这是因为 当 shell 遇到 fool 的时候, 它很高兴地创建了变量 fool 并且赋给 fool 一个空的默认值。因此，我们必须小心谨慎地拼写！同样理解实例中究竟发生了什么事情也 很重要。从我们以前学习 shell 执行展开操作，我们知道这个命令：
 
-```
+```sh
 [me@linuxbox ~]$ echo $foo
 ```
 
@@ -195,7 +195,7 @@ undergoes parameter expansion and results in:
 
 > 经历了参数展开操作，然后得到：
 
-```
+```sh
 [me@linuxbox ~]$ echo yes
 ```
 
@@ -203,7 +203,7 @@ Whereas the command:
 
 > 然而这个命令：
 
-```
+```sh
 [me@linuxbox ~]$ echo $fool
 ```
 
@@ -211,7 +211,7 @@ expands into:
 
 > 展开为：
 
-```
+```sh
 [me@linuxbox ~]$ echo
 ```
 
@@ -219,7 +219,7 @@ The empty variable expands into nothing! This can play havoc with commands that 
 
 > 这个空变量展开值为空！对于需要参数的命令来说，这会引起混乱。下面是一个例子：
 
-```
+```sh
 [me@linuxbox ~]$ foo=foo.txt
 [me@linuxbox ~]$ foo1=foo1.txt
 [me@linuxbox ~]$ cp $foo $fool
@@ -248,7 +248,7 @@ The word "variable" implies a value that changes, and in many applications, vari
 
 > 单词 "variable" 意味着可变的值，并且在许多应用程序当中，都是以这种方式来使用变量的。然而， 我们应用程序中的变量，title，被用作一个常量。常量有一个名字且包含一个值，在这方面就 像是变量。不同之处是常量的值是不能改变的。在执行几何运算的应用程序中，我们可以把 PI 定义为 一个常量，并把 3.1415 赋值给它，用它来代替数字字面值。shell 不能辨别变量和常量；它们大多数情况下 是为了方便程序员。一个常用惯例是指定大写字母来表示常量，小写字母表示真正的变量。我们 将修改我们的脚本来遵从这个惯例：
 
-```
+```sh
 #!/bin/bash
 # Program to output a system information page
 TITLE="System Information Report For $HOSTNAME"
@@ -286,7 +286,7 @@ Here is where our knowledge of expansion really starts to pay off. As we have se
 
 > 这里是我们真正开始使用参数扩展知识的地方。正如我们所知道的，这样给变量赋值：
 
-```
+```sh
 variable=value
 ```
 
@@ -298,7 +298,7 @@ Note that in an assignment, there must be no spaces between the variable name, t
 
 > 注意在赋值过程中，变量名、等号和变量值之间必须没有空格。那么，这些值由什么组成呢？ 可以展开成字符串的任意值：
 
-```
+```sh
 a=z                     # Assign the string "z" to variable a.
 b="a string"            # Embedded spaces must be within quotes.
 c="a string and $b"     # Other expansions such as variables can be
@@ -313,7 +313,7 @@ Multiple variable assignments may be done on a single line:
 
 > 可以在同一行中对多个变量赋值：
 
-```
+```sh
 a=5 b="a string"
 ```
 
@@ -321,7 +321,7 @@ During expansion, variable names may be surrounded by optional curly braces "{}"
 
 > 在参数展开过程中，变量名可能被花括号 "{}" 包围着。由于变量名周围的上下文，其变得不明确的情况下， 这会很有帮助。这里，我们试图把一个文件名从 myfile 改为 myfile1，使用一个变量：
 
-```
+```sh
 [me@linuxbox ~]$ filename="myfile"
 [me@linuxbox ~]$ touch $filename
 [me@linuxbox ~]$ mv $filename $filename1
@@ -333,7 +333,7 @@ This attempt fails because the shell interprets the second argument of the mv co
 
 > 这种尝试失败了，因为 shell 把 mv 命令的第二个参数解释为一个新的（并且空的）变量。通过这种方法 可以解决这个问题：
 
-```
+```sh
 [me@linuxbox ~]$ mv $filename ${filename}1
 ```
 
@@ -345,7 +345,7 @@ We'll take this opportunity to add some data to our report, namely the date and 
 
 > 我们将利用这个机会来添加一些数据到我们的报告中，即创建包括的日期和时间，以及创建者的用户名：
 
-```
+```sh
 #!/bin/bash
 # Program to output a system information page
 TITLE="System Information Report For $HOSTNAME"
@@ -368,7 +368,7 @@ We've looked at two different methods of outputting our text, both using the ech
 
 > 我们已经知道了两种不同的文本输出方法，两种方法都使用了 echo 命令。还有第三种方法，叫做 here document 或者 here script。一个 here document 是另外一种 I/O 重定向形式，我们 在脚本文件中嵌入正文文本，然后把它发送给一个命令的标准输入。它这样工作：
 
-```
+```sh
 command << token
 text
 token
@@ -378,7 +378,7 @@ where *command* is the name of command that accepts standard input and *token* i
 
 > 这里的 command 是一个可以接受标准输入的命令名，token 是一个用来指示嵌入文本结束的字符串。 我们将修改我们的脚本，来使用一个 here document:
 
-```
+```sh
 #!/bin/bash
 # Program to output a system information page
 TITLE="System Information Report For $HOSTNAME"
@@ -405,7 +405,7 @@ So what's the advantage of using a here document? It's mostly the same as echo, 
 
 > 那么使用一个 here document 的优点是什么呢？它很大程度上和 echo 一样，除了默认情况下，here documents 中的单引号和双引号会失去它们在 shell 中的特殊含义。这里有一个命令中的例子：
 
-```
+```sh
 [me@linuxbox ~]$ foo="some text"
 [me@linuxbox ~]$ cat << _EOF_
 > $foo
@@ -427,7 +427,7 @@ Here documents can be used with any command that accepts standard input. In this
 
 Here documents 可以和任意能接受标准输入的命令一块使用。在这个例子中，我们使用了 一个 here document 将一系列的命令传递到这个 ftp 程序中，为的是从一个远端 FTP 服务器中得到一个文件：
 
-```
+```sh
 #!/bin/bash
 # Script to retrieve a file via FTP
 FTP_SERVER=ftp.nl.debian.org
@@ -448,7 +448,7 @@ If we change the redirection operator from "\<\<" to "\<\<-", the shell will ign
 
 > 如果我们把重定向操作符从 "\<\<" 改为 "\<\<-"，shell 会忽略在此 here document 中开头的 tab 字符。 这就能缩进一个 here document，从而提高脚本的可读性：
 
-```
+```sh
 #!/bin/bash
 # Script to retrieve a file via FTP
 FTP_SERVER=ftp.nl.debian.org

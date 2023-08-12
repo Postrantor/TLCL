@@ -13,7 +13,7 @@ The shell provides a set of variables called positional parameters that contain 
 
 shell 提供了一个称为位置参数的变量集合，这个集合包含了命令行中所有独立的单词。这些变量按照从 0 到 9 给予命名。 可以以这种方式讲明白：
 
-```
+```sh
 #!/bin/bash
 # posit-param: script to view command line parameters
 echo "
@@ -34,7 +34,7 @@ A very simple script that displays the values of the variables \$0-\$9. When exe
 
 > 一个非常简单的脚本，显示从 \$0 到 \$9 所有变量的值。当不带命令行参数执行该脚本时，输出结果如下：
 
-```
+```sh
 [me@linuxbox ~]$ posit-param
 $0 = /home/me/bin/posit-param
 $1 =
@@ -52,7 +52,7 @@ Even when no arguments are provided, \$0 will always contain the first item appe
 
 > 即使不带命令行参数，位置参数 \$0 总会包含命令行中出现的第一个单词，也就是已执行程序的路径名。 当带参数执行脚本时，我们看看输出结果：
 
-```
+```sh
 [me@linuxbox ~]$ posit-param a b c d
 $0 = /home/me/bin/posit-param
 $1 = a
@@ -76,7 +76,7 @@ The shell also provides a variable, \$#, that yields the number of arguments on 
 
 > 另外 shell 还提供了一个名为 \$#，可以得到命令行参数个数的变量:
 
-```
+```sh
 #!/bin/bash
 # posit-param: script to view command line parameters
 echo "
@@ -98,7 +98,7 @@ The result:
 
 > 结果是：
 
-```
+```sh
 [me@linuxbox ~]$ posit-param a b c d
 Number of arguments: 4
 $0 = /home/me/bin/posit-param
@@ -119,7 +119,7 @@ But what happens when we give the program a large number of arguments such as th
 
 > 但是如果我们给一个程序添加大量的命令行参数，会怎么样呢？ 正如下面的例子：
 
-```
+```sh
 [me@linuxbox ~]$ posit-param *
 Number of arguments: 82
 $0 = /home/me/bin/posit-param
@@ -138,7 +138,7 @@ On this example system, the wildcard \* expands into 82 arguments. How can we pr
 
 > 在这个例子运行的环境下，通配符 \* 展开成 82 个参数。我们如何处理那么多的参数？ 为此，shell 提供了一种方法，尽管笨拙，但可以解决这个问题。执行一次 shift 命令， 就会导致所有的位置参数 "向下移动一个位置"。事实上，用 shift 命令也可以 处理只有一个参数的情况（除了其值永远不会改变的变量 \$0）：
 
-```
+```sh
 #!/bin/bash
 # posit-param2: script to display all arguments
 count=1
@@ -157,7 +157,7 @@ In the posit-param2 program, we create a loop that evaluates the number of argum
 
 > 在该 posit-param2 程序中，我们编写了一个计算剩余参数数量，只要参数个数不为零就会继续执行的 while 循环。 我们显示当前的位置参数，每次循环迭代变量 count 的值都会加 1，用来计数处理的参数数量， 最后，执行 shift 命令加载 \$1，其值为下一个位置参数的值。这里是程序运行后的输出结果:
 
-```
+```sh
 [me@linuxbox ~]$ posit-param2 a b c d
 Argument 1 = a
 Argument 2 = b
@@ -171,7 +171,7 @@ Even without shift, it's possible to write useful applications using positional 
 
 > 即使没有 shift 命令，也可以用位置参数编写一个有用的应用。举例说明，这里是一个简单的输出文件信息的程序：
 
-```
+```sh
 #!/bin/bash
 # file_info: simple file information program
 PROGNAME=$(basename $0)
@@ -196,7 +196,7 @@ Just as positional parameters are used to pass arguments to shell scripts, they 
 
 > 正如位置参数被用来给 shell 脚本传递参数一样，它们也能够被用来给 shell 函数传递参数。为了说明这一点， 我们将把 file_info 脚本转变成一个 shell 函数：
 
-```
+```sh
 file_info () {
   # file_info: function to display file information
   if [[ -e $1 ]]; then
@@ -385,7 +385,7 @@ Here is a script that shows these special paramaters in action:
 
 > 下面这个脚本用程序中展示了这些特殊参数：
 
-```
+```sh
 #!/bin/bash
 # posit-params3 : script to demonstrate $* and $@
 print_params () {
@@ -407,7 +407,7 @@ In this rather convoluted program, we create two arguments: "word" and "words wi
 
 > 在这个相当复杂的程序中，我们创建了两个参数： "word" 和 "words with spaces"，然后把它们 传递给 pass_params 函数。这个函数，依次，再把两个参数传递给 print_params 函数， 使用了特殊参数 \$\* 和 \$@ 提供的四种可用方法。脚本运行后，揭示了这两个特殊参数存在的差异：
 
-```
+```sh
 [me@linuxbox ~]$ posit-param3
  $* :
 $1 = word
@@ -435,7 +435,7 @@ With our arguments, both \$\* and \$@ produce a four word result:
 
 > 通过我们的参数，\$\* 和 \$@ 两个都产生了一个有四个词的结果：
 
-```
+```sh
 word words with spaces
 "$*" produces a one word result:
     "word words with spaces"
@@ -464,7 +464,7 @@ Here is the code needed to implement the command line processing:
 
 > 这里是处理命令行选项所需的代码：
 
-```
+```sh
 usage () {
     echo "$PROGNAME: usage: $PROGNAME [-f file | -i]"
     return
@@ -506,7 +506,7 @@ We next add the code to implement the interactive mode:
 
 > 我们下一步添加代码来实现交互模式：
 
-```
+```sh
 # interactive mode
 if [[ -n $interactive ]]; then
     while true; do
@@ -539,7 +539,7 @@ In order to implement the output filename feature, we must first convert the exi
 
 > 为了实现这个输出文件名的功能，首先我们必须把现有的这个写页面（page-writing）的代码转变成一个 shell 函数， 一会儿就会明白这样做的原因：
 
-```
+```sh
 write_html_page () {
     cat <<- _EOF_
         <HTML>
@@ -588,7 +588,7 @@ Our sys_info_page program has grown in complexity and sophistication. Here is a 
 
 > 我们的 sys_info_page 程序日渐精进。这里是一个完整的程序清单，最新的更改用高亮显示：
 
-```
+```sh
 #!/bin/bash
 # sys_info_page: program to output a system information page
 PROGNAME=$(basename $0)

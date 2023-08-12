@@ -38,7 +38,7 @@ Data compression is the process of removing redundancy from data. Let's consider
 
 > 数据压缩就是一个删除冗余数据的过程。让我们考虑一个假想的例子，比方说我们有一张 100\*100 像素的 纯黑的图片文件。根据数据存储方案（假定每个像素占 24 位，或者 3 个字节），那么这张图像将会占用 30,000 个字节的存储空间：
 
-```
+```sh
 100 * 100 * 3 = 30,000
 ```
 
@@ -56,7 +56,7 @@ The gzip program is used to compress one or more files. When executed, it replac
 
 > 这个 gzip 程序被用来压缩一个或多个文件。当执行 gzip 命令时，则原始文件的压缩版会替代原始文件。 相对应的 gunzip 程序被用来把压缩文件复原为没有被压缩的版本。这里有个例子：
 
-```
+```sh
 [me@linuxbox ~]$ ls -l /etc > foo.txt
 [me@linuxbox ~]$ ls -l foo.*
 -rw-r--r-- 1 me     me 15738 2008-10-14 07:15 foo.txt
@@ -680,7 +680,7 @@ Going back to our earlier example:
 
 > 返回到我们之前的例子中：
 
-```
+```sh
 [me@linuxbox ~]$ gzip foo.txt
 [me@linuxbox ~]$ gzip -tv foo.txt.gz
 foo.txt.gz: OK
@@ -691,7 +691,7 @@ Here, we replaced the file foo.txt with a compressed version, named foo.txt.gz. 
 
 > 这里，我们用压缩文件来替代文件 foo.txt，压缩文件名为 foo.txt.gz。下一步，我们测试了压缩文件 的完整性，使用了-t 和-v 选项。
 
-```
+```sh
 [me@linuxbox ~]$ ls -l /etc | gzip > foo.txt.gz
 ```
 
@@ -703,7 +703,7 @@ The gunzip program, which uncompresses gzip files, assumes that filenames end in
 
 > 这个 gunzip 程序，会解压缩 gzip 文件，假定那些文件名的扩展名是.gz，所以没有必要指定它， 只要指定的名字与现有的未压缩文件不冲突就可以：
 
-```
+```sh
 [me@linuxbox ~]$ gunzip foo.txt.gz
 ```
 
@@ -711,7 +711,7 @@ If our goal were only to view the contents of a compressed text file, we can do 
 
 > 如果我们的目标只是为了浏览一下压缩文本文件的内容，我们可以这样做：
 
-```
+```sh
 [me@linuxbox ~]$ gunzip -c foo.txt.gz | less
 ```
 
@@ -719,7 +719,7 @@ Alternately, there is a program supplied with gzip, called zcat, that is equival
 
 > 另外，对应于 gzip 还有一个程序，叫做 zcat，它等同于带有-c 选项的 gunzip 命令。 它可以被用来如 cat 命令作用于 gzip 压缩文件：
 
-```
+```sh
 [me@linuxbox ~]$ zcat foo.txt.gz | less
 ```
 
@@ -737,7 +737,7 @@ The bzip2 program, by Julian Seward, is similar to gzip, but uses a different co
 
 > 这个 bzip2 程序，由 Julian Seward 开发，与 gzip 程序相似，但是使用了不同的压缩算法， 舍弃了压缩速度，而实现了更高的压缩级别。在大多数情况下，它的工作模式等同于 gzip。 由 bzip2 压缩的文件，用扩展名 .bz2 来表示：
 
-```
+```sh
 [me@linuxbox ~]$ ls -l /etc > foo.txt
 [me@linuxbox ~]$ ls -l foo.txt
 -rw-r--r-- 1 me     me      15738 2008-10-17 13:51 foo.txt
@@ -777,7 +777,7 @@ In the Unix-like world of software, the tar program is the classic tool for arch
 
 > 在类 Unix 的软件世界中，这个 tar 程序是用来归档文件的经典工具。它的名字，是 tape archive 的简称，揭示了它的根源，它是一款制作磁带备份的工具。而它仍然被用来完成传统任务， 它也同样适用于其它的存储设备。我们经常看到扩展名为 .tar 或者 .tgz 的文件，它们各自表示"普通" 的 tar 包和被 gzip 程序压缩过的 tar 包。一个 tar 包可以由一组独立的文件，一个或者多个目录，或者 两者混合体组成。命令语法如下：
 
-```
+```sh
 tar mode[options] pathname...
 ```
 
@@ -1105,7 +1105,7 @@ tar uses a slightly odd way of expressing options, so we'll need some examples t
 
 tar 命令使用了稍微有点奇怪的方式来表达它的选项，所以我们需要一些例子来展示它是 怎样工作的。首先，让我们重新创建之前我们用过的操练场:
 
-```
+```sh
 [me@linuxbox ~]$ mkdir -p playground/dir-{00{1..9},0{10..99},100}
 [me@linuxbox ~]$ touch playground/dir-{00{1..9},0{10..99},100}/file-{A..Z}
 ```
@@ -1114,7 +1114,7 @@ Next, let's create a tar archive of the entire playground:
 
 > 下一步，让我们创建整个操练场的 tar 包：
 
-```
+```sh
 [me@linuxbox ~]$ tar cf playground.tar playground
 ```
 
@@ -1126,7 +1126,7 @@ To list the contents of the archive, we can do this:
 
 > 要想列出归档文件的内容，我们可以这样做：
 
-```
+```sh
 [me@linuxbox ~]$ tar tf playground.tar
 ```
 
@@ -1134,7 +1134,7 @@ For a more detailed listing, we can add the v (verbose) option:
 
 > 为了得到更详细的列表信息，我们可以添加选项 v：
 
-```
+```sh
 [me@linuxbox ~]$ tar tvf playground.tar
 ```
 
@@ -1142,7 +1142,7 @@ Now, let's extract the playground in a new location. We will do this by creating
 
 > 现在，抽取 tar 包 playground 到一个新位置。我们先创建一个名为 foo 的新目录，更改目录， 然后抽取 tar 包中的文件：
 
-```
+```sh
 [me@linuxbox ~]$ mkdir foo
 [me@linuxbox ~]$ cd foo
 [me@linuxbox ~]$ tar xf ../playground.tar
@@ -1158,7 +1158,7 @@ Another interesting behavior of tar is the way it handles pathnames in archives.
 
 tar 命令另一个有趣的行为是它处理归档文件路径名的方式。默认情况下，路径名是相对的，而不是绝对 路径。当以相对路径创建归档文件的时候，tar 命令会简单地删除路径名开头的斜杠。为了说明问题，我们将会 重新创建我们的归档文件，但是这次指定用绝对路径创建：
 
-```
+```sh
 [me@linuxbox foo]$ cd
 [me@linuxbox ~]$ tar cf playground2.tar ~/playground
 ```
@@ -1167,7 +1167,7 @@ Remember, \~/playground will expand into /home/me/playground when we press the e
 
 > 记住，当按下回车键后，\~/playground 会展开成 /home/me/playground，所以我们将会得到一个 绝对路径名。接下来，和之前一样我们会抽取归档文件，观察发生什么事情：
 
-```
+```sh
 [me@linuxbox ~]$ cd foo
 [me@linuxbox foo]$ tar xf ../playground2.tar
 [me@linuxbox foo]$ ls
@@ -1186,7 +1186,7 @@ Let's consider a hypothetical, yet practical example, of tar in action. Imagine 
 
 > 让我们考虑一个假设，tar 命令的实际应用。假定我们想要复制家目录及其内容到另一个系统中， 并且有一个大容量的 USB 硬盘，可以把它作为传输工具。在现代 Linux 系统中， 这个硬盘会被"自动地"挂载到 /media 目录下。我们也假定硬盘中有一个名为 BigDisk 的逻辑卷。 为了制作 tar 包，我们可以这样做：
 
-```
+```sh
 [me@linuxbox ~]$ sudo tar cf /media/BigDisk/home.tar /home
 ```
 
@@ -1194,7 +1194,7 @@ After the tar file is written, we unmount the drive and attach it to the second 
 
 tar 包制作完成之后，我们卸载硬盘，然后把它连接到第二个计算机上。再一次，此硬盘被 挂载到 /media/BigDisk 目录下。为了抽取归档文件，我们这样做：
 
-```
+```sh
 [me@linuxbox2 ~]$ cd /
 [me@linuxbox2 /]$ sudo tar xf /media/BigDisk/home.tar
 ```
@@ -1207,7 +1207,7 @@ When extracting an archive, it's possible to limit what is extracted from the ar
 
 > 当抽取一个归档文件时，有可能限制从归档文件中抽取什么内容。例如，如果我们想要抽取单个文件， 可以这样实现：
 
-```
+```sh
 tar xf archive.tar pathname
 ```
 
@@ -1215,7 +1215,7 @@ By adding the trailing pathname to the command, tar will only restore the specif
 
 > 通过给命令添加末尾的路径名，tar 命令就只会恢复指定的文件。可以指定多个路径名。注意 路径名必须是完全的，精准的相对路径名，就如存储在归档文件中的一样。当指定路径名的时候， 通常不支持通配符；然而，GNU 版本的 tar 命令（在 Linux 发行版中最常出现）通过 \--wildcards 选项来 支持通配符。这个例子使用了之前 playground.tar 文件：
 
-```
+```sh
 [me@linuxbox ~]$ cd foo
 [me@linuxbox foo]$ tar xf ../playground2.tar --wildcards 'home/me/playground/dir-\*/file-A'
 ```
@@ -1228,7 +1228,7 @@ tar is often used in conjunction with find to produce archives. In this example,
 
 tar 命令经常结合 find 命令一起来制作归档文件。在这个例子里，我们将会使用 find 命令来 产生一个文件集合，然后这些文件被包含到归档文件中。
 
-```
+```sh
 [me@linuxbox ~]$ find playground -name 'file-A' -exec tar rf playground.tar '{}' '+'
 ```
 
@@ -1244,7 +1244,7 @@ tar can also make use of both standard input and output. Here is a comprehensive
 
 tar 命令也可以利用标准输出和输入。这里是一个完整的例子:
 
-```
+```sh
 [me@linuxbox foo]$ cd
 [me@linuxbox ~]$ find playground -name 'file-A' | tar cf - --files-from=-
    | gzip > playground.tgz
@@ -1258,7 +1258,7 @@ While we used the gzip program externally to produced our compressed archive, mo
 
 > 虽然我们使用 gzip 程序来制作我们的压缩归档文件，但是现在的 GUN 版本的 tar 命令 ，gzip 和 bzip2 压缩两者都直接支持，各自使用 z 和 j 选项。以我们之前的例子为基础， 我们可以这样简化它：
 
-```
+```sh
 [me@linuxbox ~]$ find playground -name 'file-A' | tar czf playground.tgz -T -
 ```
 
@@ -1266,7 +1266,7 @@ If we had wanted to create a bzip2 compressed archive instead, we could have don
 
 > 如果我们本要创建一个由 bzip2 压缩的归档文件，我们可以这样做：
 
-```
+```sh
 [me@linuxbox ~]$ find playground -name 'file-A' | tar cjf playground.tbz -T -
 ```
 
@@ -1274,7 +1274,7 @@ By simply changing the compression option from z to j (and changing the output f
 
 > 通过简单地修改压缩选项，把 z 改为 j（并且把输出文件的扩展名改为 .tbz，来指示一个 bzip2 压缩文件）， 就使 bzip2 命令压缩生效了。另一个 tar 命令与标准输入和输出的有趣使用，涉及到在系统之间经过 网络传输文件。假定我们有两台机器，每台都运行着类 Unix，且装备着 tar 和 ssh 工具的操作系统。 在这种情景下，我们可以把一个目录从远端系统（名为 remote-sys）传输到我们的本地系统中：
 
-```
+```sh
 [me@linuxbox ~]$ mkdir remote-stuff
 [me@linuxbox ~]$ cd remote-stuff
 [me@linuxbox remote-stuff]$ ssh remote-sys 'tar cf - Documents' | tar xf -
@@ -1297,7 +1297,7 @@ In its most basic usage, zip is invoked like this:
 
 > 在 zip 命令最基本的使用中，可以这样唤醒 zip 命令：
 
-```
+```sh
 zip options zipfile file...
 ```
 
@@ -1305,7 +1305,7 @@ For example, to make a zip archive of our playground, we would do this:
 
 > 例如，制作一个 playground 的 zip 版本的文件包，这样做：
 
-```
+```sh
 [me@linuxbox ~]$ zip -r playground.zip playground
 ```
 
@@ -1317,7 +1317,7 @@ During the creation of the zip archive, zip will normally display a series of me
 
 > 在创建 zip 版本的文件包时，zip 命令通常会显示一系列的信息：
 
-```
+```sh
 adding: playground/dir-020/file-Z (stored 0%)
 adding: playground/dir-020/file-Y (stored 0%)
 adding: playground/dir-020/file-X (stored 0%)
@@ -1333,7 +1333,7 @@ Extracting the contents of a zip file is straightforward when using the unzip pr
 
 > 使用 unzip 程序，来直接抽取一个 zip 文件的内容。
 
-```
+```sh
 [me@linuxbox ~]$ cd foo
 [me@linuxbox foo]$ unzip ../playground.zip
 ```
@@ -1342,7 +1342,7 @@ One thing to note about zip (as opposed to tar) is that if an existing archive i
 
 > 对于 zip 命令（与 tar 命令相反）要注意一点，就是如果指定了一个已经存在的文件包，其被更新 而不是被替代。这意味着会保留此文件包，但是会添加新文件，同时替换匹配的文件。可以列出 文件或者有选择地从一个 zip 文件包中抽取文件，只要给 unzip 命令指定文件名：
 
-```
+```sh
 [me@linuxbox ~]$ unzip -l playground.zip playground/dir-87/file-Z
 Archive: ../playground.zip
     Length      Date    Time    Name
@@ -1366,7 +1366,7 @@ Like tar, zip can make use of standard input and output, though its implementati
 
 > 像 tar 命令一样，zip 命令能够利用标准输入和输出，虽然它的实施不大有用。通过-@ 选项，有可能把一系列的 文件名管道到 zip 命令。
 
-```
+```sh
 [me@linuxbox foo]$ cd
 [me@linuxbox ~]$ find playground -name "file-A" | zip -@ file-A.zip
 ```
@@ -1383,7 +1383,7 @@ zip can, however, accept standard input, so it can be used to compress the outpu
 
 > 然而，zip 命令可以接受标准输入，所以它可以被用来压缩其它程序的输出：
 
-```
+```sh
 [me@linuxbox ~]$ ls -l /etc/ | zip ls-etc.zip -
 adding: - (deflated 80%)
 ```
@@ -1396,7 +1396,7 @@ The unzip program allows its output to be sent to standard output when the -p (f
 
 > 这个 unzip 程序允许它的输出发送到标准输出，当指定了-p 选项之后：
 
-```
+```sh
 [me@linuxbox ~]$ unzip -p ls-etc.zip | less
 ```
 
@@ -1414,7 +1414,7 @@ rsync is invoked like this:
 
 rsync 被这样唤醒：
 
-```
+```sh
 rsync options source destination
 ```
 
@@ -1439,7 +1439,7 @@ Let's try rsync out on some local files. First, let's clean out our foo director
 
 > 让我们试着对一些本地文件使用 rsync 命令。首先，清空我们的 foo 目录：
 
-```
+```sh
 [me@linuxbox ~]$ rm -rf foo/*
 ```
 
@@ -1447,7 +1447,7 @@ Next, we'll synchronize the playground directory with a corresponding copy in fo
 
 > 下一步，我们将同步 playground 目录和它在 foo 目录中相对应的副本
 
-```
+```sh
 [me@linuxbox ~]$ rsync -av playground foo
 ```
 
@@ -1455,7 +1455,7 @@ We've included both the -a option (for archiving---causes recursion and preserva
 
 > 我们包括了-a 选项（递归和保护文件属性）和-v 选项（冗余输出）， 来在 foo 目录中制作一个 playground 目录的镜像。当这个命令执行的时候， 我们将会看到一系列的文件和目录被复制。在最后，我们将看到一条像这样的总结信息：
 
-```
+```sh
 sent 135759 bytes received 57870 bytes 387258.00 bytes/sec
 total size is 3230 speedup is 0.02
 ```
@@ -1464,7 +1464,7 @@ indicating the amount of copying performed. If we run the command again, we will
 
 > 说明复制的数量。如果我们再次运行这个命令，我们将会看到不同的结果：
 
-```
+```sh
 [me@linuxbox ~]$ rsync -av playgound foo
 building file list ... done
 sent 22635 bytes received 20 bytes
@@ -1476,7 +1476,7 @@ Notice that there was no listing of files. This is because rsync detected that t
 
 > 注意到没有文件列表。这是因为 rsync 程序检测到在目录\~/playground 和 \~/foo/playground 之间 不存在差异，因此它不需要复制任何数据。如果我们在 playground 目录中修改一个文件，然后 再次运行 rsync 命令：
 
-```
+```sh
 [me@linuxbox ~]$ touch playground/dir-099/file-Z
 [me@linuxbox ~]$ rsync -av playground foo
 building file list ... done
@@ -1489,7 +1489,7 @@ we see that rsync detected the change and copied only the updated file. As a pra
 
 > 我们看到 rsync 命令检测到更改，并且只是复制了更新的文件。作为一个实际的例子， 让我们考虑一个假想的外部硬盘，之前我们在 tar 命令中用到过的。如果我们再次把此 硬盘连接到我们的系统中，它被挂载到/media/BigDisk 目录下，我们可以执行一个有 用的系统备份了，首先在外部硬盘上创建一个目录，名为/backup，然后使用 rsync 程序 从我们的系统中复制最重要的数据到此外部硬盘上：
 
-```
+```sh
 [me@linuxbox ~]$ mkdir /media/BigDisk/backup
 [me@linuxbox ~]$ sudo rsync -av --delete /etc /home /usr/local /media/BigDisk/backup
 ```
@@ -1498,7 +1498,7 @@ In this example, we copied the /etc, /home, and /usr/local directories from our 
 
 > 在这个例子里，我们把/etc，/home，和/usr/local 目录从我们的系统中复制到假想的存储设备中。 我们包含了--delete 这个选项，来删除可能在备份设备中已经存在但却不再存在于源设备中的文件， （这与我们第一次创建备份无关，但是会在随后的复制操作中有用途）。挂载外部驱动器，运行 rsync 命令，不断重复这个过程，是一个不错的（虽然不理想）方式来保存少量的系统备份文件。 当然，别名会对这个操作更有帮助些。我们将会创建一个别名，并把它添加到.bashrc 文件中， 来提供这个特性：
 
-```
+```sh
 alias backup='sudo rsync -av --delete /etc /home /usr/local /media/BigDisk/backup'
 ```
 
@@ -1512,7 +1512,7 @@ One of the real beauties of rsync is that it can be used to copy files over a ne
 
 rsync 程序的真正好处之一，是它可以被用来在网络间复制文件。毕竟，rsync 中的"r"象征着"remote"。 远程复制可以通过两种方法完成。第一个方法要求另一个系统已经安装了 rsync 程序，还安装了 远程 shell 程序，比如 ssh。比方说我们本地网络中的一个系统有大量可用的硬盘空间，我们想要 用远程系统来代替一个外部驱动器，来执行文件备份操作。假定远程系统中有一个名为/backup 的目录， 其用来存放我们传送的文件，我们这样做：
 
-```
+```sh
 [me@linuxbox ~]$ sudo rsync -av --delete --rsh=ssh /etc /home /usr/local remote-sys:/backup
 ```
 
@@ -1524,7 +1524,7 @@ The second way that rsync can be used to synchronize files over a network is by 
 
 rsync 可以被用来在网络间同步文件的第二种方式是通过使用 rsync 服务器。rsync 可以被配置为一个 守护进程，监听即将到来的同步请求。这样做经常是为了进行一个远程系统的镜像操作。例如，Red Hat 软件中心为它的 Fedora 发行版，维护着一个巨大的正在开发中的软件包的仓库。对于软件测试人员， 在发行周期的测试阶段，定期镜像这些软件集合是非常有帮助的。因为仓库中的这些文件会频繁地 （通常每天不止一次）改动，定期同步本地镜像而不是大量地拷贝软件仓库，这是更为明智的。 这些软件库之一被维护在乔治亚理工大学；我们可以使用本地 rsync 程序和它们的 rsync 服务器来镜像它。
 
-```
+```sh
 [me@linuxbox ~]$ mkdir fedora-devel
 [me@linuxbox ~]$ rsync -av -delete rsync://rsync.gtlib.gatech.edu/fedora-linux-
  core/development/i386/os fedora-devel

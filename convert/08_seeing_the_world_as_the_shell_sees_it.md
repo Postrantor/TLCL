@@ -16,7 +16,7 @@ Each time you type a command line and press the enter key, bash performs several
 
 > 每当你输入一个命令并按下 enter 键，bash 会在执行你的命令之前对输入 的字符完成几个步骤的处理。我们已经见过几个例子：例如一个简单的字符序列"\*", 对 shell 来说有着多么丰富的涵义。这背后的的过程叫做（字符）展开。通过展开， 你输入的字符，在 shell 对它起作用之前，会展开成为别的字符。为了说明这一点 ，让我们看一看 echo 命令。echo 是一个 shell 内建命令，可以完成非常简单的任务。 它将它的文本参数打印到标准输出中。
 
-```
+```sh
 [me@linuxbox ~]$ echo this is a test
 this is a test
 ```
@@ -25,7 +25,7 @@ That's pretty straightforward. Any argument passed to echo gets displayed. Let's
 
 > 这个命令的作用相当简单明了。传递到 echo 命令的任一个参数都会在（屏幕上）显示出来。 让我们试试另一个例子：
 
-```
+```sh
 [me@linuxbox ~]$ echo *
 Desktop Documents ls-output.txt Music Pictures Public Templates Videos
 ```
@@ -40,7 +40,7 @@ The mechanism by which wildcards work is called pathname expansion. If we try so
 
 > 通配符所依赖的工作机制叫做路径名展开。如果我们试一下在之前的章节中使用的技巧， 我们会看到它们实际上是展开。给定一个家目录，它看起来像这样：
 
-```
+```sh
 [me@linuxbox ~]$ ls
 Desktop   ls-output.txt   Pictures   Templates
 ....
@@ -50,7 +50,7 @@ we could carry out the following expansions:
 
 > 我们能够执行以下的展开：
 
-```
+```sh
 [me@linuxbox ~]$ echo D*
 Desktop  Documents
 ```
@@ -59,7 +59,7 @@ and:
 
 > 和：
 
-```
+```sh
 [me@linuxbox ~]$ echo *s
 Documents Pictures Templates Videos
 ```
@@ -68,7 +68,7 @@ or even:
 
 > 甚至是：
 
-```
+```sh
 [me@linuxbox ~]$ echo [[:upper:]]*
 Desktop Documents Music Pictures Public Templates Videos
 ```
@@ -77,7 +77,7 @@ and looking beyond our home directory:
 
 > 查看家目录之外的目录：
 
-```
+```sh
 [me@linuxbox ~]$ echo /usr/*/share
 /usr/kerberos/share  /usr/local/share
 ```
@@ -126,7 +126,7 @@ As you may recall from our introduction to the cd command, the tilde character (
 
 > 可能你从我们对 cd 命令的介绍中回想起来，波浪线字符("\~")有特殊的含义。当它用在 一个单词的开头时，它会展开成指定用户的家目录名，如果没有指定用户名，则展开成当前用户的家目录：
 
-```
+```sh
 [me@linuxbox ~]$ echo ~
 /home/me
 ```
@@ -135,7 +135,7 @@ If user "foo" has an account, then:
 
 > 如果有用户"foo"这个帐号，那么：
 
-```
+```sh
 [me@linuxbox ~]$ echo ~foo
 /home/foo
 ```
@@ -146,7 +146,7 @@ The shell allows arithmetic to be performed by expansion. This allow us to use t
 
 shell 在展开中执行算数表达式。这允许我们把 shell 当作计算器来使用：
 
-```
+```sh
 [me@linuxbox ~]$ echo $((2 + 2))
 4
 ```
@@ -155,7 +155,7 @@ Arithmetic expansion uses the form:
 
 > 算术表达式展开使用这种格式：
 
-```
+```sh
 $((expression))
 ```
 
@@ -599,7 +599,7 @@ Spaces are not significant in arithmetic expressions and expressions may be nest
 
 > 在算术表达式中空格并不重要，并且表达式可以嵌套。例如，5 的平方乘以 3：
 
-```
+```sh
 [me@linuxbox ~]$ echo $(($((5**2)) * 3))
 75
 ```
@@ -608,7 +608,7 @@ Single parentheses may be used to group multiple subexpressions. With this techn
 
 > 一对括号可以用来把多个子表达式括起来。通过这个技术，我们可以重写上面的例子， 同时用一个展开代替两个，来得到一样的结果：
 
-```
+```sh
 [me@linuxbox ~]$ echo $(((5**2) * 3))
 75
 ```
@@ -617,7 +617,7 @@ Here is an example using the division and remainder operators. Notice the effect
 
 > 这是一个使用除法和取余操作符的例子。注意整数除法的结果：
 
-```
+```sh
 [me@linuxbox ~]$ echo Five divided by two equals $((5/2))
 Five divided by two equals 2
 [me@linuxbox ~]$ echo with $((5%2)) left over.
@@ -634,7 +634,7 @@ Perhaps the strangest expansion is called brace expansion. With it, you can crea
 
 > 可能最奇怪的展开是花括号展开。通过它，你可以从一个包含花括号的模式中 创建多个文本字符串。这是一个例子：
 
-```
+```sh
 [me@linuxbox ~]$ echo Front-{A,B,C}-Back
 Front-A-Back Front-B-Back Front-C-Back
 ```
@@ -643,7 +643,7 @@ Patterns to be brace expanded may contain a leading portion called a preamble an
 
 > 花括号展开模式可能包含一个开头部分叫做前言，一个结尾部分叫做附言。花括号表达式本身可 能包含一个由逗号分开的字符串列表，或者一个整数区间，或者单个的字符的区间。这种模式不能 嵌入空白字符。这个例子中使用了一个整数区间：
 
-```
+```sh
 [me@linuxbox ~]$ echo Number_{1..5}
 Number_1  Number_2  Number_3  Number_4  Number_5
 ```
@@ -652,7 +652,7 @@ A range of letters in reverse order:
 
 > 倒序排列的字母区间：
 
-```
+```sh
 [me@linuxbox ~]$ echo {Z..A}
 Z Y X W V U T S R Q P O N M L K J I H G F E D C B A
 ```
@@ -661,7 +661,7 @@ Brace expansions may be nested:
 
 > 花括号展开可以嵌套：
 
-```
+```sh
 [me@linuxbox ~]$ echo a{A{1,2},B{3,4}}b
 aA1b aA2b aB3b aB4b
 ```
@@ -670,7 +670,7 @@ So what is this good for? The most common application is to make lists of files 
 
 > 那这个有啥用呢？最常见的应用是，创建一系列的文件或目录列表。例如， 如果我们是摄影师，有大量的相片。我们想把这些相片按年月先后组织起来。首先， 我们要创建一系列以数值"年－月"形式命名的目录。通过这种方式，可以使目录名按照 年代顺序排列。我们可以手动键入整个目录列表，但是工作量太大了，并且易于出错。 反之，我们可以这样做：
 
-```
+```sh
 [me@linuxbox ~]$ mkdir Pics
 [me@linuxbox ~]$ cd Pics
 [me@linuxbox Pics]$ mkdir {2007..2009}-0{1..9} {2007..2009}-{10..12}
@@ -693,7 +693,7 @@ We're only going to touch briefly on parameter expansion in this chapter, but we
 
 > 在这一章我们将会简单介绍参数展开，会在后续章节中进行详细讨论。这个特性在 shell 脚本中比直接在命令行中更有用。 它的许多功能和系统存储小块数据，并给每块数据命名的能力有关系。许多像这样的小块数据， 更恰当的称呼应该是变量，可供你方便地检查它们。例如，叫做"USER"的变量包含你的 用户名。可以这样做来调用参数，并查看 USER 中的内容，：
 
-```
+```sh
 [me@linuxbox ~]$ echo $USER
 me
 ```
@@ -702,7 +702,7 @@ To see a list of available variables, try this:
 
 > 要查看有效的变量列表，可以试试这个：
 
-```
+```sh
 [me@linuxbox ~]$ printenv | less
 ```
 
@@ -710,7 +710,7 @@ You may have noticed that with other types of expansion, if you mistype a patter
 
 > 你可能注意到在其它展开类型中，如果你误输入一个字符串，展开就不会发生。这时 echo 命令只简单地显示误键入的字符串。但在参数展开中，如果你拼写错了一个变量名， 展开仍然会进行，只是展开的结果是一个空字符串：
 
-```
+```sh
 [me@linuxbox ~]$ echo $SUER
 
 [me@linuxbox ~]$
@@ -722,7 +722,7 @@ Command substitution allows us to use the output of a command as an expansion:
 
 > 命令替换允许我们把一个命令的输出作为另一个命令的一部分来使用：
 
-```
+```sh
 [me@linuxbox ~]$ echo $(ls)
 Desktop Documents ls-output.txt Music Pictures Public Templates
 Videos
@@ -732,7 +732,7 @@ One of my favorites goes something like this:
 
 > 我最喜欢用的一行命令是像这样的：
 
-```
+```sh
 [me@linuxbox ~]$ ls -l $(which cp)
 -rwxr-xr-x 1 root root 71516 2007-12-05 08:58 /bin/cp
 ```
@@ -741,7 +741,7 @@ Here we passed the results of which cp as an argument to the ls command, thereby
 
 > 这里我们把 which cp 的执行结果作为一个参数传递给 ls 命令，因此可以在不知道 cp 命令 完整路径名的情况下得到它的文件属性列表。我们不只限于简单命令。也可以使用整个管道线 （只展示部分输出）：
 
-```
+```sh
 [me@linuxbox ~]$ file $(ls /usr/bin/* | grep zip)
 /usr/bin/bunzip2:     symbolic link to `bzip2'
 ....
@@ -755,7 +755,7 @@ There is an alternate syntax for command substitution in older shell programs wh
 
 > 在旧版 shell 程序中，有另一种语法也支持命令替换，可与刚提到的语法轮换使用。 bash 也支持这种语法。它使用倒引号来代替美元符号和括号：
 
-```
+```sh
 [me@linuxbox ~]$ ls -l `which cp`
 -rwxr-xr-x 1 root root 71516 2007-12-05 08:58 /bin/cp
 ```
@@ -766,7 +766,7 @@ Now that we've seen how many ways the shell can perform expansions, it's time to
 
 > 我们已经知道 shell 有许多方式可以完成展开，现在是时候学习怎样来控制展开了。 以下面例子来说明：
 
-```
+```sh
 [me@linuxbox ~]$ echo this is a    test
 this is a test
 ```
@@ -775,7 +775,7 @@ or:
 
 > 或者：
 
-```
+```sh
 [me@linuxbox ~]$ echo The total is $100.00
 The total is 00.00
 ```
@@ -790,7 +790,7 @@ The first type of quoting we will look at is double quotes. If you place text in
 
 > 我们将要看一下引用的第一种类型，双引号。如果你把文本放在双引号中， shell 使用的特殊字符，都失去它们的特殊含义，被当作普通字符来看待。 有几个例外： \$，\\ (反斜杠），和 \`（倒引号）。这意味着单词分割、路径名展开、 波浪线展开和花括号展开都将失效，然而参数展开、算术展开和命令替换 仍然执行。使用双引号，我们可以处理包含空格的文件名。比方说 *two words.txt* 文件，如果我们试图在命令行中使用这个 文件，单词分割机制会导致这个文件名被看作两个独自的参数，而不是所期望 的单个参数：
 
-```
+```sh
 [me@linuxbox ~]$ ls -l two words.txt
 ls: cannot access two: No such file or directory
 ls: cannot access words.txt: No such file or directory
@@ -800,7 +800,7 @@ By using double quotes, we stop the word-splitting and get the desired result; f
 
 > 使用双引号，我们可以阻止单词分割，得到期望的结果；进一步，我们甚至可以修复 破损的文件名。
 
-```
+```sh
 [me@linuxbox ~]$ ls -l "two words.txt"
 -rw-rw-r-- 1 me   me   18 2008-02-20 13:03 two words.txt
 [me@linuxbox ~]$ mv "two words.txt" two_words.txt
@@ -814,7 +814,7 @@ Remember, parameter expansion, arithmetic expansion, and command substitution st
 
 > 记住，在双引号中，参数展开、算术表达式展开和命令替换仍然有效：
 
-```
+```sh
 [me@linuxbox ~]$ echo "$USER $((2+2)) $(cal)"
 me 4    February 2008
 Su Mo Tu We Th Fr Sa
@@ -825,7 +825,7 @@ We should take a moment to look at the effect of double quotes on command substi
 
 > 我们应该花费一点时间来看一下双引号在命令替换中的效果。首先仔细研究一下单词分割 是怎样工作的。在之前的范例中，我们已经看到单词分割机制是怎样来删除文本中额外空格的：
 
-```
+```sh
 [me@linuxbox ~]$ echo this is a   test
 this is a test
 ```
@@ -834,7 +834,7 @@ By default, word-splitting looks for the presence of spaces, tabs, and newlines 
 
 > 在默认情况下，单词分割机制会在单词中寻找空格，制表符，和换行符，并把它们看作 单词之间的界定符。这意味着无引用的空格，制表符和换行符都不是文本的一部分， 它们只作为分隔符使用。由于它们把单词分为不同的参数，所以在上面的例子中， 命令行包含一个带有四个不同参数的命令。如果我们加上双引号：
 
-```
+```sh
 [me@linuxbox ~]$ echo "this is a    test"
 this is a    test
 ```
@@ -847,7 +847,7 @@ The fact that newlines are considered delimiters by the word-splitting mechanism
 
 > 事实上，单词分割机制把换行符看作界定符，对命令替换产生了一个虽然微妙但有趣的影响。 考虑下面的例子：
 
-```
+```sh
 [me@linuxbox ~]$ echo $(cal)
 February 2008 Su Mo Tu We Th Fr Sa 1 2 3 4 5 6 7 8 9 10 11 12 13 14
 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29
@@ -866,7 +866,7 @@ If we need to suppress all expansions, we use single quotes. Here is a compariso
 
 > 如果需要禁止所有的展开，我们要使用单引号。以下例子是无引用，双引号，和单引号的比较结果：
 
-```
+```sh
 [me@linuxbox ~]$ echo text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER
 text /home/me/ls-output.txt a b foo 4 me
 [me@linuxbox ~]$ echo "text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER"
@@ -885,7 +885,7 @@ Sometimes we only want to quote a single character. To do this, we can precede a
 
 > 有时候我们只想引用单个字符。我们可以在字符之前加上一个反斜杠，在这里叫做转义字符。 经常在双引号中使用转义字符，来有选择地阻止展开。
 
-```
+```sh
 [me@linuxbox ~]$ echo "The balance for user $USER is: \$5.00"
 The balance for user me is: $5.00
 ```
@@ -894,7 +894,7 @@ It is also common to use escaping to eliminate the special meaning of a characte
 
 > 使用转义字符来消除文件名中一个字符的特殊含义，是很普遍的。例如，在文件名中可能使用 一些对于 shell 来说有特殊含义的字符。这些字符包括"\$","!"," "等字符。在文件名 中包含特殊字符，你可以这样做：
 
-```
+```sh
 [me@linuxbox ~]$ mv bad\&filename good_filename
 ```
 

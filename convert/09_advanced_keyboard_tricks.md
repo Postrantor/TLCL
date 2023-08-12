@@ -1290,7 +1290,7 @@ Another way that the shell can help you is through a mechanism called completion
 
 shell 能帮助你的另一种方式是通过一种叫做自动补全的机制。当你敲入一个命令时， 按下 tab 键，自动补全就会发生。让我们看一下这是怎样工作的。给出一个看起来 像这样的家目录：
 
-```
+```sh
 [me@linuxbox ~]$ ls
 Desktop   ls-output.txt   Pictures   Templates   Videos
 ....
@@ -1300,7 +1300,7 @@ Try typing the following but don't press the Enter key:
 
 > 试着输入下面的命令，但不要按下 Enter 键：
 
-```
+```sh
 [me@linuxbox ~]$ ls l
 ```
 
@@ -1308,7 +1308,7 @@ Now press the tab key:
 
 > 现在按下 tab 键：
 
-```
+```sh
 [me@linuxbox ~]$ ls ls-output.txt
 ```
 
@@ -1316,7 +1316,7 @@ See how the shell completed the line for you? Let's try another one. Again, don'
 
 > 看一下 shell 是怎样补全这一行的？让我们再试试另一个例子。这回，也 不要按下 Enter:
 
-```
+```sh
 [me@linuxbox ~]$ ls D
 ```
 
@@ -1324,7 +1324,7 @@ Press tab:
 
 > 按下 tab:
 
-```
+```sh
 [me@linuxbox ~]$ ls D
 ```
 
@@ -1332,7 +1332,7 @@ No completion, just a beep. This happened because "D" matches more than one entr
 
 > 没有补全，只是嘟嘟响。因为"D"不止匹配目录中的一个条目。为了自动补全执行成功， 你给它的"线索"不能模棱两可。如果我们继续输入：
 
-```
+```sh
 [me@linuxbox ~]$ ls Do
 ```
 
@@ -1340,7 +1340,7 @@ Then press tab:
 
 > 然后按下 tab：
 
-```
+```sh
 [me@linuxbox ~]$ ls Documents
 ```
 
@@ -1586,7 +1586,7 @@ At any time, we can view the contents of the history list by:
 
 > 在任何时候，我们都可以浏览历史列表的内容，通过：
 
-```
+```sh
 [me@linuxbox ~]$ history | less
 ```
 
@@ -1594,7 +1594,7 @@ By default, bash stores the last five hundred commands you have entered. We will
 
 > 在默认情况下，bash 会存储你所输入的最后 500 个命令。在随后的章节里，我们会知道 怎样调整这个数值。比方说我们想在自己曾经用过的命令中，找出和/usr/bin 这一目录相关的。那么我们就可以这样做：
 
-```
+```sh
 [me@linuxbox ~]$ history | grep /usr/bin
 ```
 
@@ -1602,7 +1602,7 @@ And let's say that among our results we got a line containing an interesting com
 
 > 比方说在我们的搜索结果之中，我们得到一行，包含了有趣的命令，像这样；
 
-```
+```sh
 88  ls -l /usr/bin > ls-output.txt
 ```
 
@@ -1610,7 +1610,7 @@ The number "88" is the line number of the command in the history list. We could 
 
 > 数字 "88" 是这个命令在历史列表中的行号。我们可以使用另一种叫做 历史命令展开的方式，来调用"88"所代表的这一行命令：
 
-```
+```sh
 [me@linuxbox ~]$ !88
 ```
 
@@ -1618,7 +1618,7 @@ bash will expand "!88" into the contents of the eighty-eighth line in the histor
 
 bash 会把 "!88" 展开成为历史列表中 88 行的内容。还有其它的历史命令展开形式，我们一会儿 讨论它们。bash 也具有增量搜索历史列表的能力。意思是在字符输入的同时，bash 会去搜索历史列表（直接出结果，并高亮匹配的第一个字），每多输入一个字符都会使搜索结果更接近目标。输入 Ctrl-r 来启动增量搜索， 接着输入你要寻找的字。当你找到它以后，你可以敲入 Enter 来执行命令， 或者输入 Ctrl-j，从历史列表中复制这一行到当前命令行。再次输入 Ctrl-r，来找到下一个 匹配项（历史列表中向上移动）。输入 Ctrl-g 或者 Ctrl-c，退出搜索。现在看看它的实际效果：
 
-```
+```sh
 [me@linuxbox ~]$
 ```
 
@@ -1626,7 +1626,7 @@ First type Ctrl-r:
 
 > 首先输入 Ctrl-r:
 
-```
+```sh
 (reverse-i-search)`':
 ```
 
@@ -1634,7 +1634,7 @@ The prompt changes to indicate that we are performing a reverse incremental sear
 
 > 提示符改变，显示我们正在执行反向增量搜索。搜索过程是"反向的"，因为我们按照从"现在"到过去 某个时间段的顺序来搜寻。下一步，我们开始输入要查找的文本。在这个例子里是 "/usr/bin"：
 
-```
+```sh
 (reverse-i-search)`/usr/bin': ls -l /usr/bin > ls-output.txt
 ```
 
@@ -1644,7 +1644,7 @@ Immediately, the search returns our result. With our result, we can execute the 
 
 > 即刻，搜索返回我们需要的结果。我们可以按下 Enter 键来执行这个命令，或者我们可以按下 Ctrl-j 复制 这个命令到我们当前的命令行，来进一步编辑它。好了现在我们复制它，输入 Ctrl-j：
 
-```
+```sh
 [me@linuxbox ~]$ ls -l /usr/bin > ls-output.txt
 ```
 

@@ -42,7 +42,7 @@ In keeping with programming tradition, we'll create a "hello world" program to d
 
 > 为了保持编程传统，我们将创建一个 "hello world" 程序来说明一个极端简单的脚本。所以让我们启动 我们的文本编辑器，然后输入以下脚本：
 
-```
+```sh
 #!/bin/bash
 # This is our first script.
 echo 'Hello World!'
@@ -52,7 +52,7 @@ The last line of our script is pretty familiar, just an echo command with a stri
 
 > 对于脚本中的最后一行，我们应该是相当的熟悉，仅仅是一个带有一个字符串参数的 echo 命令。 对于第二行也很熟悉。它看起来像一个注释，我们已经在许多我们检查和编辑过的配置文件中 看到过。关于 shell 脚本中的注释，它们也可以出现在文本行的末尾，像这样：
 
-```
+```sh
 echo 'Hello World!' # This is a comment too
 ```
 
@@ -64,7 +64,7 @@ Like many things, this works on the command line, too:
 
 > 类似于许多命令，这也在命令行中起作用：
 
-```
+```sh
 [me@linuxbox ~]$ echo 'Hello World!' # This is a comment too
 Hello World!
 ```
@@ -87,7 +87,7 @@ The next thing we have to do is make our script executable. This is easily done 
 
 > 下一步我们要做的事情是让我们的脚本可执行。使用 chmod 命令，这很容易做到：
 
-```
+```sh
 [me@linuxbox ~]$ ls -l hello_world
 -rw-r--r-- 1  me    me      63  2009-03-07 10:10 hello_world
 [me@linuxbox ~]$ chmod 755 hello_world
@@ -105,7 +105,7 @@ With the permissions set, we can now execute our script:
 
 > 当设置了脚本权限之后，我们就能执行我们的脚本了：
 
-```
+```sh
 [me@linuxbox ~]$ ./hello_world
 Hello World!
 ```
@@ -114,7 +114,7 @@ In order for the script to run, we must precede the script name with an explicit
 
 > 为了能够运行此脚本，我们必须指定脚本文件明确的路径。如果我们没有那样做，我们会得到这样的提示：
 
-```
+```sh
 [me@linuxbox ~]$ hello_world
 bash: hello_world: command not found
 ```
@@ -123,7 +123,7 @@ Why is this? What makes our script different from other programs? As it turns ou
 
 > 为什么会这样呢？什么使我们的脚本不同于其它的程序？结果证明，什么也没有。我们的 脚本没有问题。是脚本存储位置的问题。回到第 12 章，我们讨论了 PATH 环境变量及其在系统 查找可执行程序方面的作用。回顾一下，如果没有给出可执行程序的明确路径名，那么系统每次都会 搜索一系列的目录，来查找此可执行程序。这个/bin 目录就是其中一个系统会自动搜索的目录。 这个目录列表被存储在一个名为 PATH 的环境变量中。这个 PATH 变量包含一个由冒号分隔开的目录列表。 我们可以查看 PATH 的内容：
 
-```
+```sh
 [me@linuxbox ~]$ echo $PATH
 /home/me/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:
 /bin:/usr/games
@@ -133,7 +133,7 @@ Here we see our list of directories. If our script were located in any of the di
 
 > 这里我们看到了我们的目录列表。如果我们的脚本位于此列表中任意目录下，那么我们的问题将 会被解决。注意列表中的第一个目录/home/me/bin。大多数的 Linux 发行版会配置 PATH 变量，让其包含 一个位于用户家目录下的 bin 目录，从而允许用户能够执行他们自己的程序。所以如果我们创建了 一个 bin 目录，并把我们的脚本放在这个目录下，那么这个脚本就应该像其它程序一样开始工作了：
 
-```
+```sh
 [me@linuxbox ~]$ mkdir bin
 [me@linuxbox ~]$ mv hello_world bin
 [me@linuxbox ~]$ hello_world
@@ -148,7 +148,7 @@ If the PATH variable does not contain the directory, we can easily add it by inc
 
 > 如果这个 PATH 变量不包含这个目录，我们能够轻松地添加它，通过在我们的.bashrc 文件中包含下面 这一行文本：
 
-```
+```sh
 export PATH=~/bin:"$PATH"
 ```
 
@@ -156,7 +156,7 @@ After this change is made, it will take effect in each new terminal session. To 
 
 > 当做了这个修改之后，它会在每个新的终端会话中生效。为了把这个修改应用到当前的终端会话中， 我们必须让 shell 重新读取这个 .bashrc 文件。这可以通过 "sourcing".bashrc 文件来完成：
 
-```
+```sh
 [me@linuxbox ~]$ . .bashrc
 ```
 
@@ -190,7 +190,7 @@ Many of the commands we have studied feature both short and long option names. F
 
 > 我们学过的许多命令都以长短两种选项名称为特征。例如，这个 ls 命令有许多选项既可以用短形式也 可以用长形式来表示。例如：
 
-```
+```sh
 [me@linuxbox ~]$ ls -ad
 ```
 
@@ -198,7 +198,7 @@ and:
 
 > 和：
 
-```
+```sh
 [me@linuxbox ~]$ ls --all --directory
 ```
 
@@ -212,7 +212,7 @@ When employing long commands, readability can be enhanced by spreading the comma
 
 > 当使用长命令的时候，通过把命令在几个文本行中展开，可以提高命令的可读性。 在第十八章中，我们看到了一个特别长的 find 命令实例：
 
-```
+```sh
 [me@linuxbox ~]$ find playground \( -type f -not -perm 0600 -exec
 chmod 0600 ‘{}’ ‘;’ \) -or \( -type d -not -perm 0711 -exec chmod
 0711 ‘{}’ ‘;’ \)
@@ -222,7 +222,7 @@ Obviously, this command is a little hard to figure out at first glance. In a scr
 
 > 显然，这个命令有点儿难理解，当第一眼看到它的时候。在脚本中，这个命令可能会比较容易 理解，如果这样书写它：
 
-```
+```sh
 find playground \
     \( \
         -type f \

@@ -71,7 +71,7 @@ For example, to see if we can reach linuxcommand.org (one of our favorite sites 
 
 > 例如，看看我们能否连接到网站 linuxcommand.org（我们最喜欢的网站之一 ;-）， 我们可以这样使用 ping 命令：
 
-```
+```sh
 [me@linuxbox ~]$ ping linuxcommand.org
 ```
 
@@ -79,7 +79,7 @@ Once started, ping continues to send packets at a specified interval (default is
 
 > 一旦启动，ping 命令会持续在特定的时间间隔内（默认是一秒）发送数据包，直到它被中断：
 
-```
+```sh
 [me@linuxbox ~]$ ping linuxcommand.org
 PING linuxcommand.org (66.35.250.210) 56(84) bytes of data.
 64 bytes from vhost.sourceforge.net (66.35.250.210): icmp\_seq=1
@@ -105,7 +105,7 @@ The traceroute program (some systems use the similar tracepath program instead) 
 
 > 这个 traceroute 程序（一些系统使用相似的 tracepath 程序来代替）会显示从本地到指定主机 要经过的所有"跳数"的网络流量列表。例如，看一下到达 slashdot.org 需要经过的路由， 我们将这样做：
 
-```
+```sh
 [me@linuxbox ~]$ traceroute slashdot.org
 ```
 
@@ -113,7 +113,7 @@ The output looks like this:
 
 > 命令输出看起来像这样：
 
-```
+```sh
 traceroute to slashdot.org (216.34.181.45), 30 hops max, 40 byte
 packets
 1 ipcop.localdomain (192.168.1.1) 1.066 ms 1.366 ms 1.720 ms
@@ -138,7 +138,7 @@ The netstat program is used to examine various network settings and statistics. 
 
 netstat 程序被用来检查各种各样的网络设置和统计数据。通过此命令的许多选项，我们 可以看看网络设置中的各种特性。使用"-ie"选项，我们能够查看系统中的网络接口：
 
-```
+```sh
 [me@linuxbox ~]$ netstat -ie
 eth0    Link encap:Ethernet HWaddr 00:1d:09:9b:99:67
         inet addr:192.168.1.2 Bcast:192.168.1.255 Mask:255.255.255.0
@@ -166,7 +166,7 @@ Using the "-r" option will display the kernel's network routing table. This show
 
 > 使用这个"-r"选项会显示内核的网络路由表。这展示了系统是如何配置网络之间发送数据包的。
 
-```
+```sh
 [me@linuxbox ~]$ netstat -r
 Kernel IP routing table
 Destination     Gateway     Genmask         Flags    MSS  Window  irtt Iface
@@ -207,7 +207,7 @@ In the example below, we show a typical session with the ftp program downloading
 
 > 在下面的例子中，我们将展示一个典型的会话，从匿名 FTP 服务器，其名字是 fileserver， 的/pub/\_images/Ubuntu-8.04 的目录下，使用 ftp 程序下载一个 Ubuntu 系统映像文件。
 
-```
+```sh
 [me@linuxbox ~]$ ftp fileserver
 Connected to fileserver.localdomain.
 220 (vsFTPd 2.0.1)
@@ -741,7 +741,7 @@ Another popular command line program for file downloading is wget. It is useful 
 
 > 另一个流行的用来下载文件的命令行程序是 wget。若想从网络和 FTP 网站两者上都能下载数据，wget 是很有用处的。 不只能下载单个文件，多个文件，甚至整个网站都能下载。下载 linuxcommand.org 网站的首页， 我们可以这样做：
 
-```
+```sh
 [me@linuxbox ~]$ wget http://linuxcommand.org/index.php
 --11:02:51-- http://linuxcommand.org/index.php
         => `index.php'
@@ -791,7 +791,7 @@ The SSH client program used to connect to remote SSH servers is called, appropri
 
 > 用来与远端 SSH 服务器相连接的 SSH 客户端程序，顺理成章，叫做 ssh。想要连接到名叫 remote-sys 的远端主机，我们可以这样使用 ssh 客户端程序：
 
-```
+```sh
 [me@linuxbox ~]$ ssh remote-sys
 The authenticity of host 'remote-sys (192.168.1.4)' can't be
 established.
@@ -804,7 +804,7 @@ The first time the connection is attempted, a message is displayed indicating th
 
 > 第一次尝试连接，提示信息表明远端主机的真实性不能确立。这是因为客户端程序以前从没有 看到过这个远端主机。为了接受远端主机的身份验证凭据，输入"yes"。一旦建立了连接，会提示 用户输入他或她的密码：
 
-```
+```sh
 Warning: Permanently added 'remote-sys,192.168.1.4' (RSA) to the list
 of known hosts.
 me@remote-sys's password:
@@ -814,7 +814,7 @@ After the password is successfully entered, we receive the shell prompt from the
 
 > 成功地输入密码之后，我们会接收到远端系统的 shell 提示符：
 
-```
+```sh
 Last login: Sat Aug 30 13:00:48 2008
 [me@remote-sys ~]$
 ```
@@ -827,7 +827,7 @@ It is also possible to connect to remote systems using a different user name. Fo
 
 > 也有可能使用不同的用户名连接到远程系统。例如，如果本地用户"me"，在远端系统中有一个帐号名 "bob"，则用户 me 能够用 bob 帐号登录到远端系统，如下所示：
 
-```
+```sh
 [me@linuxbox ~]$ ssh bob@remote-sys
 bob@remote-sys's password:
 Last login: Sat Aug 30 13:03:21 2008
@@ -838,7 +838,7 @@ As stated before, ssh verifies the authenticity of the remote host. If the remot
 
 > 正如之前所讲到的，ssh 验证远端主机的真实性。如果远端主机不能成功地通过验证，则会提示以下信息：
 
-```
+```sh
 [me@linuxbox ~]$ ssh remote-sys
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @
@@ -859,7 +859,7 @@ After it has been determined that the message is due to a benign cause, it is sa
 
 > 当确定了这条消息归结为一个良性的原因之后，那么在客户端更正问题就很安全了。 使用文本编辑器（可能是 vim）从文件\~/.ssh/known_hosts 中删除废弃的钥匙， 就解决了问题。在上面的例子里，我们看到这样一句话：
 
-```
+```sh
 Offending key in /home/me/.ssh/known_hosts:1
 ```
 
@@ -871,7 +871,7 @@ Besides opening a shell session on a remote system, ssh also allows us to execut
 
 > 除了能够在远端系统中打开一个 shell 会话，ssh 程序也允许我们在远端系统中执行单个命令。 例如，在名为 remote-sys 的远端主机上，执行 free 命令，并把输出结果显示到本地系统 shell 会话中。
 
-```
+```sh
 [me@linuxbox ~]$ ssh remote-sys free
 me@twin4's password:
             total   used       free     shared buffers cached
@@ -888,7 +888,7 @@ It's possible to use this technique in more interesting ways, such as this examp
 
 > 有可能以更有趣的方式来利用这项技术，比方说下面的例子，我们在远端系统中执行 ls 命令， 并把命令输出重定向到本地系统中的一个文件里面。
 
-```
+```sh
 [me@linuxbox ~]$ ssh remote-sys 'ls \*' > dirlist.txt
 me@twin4's password:
 [me@linuxbox ~]$
@@ -898,7 +898,7 @@ Notice the use of the single quotes in the command above. This is done because w
 
 > 注意，上面的例子中使用了单引号。这样做是因为我们不想路径名展开操作在本地执行，而希望 它在远端系统中被执行。同样地，如果我们想要把输出结果重定向到远端主机的文件中，我们可以 把重定向操作符和文件名都放到单引号里面。
 
-```
+```sh
 [me@linuxbox ~]$ ssh remote-sys 'ls * > dirlist.txt'
 ```
 
@@ -931,7 +931,7 @@ The OpenSSH package also includes two programs that can make use of an SSH encry
 
 OpenSSH 软件包也包含两个程序，它们可以利用 SSH 加密通道在网络间复制文件。 第一个，scp（安全复制）被用来复制文件，与熟悉的 cp 程序非常相似。最显著的区别就是 源或者目标路径名要以远端主机的名字，后跟一个冒号字符开头。例如，如果我们想要 从 remote-sys 远端系统的家目录下复制文档 document.txt，到我们本地系统的当前工作目录下， 可以这样操作：
 
-```
+```sh
 [me@linuxbox ~]$ scp remote-sys:document.txt .
 me@remote-sys's password:
 document.txt
@@ -943,7 +943,7 @@ As with ssh, you may apply a user name to the beginning of the remote host's nam
 
 > 和 ssh 命令一样，如果所需的远端主机帐户名与本地系统中的不一致， 那么你可以把用户名添加到远端主机名的开头：
 
-```
+```sh
 [me@linuxbox ~]$ scp bob@remote-sys:document.txt .
 ```
 
@@ -951,7 +951,7 @@ The second SSH file copying program is sftp which, as its name implies, is a sec
 
 > 第二个 SSH 文件复制程序是 sftp，顾名思义，它是 ftp 程序的安全替代品。sftp 工作起来与我们 之前使用的 ftp 程序很相似；然而，它不用明码形式来传递数据，它使用加密的 SSH 通道。sftp 有一个 重要特性强于传统的 ftp 命令，就是 sftp 不需要远端系统中运行 FTP 服务端。它仅仅需要 SSH 服务端。 这意味着任何一台能用 SSH 客户端连接的远端机器，也可当作类似于 FTP 的服务器来使用。 这里是一个样本会话：
 
-```
+```sh
 [me@linuxbox ~]$ sftp remote-sys
 Connecting to remote-sys...
 me@remote-sys's password:

@@ -88,7 +88,7 @@ Let's create a test file using cat as a primitive word processor. To do this, we
 
 > 让我们创建一个测试文件，用 cat 程序作为一个简单的文字处理器。为此，我们将键入 cat 命令（随后指定了 用于重定向输出的文件），然后输入我们的文本，最后按下 Enter 键来结束这一行，然后按下组合键 Ctrl-d， 来指示 cat 程序，我们已经到达文件末尾了。在这个例子中，我们文本行的开头和末尾分别键入了一个 tab 字符以及一些空格。
 
-```
+```sh
 [me@linuxbox ~]$ cat > foo.txt
     The quick brown fox jumped over the lazy dog.
 [me@linuxbox ~]$
@@ -98,7 +98,7 @@ Next, we will use cat with the -A option to display the text:
 
 > 下一步，我们将使用带有-A 选项的 cat 命令来显示这个文本：
 
-```
+```sh
 [me@linuxbox ~]$ cat -A foo.txt
 ^IThe quick brown fox jumped over the lazy dog.       $
 [me@linuxbox ~]$
@@ -124,7 +124,7 @@ cat also has options that are used to modify text. The two most prominent are -n
 
 cat 程序也包含用来修改文本的选项。最著名的两个选项是-n，其给文本行添加行号和-s， 禁止输出多个空白行。我们这样来说明：
 
-```
+```sh
 [me@linuxbox ~]$ cat > foo.txt
 The quick brown fox
 
@@ -147,7 +147,7 @@ The sort program sorts the contents of standard input, or one or more files spec
 
 > 这个 sort 程序对标准输入的内容，或命令行中指定的一个或多个文件进行排序，然后把排序 结果发送到标准输出。使用与 cat 命令相同的技巧，我们能够演示如何用 sort 程序来处理标准输入：
 
-```
+```sh
 [me@linuxbox ~]$ sort > foo.txt
 c
 b
@@ -166,7 +166,7 @@ Since sort can accept multiple files on the command line as arguments, it is pos
 
 > 因为 sort 程序能接受命令行中的多个文件作为参数，所以有可能把多个文件合并成一个有序的文件。例如， 如果我们有三个文本文件，想要把它们合并为一个有序的文件，我们可以这样做：
 
-```
+```sh
 sort file1.txt file2.txt file3.txt > final_sorted_list.txt
 ```
 
@@ -898,7 +898,7 @@ Although most of the options above are pretty self-explanatory, some are not. Fi
 
 > 虽然以上大多数选项的含义是不言自喻的，但是有些也不是。首先，让我们看一下 -n 选项，被用做数值排序。 通过这个选项，有可能基于数值进行排序。我们通过对 du 命令的输出结果排序来说明这个选项，du 命令可以 确定最大的磁盘空间用户。通常，这个 du 命令列出的输出结果按照路径名来排序：
 
-```
+```sh
 [me@linuxbox ~]$ du -s /usr/share/* | head
 252     /usr/share/aclocal
 96      /usr/share/acpi-support
@@ -916,7 +916,7 @@ In this example, we pipe the results into head to limit the results to the first
 
 > 在这个例子里面，我们把结果管道到 head 命令，把输出结果限制为前 10 行。我们能够产生一个按数值排序的 列表，来显示 10 个最大的空间消费者：
 
-```
+```sh
 [me@linuxbox ~]$ du -s /usr/share/* | sort -nr | head
 509940         /usr/share/locale-langpack
 242660         /usr/share/doc
@@ -934,7 +934,7 @@ By using the -nr options, we produce a reverse numerical sort, with the largest 
 
 > 通过使用此 -nr 选项，我们产生了一个反向的数值排序，最大数值排列在第一位。这种排序起作用是 因为数值出现在每行的开头。但是如果我们想要基于文件行中的某个数值排序，又会怎样呢？ 例如，命令 ls -l 的输出结果：
 
-```
+```sh
 [me@linuxbox ~]$ ls -l /usr/bin | head
 total 152948
 -rwxr-xr-x 1 root   root     34824  2008-04-04  02:42 [
@@ -946,7 +946,7 @@ Ignoring, for the moment, that ls can sort its results by size, we could use sor
 
 > 此刻，忽略 ls 程序能按照文件大小对输出结果进行排序，我们也能够使用 sort 程序来完成此任务：
 
-```
+```sh
 [me@linuxbox ~]$ ls -l /usr/bin | sort -nr -k 5 | head
 -rwxr-xr-x 1 root   root   8234216  2008-04-0717:42 inkscape
 -rwxr-xr-x 1 root   root   8222692  2008-04-07 17:42 inkview
@@ -961,7 +961,7 @@ The k option is very interesting and has many features, but first we need to tal
 
 > 这个 k 选项非常有趣，而且还有很多特点，但是首先我们需要讲讲 sort 程序怎样来定义字段。 让我们考虑一个非常简单的文本文件，只有一行包含作者名字的文本。
 
-```
+```sh
 William      Shotts
 ```
 
@@ -981,7 +981,7 @@ meaning that whitespace characters (spaces and tabs) are used as delimiters betw
 
 > 意味着空白字符（空格和制表符）被当作是字段间的界定符，当执行排序时，界定符会被 包含在字段当中。再看一下 ls 命令的输出，我们看到每行包含八个字段，并且第五个字段是文件大小：
 
-```
+```sh
 -rwxr-xr-x 1 root root 8234216 2008-04-07 17:42 inkscape
 ```
 
@@ -989,7 +989,7 @@ For our next series of experiments, let's consider the following file containing
 
 > 让我们考虑用下面的文件，其包含从 2006 年到 2008 年三款流行的 Linux 发行版的发行历史，来做一系列实验。 文件中的每一行都有三个字段：发行版的名称，版本号，和 MM/DD/YYYY 格式的发行日期：
 
-```
+```sh
 SUSE        10.2   12/07/2006
 Fedora          10     11/25/2008
 SUSE            11.04  06/19/2008
@@ -1007,7 +1007,7 @@ Next, we'll try sorting the file and observe the results:
 
 > 下一步，我们将试着对这个文件进行排序，并观察输出结果：
 
-```
+```sh
 [me@linuxbox ~]$ sort distros.txt
 Fedora          10     11/25/2008
 Fedora          5     03/20/2006
@@ -1025,7 +1025,7 @@ To fix this problem we are going to have to sort on multiple keys. We want to pe
 
 > 为了解决这个问题，我们必须依赖多个键值来排序。我们想要对第一个字段执行字母排序，然后对 第三个字段执行数值排序。sort 程序允许多个 -k 选项的实例，所以可以指定多个排序关键值。事实上， 一个关键值可能包括一个字段区域。如果没有指定区域（如同之前的例子），sort 程序会使用一个键值， 其始于指定的字段，一直扩展到行尾。下面是多键值排序的语法：
 
-```
+```sh
 [me@linuxbox ~]$ sort --key=1,1 --key=2n distros.txt
 Fedora         5     03/20/2006
 Fedora         6     10/24/2006
@@ -1045,7 +1045,7 @@ Fortunately, sort provides a way. The key option allows specification of offsets
 
 > 幸运地是，sort 程序提供了一种方式。这个 key 选项允许在字段中指定偏移量，所以我们能在字段中 定义键值。
 
-```
+```sh
 [me@linuxbox ~]$ sort -k 3.7nbr -k 3.1nbr -k 3.4nbr distros.txt
 Fedora         10    11/25/2008
 Ubuntu         8.10  10/30/2008
@@ -1061,7 +1061,7 @@ Some files don't use tabs and spaces as field delimiters; for example, the /etc/
 
 > 一些文件不会使用 tabs 和空格做为字段界定符；例如，这个 /etc/passwd 文件：
 
-```
+```sh
 [me@linuxbox ~]$ head /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 daemon:x:1:1:daemon:/usr/sbin:/bin/sh
@@ -1079,7 +1079,7 @@ The fields in this file are delimited with colons (:), so how would we sort this
 
 > 这个文件的字段之间通过冒号分隔开，所以我们怎样使用一个 key 字段来排序这个文件？sort 程序提供 了一个 -t 选项来定义分隔符。按照第七个字段（帐户的默认 shell）来排序此 passwd 文件，我们可以这样做：
 
-```
+```sh
 [me@linuxbox ~]$ sort -t ':' -k 7 /etc/passwd | head
 me:x:1001:1001:Myself,,,:/home/me:/bin/bash
 root:x:0:0:root:/root:/bin/bash
@@ -1114,7 +1114,7 @@ Let's make a text file to try this out:
 
 > 让我们创建一个文本文件，来实验一下：
 
-```
+```sh
 [me@linuxbox ~]$ cat > foo.txt
 a
 b
@@ -1128,7 +1128,7 @@ Remember to type Ctrl-d to terminate standard input. Now, if we run uniq on our 
 
 > 记住输入 Ctrl-d 来终止标准输入。现在，如果我们对文本文件执行 uniq 命令：
 
-```
+```sh
 [me@linuxbox ~]$ uniq foo.txt
 a
 b
@@ -1142,7 +1142,7 @@ the results are no different from our original file; the duplicates were not rem
 
 > 输出结果与原始文件没有差异；重复行没有被删除。实际上，uniq 程序能完成任务，其输入必须是排好序的数据，
 
-```
+```sh
 [me@linuxbox ~]$ sort foo.txt | uniq
 a
 b
@@ -1585,7 +1585,7 @@ Here we see uniq used to report the number of duplicates found in our text file,
 
 > 这里我们看到 uniq 被用来报告文本文件中重复行的次数，使用这个-c 选项：
 
-```
+```sh
 [me@linuxbox ~]$ sort foo.txt | uniq -c
         2 a
         2 b
@@ -1928,7 +1928,7 @@ As we can see, the way cut extracts text is rather inflexible. cut is best used 
 
 > 正如我们所看到的，cut 程序抽取文本的方式相当不灵活。cut 命令最好用来从其它程序产生的文件中 抽取文本，而不是从人们直接输入的文本中抽取。我们将会看一下我们的 distros.txt 文件，看看 是否它足够 "整齐" 成为 cut 实例的一个好样本。如果我们使用带有 -A 选项的 cat 命令，我们能查看是否这个 文件符号由 tab 字符分离字段的要求。
 
-```
+```sh
 [me@linuxbox ~]$ cat -A distros.txt
 SUSE^I10.2^I12/07/2006$
 Fedora^I10^I11/25/2008$
@@ -1952,7 +1952,7 @@ It looks good. No embedded spaces, just single tab characters between the fields
 
 > 看起来不错。字段之间仅仅是单个 tab 字符，没有嵌入空格。因为这个文件使用了 tab 而不是空格， 我们将使用 -f 选项来抽取一个字段：
 
-```
+```sh
 [me@linuxbox ~]$ cut -f 3 distros.txt
 12/07/2006
 11/25/2008
@@ -1976,7 +1976,7 @@ Because our distros file is tab-delimited, it is best to use cut to extract fiel
 
 > 因为我们的 distros 文件是由 tab 分隔开的，最好用 cut 来抽取字段而不是字符。这是因为一个由 tab 分离的文件， 每行不太可能包含相同的字符数，这就使计算每行中字符的位置变得困难或者是不可能。在以上事例中，然而， 我们已经抽取了一个字段，幸运地是其包含地日期长度相同，所以通过从每行中抽取年份，我们能展示怎样 来抽取字符：
 
-```
+```sh
 [me@linuxbox ~]$ cut -f 3 distros.txt | cut -c 7-10
 2006
 2008
@@ -2022,7 +2022,7 @@ When working with fields, it is possible to specify a different field delimiter 
 
 > 当操作字段的时候，有可能指定不同的字段分隔符，而不是 tab 字符。这里我们将会从/etc/passwd 文件中 抽取第一个字段：
 
-```
+```sh
 [me@linuxbox ~]$ cut -d ':' -f 1 /etc/passwd | head
 root
 daemon
@@ -2050,7 +2050,7 @@ From our earlier work with sort, we will first produce a list of distros sorted 
 
 > 从我们之前使用 sort 的工作中，首先我们将产生一个按照日期排序的发行版列表，并把结果 存储在一个叫做 distros-by-date.txt 的文件中：
 
-```
+```sh
 [me@linuxbox ~]$ sort -k 3.7nbr -k 3.1nbr -k 3.4nbr distros.txt > distros-by-date.txt
 ```
 
@@ -2058,7 +2058,7 @@ Next, we will use cut to extract the first two fields from the file (the distro 
 
 > 下一步，我们将会使用 cut 命令从文件中抽取前两个字段（发行版名字和版本号），并把结果存储到 一个名为 distro-versions.txt 的文件中：
 
-```
+```sh
 [me@linuxbox ~]$ cut -f 1,2 distros-by-date.txt > distros-versions.txt
 [me@linuxbox ~]$ head distros-versions.txt
 Fedora     10
@@ -2077,7 +2077,7 @@ The final piece of preparation is to extract the release dates and store them a 
 
 > 最后的准备步骤是抽取发行日期，并把它们存储到一个名为 distro-dates.txt 文件中：
 
-```
+```sh
 [me@linuxbox ~]$ cut -f 3 distros-by-date.txt > distros-dates.txt
 [me@linuxbox ~]$ head distros-dates.txt
 11/25/2008
@@ -2096,7 +2096,7 @@ We now have the parts we need. To complete the process, use paste to put the col
 
 > 现在我们拥有了我们所需要的文本了。为了完成这个过程，使用 paste 命令来把日期列放到发行版名字 和版本号的前面，这样就创建了一个年代列表。通过使用 paste 命令，然后按照期望的顺序来安排它的 参数，就能很容易完成这个任务。
 
-```
+```sh
 [me@linuxbox ~]$ paste distros-dates.txt distros-versions.txt
 11/25/2008  Fedora     10
 10/30/2008  Ubuntu     8.10
@@ -2120,7 +2120,7 @@ To see how a join operation is used in a relational database, let's imagine a ve
 
 > 为了知道在关系数据库中是怎样使用 join 操作的，让我们想象一个很小的数据库，这个数据库由两个 表格组成，每个表格包含一条记录。第一个表格，叫做 CUSTOMERS，有三个数据域：一个客户号（CUSTNUM）， 客户的名字（FNAME）和客户的姓（LNAME）：
 
-```
+```sh
 CUSTNUM     FNAME       ME
 ========    =====       ======
 4681934     John        Smith
@@ -2130,7 +2130,7 @@ The second table is called ORDERS and contains four fields: an order number (ORD
 
 > 第二个表格叫做 ORDERS，其包含四个数据域：订单号（ORDERNUM），客户号（CUSTNUM），数量（QUAN）， 和订购的货品（ITEM）。
 
-```
+```sh
 ORDERNUM        CUSTNUM     QUAN ITEM
 ========        =======     ==== ====
 3014953305      4681934     1    Blue Widget
@@ -2144,7 +2144,7 @@ Performing a join operation would allow us to combine the fields in the two tabl
 
 > 执行一个 join 操作将允许我们把两个表格中的数据域结合起来，得到一个有用的结果，例如准备 一张发货单。通过使用两个表格 CUSTNUM 数字域中匹配的数值，一个 join 操作会产生以下结果：
 
-```
+```sh
 FNAME       LNAME       QUAN ITEM
 =====       =====       ==== ====
 John        Smith       1    Blue Widget
@@ -2154,7 +2154,7 @@ To demonstrate the join program, we'll need to make a couple of files with a sha
 
 > 为了说明 join 程序，我们需要创建一对包含共享键值的文件。为此，我们将使用我们的 distros.txt 文件。 从这个文件中，我们将构建额外两个文件，一个包含发行日期（其会成为共享键值）和发行版名称：
 
-```
+```sh
 [me@linuxbox ~]$ cut -f 1,1 distros-by-date.txt > distros-names.txt
 [me@linuxbox ~]$ paste distros-dates.txt distros-names.txt > distros-key-names.txt
 [me@linuxbox ~]$ head distros-key-names.txt
@@ -2174,7 +2174,7 @@ and the second file, which contains the release dates and the version numbers:
 
 > 第二个文件包含发行日期和版本号：
 
-```
+```sh
 [me@linuxbox ~]$ cut -f 2,2 distros-by-date.txt > distros-vernums.txt
 [me@linuxbox ~]$ paste distros-dates.txt distros-vernums.txt > distros-key-vernums.txt
 [me@linuxbox ~]$ head distros-key-vernums.txt
@@ -2194,7 +2194,7 @@ We now have two files with a shared key (the "release date" field). It is import
 
 > 现在我们有两个具有共享键值（ "发行日期" 数据域 ）的文件。有必要指出，为了使 join 命令 能正常工作，所有文件必须按照关键数据域排序。
 
-```
+```sh
 [me@linuxbox ~]$ join distros-key-names.txt distros-key-vernums.txt | head
 11/25/2008 Fedora 10
 10/30/2008 Ubuntu 8.10
@@ -2224,7 +2224,7 @@ The comm program compares two text files and displays the lines that are unique 
 
 > 这个 comm 程序会比较两个文本文件，并且会显示每个文件特有的文本行和共有的文把行。 为了说明问题，通过使用 cat 命令，我们将会创建两个内容几乎相同的文本文件：
 
-```
+```sh
 [me@linuxbox ~]$ cat > file1.txt
 a
 b
@@ -2241,7 +2241,7 @@ Next, we will compare the two files using comm:
 
 > 下一步，我们将使用 comm 命令来比较这两个文件：
 
-```
+```sh
 [me@linuxbox ~]$ comm file1.txt file2.txt
 a
         b
@@ -2254,7 +2254,7 @@ As we can see, comm produces three columns of output. The first column contains 
 
 > 正如我们所见到的，comm 命令产生了三列输出。第一列包含第一个文件独有的文本行；第二列， 文本行是第二个文件独有的；第三列包含两个文件共有的文本行。comm 支持 -n 形式的选项，这里 n 代表 1，2 或 3。这些选项使用的时候，指定了要隐藏的列。例如，如果我们只想输出两个文件共享的文本行， 我们将隐藏第一列和第二列的输出结果：
 
-```
+```sh
 [me@linuxbox ~]$ comm -12 file1.txt file2.txt
 b
 c
@@ -2271,7 +2271,7 @@ If we use diff to look at our previous example files:
 
 > 如果我们使用 diff 程序，来查看我们之前的文件实例：
 
-```
+```sh
 [me@linuxbox ~]$ diff file1.txt file2.txt
 1d0
 < a
@@ -2551,7 +2551,7 @@ When viewed using the *context format* (the -c option), we will see this:
 
 > 当使用上下文模式（带上 -c 选项），我们将看到这些：
 
-```
+```sh
 [me@linuxbox ~]$ diff -c file1.txt file2.txt
 *** file1.txt    2008-12-23 06:40:13.000000000 -0500
 --- file2.txt   2008-12-23 06:40:34.000000000 -0500
@@ -2572,7 +2572,7 @@ The output begins with the names of the two files and their timestamps. The firs
 
 > 这个输出结果以两个文件名和它们的时间戳开头。第一个文件用星号做标记，第二个文件用短横线做标记。 纵观列表的其它部分，这些标记将象征它们各自代表的文件。下一步，我们看到几组修改， 包括默认的周围上下文行数。在第一组中，我们看到：
 
-```
+```sh
 *** 1,4 ***
 ```
 
@@ -2580,7 +2580,7 @@ which indicates lines one through four in the first file. Later we see:
 
 > 其表示第一个文件中从第一行到第四行的文本行。随后我们看到：
 
-```
+```sh
 --- 1,4 ---
 ```
 
@@ -2908,7 +2908,7 @@ The *unified format* is similar to the *context format*, but is more concise. It
 
 > 这个统一模式相似于上下文模式，但是更加简洁。通过 -u 选项来指定它：
 
-```
+```sh
 [me@linuxbox ~]$ diff -u file1.txt file2.txt
 --- file1.txt 2008-12-23 06:40:13.000000000 -0500
 +++ file2.txt 2008-12-23 06:40:34.000000000 -0500
@@ -3205,7 +3205,7 @@ To prepare a diff file for use with patch, the GNU documentation (see Further Re
 
 > 准备一个 diff 文件供 patch 程序使用，GNU 文档（查看下面的拓展阅读部分）建议这样使用 diff 命令：
 
-```
+```sh
 diff -Naur old_file new_file > diff_file
 ```
 
@@ -3217,7 +3217,7 @@ Once the diff file has been created, we can apply it to patch the old file into 
 
 > 一旦创建了 diff 文件，我们就能应用它，把旧文件修补成新文件。
 
-```
+```sh
 patch < diff_file
 ```
 
@@ -3225,7 +3225,7 @@ We'll demonstrate with our test file:
 
 > 我们将使用测试文件来说明：
 
-```
+```sh
 [me@linuxbox ~]$ diff -Naur file1.txt file2.txt > patchfile.txt
 [me@linuxbox ~]$ patch < patchfile.txt
 patching file file1.txt
@@ -3256,7 +3256,7 @@ The tr program is used to transliterate characters. We can think of this as a so
 
 > 这个 tr 程序被用来更改字符。我们可以把它看作是一种基于字符的查找和替换操作。 换字是一种把字符从一个字母转换为另一个字母的过程。例如，把小写字母转换成大写字母就是 换字。我们可以通过 tr 命令来执行这样的转换，如下所示：
 
-```
+```sh
 [me@linuxbox ~]$ echo "lowercase letters" | tr a-z A-Z
 LOWERCASE LETTERS
 ```
@@ -3278,7 +3278,7 @@ In most cases, both character sets should be of equal length; however, it is pos
 
 > 大多数情况下，两个字符集应该长度相同；然而，有可能第一个集合大于第二个，尤其如果我们 想要把多个字符转换为单个字符：
 
-```
+```sh
 [me@linuxbox ~]$ echo "lowercase letters" | tr [:lower:] A
 AAAAAAAAA AAAAAAA
 ```
@@ -3287,7 +3287,7 @@ In addition to transliteration, tr allows characters to simply be deleted from t
 
 > 除了换字之外，tr 命令能允许字符从输入流中简单地被删除。在之前的章节中，我们讨论了转换 MS-DOS 文本文件为 Unix 风格文本的问题。为了执行这个转换，每行末尾的回车符需要被删除。 这个可以通过 tr 命令来执行，如下所示：
 
-```
+```sh
 tr -d '\r' < dos_file > unix_file
 ```
 
@@ -3295,7 +3295,7 @@ where dos_file is the file to be converted and unix_file is the result. This for
 
 > 这里的 dos_file 是需要被转换的文件，unix_file 是转换后的结果。这种形式的命令使用转义序列 `\r 来`{=tex}代表回车符。查看 tr 命令所支持地完整的转义序列和字符类别列表，试试下面的命令：
 
-```
+```sh
 [me@linuxbox ~]$ tr --help
 ```
 
@@ -3329,7 +3329,7 @@ tr can perform another trick, too. Using the -s option, tr can "squeeze" (delete
 
 tr 也可以完成另一个技巧。使用-s 选项，tr 命令能"挤压"（删除）重复的字符实例：
 
-```
+```sh
 [me@linuxbox ~]$ echo "aaabbbccc" | tr -s ab
 abccc
 ```
@@ -3338,7 +3338,7 @@ Here we have a string containing repeated characters. By specifying the set "ab"
 
 > 这里我们有一个包含重复字符的字符串。通过给 tr 命令指定字符集"ab"，我们能够消除字符集中 字母的重复实例，然而会留下不属于字符集的字符（"c"）无更改。注意重复的字符必须是相邻的。 如果它们不相邻：
 
-```
+```sh
 [me@linuxbox ~]$ echo "abcabcabc" | tr -s ab
 abcabcabc
 ```
@@ -3357,7 +3357,7 @@ In general, the way that sed works is that it is given either a single editing c
 
 > 总之，sed 的工作方式是要不给出单个编辑命令（在命令行中）要不就是包含多个命令的脚本文件名， 然后它就按行来执行这些命令。这里有一个非常简单的 sed 实例：
 
-```
+```sh
 [me@linuxbox ~]$ echo "front" | sed 's/front/back/'
 back
 ```
@@ -3370,7 +3370,7 @@ Commands in sed begin with a single letter. In the example above, the substituti
 
 sed 中的命令开始于单个字符。在上面的例子中，这个替换命令由字母 s 来代表，其后跟着查找 和替代字符串，斜杠字符做为分隔符。分隔符的选择是随意的。按照惯例，经常使用斜杠字符， 但是 sed 将会接受紧随命令之后的任意字符做为分隔符。我们可以按照这种方式来执行相同的命令：
 
-```
+```sh
 [me@linuxbox ~]$ echo "front" | sed 's_front_back_'
 back
 ```
@@ -3383,7 +3383,7 @@ Most commands in sed may be preceded by an address, which specifies which line(s
 
 sed 中的大多数命令之前都会带有一个地址，其指定了输入流中要被编辑的文本行。如果省略了地址， 然后会对输入流的每一行执行编辑命令。最简单的地址形式是一个行号。我们能够添加一个地址 到我们例子中：
 
-```
+```sh
 [me@linuxbox ~]$ echo "front" | sed '1s/front/back/'
 back
 ```
@@ -3392,7 +3392,7 @@ Adding the address 1 to our command causes our substitution to be performed on t
 
 > 给我们的命令添加地址 1，就导致只对仅有一行文本的输入流的第一行执行替换操作。如果我们指定另一 个数字：
 
-```
+```sh
 [me@linuxbox ~]$ echo "front" | sed '2s/front/back/'
 front
 ```
@@ -3891,7 +3891,7 @@ We'll demonstrate different kinds of addresses using the distros.txt file from e
 
 > 通过使用这一章中早前的 distros.txt 文件，我们将演示不同种类的地址表示法。首先，一系列行号：
 
-```
+```sh
 [me@linuxbox ~]$ sed -n '1,5p' distros.txt
 SUSE           10.2     12/07/2006
 Fedora         10       11/25/2008
@@ -3908,7 +3908,7 @@ Next, we'll try a regular expression:
 
 > 下一步，我们将试用一下正则表达式：
 
-```
+```sh
 [me@linuxbox ~]$ sed -n '/SUSE/p' distros.txt
 SUSE         10.2     12/07/2006
 SUSE         11.0     06/19/2008
@@ -3924,7 +3924,7 @@ Finally, we'll try negation by adding an ! to the address:
 
 > 最后，我们将试着否定上面的操作，通过给这个地址添加一个感叹号：
 
-```
+```sh
 [me@linuxbox ~]$ sed -n '/SUSE/!p' distros.txt
 Fedora         10       11/25/2008
 Ubuntu         8.04     04/24/2008
@@ -4548,7 +4548,7 @@ The s command is by far the most commonly used editing command. We will demonstr
 
 > 到目前为止，这个 s 命令是最常使用的编辑命令。我们将仅仅演示一些它的功能，通过编辑我们的 distros.txt 文件。我们以前讨论过 distros.txt 文件中的日期字段不是"友好地计算机"模式。 文件中的日期格式是 MM/DD/YYYY，但如果格式是 YYYY-MM-DD 会更好一些（利于排序）。手动修改 日期格式不仅浪费时间而且易出错，但是有了 sed，只需一步就能完成修改：
 
-```
+```sh
 [me@linuxbox ~]$ sed 's/\([0-9]\{2\}\)\/\([0-9]\{2\}\)\/\([0-9]\{4\}\)$/\3-\1-\2/' distros.txt
 SUSE           10.2     2006-12-07
 Fedora         10       2008-11-25
@@ -4572,7 +4572,7 @@ Wow! Now that is an ugly looking command. But it works. In just one step, we hav
 
 > 哇！这个命令看起来很丑陋。但是它起作用了。仅用一步，我们就更改了文件中的日期格式。 它也是一个关于为什么有时候会开玩笑地把正则表达式称为是"只写"媒介的完美的例子。我们 能写正则表达式，但是有时候我们不能读它们。在我们恐惧地忍不住要逃离此命令之前，让我们看一下 怎样来构建它。首先，我们知道此命令有这样一个基本的结构：
 
-```
+```sh
 sed 's/regexp/replacement/' distros.txt
 ```
 
@@ -4580,7 +4580,7 @@ Our next step is to figure out a regular expression that will isolate the date. 
 
 > 我们下一步是要弄明白一个正则表达式将要孤立出日期。因为日期是 MM/DD/YYYY 格式，并且 出现在文本行的末尾，我们可以使用这样的表达式：
 
-```
+```sh
 [0-9]{2}/[0-9]{2}/[0-9]{4}$
 ```
 
@@ -4588,7 +4588,7 @@ which matches two digits, a slash, two digits, a slash, four digits, and the end
 
 > 此表达式匹配两位数字，一个斜杠，两位数字，一个斜杠，四位数字，以及行尾。如此关心 **regexp**， 那么 **replacement** 又怎样呢？为了解决此问题，我们必须介绍一个正则表达式的新功能，它出现 在一些使用 BRE 的应用程序中。这个功能叫做 **逆参照** ，像这样工作：如果序列 `\n` 出现在 **replacement** 中 ，这里 n 是指从 1 到 9 的数字，则这个序列指的是在前面正则表达式中相对应的子表达式。为了 创建这个子表达式，我们简单地把它们用圆括号括起来，像这样：
 
-```
+```sh
 ([0-9]{2})/([0-9]{2})/([0-9]{4})$
 ```
 
@@ -4596,7 +4596,7 @@ We now have three subexpressions. The first contains the month, the second conta
 
 > 现在我们有了三个子表达式。第一个表达式包含月份，第二个包含某月中的某天，以及第三个包含年份。 现在我们就可以构建 **replacement** ，如下所示：
 
-```
+```sh
 \3-\1-\2
 ```
 
@@ -4606,7 +4606,7 @@ which gives us the year, a dash, the month, a dash, and the day.
 
 Now, our command looks like this: 现在我们的命令看起来像下面这样：
 
-```
+```sh
 sed 's/([0-9]{2})/([0-9]{2})/([0-9]{4})$/\3-\1-\2/' distros.txt
 ```
 
@@ -4614,7 +4614,7 @@ We have two remaining problems. The first is that the extra slashes in our regul
 
 > 我们还有两个问题。第一个是当 sed 试图解释这个 s 命令的时候在我们表达式中额外的斜杠将会使 sed 迷惑。 第二个是由于 sed 默认情况下只接受基本的正则表达式，在表达式中的几个字符会 被当作文字字面值，而不是元字符。我们能够通过反斜杠的自由应用来转义令人不快的字符解决这两个问题，：
 
-```
+```sh
 sed 's/\([0-9]\{2\}\)\/\([0-9]\{2\}\)\/\([0-9]\{4\}\)$/\3-\1-\2/' distros.txt
 ```
 
@@ -4626,7 +4626,7 @@ Another feature of the s command is the use of optional flags that may follow th
 
 s 命令的另一个功能是使用可选标志，其跟随替代字符串。一个最重要的可选标志是 g 标志，其 指示 sed 对某个文本行全范围地执行查找和替代操作，不仅仅是对第一个实例，这是默认行为。 这里有个例子：
 
-```
+```sh
 [me@linuxbox ~]$ echo "aaabbbccc" | sed 's/b/B/'
 aaaBbbccc
 ```
@@ -4635,7 +4635,7 @@ We see that the replacement was performed, but only to the first instance of the
 
 > 我们看到虽然执行了替换操作，但是只针对第一个字母 "b" 实例，然而剩余的实例没有更改。通过添加 g 标志， 我们能够更改所有的实例：
 
-```
+```sh
 [me@linuxbox ~]$ echo "aaabbbccc" | sed 's/b/B/g'
 aaaBBBccc
 ```
@@ -4644,7 +4644,7 @@ So far, we have only given sed single commands via the command line. It is also 
 
 > 目前为止，通过命令行我们只让 sed 执行单个命令。使用-f 选项，也有可能在一个脚本文件中构建更加复杂的命令。 为了演示，我们将使用 sed 和 distros.txt 文件来生成一个报告。我们的报告以开头标题，修改过的日期，以及 大写的发行版名称为特征。为此，我们需要编写一个脚本，所以我们将打开文本编辑器，然后输入以下文字：
 
-```
+```sh
 # sed script to produce Linux distributions report
 
 1 i\
@@ -4659,7 +4659,7 @@ We will save our sed script as distros.sed and run it like this:
 
 > 我们将把 sed 脚本保存为 distros.sed 文件，然后像这样运行它：
 
-```
+```sh
 [me@linuxbox ~]$ sed -f distros.sed distros.txt
 Linux Distributions Report
 SUSE    10.2    2006-12-07
@@ -4681,7 +4681,7 @@ As we can see, our script produces the desired results, but how does is do it? L
 
 > 正如我们所见，我们的脚本文件产生了期望的结果，但是它是如何做到的呢？让我们再看一下我们的脚本文件。 我们将使用 cat 来给每行文本编号：
 
-```
+```sh
 [me@linuxbox ~]$ cat -n distros.sed
 1 # sed script to produce Linux distributions report
 2
@@ -4743,7 +4743,7 @@ To spell check a text file containing simple prose, it could be used like this:
 
 > 拼写检查一个包含简单的文本文件，可以这样使用 aspell:
 
-```
+```sh
 aspell check textfile
 ```
 
@@ -4751,7 +4751,7 @@ where *textfile* is the name of the file to check. As a practical example, let's
 
 > 这里的 textfile 是要检查的文件名。作为一个实际例子，让我们创建一个简单的文本文件，叫做 foo.txt， 包含一些故意的拼写错误：
 
-```
+```sh
 [me@linuxbox ~]$ cat > foo.txt
 The quick brown fox jimped over the laxy dog.
 ```
@@ -4760,7 +4760,7 @@ Next we'll check the file using aspell:
 
 > 下一步我们将使用 aspell 来检查文件：
 
-```
+```sh
 [me@linuxbox ~]$ aspell check foo.txt
 ```
 
@@ -4768,7 +4768,7 @@ As aspell is interactive in the check mode, we will see a screen like this:
 
 > 因为 aspell 在检查模式下是交互的，我们将看到像这样的一个屏幕：
 
-```
+```sh
 The quick brown fox jimped over the laxy dog.
 1)jumped                        6)wimped
 2)gimped                        7)camped
@@ -4790,7 +4790,7 @@ If we press the 1 key, aspell replaces the offending word with the word "jumped"
 
 > 如果我们按下 1 按键，aspell 会用单词 "jumped" 代替错误单词，然后移动到下一个拼写错的单词，就是 "laxy"。如果我们选择替代物 "lazy"，aspell 会替换 "laxy" 并且终止。一旦 aspell 结束操作，我们 可以检查我们的文件，会看到拼写错误的单词已经更正了。
 
-```
+```sh
 [me@linuxbox ~]$ cat foo.txt
 The quick brown fox jumped over the lazy dog.
 ```
@@ -4803,7 +4803,7 @@ Showing off our sed editing prowess, we'll put our spelling mistakes back in so 
 
 > 为了炫耀 sed 的编辑本领，我们将还原拼写错误，从而能够重用我们的文件：
 
-```
+```sh
 [me@linuxbox ~]$ sed -i 's/lazy/laxy/; s/jumped/jimped/' foo.txt
 ```
 
@@ -4815,7 +4815,7 @@ Next, we'll look at how aspell can handle different kinds of text files. Using a
 
 > 下一步，我们将看一下 aspell 怎样来解决不同种类的文本文件。使用一个文本编辑器，例如 vim（胆大的人可能想用 sed）， 我们将添加一些 HTML 标志到文件中：
 
-```
+```sh
 <html>
     <head>
           <title>Mispelled HTML file</title>
@@ -4830,7 +4830,7 @@ Now, if we try to spell check our modified file, we run into a problem. If we do
 
 > 现在，如果我们试图拼写检查我们修改的文件，我们会遇到一个问题。如果我们这样做：
 
-```
+```sh
 [me@linuxbox ~]$ aspell check foo.txt
 ```
 
@@ -4838,7 +4838,7 @@ we'll get this:
 
 > 我们会得到这些：
 
-```
+```sh
 <html>
     <head>
           <title>Mispelled HTML file</title>
@@ -4861,7 +4861,7 @@ aspell will see the contents of the HTML tags as misspelled. This problem can be
 
 aspell 会认为 HTML 标志的内容是拼写错误。通过包含-H（HTML）检查模式选项，这个问题能够 解决，像这样：
 
-```
+```sh
 [me@linuxbox ~]$ aspell -H check foo.txt
 ```
 
@@ -4869,7 +4869,7 @@ which will result in this:
 
 > 这会导致这样的结果：
 
-```
+```sh
 <html>
     <head>
           <title><b>Mispelled</b> HTML file</title>

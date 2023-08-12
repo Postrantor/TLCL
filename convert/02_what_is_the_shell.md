@@ -18,7 +18,7 @@ So let's get started. Launch the terminal emulator! Once it comes up, we should 
 
 > 好，开始吧。启动终端仿真器！一旦它运行起来，我们应该看到一行像这样的文字：
 
-```
+```sh
 [me@linuxbox ~]$
 ```
 
@@ -34,7 +34,7 @@ Assuming that things are good so far, let's try some typing. Type some gibberish
 
 > 假定到目前为止，所有事情都进展顺利，那我们试着键入字符吧。在提示符下敲入 一些像下面一样的乱七八糟的字符：
 
-```
+```sh
 [me@linuxbox ~]$ kaekfjaeifj
 ```
 
@@ -42,7 +42,7 @@ Since this command makes no sense, the shell will tell us so and give us another
 
 > 因为这个命令没有任何意义，所以 shell 会提示错误信息，并让我们再试一下：
 
-```
+```sh
 bash: kaekfjaeifj: command not found
 [me@linuxbox ~]$
 ```
@@ -79,7 +79,7 @@ Now that we have learned to type, let's try a few simple commands. The first one
 
 > 现在，我们学习了怎样输入命令，那我们执行一些简单的命令吧。第一个命令是 date。 这个命令显示系统当前时间和日期。
 
-```
+```sh
 [me@linuxbox ~]$ date
 Thu Oct 25 13:51:54 EDT 2007
 ```
@@ -88,7 +88,7 @@ A related command is cal which, by default, displays a calendar of the current m
 
 > 一个相关联的命令，cal，它默认显示当前月份的日历。
 
-```
+```sh
 [me@linuxbox ~]$ cal
 October 2007
 Su Mo Tu We Th Fr Sa
@@ -103,7 +103,7 @@ To see the current amount of free space on your disk drives, type df:
 
 > 查看磁盘剩余空间的数量，输入 df:
 
-```
+```sh
 [me@linuxbox ~]$ df
 Filesystem           1K-blocks      Used Available Use% Mounted on
 /dev/sda2             15115452   5012392   9949716  34% /
@@ -116,7 +116,7 @@ Likewise, to display the amount of free memory, type the free command.
 
 > 同样地，显示空闲内存的数量，输入命令 free 。
 
-```
+```sh
 [me@linuxbox ~]$ free
 total       used       free     shared    buffers     cached
 Mem:       2059676     846456    1213220          0
@@ -131,7 +131,7 @@ We can end a terminal session by either closing the terminal emulator window, or
 
 > 我们可以通过关闭终端仿真器窗口，或者是在 shell 提示符下输入 exit 命令来终止一个终端会话：
 
-```
+```sh
 [me@linuxbox ~]$ exit
 ```
 

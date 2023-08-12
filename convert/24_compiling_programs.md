@@ -174,7 +174,7 @@ We can check to see if the compiler is present like this:
 > 在 Linux 环境中，普遍使用的 C 编译器叫做 gcc（GNU C 编译器），最初由 Richard Stallman 写出来的。
 > 大多数 Linux 系统发行版默认不安装 gcc。我们可以这样查看该编译器是否存在：
 
-```
+```sh
 [me@linuxbox ~]$ which gcc
 /usr/bin/gcc
 ```
@@ -211,7 +211,7 @@ src and then download the source code into it using ftp:
 
 > 遵照惯例，首先我们要创建一个名为 src 的目录来存放我们的源码，然后使用 ftp 协议把源码下载下来。
 
-```
+```sh
 [me@linuxbox ~]$ mkdir src
 [me@linuxbox ~]$ cd src
 [me@linuxbox src]$ ftp ftp.gnu.org
@@ -267,7 +267,7 @@ Once the tar file is downloaded, it must be unpacked. This is done with the tar 
 
 > 一旦 tar 文件下载下来之后，必须解包。通过 tar 程序可以完成：
 
-```
+```sh
 [me@linuxbox src]$ tar xzf diction-1.11.tar.gz
 [me@linuxbox src]$ ls
 diction-1.11
@@ -294,7 +294,7 @@ following command to examine the contents of the tar file:
 > 然而，通常在打开 tarball 之前检验源码树的布局是个不错的主意。一些项目不会创建该目录，反而，会把文件直接传递给当前目录。
 > 这会把你的（除非组织良好的）src 目录弄得一片狼藉。为了避免这个，使用下面的命令，检查 tar 文件的内容：
 
-```
+```sh
 tar tzvf tarfile | head
 ```
 
@@ -307,7 +307,7 @@ This directory contains the source tree. Let’s look inside:
 
 > 打开该 tar 文件，会创建一个新的目录，名为 diction-1.11。这个目录包含了源码树。让我们看一下里面的内容：
 
-```
+```sh
 [me@linuxbox src]$ cd diction-1.11
 [me@linuxbox diction-1.11]$ ls
 config.guess     diction.c          getopt.c      nl
@@ -336,7 +336,7 @@ The other interesting files in this directory are the ones ending with .c and .h
 
 > 在这个目录中，其它有趣的文件是那些以 .c 和 .h 为后缀的文件：
 
-```
+```sh
 [me@linuxbox diction-1.11]$ ls *.c
 diction.c getopt1.c getopt.c misc.c sentence.c style.c
 [me@linuxbox diction-1.11]$ ls *.h
@@ -350,7 +350,7 @@ smaller, easier to manage pieces. The source code files are ordinary text and ca
 > 这些 .c 文件包含了由该软件包提供的两个 C 程序（style 和 diction），被分割成模块。这是一种常见做法，把大型程序
 > 分解成更小，更容易管理的代码块。源码文件都是普通文本，可以用 less 命令查看：
 
-```
+```sh
 [me@linuxbox diction-1.11]$ less diction.c
 ```
 
@@ -363,7 +363,7 @@ complete the entire program. Near the beginning of the diction.c file, we see th
 > 为了让编译器链接到模块，编译器必须接受所需的所有模块的描述，来完成整个程序。在 diction.c 文件的开头附近，
 > 我们看到这行代码：
 
-```
+```sh
 #include "getopt.h"
 ```
 
@@ -378,7 +378,7 @@ Above the include statement for getopt.h, we see some other include statements s
 
 > 在 getopt.h 的 include 语句上面，我们看到一些其它的 include 语句，比如这些：
 
-```
+```sh
 #include <regex.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -393,7 +393,7 @@ If we look in /usr/include, we can see them:
 > 这些文件也是头文件，但是这些头文件在当前源码树的外面。它们由操作系统供给，来支持每个程序的编译。
 > 如果我们看一下 /usr/include 目录，能看到它们：
 
-```
+```sh
 [me@linuxbox diction-1.11]$ ls /usr/include
 ```
 
@@ -407,7 +407,7 @@ Most programs build with a simple, two-command sequence:
 
 > 大多数程序通过一个简单的，两个命令的序列构建：
 
-```
+```sh
 ./configure
 make
 ```
@@ -428,7 +428,7 @@ located in the current working directory:
 > 因为 configure 命令所在的位置不是位于 shell 通常期望程序所呆的地方，我们必须明确地告诉 shell 它的位置，通过
 > 在命令之前加上 ./ 字符，来表明程序位于当前工作目录：
 
-```
+```sh
 [me@linuxbox diction-1.11]$ ./configure
 ```
 
@@ -437,7 +437,7 @@ finishes, it will look something like this:
 
 configure 将会输出许多信息，随着它测试和配置整个构建过程。当结束后，输出结果看起来像这样：
 
-```
+```sh
 checking libintl.h presence... yes
 checking for libintl.h... yes
 checking for library containing gettext... none required
@@ -465,7 +465,7 @@ is an ordinary text file, so we can view it:
 > 我们看到在我们的源码目录中 configure 命令创建了几个新文件。最重要一个是 Makefile。Makefile 是一个配置文件，
 > 指示 make 程序究竟如何构建程序。没有它，make 程序就不能运行。Makefile 是一个普通文本文件，所以我们能查看它：
 
-```
+```sh
 [me@linuxbox diction-1.11]$ less Makefile
 ```
 
@@ -481,7 +481,7 @@ makefile. For example we see the line:
 
 makefile 文件的第一部分定义了变量，这些变量在该 makefile 后续章节中会被替换掉。例如我们看看这一行代码：
 
-```
+```sh
 CC=                 gcc
 ```
 
@@ -490,7 +490,7 @@ where it gets used:
 
 > 其定义了所用的 C 编译器是 gcc。文件后面部分，我们看到一个使用该变量的实例：
 
-```
+```sh
 diction:        diction.o sentence.o misc.o getopt.o getopt1.o
                 $(CC) -o $@ $(LDFLAGS) diction.o sentence.o misc.o \
                 getopt.o getopt1.o $(LIBS)
@@ -510,7 +510,7 @@ makefile, we see definitions of each of these as targets:
 > diction.o，sentence.o，misc.o，getopt.o，和 getopt1.o 都存在。在 makefile 文件后面部分，我们看到
 > diction 文件所依赖的每一个文件做为目标文件的定义：
 
-```
+```sh
 diction.o:       diction.c config.h getopt.h misc.h sentence.h
 getopt.o:        getopt.c getopt.h getopt_int.h
 getopt1.o:       getopt1.c getopt.h getopt_int.h
@@ -525,7 +525,7 @@ earlier in the file, that describes the command used to compile any .c file into
 > 然而，我们不会看到针对它们的任何命令。这个由一个通用目标解决，在文件的前面，描述了这个命令，用来把任意的
 > .c 文件编译成 .o 文件：
 
-```
+```sh
 .c.o:
             $(CC) -c $(CPPFLAGS) $(CFLAGS) $<
 ```
@@ -537,7 +537,7 @@ let’s run make and build our programs:
 > 这些看起来非常复杂。为什么不简单地列出编译每个部分的步骤，那样不就行了？一会儿就知道答案了。同时，
 > 让我们运行 make 命令并构建我们的程序：
 
-```
+```sh
 [me@linuxbox diction-1.11]$ make
 ```
 
@@ -550,7 +550,7 @@ When it finishes, we will see that all the targets are now present in our direct
 
 > 当 make 程序运行结束后，现在我们将看到所有的目标文件出现在我们的目录中。
 
-```
+```sh
 [me@linuxbox diction-1.11]$ ls
 config.guess  de.po             en              en_GB           sentence.c
 config.h      diction           en_GB.mo        en_GB.po        sentence.h
@@ -572,7 +572,7 @@ But just out of curiosity, let’s run make again:
 > 在这些文件之中，我们看到 diction 和 style，我们开始要构建的程序。恭喜一切正常！我们刚才源码编译了
 > 我们的第一个程序。但是出于好奇，让我们再运行一次 make 程序：
 
-```
+```sh
 [me@linuxbox diction-1.11]$ make
 make: Nothing to be done for `all'.
 ```
@@ -587,7 +587,7 @@ running make again to see what it does. Let’s get rid of one of the intermedia
 > 需要构建的部分，而不是简单地重新构建所有的内容。由于所有的目标文件都存在，make 确定没有任何事情需要做。
 > 我们可以证明这一点，通过删除一个目标文件，然后再次运行 make 程序，看看它做些什么。让我们去掉一个中间目标文件：
 
-```
+```sh
 [me@linuxbox diction-1.11]$ rm getopt.o
 [me@linuxbox diction-1.11]$ make
 ```
@@ -605,7 +605,7 @@ program to “update” one of the source code files, we can see this happen:
 > 这个非常有意义，做为一名程序员，经常会更新一点儿源码，然后使用 make 来构建一个新版本的成品。make 确保
 > 基于更新的代码构建了需要构建的内容。如果我们使用 touch 程序，来“更新”其中一个源码文件，我们看到发生了这样的事情：
 
-```
+```sh
 [me@linuxboxdiction-1.11]$ ls -l diction getopt.c
 -rwxr-xr-x 1 me me 37164 2009-03-05 06:14 diction
 -rw-r--r-- 1 me me 33125 2007-03-30 17:45 getopt.c
@@ -620,7 +620,7 @@ After make runs, we see that it has restored the target to being newer than the 
 
 > 运行 make 之后，我们看到目标文件已经更新于它的依赖文件：
 
-```
+```sh
 [me@linuxbox diction-1.11]$ ls -l diction getopt.c
 -rwxr-xr-x 1 me me 37164 2009-03-05 06:24 diction
 -rw-r--r-- 1 me me 33125 2009-03-05 06:23 getopt.c
@@ -647,7 +647,7 @@ the superuser to perform the installation:
 > 通常，这个目录是 /usr/local/bin，为在本地所构建软件的传统安装位置。然而，通常普通用户不能写入该目录，所以我们必须变成超级用户，
 > 来执行安装操作：
 
-```
+```sh
 [me@linuxbox diction-1.11]$ sudo make install
 ```
 
@@ -655,7 +655,7 @@ After we perform the installation, we can check that the program is ready to go:
 
 > 执行了安装后，我们可以检查下程序是否已经可用：
 
-```
+```sh
 [me@linuxbox diction-1.11]$ which diction
 /usr/local/bin/diction
 [me@linuxbox diction-1.11]$ man diction
@@ -671,7 +671,7 @@ In this chapter, we have seen how three simple commands:
 
 > 在这一章中，我们已经知道了三个简单命令：
 
-```
+```sh
 ./configure
 make
 make install

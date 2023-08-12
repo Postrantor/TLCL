@@ -52,7 +52,7 @@ The most commonly used command to view processes (there are several) is ps. The 
 
 > 查看进程，最常使用地命令（有几个命令）是 ps(process status)。ps 程序有许多选项，它最简单地使用形式是这样的：
 
-```
+```sh
 [me@linuxbox ~]$ ps
 PID TTY           TIME CMD
 5198 pts/1    00:00:00 bash
@@ -67,7 +67,7 @@ If we add an option, we can get a bigger picture of what the system is doing:
 
 > 如果给 ps 命令加上选项，我们可以得到更多关于系统运行状态的信息：
 
-```
+```sh
 [me@linuxbox ~]$ ps x
 PID TTY   STAT   TIME COMMAND
 2799 ?    Ssl    0:00 /usr/libexec/bonobo-activation-server –ac
@@ -612,7 +612,7 @@ Another popular set of options is "aux" (without a leading dash). This gives us 
 
 > 另一个流行的选项组合是 "aux"（不带开头的"-"字符）。这会给我们更多信息：
 
-```
+```sh
 [me@linuxbox ~]$ ps aux
 USER   PID  %CPU  %MEM     VSZ    RSS  TTY   STAT   START   TIME  COMMAND
 root     1   0.0   0.0    2136    644  ?     Ss     Mar05   0:31  init
@@ -1091,7 +1091,7 @@ While the ps command can reveal a lot about what the machine is doing, it provid
 
 > 虽然 ps 命令能够展示许多计算机运行状态的信息，但是它只是提供 ps 命令执行时刻的机器状态快照。 为了看到更多动态的信息，我们使用 top 命令：
 
-```
+```sh
 [me@linuxbox ~]$ top
 ```
 
@@ -1099,7 +1099,7 @@ The top program displays a continuously updating (by default, every 3 seconds) d
 
 top 程序以进程活动顺序显示连续更新的系统进程列表。（默认情况下，每三秒钟更新一次），"top"这个名字 来源于 top 程序是用来查看系统中"顶端"进程的。top 显示结果由两部分组成： 最上面是系统概要，下面是进程列表，以 CPU 的使用率排序。
 
-```
+```sh
 top - 14:59:20 up 6:30, 2 users, load average: 0.07, 0.02, 0.00
 Tasks: 109 total,   1 running,  106 sleeping,    0 stopped,    2 zombie
 Cpu(s): 0.7%us, 1.0%sy, 0.0%ni, 98.3%id, 0.0%wa, 0.0%hi, 0.0%si
@@ -2301,7 +2301,7 @@ Now that we can see and monitor processes, let's gain some control over them. Fo
 
 > 现在我们可以看到和监测进程，让我们得到一些对它们的控制权。为了我们的实验，我们将使用 一个叫做 xlogo 的小程序，作为我们的实验品。这个 xlogo 程序是 X 窗口系统 （使图形界面显示在屏幕上的底层引擎）提供的示例程序，这个程序仅显示一个大小可调的 包含 X 标志的窗口。首先，我们需要知道测试的实验对象：
 
-```
+```sh
 [me@linuxbox ~]$ xlogo
 ```
 
@@ -2327,7 +2327,7 @@ Let's observe what happens when we run xlogo again. First, enter the xlogo comma
 
 > 我们再运行 xlogo 程序一次，观察一下发生了什么事。首先，执行 xlogo 命令，并且 证实这个程序正在运行。下一步，回到终端窗口，按下 Ctrl-c。
 
-```
+```sh
 [me@linuxbox ~]$ xlogo
 [me@linuxbox ~]$
 ```
@@ -2346,7 +2346,7 @@ Let's say we wanted to get the shell prompt back without terminating the xlogo p
 
 > 假如说我们想让 shell 提示符返回，却不终止 xlogo 程序。我们可以把 这个程序放到后台(background)执行。把终端想象是一个有前台（包含在表层可见的事物，像 shell 提示符） 和后台（包含表层之下的隐藏的事物）的设备。为了启动一个程序并让它立即在后台 运行，我们在程序命令之后，加上"&"字符：
 
-```
+```sh
 [me@linuxbox ~]$ xlogo &
 [1] 28236
 [me@linuxbox ~]$
@@ -2356,7 +2356,7 @@ After entering the command, the xlogo window appeared and the shell prompt retur
 
 > 执行命令之后，这个 xlogo 窗口出现，并且 shell 提示符返回，同时打印一些有趣的数字。 这条信息是 shell 特性的一部分，叫做任务控制 (job control)。通过这条信息，shell 告诉我们，已经启动了 任务号(job number)为 1（"［1］"），PID 为 28236 的程序。如果我们运行 ps 命令，可以看到我们的进程：
 
-```
+```sh
 [me@linuxbox ~]$ ps
   PID TTY         TIME   CMD
 10603 pts/1   00:00:00   bash
@@ -2368,7 +2368,7 @@ The shell's job control facility also gives us a way to list the jobs that are h
 
 shell 的任务控制功能给出了一种列出从我们终端中启动了的任务的方法。执行 jobs 命令，我们可以看到这个输出列表：
 
-```
+```sh
 [me@linuxbox ~]$ jobs
 [1]+ Running            xlogo &
 ```
@@ -2383,7 +2383,7 @@ A process in the background is immune from keyboard input, including any attempt
 
 > 一个在后台运行的进程对一切来自键盘的输入都免疫，也不能用 Ctrl-c 来中断它。 为了让一个进程返回前台 (foreground)，这样使用 fg 命令：
 
-```
+```sh
 [me@linuxbox ~]$ jobs
 [1]+ Running        xlogo &
 [me@linuxbox ~]$ fg %1
@@ -2400,7 +2400,7 @@ Sometimes we'll want to stop a process without terminating it. This is often don
 
 > 有时候，我们想要停下一个进程，而不是终止它。我们这么做通常是为了允许前台进程被移动到后台。 输入 Ctrl-z，可以停下一个前台进程。让我们试一下。在命令提示符下，执行 xlogo 命令， 然后输入 Ctrl-z:
 
-```
+```sh
 [me@linuxbox ~]$ xlogo
 [1]+ Stopped                 xlogo
 [me@linuxbox ~]$
@@ -2410,7 +2410,7 @@ After stopping xlogo, we can verify that the program has stopped by attempting t
 
 > 停止 xlogo 程序之后，通过调整 xlogo 的窗口大小，我们可以证实这个程序已经停止了。 它看起来像死掉了一样。使用 fg 命令，可以恢复程序到前台运行，或者用 bg 命令把程序移到后台。
 
-```
+```sh
 [me@linuxbox ~]$ bg %1
 [1]+ xlogo &
 [me@linuxbox ~]$
@@ -2434,7 +2434,7 @@ The kill command is used to "kill" programs. This allows us to terminate program
 
 kill 命令被用来"杀死"程序。这样我们就可以终止需要杀死的程序。这里有一个例子：
 
-```
+```sh
 [me@linuxbox ~]$ xlogo &
 [1] 28401
 [me@linuxbox ~]$ kill 28401
@@ -2455,7 +2455,7 @@ The kill command is used to send signals to programs. Its most common syntax loo
 
 kill 命令被用来给程序发送信号。它最常见的语法形式看起来像这样：
 
-```
+```sh
 kill [-signal] PID...
 ```
 
@@ -3055,7 +3055,7 @@ Let's try out the kill command:
 
 > 让我们试一下 kill 命令：
 
-```
+```sh
 [me@linuxbox ~]$ xlogo &
 [1] 13546
 [me@linuxbox ~]$ kill -1 13546
@@ -3066,7 +3066,7 @@ In this example, we start the xlogo program in the background and then send it a
 
 > 在这个例子里，我们在后台启动 xlogo 程序，然后通过 kill 命令，发送给它一个 HUP 信号。 这个 xlogo 程序终止运行，并且 shell 指示这个后台进程已经接受了一个挂起信号。在看到这条 信息之前，你可能需要多按几次 enter 键。注意，信号既可以用号码，也可以用名字来指定， 包括在前面加上字母 "SIG" 的名字。
 
-```
+```sh
 [me@linuxbox ~]$ xlogo 1] 13601
 [me@linuxbox ~]$ kill -INT 13601
 [1]+ Interrupt                    xlogo
@@ -3508,7 +3508,7 @@ For the curious, a complete list of signals can be seen with the following comma
 
 > 为了满足读者的好奇心，通过下面的命令可以得到一个完整的信号列表：
 
-```
+```sh
 [me@linuxbox ~]$ kill -l
 ```
 
@@ -3518,7 +3518,7 @@ It's also possible to send signals to multiple processes matching a specified pr
 
 > 也有可能通过 killall 命令，给匹配特定程序或用户名的多个进程发送信号。下面是 killall 命令的语法形式：
 
-```
+```sh
 killall [-u user] [-signal] name...
 ```
 
@@ -3526,7 +3526,7 @@ To demonstrate, we will start a couple of instances of the xlogo program and the
 
 > 为了说明情况，我们将启动一对 xlogo 程序的实例，然后再终止它们：
 
-```
+```sh
 [me@linuxbox ~]$ xlogo &
 [1] 18801
 [me@linuxbox ~]$ xlogo &

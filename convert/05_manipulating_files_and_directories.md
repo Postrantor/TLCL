@@ -29,7 +29,7 @@ The answer is power and flexibility. While it is easy to perform simple file man
 
 > 答案是命令行程序，功能强大灵活。虽然图形文件管理器能轻松地实现简单的文件操作，但是对于 复杂的文件操作任务，则使用命令行程序比较容易完成。例如，怎样拷贝一个目录下的 HTML 文件到目标目录，同时保证只拷贝目标目录不存在或者版本比目标目录的文件更新的文件？ 要完成这个任务，使用文件管理器相当难，使用命令行相当容易：
 
-```
+```sh
 cp -u *.html destination
 ```
 
@@ -1422,7 +1422,7 @@ The mkdir command is used to create directories. It works like this:
 
 mkdir 命令是用来创建目录的。它这样工作：
 
-```
+```sh
 mkdir directory...
 ```
 
@@ -1430,7 +1430,7 @@ mkdir directory...
 
 **注意:** 在描述一个命令时（如上所示），当有三个圆点跟在一个命令的参数后面， 这意味着那个参数可以跟多个，就像这样：
 
-```
+```sh
 mkdir dir1
 ```
 
@@ -1438,7 +1438,7 @@ would create a single directory named "dir1", while
 
 > 会创建一个名为"dir1"的目录，而
 
-```
+```sh
 mkdir dir1 dir2 dir3
 ```
 
@@ -1452,7 +1452,7 @@ The cp command copies files or directories. It can be used two different ways:
 
 cp 命令，复制文件或者目录。它有两种使用方法：
 
-```
+```sh
 cp item1 item2
 ```
 
@@ -1460,7 +1460,7 @@ to copy the single file or directory "item1" to file or directory "item2" and:
 
 > 复制单个文件或目录"item1"到文件或目录"item2"，和：
 
-```
+```sh
 cp item... directory
 ```
 
@@ -2224,7 +2224,7 @@ The mv command performs both file moving and file renaming, depending on how it 
 
 mv 命令可以执行文件移动和文件命名任务，这取决于你怎样使用它。任何一种 情况下，完成操作之后，原来的文件名不再存在。mv 使用方法与 cp 很相像：
 
-```
+```sh
 mv item1 item2
 ```
 
@@ -2232,7 +2232,7 @@ to move or rename file or directory "item1" to "item2" or:
 
 > 把文件或目录 "item1" 移动或重命名为 "item2", 或者：
 
-```
+```sh
 mv item... directory
 ```
 
@@ -2772,7 +2772,7 @@ The rm command is used to remove(delete)files and directories:
 
 rm 命令用来删除文件和目录：
 
-```
+```sh
 rm item...
 ```
 
@@ -3452,7 +3452,7 @@ The ln command is used to create either hard or symbolic links. It is used in on
 
 ln 命令既可创建硬链接，也可以创建符号链接。可以用两者中的任意一种形式来使用它：
 
-```
+```sh
 ln file link
 ```
 
@@ -3460,7 +3460,7 @@ to create a hard link, and:
 
 > 创建硬链接，和：
 
-```
+```sh
 ln -s item link
 ```
 
@@ -3511,7 +3511,7 @@ The mkdir command is used to create a directory. To create our playground direct
 
 mkdir 命令被用来创建目录。首先确定我们在我们的家目录下，然后创建 playground 目录：
 
-```
+```sh
 [me@linuxbox ~]$ cd
 [me@linuxbox ~]$ mkdir playground
 ```
@@ -3520,7 +3520,7 @@ To make our playground a little more interesting, let's create a couple of direc
 
 > 为了让我们的游戏场更加有趣，在 playground 目录下创建一对目录 ，分别叫做 "dir1" 和 "dir2"。更改我们的当前工作目录到 playground，然后 执行 mkdir 命令：
 
-```
+```sh
 [me@linuxbox ~]$ cd playground
 [me@linuxbox playground]$ mkdir dir1 dir2
 ```
@@ -3535,7 +3535,7 @@ Next, let's get some data into our playground. We'll do this by copying a file. 
 
 > 下一步，让我们输入一些数据到我们的游戏场中。我们可以通过复制一个文件来实现目的。 我们使用 cp 命令从 /etc 目录复制 passwd 文件到当前工作目录下：
 
-```
+```sh
 [me@linuxbox playground]$ cp /etc/passwd .
 ```
 
@@ -3543,7 +3543,7 @@ Notice how we used the shorthand for the current working directory, the single t
 
 > 请注意，我们使用命令末尾的一个圆点来简化当前工作目录的写法。如果我们执行 ls 命令， 可以看到我们的文件：
 
-```
+```sh
 [me@linuxbox playground]$ ls -l
 total 12
 drwxrwxr-x 2  me  me   4096 2008-01-10 16:40 dir1
@@ -3555,7 +3555,7 @@ Now, just for fun, let's repeat the copy using the "-v" option (verbose) to see 
 
 > 现在，仅仅是为了好玩，重复操作复制命令，使用"-v"选项（详细），看看它做了些什么：
 
-```
+```sh
 [me@linuxbox playground]$ cp -v /etc/passwd .
 `/etc/passwd' -> `./passwd'
 ```
@@ -3564,7 +3564,7 @@ The cp command performed the copy again, but this time displayed a concise messa
 
 cp 命令再一次执行了复制操作，但是这次显示了一条简洁的信息，指明它 进行了什么操作。注意，cp 没有警告，就覆盖了第一次复制的文件。这是一个案例， cp 会假设你知道自己在做什么。如果希望得到警告的话，需要加入"-i"（互动）选项：
 
-```
+```sh
 [me@linuxbox playground]$ cp -i /etc/passwd .
 cp: overwrite `./passwd'?
 ```
@@ -3579,7 +3579,7 @@ Now, the name "passwd" doesn't seem very playful and this is a playground, so le
 
 > 现在，"passwd" 这个名字，看起来不怎么有趣，这是个游戏场，所以我们给它改个名字：
 
-```
+```sh
 [me@linuxbox playground]$ mv passwd fun
 ```
 
@@ -3587,7 +3587,7 @@ Let's pass the fun around a little by moving our renamed file to each of the dir
 
 > 让我们来传送 fun 文件，通过移动重命名的文件到各个子目录， 然后再把它移回到当前目录：
 
-```
+```sh
 [me@linuxbox playground]$ mv fun dir1
 ```
 
@@ -3595,7 +3595,7 @@ to move it first to directory dir1, then:
 
 > 首先，把 fun 文件移动目录 dir1 中，然后：
 
-```
+```sh
 [me@linuxbox playground]$ mv dir1/fun dir2
 ```
 
@@ -3603,7 +3603,7 @@ to move it from dir1 to dir2, then:
 
 > 再把 fun 文件从 dir1 移到目录 dir2, 然后：
 
-```
+```sh
 [me@linuxbox playground]$ mv dir2/fun .
 ```
 
@@ -3611,7 +3611,7 @@ to finally bringing it back to the current working directory. Next, let's see th
 
 > 最后，再把 fun 文件带回到当前工作目录。接下来，来看看移动目录的效果。 首先，我们先移动我们的数据文件到 dir1 目录：
 
-```
+```sh
 [me@linuxbox playground]$ mv fun dir1
 ```
 
@@ -3619,7 +3619,7 @@ then move dir1 into dir2 and confirm it with ls:
 
 > 然后移动 dir1 到 dir2 目录，用 ls 来确认执行结果:
 
-```
+```sh
 [me@linuxbox playground]$ mv dir1 dir2
 [me@linuxbox playground]$ ls -l dir2
 total 4
@@ -3633,7 +3633,7 @@ Note that since dir2 already existed, mv moved dir1 into dir2. If dir2 had not e
 
 > 注意：因为目录 dir2 已经存在，mv 命令会把 dir1 移动到 dir2 目录中。如果 dir2 不存在， mv 会把 dir1 重命名为 dir2。最后，让我们把所有的东西放回原处：
 
-```
+```sh
 [me@linuxbox playground]$ mv dir2/dir1 .
 [me@linuxbox playground]$ mv dir1/fun .
 ```
@@ -3644,7 +3644,7 @@ Now we'll try some links. First the hard links. We'll create some links to our d
 
 > 现在，我们试着创建链接。首先是硬链接。我们创建一些关联我们 数据文件的链接：
 
-```
+```sh
 [me@linuxbox playground]$ ln fun fun-hard
 [me@linuxbox playground]$ ln fun dir1/fun-hard
 [me@linuxbox playground]$ ln fun dir2/fun-hard
@@ -3654,7 +3654,7 @@ So now we have four instances of the file "fun". Let's take a look our playgroun
 
 > 所以现在，我们有四个文件"fun"的实例。看一下目录 playground 中的内容：
 
-```
+```sh
 [me@linuxbox playground]$ ls -l
 total 16
 drwxrwxr-x 2 me  me 4096 2008-01-14 16:17 dir1
@@ -3675,7 +3675,7 @@ The ls command has a way to reveal this information. It is invoked with the "-i"
 
 ls 命令有一种方法，来展示（文件索引节点）的信息。在命令中加上"-i"选项：
 
-```
+```sh
 [me@linuxbox playground]$ ls -li
 total 16
 12353539 drwxrwxr-x 2 me  me 4096  2008-01-14  16:17  dir1
@@ -3698,7 +3698,7 @@ Creating symbolic links is similar to creating hard links:
 
 > 符号链接的建立过程相似于创建硬链接：
 
-```
+```sh
 [me@linuxbox playground]$ ln -s fun fun-sym
 [me@linuxbox playground]$ ln -s ../fun dir1/fun-sym
 [me@linuxbox playground]$ ln -s ../fun dir2/fun-sym
@@ -3708,7 +3708,7 @@ The first example is pretty straightforward, we simply add the "-s" option to cr
 
 > 第一个例子相当直接，在 ln 命令中，简单地加上"-s"选项就可以创建一个符号链接， 而不是一个硬链接。下面两个例子又是怎样呢？ 记住，当我们创建一个符号链接 的时候，会建立一个文本，其中描述了目标文件的具体位置。如果我们看看 ls 命令的输出结果，比较容易理解。
 
-```
+```sh
 [me@linuxbox playground]$ ls -l dir1
 total 4
 -rw-r--r-- 4 me  me 1650 2008-01-10 16:33 fun-hard
@@ -3723,7 +3723,7 @@ When creating symbolic links, you can either use absolute pathnames:
 
 > 当建立符号链接时，你既可以使用绝对路径名：
 
-```
+```sh
 ln -s /home/me/playground/fun dir1/fun-sym
 ```
 
@@ -3735,7 +3735,7 @@ In addition to regular files, symbolic links can also reference directories:
 
 > 除了普通文件，符号链接也能关联目录：
 
-```
+```sh
 [me@linuxbox playground]$ ln -s dir1 dir1-sym
 [me@linuxbox playground]$ ls -l
 total 16
@@ -3748,7 +3748,7 @@ As we covered earlier, the rm command is used to delete files and directories. W
 
 > 正如我们之前讨论的，rm 命令被用来删除文件和目录。我们将要使用它 来清理一下我们的游戏场。首先，删除一个硬链接：
 
-```
+```sh
 [me@linuxbox playground]$ rm fun-hard
 [me@linuxbox playground]$ ls -l
 total 12
@@ -3759,7 +3759,7 @@ That worked as expected. The file fun-hard is gone and the link count shown for 
 
 > 结果不出所料。文件 fun-hard 消失了，文件 fun 的链接数从 4 减到 3，正如 目录列表第二字段所示。下一步，我们会删除文件 fun，仅为了娱乐，我们会加入"-i" 选项，看一看它的作用：
 
-```
+```sh
 [me@linuxbox playground]$ rm -i fun
 rm: remove regular file `fun'?
 ```
@@ -3768,7 +3768,7 @@ Enter "y" at the prompt and the file is deleted. But let's look at the output of
 
 > 在提示符下输入"y"，删除文件。让我们看一下 ls 的输出结果。注意，fun-sym 发生了 什么事? 因为它是一个符号链接，指向已经不存在的文件，链接已经坏了：
 
-```
+```sh
 [me@linuxbox playground]$ ls -l
 total 8
 drwxrwxr-x 2 me  me     4096 2008-01-15 15:17 dir1
@@ -3781,7 +3781,7 @@ Most Linux distributions configure ls to display broken links. On a Fedora box, 
 
 > 大多数 Linux 的发行版本配置 ls 显示损坏的链接。在 Fedora 系统中，坏的链接以闪烁的 红色文本显示！损坏链接的出现，并不危险，但是相当混乱。如果我们试着使用 损坏的链接，会看到以下情况：
 
-```
+```sh
 [me@linuxbox playground]$ less fun-sym
 fun-sym: No such file or directory
 ```
@@ -3790,7 +3790,7 @@ Let's clean up a little. We'll delete the symbolic links:
 
 > 稍微清理一下现场。删除符号链接：
 
-```
+```sh
 [me@linuxbox playground]$ rm fun-sym dir1-sym
 [me@linuxbox playground]$ ls -l
 total 8
@@ -3806,7 +3806,7 @@ Finally, we will remove our playground. To do this, we will return to our home d
 
 > 最后，我们将删除我们的游戏场。为了完成这个工作，我们将返回到 我们的家目录，然后用 rm 命令加上选项(-r)，来删除目录 playground， 和目录下的所有内容，包括子目录：
 
-```
+```sh
 [me@linuxbox playground]$ cd
 [me@linuxbox ~]$ rm -r playground
 ```

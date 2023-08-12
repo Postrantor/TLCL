@@ -17,7 +17,7 @@ The original for command's syntax is:
 
 for 命令语法是：
 
-```
+```sh
 for variable [in words]; do
     commands
 done
@@ -31,7 +31,7 @@ The for command is useful on the command line. We can easily demonstrate how it 
 
 > 在命令行中 for 命令是很有用的。我们可以很容易的说明它是如何工作的：
 
-```
+```sh
 [me@linuxbox ~]$ for i in A B C D; do echo $i; done
 A
 B
@@ -47,7 +47,7 @@ The really powerful feature of for is the number of interesting ways we can crea
 
 for 命令真正强大的功能是我们可以通过许多有趣的方式创建 words 列表。例如，通过花括号展开：
 
-```
+```sh
 [me@linuxbox ~]$ for i in {A..D}; do echo $i; done
 A
 B
@@ -59,7 +59,7 @@ or pathname expansion:
 
 > 或者路径名展开：
 
-```
+```sh
 [me@linuxbox ~]$ for i in distros*.txt; do echo $i; done
 distros-by-date.txt
 distros-dates.txt
@@ -75,7 +75,7 @@ or command substitution:
 
 > 或者命令替换：
 
-```
+```sh
 #!/bin/bash
 # longest-word : find longest string in a file
 while [[ -n $1 ]]; do
@@ -103,7 +103,7 @@ If the optional in words portion of the for command is omitted, for defaults to 
 
 > 如果省略掉 for 命令的可选项 words 部分，for 命令会默认处理位置参数。 我们将修改 longest-word 脚本，来使用这种方式：
 
-```
+```sh
 #!/bin/bash
 # longest-word2 : find longest string in a file
 for i; do
@@ -148,7 +148,7 @@ Recent versions of bash have added a second form of for command syntax, one that
 
 > 最新版本的 bash 已经添加了第二种格式的 for 命令语法，该语法相似于 C 语言中的 for 语法格式。 其它许多编程语言也支持这种格式：
 
-```
+```sh
 for (( expression1; expression2; expression3 )); do
     commands
 done
@@ -158,7 +158,7 @@ where expression1, expression2, and expression3 are arithmetic expressions and c
 
 > 这里的 expression1、expression2 和 expression3 都是算术表达式，commands 是每次循环迭代时要执行的命令。 在行为方面，这相当于以下构造形式：
 
-```
+```sh
 (( expression1 ))
 while (( expression2 )); do
     commands
@@ -174,7 +174,7 @@ Here is a typical application:
 
 > 这里是一个典型应用：
 
-```
+```sh
 #!/bin/bash
 # simple_counter : demo of C style for command
 for (( i=0; i<5; i=i+1 )); do
@@ -186,7 +186,7 @@ When executed, it produces the following output:
 
 > 脚本执行之后，产生如下输出：
 
-```
+```sh
 [me@linuxbox ~]$ simple_counter
 0
 1
@@ -209,7 +209,7 @@ With our knowledge of the for command, we will now apply the final improvements 
 
 > 学习了 for 命令的知识，现在我们将对我们的 sys_info_page 脚本做最后的改进。 目前，这个 report_home_space 函数看起来像这样：
 
-```
+```sh
 report_home_space () {
     if [[ $(id -u) -eq 0 ]]; then
         cat <<- _EOF_
@@ -230,7 +230,7 @@ Next, we will rewrite it to provide more detail for each user's home directory, 
 
 > 下一步，我们将重写它，以便提供每个用户家目录的更详尽信息，并且包含用户家目录中文件和目录的总个数：
 
-```
+```sh
 report_home_space () {
     local format="%8s%10s%10s\n"
     local i dir_list total_files total_dirs total_size user_name

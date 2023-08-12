@@ -50,7 +50,7 @@ The type command is a shell builtin that displays the kind of command the shell 
 
 type 命令是 shell 内部命令，它会显示命令的类型，给出一个特定的命令名（做为参数）。 它像这样工作：
 
-```
+```sh
 type command
 ```
 
@@ -58,7 +58,7 @@ Where "command" is the name of the command you want to examine. Here are some ex
 
 command 是你要检测的命令名。这里有些例子：
 
-```
+```sh
 [me@linuxbox ~]$ type type
 type is a shell builtins
 [me@linuxbox ~]$ type ls
@@ -77,7 +77,7 @@ Sometimes there is more than one version of an executable program installed on a
 
 > 有时候在一个操作系统中，不只安装了可执行程序的一个版本。虽然在桌面系统中这并不普遍， 但在大型服务器中却很平常。为了确定所给定的执行程序的准确位置，使用 which 命令：
 
-```
+```sh
 [me@linuxbox ~]$ which ls
 /bin/ls
 ```
@@ -86,7 +86,7 @@ which only works for executable programs, not builtins nor aliases that are subs
 
 which 命令只对可执行程序有效，不包括内建命令和命令别名。 当我们试着使用 shell 内建命令时，例如，cd 命令，我们或者得不到回应，或者是个错误信息：
 
-```
+```sh
 [me@linuxbox ~]$ which cd
 /usr/bin/which: no cd in
 (/opt/jre1.6.0_03/bin:/usr/lib/qt-3.3/bin:/usr/kerberos/bin:/opt/jre1
@@ -109,7 +109,7 @@ bash has a built-in help facility available for each of the shell builtins. To u
 
 bash 有一个内建的 help 命令，可查找每一个 shell 内建命令的文档。输入"help"，接着是 shell 内部命令名。例如：
 
-```
+```sh
 [me@linuxbox ~]$ help cd
 cd: cd [-L|-P] [dir]
 Change ...
@@ -119,7 +119,7 @@ A note on notation: When square brackets appear in the description of a command'
 
 > 注意：出现在命令语法说明中的方括号证的内容是可选的项目。一个竖杠字符 表示互斥选项。在上面 cd 命令的例子中：
 
-```
+```sh
 cd [-L|-P] [dir]
 ```
 
@@ -137,7 +137,7 @@ Many executable programs support a "\--help" option that displays a description 
 
 > 许多可执行程序支持一个 \--help 选项，这个选项是显示命令所支持的语法和选项说明。例如：
 
-```
+```sh
 [me@linuxbox ~]$ mkdir --help
 Usage: mkdir [OPTION] DIRECTORY...
 Create ...
@@ -153,7 +153,7 @@ Most executable programs intended for command line use provide a formal piece of
 
 > 许多希望被命令行使用的可执行程序，提供了一个正式的文档，叫做手册或手册页(man page)。一个特殊的叫做 man 的分页程序，可用来浏览他们。它是这样使用的：
 
-```
+```sh
 man program
 ```
 
@@ -165,7 +165,7 @@ Man pages vary somewhat in format but generally contain a title, a synopsis of t
 
 > 手册文档的格式有点不同，一般地包含一个标题、命令语法的纲要、命令用途的说明、 以及每个命令选项的列表和说明。然而，手册文档通常并不包含实例，它打算 作为一本参考手册，而不是教程。作为一个例子，浏览一下 ls 命令的手册文档：
 
-```
+```sh
 [me@linuxbox ~]$ man ls
 ```
 
@@ -753,7 +753,7 @@ Sometimes we need to look in a specific section of the manual to find what we ar
 
 > 有时候，我们需要查看参考手册的特定章节，从而找到我们需要的信息。 如果我们要查找一种文件格式，而同时它也是一个命令名时,这种情况尤其正确。 没有指定章节号，我们总是得到第一个匹配项，可能在第一章节。我们这样使用 man 命令， 来指定章节号：
 
-```
+```sh
 man section search_term
 ```
 
@@ -761,7 +761,7 @@ For example:
 
 > 例如：
 
-```
+```sh
 [me@linuxbox ~]$ man 5 passwd
 ```
 
@@ -775,7 +775,7 @@ It is also possible to search the list of man pages for possible matches based o
 
 > 我们也可以搜索全部参考手册来找到自己需要的命令，这个方法虽然很粗糙但有时很有用。 下面是一个以"floppy"为关键词来搜索参考手册的例子：
 
-```
+```sh
 [me@linuxbox ~]$ apropos floppy
 create_floppy_devices (8)   - udev callout to create all possible
 ...
@@ -809,7 +809,7 @@ The GNU Project provides an alternative to man pages for their programs, called 
 
 GNU 项目提供了一个命令程序手册页的替代物，称为"info"。info 内容可通过 info 阅读器 程序读取。info 页是超级链接形式的，和网页很相似。这有个例子：
 
-```
+```sh
 File: coreutils.info,    Node: ls invocation,    Next: dir invocation,
  Up: Directory listing
 
@@ -1402,7 +1402,7 @@ Most of the command line programs we have discussed so far are part of the GNU P
 
 > 到目前为止，我们所讨论的大多数命令行程序，属于 GNU 项目"coreutils"包，所以输入：
 
-```
+```sh
 [me@linuxbox ~]$ info coreutils
 ```
 
@@ -1422,7 +1422,7 @@ Now for our very first experience with programming! We will create a command of 
 
 > 现在是时候，感受第一次编程经历了！我们将用 alias 命令创建我们自己的命令。但在 开始之前，我们需要展示一个命令行小技巧。可以把多个命令放在同一行上，命令之间 用";"分开。它像这样工作：
 
-```
+```sh
 command1; command2; command3...
 ```
 
@@ -1430,7 +1430,7 @@ Here's the example we will use:
 
 > 我们会用到下面的例子：
 
-```
+```sh
 [me@linuxbox ~]$ cd /usr; ls; cd -
 bin  games    kerberos  lib64    local  share  tmp
 ...
@@ -1441,7 +1441,7 @@ As we can see, we have combined three commands on one line. First we change dire
 
 > 正如我们看到的，我们在一行上联合了三个命令。首先更改目录到/usr，然后列出目录 内容，最后回到之前的目录（用命令"cd -"）,结束在开始的地方。现在，通过 alias 命令 把这一串命令转变为一个命令。我们要做的第一件事就是为我们的新命令构想一个名字。 比方说"test"。在使用"test"之前，最好先查明"test"命令名是否已经存在于系统中。 为此，可以使用 type 命令：
 
-```
+```sh
 [me@linuxbox ~]$ type test
 test is a shell builtin
 ```
@@ -1450,7 +1450,7 @@ Oops! The name "test" is already taken. Let's try "foo":
 
 > 哦！"test"名字已经被使用了。试一下"foo":
 
-```
+```sh
 [me@linuxbox ~]$ type foo
 bash: type: foo: not found
 ```
@@ -1459,7 +1459,7 @@ Great! "foo" is not taken. So let's create our alias:
 
 > 太棒了！"foo"还没被占用。创建命令别名：
 
-```
+```sh
 [me@linuxbox ~]$ alias foo='cd /usr; ls; cd -'
 ```
 
@@ -1467,7 +1467,7 @@ Notice the structure of this command:
 
 > 注意命令结构：
 
-```
+```sh
 alias name='string'
 ```
 
@@ -1475,7 +1475,7 @@ After the command "alias" we give alias a name followed immediately (no whitespa
 
 > 在命令"alias"之后，输入"name"，紧接着（没有空格）是一个等号，等号之后是 一串用引号引起的字符串，字符串的内容要赋值给 name。我们定义了别名之后， 这个命令别名可以使用在任何地方。试一下：
 
-```
+```sh
 [me@linuxbox ~]$ foo
 bin   games   kerberos  lib64    local   share  tmp
 ...
@@ -1486,7 +1486,7 @@ We can also use the type command again to see our alias:
 
 > 我们也可以使用 type 命令来查看我们的别名：
 
-```
+```sh
 [me@linuxbox ~]$ type foo
 foo is aliased to `cd /usr; ls ; cd -'
 ```
@@ -1495,7 +1495,7 @@ To remove an alias, the unalias command is used, like so:
 
 > 删除别名，使用 unalias 命令，像这样：
 
-```
+```sh
 [me@linuxbox ~]$ unalias foo
 [me@linuxbox ~]$ type foo
 bash: type: foo: not found
@@ -1505,7 +1505,7 @@ While we purposefully avoided naming our alias with an existing command name, it
 
 > 虽然我们有意避免使用已经存在的命令名来命名我们的别名，但有时候也会故意这么做。通常， 会把一个普遍用到的选项加到一个经常使用的命令后面。例如，之前见到的 ls 命令，会 带有色彩支持：
 
-```
+```sh
 [me@linuxbox ~]$ type ls
 ls is aliased to 'ls --color=tty'
 ```
@@ -1514,7 +1514,7 @@ To see all the aliases defined in the environment, use the alias command without
 
 > 要查看所有定义在系统环境中的别名，可使用不带参数的 alias 命令。下面是 Fedora 系统中 默认定义的别名。试着弄明白它们是做什么的：
 
-```
+```sh
 [me@linuxbox ~]$ alias
 alias l.='ls -d .* --color=tty'
 ...

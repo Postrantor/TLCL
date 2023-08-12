@@ -5,7 +5,7 @@ title: 流程控制：case 分支
 
 In this chapter, we will continue to look at flow control. In Chapter 28, we constructed some simple menus and built the logic used to act on a user's selection. To do this, we used a series of if commands to identify which of the possible choices has been selected. This type of construct appears frequently in programs, so much so that many programming languages (including the shell) provide a flow control mechanism for multiple-choice decisions.
 
-在这一章中，我们将继续看一下程序的流程控制。在第28章中，我们构建了一些简单的菜单并创建了用来 应对各种用户选择的程序逻辑。为此，我们使用了一系列的 if 命令来识别哪一个可能的选项已经被选中。 这种类型的构造经常出现在程序中，出现频率如此之多，以至于许多编程语言（包括 shell） 专门为多选决策提供了一种流程控制机制。
+> 在这一章中，我们将继续看一下程序的流程控制。在第28章中，我们构建了一些简单的菜单并创建了用来 应对各种用户选择的程序逻辑。为此，我们使用了一系列的 if 命令来识别哪一个可能的选项已经被选中。 这种类型的构造经常出现在程序中，出现频率如此之多，以至于许多编程语言（包括 shell） 专门为多选决策提供了一种流程控制机制。
 
 ### case
 
@@ -19,7 +19,7 @@ Bash 的多选复合命令称为 case。它的语法规则如下所示：
 
 If we look at the read-menu program from Chapter 28, we see the logic used to act on a user's selection:
 
-如果我们看一下第28章中的读菜单程序，我们就知道了用来应对一个用户选项的逻辑流程：
+> 如果我们看一下第28章中的读菜单程序，我们就知道了用来应对一个用户选项的逻辑流程：
 
     #!/bin/bash
     # read-menu: a menu driven system information program
@@ -63,7 +63,7 @@ If we look at the read-menu program from Chapter 28, we see the logic used to ac
 
 Using case, we can replace this logic with something simpler:
 
-使用 case 语句，我们可以用更简单的代码替换这种逻辑：
+> 使用 case 语句，我们可以用更简单的代码替换这种逻辑：
 
     #!/bin/bash
     # case-menu: a menu driven system information program
@@ -106,7 +106,7 @@ case 命令检查一个变量值，在我们这个例子中，就是 REPLY 变�
 
 The patterns used by case are the same as those used by pathname expansion. Patterns are terminated with a ")" character. Here are some valid patterns:
 
-这里 case 语句使用的模式和路径展开中使用的那些是一样的。模式以一个 ")" 为终止符。这里是一些有效的模式。
+> 这里 case 语句使用的模式和路径展开中使用的那些是一样的。模式以一个 ")" 为终止符。这里是一些有效的模式。
 
 ```{=html}
 <table class="multi">
@@ -247,7 +247,7 @@ Matches any value of word. It is good practice to include this as the last patte
 ```{=html}
 <caption class="cap">
 ```
-表32-1: case 模式实例
+> 表32-1: case 模式实例
 ```{=html}
 </caption>
 ```
@@ -257,14 +257,14 @@ Matches any value of word. It is good practice to include this as the last patte
 ```{=html}
 <th class="title">
 ```
-模式
+> 模式
 ```{=html}
 </th>
 ```
 ```{=html}
 <th class="title">
 ```
-描述
+> 描述
 ```{=html}
 </th>
 ```
@@ -284,7 +284,7 @@ a\)
 ```{=html}
 <td valign="top">
 ```
-若单词为 "a"，则匹配
+> 若单词为 "a"，则匹配
 ```{=html}
 </td>
 ```
@@ -304,7 +304,7 @@ a\)
 ```{=html}
 <td valign="top">
 ```
-若单词是一个字母字符，则匹配
+> 若单词是一个字母字符，则匹配
 ```{=html}
 </td>
 ```
@@ -324,7 +324,7 @@ a\)
 ```{=html}
 <td valign="top">
 ```
-若单词只有3个字符，则匹配
+> 若单词只有3个字符，则匹配
 ```{=html}
 </td>
 ```
@@ -344,7 +344,7 @@ a\)
 ```{=html}
 <td valign="top">
 ```
-若单词以 ".txt" 字符结尾，则匹配
+> 若单词以 ".txt" 字符结尾，则匹配
 ```{=html}
 </td>
 ```
@@ -364,7 +364,7 @@ a\)
 ```{=html}
 <td valign="top">
 ```
-匹配任意单词。把这个模式做为 case 命令的最后一个模式，是一个很好的做法， 可以捕捉到任意一个与先前模式不匹配的数值；也就是说，捕捉到任何可能的无效值。
+> 匹配任意单词。把这个模式做为 case 命令的最后一个模式，是一个很好的做法， 可以捕捉到任意一个与先前模式不匹配的数值；也就是说，捕捉到任何可能的无效值。
 ```{=html}
 </td>
 ```
@@ -376,7 +376,7 @@ a\)
 ```
 Here is an example of patterns at work:
 
-这里是一个模式使用实例：
+> 这里是一个模式使用实例：
 
     #!/bin/bash
     read -p "enter word > "
@@ -390,7 +390,7 @@ Here is an example of patterns at work:
 
 It is also possible to combine multiple patterns using the vertical bar character as a separator. This creates an "or" conditional pattern. This is useful for such things as handling both upper- and lowercase characters. For example:
 
-还可以使用竖线字符作为分隔符，把多个模式结合起来。这就创建了一个 "或" 条件模式。这对于处理诸如大小写字符很有用处。例如：
+> 还可以使用竖线字符作为分隔符，把多个模式结合起来。这就创建了一个 "或" 条件模式。这对于处理诸如大小写字符很有用处。例如：
 
     #!/bin/bash
     # case-menu: a menu driven system information program
@@ -427,13 +427,13 @@ It is also possible to combine multiple patterns using the vertical bar characte
 
 Here, we modify the case-menu program to use letters instead of digits for menu selection. Notice how the new patterns allow for entry of both upper- and lowercase letters.
 
-这里，我们更改了 case-menu 程序的代码，用字母来代替数字做为菜单选项。注意新模式如何使得大小写字母都是有效的输入选项。
+> 这里，我们更改了 case-menu 程序的代码，用字母来代替数字做为菜单选项。注意新模式如何使得大小写字母都是有效的输入选项。
 
 ### 执行多个动作
 
 In versions of bash prior to 4.0, case allowed only one action to be performed on a successful match. After a successful match, the command would terminate. Here we see a script that tests a character:
 
-早于版本号4.0的 bash，case 语法只允许执行与一个成功匹配的模式相关联的动作。 匹配成功之后，命令将会终止。这里我们看一个测试一个字符的脚本：
+> 早于版本号4.0的 bash，case 语法只允许执行与一个成功匹配的模式相关联的动作。 匹配成功之后，命令将会终止。这里我们看一个测试一个字符的脚本：
 
     #!/bin/bash
     # case4-1: test a character
@@ -452,7 +452,7 @@ In versions of bash prior to 4.0, case allowed only one action to be performed o
 
 Running this script produces this:
 
-运行这个脚本，输出这些内容：
+> 运行这个脚本，输出这些内容：
 
     [me@linuxbox ~]$ case4-1
     Type a character > a
@@ -460,7 +460,7 @@ Running this script produces this:
 
 The script works for the most part, but fails if a character matches more than one of the POSIX characters classes. For example, the character "a" is both lower case and alphabetic, as well as a hexadecimal digit. In bash prior to version 4.0 there was no way for case to match more than one test. Modern versions of bash, add the ";;&" notation to terminate each action, so now we can do this:
 
-大多数情况下这个脚本工作是正常的，但若输入的字符不止与一个 POSIX 字符集匹配的话，这时脚本就会出错。 例如，字符 "a" 既是小写字母，也是一个十六进制的数字。早于4.0的 bash，对于 case 语法绝不能匹配 多个测试条件。现在的 bash 版本，添加 ";;&" 表达式来终止每个行动，所以现在我们可以做到这一点：
+> 大多数情况下这个脚本工作是正常的，但若输入的字符不止与一个 POSIX 字符集匹配的话，这时脚本就会出错。 例如，字符 "a" 既是小写字母，也是一个十六进制的数字。早于4.0的 bash，对于 case 语法绝不能匹配 多个测试条件。现在的 bash 版本，添加 ";;&" 表达式来终止每个行动，所以现在我们可以做到这一点：
 
     #!/bin/bash
     # case4-2: test a character
@@ -479,7 +479,7 @@ The script works for the most part, but fails if a character matches more than o
 
 When we run this script, we get this:
 
-当我们运行这个脚本的时候，我们得到这些：
+> 当我们运行这个脚本的时候，我们得到这些：
 
     [me@linuxbox ~]$ case4-2
     Type a character > a
@@ -490,7 +490,7 @@ When we run this script, we get this:
 
 The addition of the ";;&" syntax allows case to continue on to the next test rather than simply terminating.
 
-添加的 ";;&" 的语法允许 case 语句继续执行下一条测试，而不是简单地终止运行。
+> 添加的 ";;&" 的语法允许 case 语句继续执行下一条测试，而不是简单地终止运行。
 
 ### 总结
 

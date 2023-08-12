@@ -5,7 +5,7 @@ title: 使用命令
 
 Up to this point, we have seen a series of mysterious commands, each with its own mysterious options and arguments. In this chapter, we will attempt to remove some of that mystery and even create some of our own commands. The commands introduced in this chapter are:
 
-在这之前，我们已经知道了一系列神秘的命令，每个命令都有自己奇妙的 选项和参数。在这一章中，我们将试图去掉一些神秘性，甚至创建我们自己 的命令。这一章将介绍以下命令：
+> 在这之前，我们已经知道了一系列神秘的命令，每个命令都有自己奇妙的 选项和参数。在这一章中，我们将试图去掉一些神秘性，甚至创建我们自己 的命令。这一章将介绍以下命令：
 
 -   type -- Indicate how a command name is interpreted
 
@@ -39,7 +39,7 @@ Up to this point, we have seen a series of mysterious commands, each with its ow
 
 A command can be one of four different things:
 
-命令可以是下面四种形式之一：
+> 命令可以是下面四种形式之一：
 
 1.  An executable program like all those files we saw in /usr/bin. Within this category, programs can be compiled binaries such as programs written in C and C++, or programs written in scripting languages such as the shell, perl, python, ruby, etc.
 
@@ -61,7 +61,7 @@ A command can be one of four different things:
 
 It is often useful to know exactly which of the four kinds of commands is being used and Linux provides a couple of ways to find out.
 
-准确地知道正在使用的四种命令中的哪一种通常很有用 Linux 提供了几种查找方法。
+> 准确地知道正在使用的四种命令中的哪一种通常很有用 Linux 提供了几种查找方法。
 
 ### type － 显示命令的类型
 
@@ -84,13 +84,13 @@ command 是你要检测的命令名。这里有些例子：
 
 Here we see the results for three different commands. Notice that the one for ls (taken from a Fedora system) and how the ls command is actually an alias for the ls command with the "\--color=tty" option added. Now we know why the output from ls is displayed in color!
 
-我们看到这三个不同命令的检测结果。注意，ls 命令（在 Fedora 系统中）的检查结果，ls 命令实际上 是 ls 命令加上选项"\--color=tty"的别名。现在我们知道为什么 ls 的输出结果是有颜色的！
+> 我们看到这三个不同命令的检测结果。注意，ls 命令（在 Fedora 系统中）的检查结果，ls 命令实际上 是 ls 命令加上选项"\--color=tty"的别名。现在我们知道为什么 ls 的输出结果是有颜色的！
 
 ### which － 显示一个可执行程序的位置
 
 Sometimes there is more than one version of an executable program installed on a system. While this is not very common on desktop systems, it's not unusual on large servers. To determine the exact location of a given executable, the which command is used:
 
-有时候在一个操作系统中，不只安装了可执行程序的一个版本。虽然在桌面系统中这并不普遍， 但在大型服务器中却很平常。为了确定所给定的执行程序的准确位置，使用 which 命令：
+> 有时候在一个操作系统中，不只安装了可执行程序的一个版本。虽然在桌面系统中这并不普遍， 但在大型服务器中却很平常。为了确定所给定的执行程序的准确位置，使用 which 命令：
 
     [me@linuxbox ~]$ which ls
     /bin/ls
@@ -106,13 +106,13 @@ which 命令只对可执行程序有效，不包括内建命令和命令别名�
 
 which is a fancy way of saying "command not found."
 
-这些信息真正的意思就是"命令没有找到"。
+> 这些信息真正的意思就是"命令没有找到"。
 
 ### 得到命令文档
 
 With this knowledge of what a command is, we can now search for the documentation available for each kind of command.
 
-知道了什么是命令，现在我们来查找每一类命令的文档。
+> 知道了什么是命令，现在我们来查找每一类命令的文档。
 
 ### help － 得到 shell 内建命令的帮助文档
 
@@ -126,23 +126,23 @@ bash 有一个内建的 help 命令，可查找每一个 shell 内建命令的�
 
 A note on notation: When square brackets appear in the description of a command's syntax, they indicate optional items. A vertical bar character indicates mutually exclusive items. In the case of the cd command above:
 
-注意：出现在命令语法说明中的方括号证的内容是可选的项目。一个竖杠字符 表示互斥选项。在上面 cd 命令的例子中：
+> 注意：出现在命令语法说明中的方括号证的内容是可选的项目。一个竖杠字符 表示互斥选项。在上面 cd 命令的例子中：
 
     cd [-L|-P] [dir]
 
 This notation says that the command cd may be followed optionally by either a "-L" or a "-P" and further, optionally followed by the argument "dir".
 
-这种表示法说明，cd 命令可以跟一个"-L"选项"-P"选项其中之一或者什么都不跟，"dir"也是可选参数。
+> 这种表示法说明，cd 命令可以跟一个"-L"选项"-P"选项其中之一或者什么都不跟，"dir"也是可选参数。
 
 While the output of help for the cd commands is concise and accurate, it is by no means tutorial and as we can see, it also seems to mention a lot of things we haven't talked about yet! Don't worry. We'll get there.
 
-虽然 cd 命令的帮助文档很简洁准确，但它决不是教程。正如我们所看到的，它似乎提到了许多 我们还没有谈论到的东西！不要担心，我们会学到的。
+> 虽然 cd 命令的帮助文档很简洁准确，但它决不是教程。正如我们所看到的，它似乎提到了许多 我们还没有谈论到的东西！不要担心，我们会学到的。
 
 ### \--help - 显示用法信息
 
 Many executable programs support a "\--help" option that displays a description of the command's supported syntax and options. For example:
 
-许多可执行程序支持一个 \--help 选项，这个选项是显示命令所支持的语法和选项说明。例如：
+> 许多可执行程序支持一个 \--help 选项，这个选项是显示命令所支持的语法和选项说明。例如：
 
     [me@linuxbox ~]$ mkdir --help
     Usage: mkdir [OPTION] DIRECTORY...
@@ -150,13 +150,13 @@ Many executable programs support a "\--help" option that displays a description 
 
 Some programs don't support the "\--help" option, but try it anyway. Often it results in an error message that will reveal the same usage information.
 
-一些程序不支持 \--help 选项，但不管怎样试一下。通常输出的错误提示也同样能 揭示命令的用法信息。
+> 一些程序不支持 \--help 选项，但不管怎样试一下。通常输出的错误提示也同样能 揭示命令的用法信息。
 
 ### man － 显示用户手册
 
 Most executable programs intended for command line use provide a formal piece of documentation called a manual or man page. A special paging program called man is used to view them. It is used like this:
 
-许多希望被命令行使用的可执行程序，提供了一个正式的文档，叫做手册或手册页(man page)。一个特殊的叫做 man 的分页程序，可用来浏览他们。它是这样使用的：
+> 许多希望被命令行使用的可执行程序，提供了一个正式的文档，叫做手册或手册页(man page)。一个特殊的叫做 man 的分页程序，可用来浏览他们。它是这样使用的：
 
     man program
 
@@ -166,13 +166,13 @@ where "program" is the name of the command to view.
 
 Man pages vary somewhat in format but generally contain a title, a synopsis of the command's syntax, a description of the command's purpose, and a listing and description of each of the command's options. Man pages, however, do not usually include examples, and are intended as a reference, not a tutorial. As an example, let's try viewing the man page for the ls command:
 
-手册文档的格式有点不同，一般地包含一个标题、命令语法的纲要、命令用途的说明、 以及每个命令选项的列表和说明。然而，手册文档通常并不包含实例，它打算 作为一本参考手册，而不是教程。作为一个例子，浏览一下 ls 命令的手册文档：
+> 手册文档的格式有点不同，一般地包含一个标题、命令语法的纲要、命令用途的说明、 以及每个命令选项的列表和说明。然而，手册文档通常并不包含实例，它打算 作为一本参考手册，而不是教程。作为一个例子，浏览一下 ls 命令的手册文档：
 
     [me@linuxbox ~]$ man ls
 
 On most Linux systems, man uses less to display the manual page, so all of the familiar less commands work while displaying the page.
 
-在大多数 Linux 系统中，man 使用 less 工具来显示参考手册，所以当浏览文档时，你所熟悉的 less 命令都能有效。
+> 在大多数 Linux 系统中，man 使用 less 工具来显示参考手册，所以当浏览文档时，你所熟悉的 less 命令都能有效。
 
 The "manual" that man displays is broken into sections and not only covers user commands but also system administration commands, programming interfaces, file formats and more. The table below describes the layout of the manual:
 
@@ -389,7 +389,7 @@ System administration commands
 ```{=html}
 <caption class="cap">
 ```
-表6-1: 手册页的组织形式
+> 表6-1: 手册页的组织形式
 ```{=html}
 </caption>
 ```
@@ -402,14 +402,14 @@ System administration commands
 ```{=html}
 <th class="title">
 ```
-章节
+> 章节
 ```{=html}
 </th>
 ```
 ```{=html}
 <th class="title">
 ```
-内容
+> 内容
 ```{=html}
 </th>
 ```
@@ -435,7 +435,7 @@ System administration commands
 ```{=html}
 <td>
 ```
-用户命令
+> 用户命令
 ```{=html}
 </td>
 ```
@@ -455,7 +455,7 @@ System administration commands
 ```{=html}
 <td>
 ```
-程序接口内核系统调用
+> 程序接口内核系统调用
 ```{=html}
 </td>
 ```
@@ -495,7 +495,7 @@ C 库函数程序接口
 ```{=html}
 <td>
 ```
-特殊文件，比如说设备结点和驱动程序
+> 特殊文件，比如说设备结点和驱动程序
 ```{=html}
 </td>
 ```
@@ -515,7 +515,7 @@ C 库函数程序接口
 ```{=html}
 <td>
 ```
-文件格式
+> 文件格式
 ```{=html}
 </td>
 ```
@@ -535,7 +535,7 @@ C 库函数程序接口
 ```{=html}
 <td>
 ```
-游戏娱乐，如屏幕保护程序
+> 游戏娱乐，如屏幕保护程序
 ```{=html}
 </td>
 ```
@@ -555,7 +555,7 @@ C 库函数程序接口
 ```{=html}
 <td>
 ```
-其他方面
+> 其他方面
 ```{=html}
 </td>
 ```
@@ -575,7 +575,7 @@ C 库函数程序接口
 ```{=html}
 <td>
 ```
-系统管理员命令
+> 系统管理员命令
 ```{=html}
 </td>
 ```
@@ -590,25 +590,25 @@ C 库函数程序接口
 ```
 Sometimes we need to look in a specific section of the manual to find what we are looking for. This is particularly true if we are looking for a file format that is also the name of a command. Without specifying a section number, we will always get the first instance of a match, probably in section 1. To specify a section number, we use man like this:
 
-有时候，我们需要查看参考手册的特定章节，从而找到我们需要的信息。 如果我们要查找一种文件格式，而同时它也是一个命令名时,这种情况尤其正确。 没有指定章节号，我们总是得到第一个匹配项，可能在第一章节。我们这样使用 man 命令， 来指定章节号：
+> 有时候，我们需要查看参考手册的特定章节，从而找到我们需要的信息。 如果我们要查找一种文件格式，而同时它也是一个命令名时,这种情况尤其正确。 没有指定章节号，我们总是得到第一个匹配项，可能在第一章节。我们这样使用 man 命令， 来指定章节号：
 
     man section search_term
 
 For example:
 
-例如：
+> 例如：
 
     [me@linuxbox ~]$ man 5 passwd
 
 This will display the man page describing the file format of the /etc/passwd file.
 
-命令运行结果会显示文件 /etc/passwd 的文件格式说明手册。
+> 命令运行结果会显示文件 /etc/passwd 的文件格式说明手册。
 
 ### apropos － 显示适合的命令
 
 It is also possible to search the list of man pages for possible matches based on a search term. It's very crude but sometimes helpful. Here is an example of a search for man pages using the search term "floppy":
 
-我们也可以搜索全部参考手册来找到自己需要的命令，这个方法虽然很粗糙但有时很有用。 下面是一个以"floppy"为关键词来搜索参考手册的例子：
+> 我们也可以搜索全部参考手册来找到自己需要的命令，这个方法虽然很粗糙但有时很有用。 下面是一个以"floppy"为关键词来搜索参考手册的例子：
 
     [me@linuxbox ~]$ apropos floppy
     create_floppy_devices (8)   - udev callout to create all possible
@@ -616,7 +616,7 @@ It is also possible to search the list of man pages for possible matches based o
 
 The first field in each line of output is the name of the man page, the second field shows the section. Note that the man command with the "-k" option performs the exact same function as apropos.
 
-输出结果每行的第一个字段是手册页的名字，第二个字段展示章节。注意，man 命令加上"-k"选项， 和 apropos 完成一样的功能。
+> 输出结果每行的第一个字段是手册页的名字，第二个字段展示章节。注意，man 命令加上"-k"选项， 和 apropos 完成一样的功能。
 
 ### whatis － 显示非常简洁的命令说明
 
@@ -655,7 +655,7 @@ info 程序读取 info 文件，info 文件是树型结构，分化为各个结�
 
 To invoke info, type "info" followed optionally by the name of a program. Below is a table of commands used to control the reader while displaying an info page:
 
-输入"info"，接着输入程序名称，启动 info。当显示一个 info 页面时，下表中的命令 用来控制阅读器。
+> 输入"info"，接着输入程序名称，启动 info。当显示一个 info 页面时，下表中的命令 用来控制阅读器。
 
 ```{=html}
 <table class="multi">
@@ -868,7 +868,7 @@ Quit
 ```{=html}
 <caption class="cap">
 ```
-表 6-2: info 命令
+> 表 6-2: info 命令
 ```{=html}
 </caption>
 ```
@@ -881,14 +881,14 @@ Quit
 ```{=html}
 <th class="title">
 ```
-命令
+> 命令
 ```{=html}
 </th>
 ```
 ```{=html}
 <th class="title">
 ```
-行为
+> 行为
 ```{=html}
 </th>
 ```
@@ -914,7 +914,7 @@ Quit
 ```{=html}
 <td valign="top">
 ```
-显示命令帮助
+> 显示命令帮助
 ```{=html}
 </td>
 ```
@@ -934,7 +934,7 @@ PgUp or Backspace
 ```{=html}
 <td valign="top">
 ```
-显示上一页
+> 显示上一页
 ```{=html}
 </td>
 ```
@@ -954,7 +954,7 @@ PgDn or Space
 ```{=html}
 <td valign="top">
 ```
-显示下一页
+> 显示下一页
 ```{=html}
 </td>
 ```
@@ -974,7 +974,7 @@ n
 ```{=html}
 <td valign="top">
 ```
-下一个 - 显示下一个结点
+> 下一个 - 显示下一个结点
 ```{=html}
 </td>
 ```
@@ -994,7 +994,7 @@ p
 ```{=html}
 <td valign="top">
 ```
-上一个 - 显示上一个结点
+> 上一个 - 显示上一个结点
 ```{=html}
 </td>
 ```
@@ -1034,7 +1034,7 @@ Enter
 ```{=html}
 <td valign="top">
 ```
-激活光标位置下的超级链接
+> 激活光标位置下的超级链接
 ```{=html}
 </td>
 ```
@@ -1054,7 +1054,7 @@ q
 ```{=html}
 <td valign="top">
 ```
-退出
+> 退出
 ```{=html}
 </td>
 ```
@@ -1069,31 +1069,31 @@ q
 ```
 Most of the command line programs we have discussed so far are part of the GNU Project's "coreutils" package, so typing:
 
-到目前为止，我们所讨论的大多数命令行程序，属于 GNU 项目"coreutils"包，所以输入：
+> 到目前为止，我们所讨论的大多数命令行程序，属于 GNU 项目"coreutils"包，所以输入：
 
     [me@linuxbox ~]$ info coreutils
 
 will display a menu page with hyperlinks to each program contained in the coreutils package.
 
-将会显示一个包含超级链接的手册页，这些超级链接指向包含在 coreutils 包中的各个程序。
+> 将会显示一个包含超级链接的手册页，这些超级链接指向包含在 coreutils 包中的各个程序。
 
 ### README 和其它程序文档
 
 Many software packages installed on your system have documentation files residing in the /usr/share/doc directory. Most of these are stored in plain text format and can be viewed with less. Some of the files are in HTML format and can be viewed with a web browser. We may encounter some files ending with a ".gz" extension. This indicates that they have been compressed with the gzip compression program. The gzip package includes a special version of less called zless that will display the contents of gzip-compressed text files.
 
-许多安装在你系统中的软件，都有自己的文档文件，这些文件位于/usr/share/doc 目录下。 这些文件大多数是以文本文件的形式存储的，可用 less 阅读器来浏览。一些文件是 HTML 格式， 可用网页浏览器来阅读。我们可能遇到许多以".gz"结尾的文件。这表示 gzip 压缩程序 已经压缩了这些文件。gzip 软件包包括一个特殊版本的 less ，叫做 zless，zless 可以显示由 gzip 压缩的文本文件的内容。
+> 许多安装在你系统中的软件，都有自己的文档文件，这些文件位于/usr/share/doc 目录下。 这些文件大多数是以文本文件的形式存储的，可用 less 阅读器来浏览。一些文件是 HTML 格式， 可用网页浏览器来阅读。我们可能遇到许多以".gz"结尾的文件。这表示 gzip 压缩程序 已经压缩了这些文件。gzip 软件包包括一个特殊版本的 less ，叫做 zless，zless 可以显示由 gzip 压缩的文本文件的内容。
 
 ### 用别名（alias）创建你自己的命令
 
 Now for our very first experience with programming! We will create a command of our own using the alias command. But before we start, we need to reveal a small command line trick. It's possible to put more than one command on a line by separating each command with a semicolon character. It works like this:
 
-现在是时候，感受第一次编程经历了！我们将用 alias 命令创建我们自己的命令。但在 开始之前，我们需要展示一个命令行小技巧。可以把多个命令放在同一行上，命令之间 用";"分开。它像这样工作：
+> 现在是时候，感受第一次编程经历了！我们将用 alias 命令创建我们自己的命令。但在 开始之前，我们需要展示一个命令行小技巧。可以把多个命令放在同一行上，命令之间 用";"分开。它像这样工作：
 
     command1; command2; command3...
 
 Here's the example we will use:
 
-我们会用到下面的例子：
+> 我们会用到下面的例子：
 
     [me@linuxbox ~]$ cd /usr; ls; cd -
     bin  games    kerberos  lib64    local  share  tmp
@@ -1102,33 +1102,33 @@ Here's the example we will use:
 
 As we can see, we have combined three commands on one line. First we change directory to /usr then list the directory and finally return to the original directory (by using 'cd -') so we end up where we started. Now let's turn this sequence into a new command using alias. The first thing we have to do is dream up a name for our new command. Let's try "test". Before we do that, it would be a good idea to find out if the name "test" is already being used. To find out, we can use the type command again:
 
-正如我们看到的，我们在一行上联合了三个命令。首先更改目录到/usr，然后列出目录 内容，最后回到之前的目录（用命令"cd -"）,结束在开始的地方。现在，通过 alias 命令 把这一串命令转变为一个命令。我们要做的第一件事就是为我们的新命令构想一个名字。 比方说"test"。在使用"test"之前，最好先查明"test"命令名是否已经存在于系统中。 为此，可以使用 type 命令：
+> 正如我们看到的，我们在一行上联合了三个命令。首先更改目录到/usr，然后列出目录 内容，最后回到之前的目录（用命令"cd -"）,结束在开始的地方。现在，通过 alias 命令 把这一串命令转变为一个命令。我们要做的第一件事就是为我们的新命令构想一个名字。 比方说"test"。在使用"test"之前，最好先查明"test"命令名是否已经存在于系统中。 为此，可以使用 type 命令：
 
     [me@linuxbox ~]$ type test
     test is a shell builtin
 
 Oops! The name "test" is already taken. Let's try "foo":
 
-哦！"test"名字已经被使用了。试一下"foo":
+> 哦！"test"名字已经被使用了。试一下"foo":
 
     [me@linuxbox ~]$ type foo
     bash: type: foo: not found
 
 Great! "foo" is not taken. So let's create our alias:
 
-太棒了！"foo"还没被占用。创建命令别名：
+> 太棒了！"foo"还没被占用。创建命令别名：
 
     [me@linuxbox ~]$ alias foo='cd /usr; ls; cd -'
 
 Notice the structure of this command:
 
-注意命令结构：
+> 注意命令结构：
 
     alias name='string'
 
 After the command "alias" we give alias a name followed immediately (no whitespace allowed) by an equals sign, followed immediately by a quoted string containing the meaning to be assigned to the name. After we define our alias, it can be used anywhere the shell would expect a command. Let's try it:
 
-在命令"alias"之后，输入"name"，紧接着（没有空格）是一个等号，等号之后是 一串用引号引起的字符串，字符串的内容要赋值给 name。我们定义了别名之后， 这个命令别名可以使用在任何地方。试一下：
+> 在命令"alias"之后，输入"name"，紧接着（没有空格）是一个等号，等号之后是 一串用引号引起的字符串，字符串的内容要赋值给 name。我们定义了别名之后， 这个命令别名可以使用在任何地方。试一下：
 
     [me@linuxbox ~]$ foo
     bin   games   kerberos  lib64    local   share  tmp
@@ -1137,14 +1137,14 @@ After the command "alias" we give alias a name followed immediately (no whitespa
 
 We can also use the type command again to see our alias:
 
-我们也可以使用 type 命令来查看我们的别名：
+> 我们也可以使用 type 命令来查看我们的别名：
 
     [me@linuxbox ~]$ type foo
     foo is aliased to `cd /usr; ls ; cd -'
 
 To remove an alias, the unalias command is used, like so:
 
-删除别名，使用 unalias 命令，像这样：
+> 删除别名，使用 unalias 命令，像这样：
 
     [me@linuxbox ~]$ unalias foo
     [me@linuxbox ~]$ type foo
@@ -1152,14 +1152,14 @@ To remove an alias, the unalias command is used, like so:
 
 While we purposefully avoided naming our alias with an existing command name, it is not uncommon to do so. This is often done to apply a commonly desired option to each invocation of a common command. For instance, we saw earlier how the ls command is often aliased to add color support:
 
-虽然我们有意避免使用已经存在的命令名来命名我们的别名，但有时候也会故意这么做。通常， 会把一个普遍用到的选项加到一个经常使用的命令后面。例如，之前见到的 ls 命令，会 带有色彩支持：
+> 虽然我们有意避免使用已经存在的命令名来命名我们的别名，但有时候也会故意这么做。通常， 会把一个普遍用到的选项加到一个经常使用的命令后面。例如，之前见到的 ls 命令，会 带有色彩支持：
 
     [me@linuxbox ~]$ type ls
     ls is aliased to 'ls --color=tty'
 
 To see all the aliases defined in the environment, use the alias command without arguments. Here are some of the aliases defined by default on a Fedora system. Try and figure out what they all do:
 
-要查看所有定义在系统环境中的别名，可使用不带参数的 alias 命令。下面是 Fedora 系统中 默认定义的别名。试着弄明白它们是做什么的：
+> 要查看所有定义在系统环境中的别名，可使用不带参数的 alias 命令。下面是 Fedora 系统中 默认定义的别名。试着弄明白它们是做什么的：
 
     [me@linuxbox ~]$ alias
     alias l.='ls -d .* --color=tty'
@@ -1167,13 +1167,13 @@ To see all the aliases defined in the environment, use the alias command without
 
 There is one tiny problem with defining aliases on the command line. They vanish when your shell session ends. In a later chapter, we will see how to add our own aliases to the files that establish the environment each time we log on, but for now, enjoy the fact that we have taken our first, albeit tiny, step into the world of shell programming!
 
-在命令行中定义别名有点个小问题。当你的 shell 会话结束时，它们会消失。随后的章节里， 我们会了解怎样把自己的别名添加到文件中去，每次我们登录系统，这些文件会建立系统环境。 现在，好好享受我们刚经历过的，步入 shell 编程世界的第一步吧，虽然是小小的一步。
+> 在命令行中定义别名有点个小问题。当你的 shell 会话结束时，它们会消失。随后的章节里， 我们会了解怎样把自己的别名添加到文件中去，每次我们登录系统，这些文件会建立系统环境。 现在，好好享受我们刚经历过的，步入 shell 编程世界的第一步吧，虽然是小小的一步。
 
 ### 拜访老朋友
 
 Now that we have learned how to find the documentation for commands, go and look up the documentation for all the commands we have encountered so far. Study what additional options are available and try them out!
 
-既然我们已经学习了怎样找到命令的帮助文档，那就试着查阅，到目前为止，我们学到的所有 命令的文档。学习命令其它可用的选项，练习一下！
+> 既然我们已经学习了怎样找到命令的帮助文档，那就试着查阅，到目前为止，我们学到的所有 命令的文档。学习命令其它可用的选项，练习一下！
 
 ### 拓展阅读
 

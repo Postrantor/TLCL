@@ -5,7 +5,7 @@ title: 探究操作系统
 
 Now that we know how to move around the file system, it's time for a guided tour of our Linux system. Before we start however, we're going to learn some more commands that will be useful along the way:
 
-既然我们已经知道了如何在文件系统中跳转，是时候开始 Linux 操作系统之旅了。然而在开始之前，我们先学习一些对研究 Linux 系统有帮助的命令。
+> 既然我们已经知道了如何在文件系统中跳转，是时候开始 Linux 操作系统之旅了。然而在开始之前，我们先学习一些对研究 Linux 系统有帮助的命令。
 
 -   ls -- List directory contents
 
@@ -30,7 +30,7 @@ ls 可能是用户最常使用的命令了，这自有它的道理。通过它�
 
 Besides the current working directory, we can specify the directory to list, like so:
 
-除了当前工作目录以外，也可以指定别的目录，就像这样：
+> 除了当前工作目录以外，也可以指定别的目录，就像这样：
 
     me@linuxbox ~]$ ls /usr
     bin games   kerberos    libexec  sbin   src
@@ -38,7 +38,7 @@ Besides the current working directory, we can specify the directory to list, lik
 
 Or even specify multiple directories. In this example we will list both the user's home directory (symbolized by the "\~" character) and the /usr directory:
 
-甚至可以列出多个指定目录的内容。在这个例子中，将会列出用户家目录（用字符"\~"代表）和/usr 目录的内容：
+> 甚至可以列出多个指定目录的内容。在这个例子中，将会列出用户家目录（用字符"\~"代表）和/usr 目录的内容：
 
     [me@linuxbox ~]$ ls ~ /usr
     /home/me:
@@ -50,7 +50,7 @@ Or even specify multiple directories. In this example we will list both the user
 
 We can also change the format of the output to reveal more detail:
 
-我们也可以改变输出格式，来得到更多的细节：
+> 我们也可以改变输出格式，来得到更多的细节：
 
     [me@linuxbox ~]$ ls -l
     total 56
@@ -64,25 +64,25 @@ We can also change the format of the output to reveal more detail:
 
 By adding "-l" to the command, we changed the output to the long format.
 
-使用 ls 命令的"-l"选项，则结果以长模式输出。
+> 使用 ls 命令的"-l"选项，则结果以长模式输出。
 
 ### 选项和参数
 
 This brings us to a very important point about how most commands work. Commands are often followed by one or more options that modify their behavior, and further, by one or more arguments, the items upon which the command acts. So most commands look kind of like this:
 
-我们将学习一个非常重要的知识点，看看大多数命令都是如何工作的。命令名经常会带有一个或多个用来改变命令行为的选项， 更进一步，选项后面会带有一个或多个参数，这些参数是命令作用的对象。所以大多数命令看起来像这样：
+> 我们将学习一个非常重要的知识点，看看大多数命令都是如何工作的。命令名经常会带有一个或多个用来改变命令行为的选项， 更进一步，选项后面会带有一个或多个参数，这些参数是命令作用的对象。所以大多数命令看起来像这样：
 
     command -options arguments
 
 Most commands use options consisting of a single character preceded by a dash, for example, "-l", but many commands, including those from the GNU Project, also support long options, consisting of a word preceded by two dashes. Also, many commands allow multiple short options to be strung together. In this example, the ls command is given two options, the "l" option to produce long format output, and the "t" option to sort the result by the file's modification time.
 
-大多数命令使用的选项，是由一个中划线加上一个字符组成，例如，"-l"，但是许多命令，包括来自于 GNU 项目的命令，也支持长选项，长选项由两个中划线加上一个字组成。当然， 许多命令也允许把多个短选项串在一起使用。下面这个例子，ls 命令有两个选项， "l" 选项产生长格式输出，"t"选项按文件修改时间的先后来排序。
+> 大多数命令使用的选项，是由一个中划线加上一个字符组成，例如，"-l"，但是许多命令，包括来自于 GNU 项目的命令，也支持长选项，长选项由两个中划线加上一个字组成。当然， 许多命令也允许把多个短选项串在一起使用。下面这个例子，ls 命令有两个选项， "l" 选项产生长格式输出，"t"选项按文件修改时间的先后来排序。
 
     [me@linuxbox ~]$ ls -lt
 
 We'll add the long option "--reverse" to reverse the order of the sort:
 
-加上长选项 "--reverse"，则结果会以相反的顺序输出：
+> 加上长选项 "--reverse"，则结果会以相反的顺序输出：
 
     [me@linuxbox ~]$ ls -lt --reverse
 
@@ -349,7 +349,7 @@ Sort by modification time.
 ```{=html}
 <caption class="cap">
 ```
-表 4-1: ls 命令选项
+> 表 4-1: ls 命令选项
 ```{=html}
 </caption>
 ```
@@ -359,21 +359,21 @@ Sort by modification time.
 ```{=html}
 <th class="title" width="10%">
 ```
-选项
+> 选项
 ```{=html}
 </th>
 ```
 ```{=html}
 <th width="20%">
 ```
-长选项
+> 长选项
 ```{=html}
 </th>
 ```
 ```{=html}
 <th>
 ```
-描述
+> 描述
 ```{=html}
 </th>
 ```
@@ -400,7 +400,7 @@ Sort by modification time.
 ```{=html}
 <td>
 ```
-列出所有文件，甚至包括文件名以圆点开头的默认会被隐藏的隐藏文件。
+> 列出所有文件，甚至包括文件名以圆点开头的默认会被隐藏的隐藏文件。
 ```{=html}
 </td>
 ```
@@ -427,7 +427,7 @@ Sort by modification time.
 ```{=html}
 <td>
 ```
-通常，如果指定了目录名，ls 命令会列出这个目录中的内容，而不是目录本身。 把这个选项与 -l 选项结合使用，可以看到所指定目录的详细信息，而不是目录中的内容。
+> 通常，如果指定了目录名，ls 命令会列出这个目录中的内容，而不是目录本身。 把这个选项与 -l 选项结合使用，可以看到所指定目录的详细信息，而不是目录中的内容。
 ```{=html}
 </td>
 ```
@@ -454,7 +454,7 @@ Sort by modification time.
 ```{=html}
 <td>
 ```
-这个选项会在每个所列出的名字后面加上一个指示符。例如，如果名字是 目录名，则会加上一个'/'字符。
+> 这个选项会在每个所列出的名字后面加上一个指示符。例如，如果名字是 目录名，则会加上一个'/'字符。
 ```{=html}
 </td>
 ```
@@ -481,7 +481,7 @@ Sort by modification time.
 ```{=html}
 <td>
 ```
-当以长格式列出时，以人们可读的格式，而不是以字节数来显示文件的大小。
+> 当以长格式列出时，以人们可读的格式，而不是以字节数来显示文件的大小。
 ```{=html}
 </td>
 ```
@@ -507,7 +507,7 @@ Sort by modification time.
 ```{=html}
 <td>
 ```
-以长格式显示结果。
+> 以长格式显示结果。
 ```{=html}
 </td>
 ```
@@ -534,7 +534,7 @@ Sort by modification time.
 ```{=html}
 <td>
 ```
-以相反的顺序来显示结果。通常，ls 命令的输出结果按照字母升序排列。
+> 以相反的顺序来显示结果。通常，ls 命令的输出结果按照字母升序排列。
 ```{=html}
 </td>
 ```
@@ -560,7 +560,7 @@ Sort by modification time.
 ```{=html}
 <td>
 ```
-命令输出结果按照文件大小来排序。
+> 命令输出结果按照文件大小来排序。
 ```{=html}
 </td>
 ```
@@ -586,7 +586,7 @@ Sort by modification time.
 ```{=html}
 <td>
 ```
-按照修改时间来排序。
+> 按照修改时间来排序。
 ```{=html}
 </td>
 ```
@@ -600,7 +600,7 @@ Sort by modification time.
 
 As we saw before, the "-l" option causes ls to display its results in long format. This format contains a great deal of useful information. Here is the Examples directory from an Ubuntu system:
 
-正如我们先前知道的，"-l"选项导致 ls 的输出结果以长格式输出。这种格式包含大量的有用信息。下面的例子目录来自 于 Ubuntu 系统：
+> 正如我们先前知道的，"-l"选项导致 ls 的输出结果以长格式输出。这种格式包含大量的有用信息。下面的例子目录来自 于 Ubuntu 系统：
 
     -rw-r--r-- 1 root root 3576296 2007-04-03 11:05 Experience ubuntu.ogg
     -rw-r--r-- 1 root root 1186219 2007-04-03 11:05 kubuntu-leaflet.png
@@ -616,7 +616,7 @@ As we saw before, the "-l" option causes ls to display its results in long forma
 
 Let's look at the different fields from one of the files and examine their meanings:
 
-选一个文件，来看一下各个输出字段的含义：
+> 选一个文件，来看一下各个输出字段的含义：
 
 ```{=html}
 <table class="multi">
@@ -797,7 +797,7 @@ Name of the file.
 ```{=html}
 <caption class="cap">
 ```
-表 4-2: ls 长格式列表的字段
+> 表 4-2: ls 长格式列表的字段
 ```{=html}
 </caption>
 ```
@@ -807,14 +807,14 @@ Name of the file.
 ```{=html}
 <th class="title">
 ```
-字段
+> 字段
 ```{=html}
 </th>
 ```
 ```{=html}
 <th class="title">
 ```
-含义
+> 含义
 ```{=html}
 </th>
 ```
@@ -834,7 +834,7 @@ Name of the file.
 ```{=html}
 <td valign="top">
 ```
-对于文件的访问权限。第一个字符指明文件类型。在不同类型之间， 开头的"－"说明是一个普通文件，"d"表明是一个目录。其后三个字符是文件所有者的 访问权限，再其后的三个字符是文件所属组中成员的访问权限，最后三个字符是其他所 有人的访问权限。这个字段的完整含义将在第十章讨论。
+> 对于文件的访问权限。第一个字符指明文件类型。在不同类型之间， 开头的"－"说明是一个普通文件，"d"表明是一个目录。其后三个字符是文件所有者的 访问权限，再其后的三个字符是文件所属组中成员的访问权限，最后三个字符是其他所 有人的访问权限。这个字段的完整含义将在第十章讨论。
 ```{=html}
 </td>
 ```
@@ -854,7 +854,7 @@ Name of the file.
 ```{=html}
 <td>
 ```
-文件的硬链接数目。参考随后讨论的关于链接的内容。
+> 文件的硬链接数目。参考随后讨论的关于链接的内容。
 ```{=html}
 </td>
 ```
@@ -874,7 +874,7 @@ root
 ```{=html}
 <td>
 ```
-文件所有者的用户名。
+> 文件所有者的用户名。
 ```{=html}
 </td>
 ```
@@ -894,7 +894,7 @@ root
 ```{=html}
 <td>
 ```
-文件所属用户组的名字。
+> 文件所属用户组的名字。
 ```{=html}
 </td>
 ```
@@ -914,7 +914,7 @@ root
 ```{=html}
 <td>
 ```
-以字节数表示的文件大小。
+> 以字节数表示的文件大小。
 ```{=html}
 </td>
 ```
@@ -934,7 +934,7 @@ root
 ```{=html}
 <td>
 ```
-上次修改文件的时间和日期。
+> 上次修改文件的时间和日期。
 ```{=html}
 </td>
 ```
@@ -954,7 +954,7 @@ oo-cd-cover.odf
 ```{=html}
 <td>
 ```
-文件名。
+> 文件名。
 ```{=html}
 </td>
 ```
@@ -968,24 +968,24 @@ oo-cd-cover.odf
 
 As we explore the system it will be useful to know what files contain. To do this we will use the file command to determine a file's type. As we discussed earlier, filenames in Linux are not required to reflect a file's contents. While a filename like "picture.jpg" would normally be expected to contain a JPEG compressed image, it is not required to in Linux. We can invoke the file command this way:
 
-随着探究操作系统的进行，知道文件包含的内容是很有用的。我们将用 file 命令来确定文件的类型。我们之前讨论过， 在 Linux 系统中，并不要求文件名来反映文件的内容。然而，一个类似 "picture.jpg" 的文件名，我们会期望它包含 JPEG 压缩图像，但 Linux 却不这样要求它。可以这样调用 file 命令：
+> 随着探究操作系统的进行，知道文件包含的内容是很有用的。我们将用 file 命令来确定文件的类型。我们之前讨论过， 在 Linux 系统中，并不要求文件名来反映文件的内容。然而，一个类似 "picture.jpg" 的文件名，我们会期望它包含 JPEG 压缩图像，但 Linux 却不这样要求它。可以这样调用 file 命令：
 
     file filename
 
 When invoked, the file command will print a brief description of the file's contents. For example:
 
-当调用 file 命令后，file 命令会打印出文件内容的简单描述。例如：
+> 当调用 file 命令后，file 命令会打印出文件内容的简单描述。例如：
 
     [me@linuxbox ~]$ file picture.jpg
     picture.jpg: JPEG image data, JFIF standard 1.01
 
 There are many kinds of files. In fact, one of the common ideas in Unix-like operating systems such as Linux is that "everything is a file." As we proceed with our lessons, we will see just how true that statement is.
 
-有许多种类型的文件。事实上，在类 Unix 操作系统中比如说 Linux 中，有个普遍的观念就是"一切皆文件"。 随着课程的进行，我们将会明白这句话是多么的正确。
+> 有许多种类型的文件。事实上，在类 Unix 操作系统中比如说 Linux 中，有个普遍的观念就是"一切皆文件"。 随着课程的进行，我们将会明白这句话是多么的正确。
 
 While many of the files on your system are familiar, for example MP3 and JPEG, there are many kinds that are a little less obvious and a few that are quite strange.
 
-虽然系统中许多文件格式是熟悉的，例如 MP3和 JPEG 文件，但也有一些文件格式不太常见，极少数文件相当陌生。
+> 虽然系统中许多文件格式是熟悉的，例如 MP3和 JPEG 文件，但也有一些文件格式不太常见，极少数文件相当陌生。
 
 ### 用 less 浏览文件内容
 
@@ -1011,7 +1011,7 @@ less 命令是一个用来浏览文本文件的程序。纵观 Linux 系统，�
 
 Why would we want to examine text files? Because many of the files that contain system settings (called configuration files) are stored in this format, and being able to read them gives us insight about how the system works. In addition, many of the actual programs that the system uses (called scripts) are stored in this format. In later chapters, we will learn how to edit text files in order to modify systems settings and write our own scripts, but for now we will just look at their contents.
 
-为什么我们要查看文本文件呢？ 因为许多包含系统设置的文件（叫做配置文件），是以文本格式存储的，阅读它们 可以更深入的了解系统是如何工作的。另外，许多系统所用到的实际程序（叫做脚本）也是以这种格式存储的。 在随后的章节里，我们将要学习怎样编辑文本文件以修改系统设置，还要学习编写自己的脚本文件，但现在我们只是看看它们的内容而已。
+> 为什么我们要查看文本文件呢？ 因为许多包含系统设置的文件（叫做配置文件），是以文本格式存储的，阅读它们 可以更深入的了解系统是如何工作的。另外，许多系统所用到的实际程序（叫做脚本）也是以这种格式存储的。 在随后的章节里，我们将要学习怎样编辑文本文件以修改系统设置，还要学习编写自己的脚本文件，但现在我们只是看看它们的内容而已。
 
 The less command is used like this:
 
@@ -1021,15 +1021,15 @@ less 命令是这样使用的：
 
 Once started, the less program allows you to scroll forward and backward through a text file. For example, to examine the file that defines all the system's user accounts, enter the following command:
 
-一旦运行起来，less 程序允许你前后滚动文件。例如，要查看一个定义了系统中全部用户身份的文件，输入以下命令：
+> 一旦运行起来，less 程序允许你前后滚动文件。例如，要查看一个定义了系统中全部用户身份的文件，输入以下命令：
 
     [me@linuxbox ~]$ less /etc/passwd
 
 Once the less program starts, we may view the contents of the file. If the file is longer than one page, we can scroll up and down. To exit less, press the "q" key. The table below lists the most common keyboard commands used by less.
 
-一旦 less 程序运行起来，我们就能浏览文件内容了。如果文件内容多于一页，那么我们可以上下滚动文件。按下"q"键， 退出 less 程序。
+> 一旦 less 程序运行起来，我们就能浏览文件内容了。如果文件内容多于一页，那么我们可以上下滚动文件。按下"q"键， 退出 less 程序。
 
-下表列出了 less 程序最常使用的键盘命令。
+> 下表列出了 less 程序最常使用的键盘命令。
 
 ```{=html}
 <table class="multi">
@@ -1270,7 +1270,7 @@ Quit less
 ```{=html}
 <caption class="cap">
 ```
-表 4-3: less 命令
+> 表 4-3: less 命令
 ```{=html}
 </caption>
 ```
@@ -1280,14 +1280,14 @@ Quit less
 ```{=html}
 <th class="title" width="30%">
 ```
-命令
+> 命令
 ```{=html}
 </th>
 ```
 ```{=html}
 <th class="title">
 ```
-行为
+> 行为
 ```{=html}
 </th>
 ```
@@ -1307,7 +1307,7 @@ Page UP or b
 ```{=html}
 <td valign="top">
 ```
-向上翻滚一页
+> 向上翻滚一页
 ```{=html}
 </td>
 ```
@@ -1327,7 +1327,7 @@ Page Down or space
 ```{=html}
 <td valign="top">
 ```
-向下翻滚一页
+> 向下翻滚一页
 ```{=html}
 </td>
 ```
@@ -1347,7 +1347,7 @@ UP Arrow
 ```{=html}
 <td valign="top">
 ```
-向上翻滚一行
+> 向上翻滚一行
 ```{=html}
 </td>
 ```
@@ -1367,7 +1367,7 @@ Down Arrow
 ```{=html}
 <td valign="top">
 ```
-向下翻滚一行
+> 向下翻滚一行
 ```{=html}
 </td>
 ```
@@ -1387,7 +1387,7 @@ G
 ```{=html}
 <td valign="top">
 ```
-移动到最后一行
+> 移动到最后一行
 ```{=html}
 </td>
 ```
@@ -1407,7 +1407,7 @@ G
 ```{=html}
 <td valign="top">
 ```
-移动到开头一行
+> 移动到开头一行
 ```{=html}
 </td>
 ```
@@ -1427,7 +1427,7 @@ G
 ```{=html}
 <td valign="top">
 ```
-向前查找指定的字符串
+> 向前查找指定的字符串
 ```{=html}
 </td>
 ```
@@ -1447,7 +1447,7 @@ n
 ```{=html}
 <td valign="top">
 ```
-向前查找下一个出现的字符串，这个字符串是之前所指定查找的
+> 向前查找下一个出现的字符串，这个字符串是之前所指定查找的
 ```{=html}
 </td>
 ```
@@ -1467,7 +1467,7 @@ h
 ```{=html}
 <td valign="top">
 ```
-显示帮助屏幕
+> 显示帮助屏幕
 ```{=html}
 </td>
 ```
@@ -1487,7 +1487,7 @@ q
 ```{=html}
 <td valign="top">
 ```
-退出 less 程序
+> 退出 less 程序
 ```{=html}
 </td>
 ```
@@ -1515,7 +1515,7 @@ Linux 系统中，文件系统布局与类 Unix 系统的文件布局很相似�
 
 Next, we are going to wander around the file system ourselves to see what makes our Linux system tick. This will give you a chance to practice your navigation skills. One of the things we will discover is that many of the interesting files are in plain human- readable text. As we go about our tour, try the following:
 
-下一步，我们将在文件系统中游览，来了解 Linux 系统的工作原理。这会给你一个温习跳转命令的机会。 我们会发现很多有趣的文件都是纯人类可读文本。下面旅行开始，做做以下练习：
+> 下一步，我们将在文件系统中游览，来了解 Linux 系统的工作原理。这会给你一个温习跳转命令的机会。 我们会发现很多有趣的文件都是纯人类可读文本。下面旅行开始，做做以下练习：
 
 1.  cd into a given directory
 2.  List the directory contents with ls -l
@@ -1528,13 +1528,13 @@ Next, we are going to wander around the file system ourselves to see what makes 
 
 Remember the copy and paste trick! If you are using a mouse, you can double click on a filename to copy it and middle click to paste it into commands.
 
-记得复制和粘贴技巧！如果你正在使用鼠标，双击文件名，来复制它，然后按下鼠标中键，粘贴文件名到命令行中。
+> 记得复制和粘贴技巧！如果你正在使用鼠标，双击文件名，来复制它，然后按下鼠标中键，粘贴文件名到命令行中。
 
 ------------------------------------------------------------------------
 
 As we wander around, don't be afraid to look at stuff. Regular users are largely prohibited from messing things up. That's the system administrators job! If a command complains about something, just move on to something else. Spend some time looking around. The system is ours to explore. Remember, in Linux, there are no secrets! Table 4-4 lists just a few of the directories we can explore. Feel free to try more!
 
-在系统中游览时，不要害怕四处看看。普通用户是很难把东西弄乱的。那是系统管理员的工作！ 如果一个命令抱怨一些事情，不要管它，尝试一下别的东西。花一些时间四处看看。 系统是我们自己的，尽情地探究吧。记住在 Linux 中，没有秘密存在！ 表4-4仅仅列出了一些我们可以浏览的目录。随意尝试更多！
+> 在系统中游览时，不要害怕四处看看。普通用户是很难把东西弄乱的。那是系统管理员的工作！ 如果一个命令抱怨一些事情，不要管它，尝试一下别的东西。花一些时间四处看看。 系统是我们自己的，尽情地探究吧。记住在 Linux 中，没有秘密存在！ 表4-4仅仅列出了一些我们可以浏览的目录。随意尝试更多！
 
 ```{=html}
 <table class="multi">
@@ -2116,7 +2116,7 @@ With the exception of /tmp and /home, the directories we have looked at so far r
 ```{=html}
 <caption class="cap">
 ```
-表 4-4: Linux 系统中的目录
+> 表 4-4: Linux 系统中的目录
 ```{=html}
 </caption>
 ```
@@ -2126,14 +2126,14 @@ With the exception of /tmp and /home, the directories we have looked at so far r
 ```{=html}
 <th class="title">
 ```
-目录
+> 目录
 ```{=html}
 </th>
 ```
 ```{=html}
 <th class="title">
 ```
-评论
+> 评论
 ```{=html}
 </th>
 ```
@@ -2153,7 +2153,7 @@ With the exception of /tmp and /home, the directories we have looked at so far r
 ```{=html}
 <td valign="top">
 ```
-根目录，万物起源。
+> 根目录，万物起源。
 ```{=html}
 </td>
 ```
@@ -2173,7 +2173,7 @@ With the exception of /tmp and /home, the directories we have looked at so far r
 ```{=html}
 <td valign="top">
 ```
-包含系统启动和运行所必须的二进制程序。
+> 包含系统启动和运行所必须的二进制程序。
 ```{=html}
 </td>
 ```
@@ -2196,14 +2196,14 @@ With the exception of /tmp and /home, the directories we have looked at so far r
 ```{=html}
 <p>
 ```
-包含 Linux 内核、初始 RAM 磁盘映像（用于启动时所需的驱动）和 启动加载程序。
+> 包含 Linux 内核、初始 RAM 磁盘映像（用于启动时所需的驱动）和 启动加载程序。
 ```{=html}
 </p>
 ```
 ```{=html}
 <p>
 ```
-有趣的文件：
+> 有趣的文件：
 ```{=html}
 </p>
 ```
@@ -2246,7 +2246,7 @@ With the exception of /tmp and /home, the directories we have looked at so far r
 ```{=html}
 <td valign="top">
 ```
-这是一个包含设备结点的特殊目录。"一切都是文件"，也适用于设备。 在这个目录里，内核维护着所有设备的列表。
+> 这是一个包含设备结点的特殊目录。"一切都是文件"，也适用于设备。 在这个目录里，内核维护着所有设备的列表。
 ```{=html}
 </td>
 ```
@@ -2269,14 +2269,14 @@ With the exception of /tmp and /home, the directories we have looked at so far r
 ```{=html}
 <p>
 ```
-这个目录包含所有系统层面的配置文件。它也包含一系列的 shell 脚本， 在系统启动时，这些脚本会开启每个系统服务。这个目录中的任何文件应该是可读的文本文件。
+> 这个目录包含所有系统层面的配置文件。它也包含一系列的 shell 脚本， 在系统启动时，这些脚本会开启每个系统服务。这个目录中的任何文件应该是可读的文本文件。
 ```{=html}
 </p>
 ```
 ```{=html}
 <p>
 ```
-有趣的文件：虽然/etc 目录中的任何文件都有趣，但这里只列出了一些我一直喜欢的文件：
+> 有趣的文件：虽然/etc 目录中的任何文件都有趣，但这里只列出了一些我一直喜欢的文件：
 ```{=html}
 </p>
 ```
@@ -2326,7 +2326,7 @@ With the exception of /tmp and /home, the directories we have looked at so far r
 ```{=html}
 <td valign="top">
 ```
-在通常的配置环境下，系统会在 /home 下，给每个用户分配一个目录。普通用户只能 在自己的目录下写文件。这个限制保护系统免受错误的用户活动破坏。
+> 在通常的配置环境下，系统会在 /home 下，给每个用户分配一个目录。普通用户只能 在自己的目录下写文件。这个限制保护系统免受错误的用户活动破坏。
 ```{=html}
 </td>
 ```
@@ -2346,7 +2346,7 @@ With the exception of /tmp and /home, the directories we have looked at so far r
 ```{=html}
 <td valign="top">
 ```
-包含核心系统程序所使用的共享库文件。这些文件与 Windows 中的动态链接库相似。
+> 包含核心系统程序所使用的共享库文件。这些文件与 Windows 中的动态链接库相似。
 ```{=html}
 </td>
 ```
@@ -2366,7 +2366,7 @@ With the exception of /tmp and /home, the directories we have looked at so far r
 ```{=html}
 <td valign="top">
 ```
-每个使用 Linux 文件系统的格式化分区或设备，例如 ext3文件系统， 都会有这个目录。当部分恢复一个损坏的文件系统时，会用到这个目录。这个目录应该是空的，除非文件系统 真正的损坏了。
+> 每个使用 Linux 文件系统的格式化分区或设备，例如 ext3文件系统， 都会有这个目录。当部分恢复一个损坏的文件系统时，会用到这个目录。这个目录应该是空的，除非文件系统 真正的损坏了。
 ```{=html}
 </td>
 ```
@@ -2386,7 +2386,7 @@ With the exception of /tmp and /home, the directories we have looked at so far r
 ```{=html}
 <td>
 ```
-在现在的 Linux 系统中，/media 目录会包含可移动介质的挂载点， 例如 USB 驱动器，CD-ROMs 等等。这些介质连接到计算机之后，会自动地挂载到这个目录结点下。
+> 在现在的 Linux 系统中，/media 目录会包含可移动介质的挂载点， 例如 USB 驱动器，CD-ROMs 等等。这些介质连接到计算机之后，会自动地挂载到这个目录结点下。
 ```{=html}
 </td>
 ```
@@ -2406,7 +2406,7 @@ With the exception of /tmp and /home, the directories we have looked at so far r
 ```{=html}
 <td>
 ```
-在早些的 Linux 系统中，/mnt 目录包含可移动介质的挂载点。
+> 在早些的 Linux 系统中，/mnt 目录包含可移动介质的挂载点。
 ```{=html}
 </td>
 ```
@@ -2426,7 +2426,7 @@ With the exception of /tmp and /home, the directories we have looked at so far r
 ```{=html}
 <td>
 ```
-这个/opt 目录被用来安装"可选的"软件。这个主要用来存储可能 安装在系统中的商业软件产品。
+> 这个/opt 目录被用来安装"可选的"软件。这个主要用来存储可能 安装在系统中的商业软件产品。
 ```{=html}
 </td>
 ```
@@ -2446,7 +2446,7 @@ With the exception of /tmp and /home, the directories we have looked at so far r
 ```{=html}
 <td>
 ```
-这个/proc 目录很特殊。从存储在硬盘上的文件的意义上说，它不是真正的文件系统。 相反，它是一个由 Linux 内核维护的虚拟文件系统。它所包含的文件是内核的窥视孔。这些文件是可读的， 它们会告诉你内核是怎样监管计算机的。
+> 这个/proc 目录很特殊。从存储在硬盘上的文件的意义上说，它不是真正的文件系统。 相反，它是一个由 Linux 内核维护的虚拟文件系统。它所包含的文件是内核的窥视孔。这些文件是可读的， 它们会告诉你内核是怎样监管计算机的。
 ```{=html}
 </td>
 ```
@@ -2486,7 +2486,7 @@ root 帐户的家目录。
 ```{=html}
 <td>
 ```
-这个目录包含"系统"二进制文件。它们是完成重大系统任务的程序，通常为超级用户保留。
+> 这个目录包含"系统"二进制文件。它们是完成重大系统任务的程序，通常为超级用户保留。
 ```{=html}
 </td>
 ```
@@ -2506,7 +2506,7 @@ root 帐户的家目录。
 ```{=html}
 <td>
 ```
-这个/tmp 目录，是用来存储由各种程序创建的临时文件的地方。系统每次 重新启动时，都会清空这个目录。
+> 这个/tmp 目录，是用来存储由各种程序创建的临时文件的地方。系统每次 重新启动时，都会清空这个目录。
 ```{=html}
 </td>
 ```
@@ -2526,7 +2526,7 @@ root 帐户的家目录。
 ```{=html}
 <td>
 ```
-在 Linux 系统中，/usr 目录可能是最大的一个。它包含普通用户所需要的所有程序和文件。
+> 在 Linux 系统中，/usr 目录可能是最大的一个。它包含普通用户所需要的所有程序和文件。
 ```{=html}
 </td>
 ```
@@ -2566,7 +2566,7 @@ root 帐户的家目录。
 ```{=html}
 <td>
 ```
-包含由/usr/bin 目录中的程序所用的共享库。
+> 包含由/usr/bin 目录中的程序所用的共享库。
 ```{=html}
 </td>
 ```
@@ -2586,7 +2586,7 @@ root 帐户的家目录。
 ```{=html}
 <td>
 ```
-这个/usr/local 目录，是非系统发行版自带程序的安装目录。 通常，由源码编译的程序会安装在/usr/local/bin 目录下。新安装的 Linux 系统中会存在这个目录， 并且在管理员安装程序之前，这个目录是空的。
+> 这个/usr/local 目录，是非系统发行版自带程序的安装目录。 通常，由源码编译的程序会安装在/usr/local/bin 目录下。新安装的 Linux 系统中会存在这个目录， 并且在管理员安装程序之前，这个目录是空的。
 ```{=html}
 </td>
 ```
@@ -2606,7 +2606,7 @@ root 帐户的家目录。
 ```{=html}
 <td>
 ```
-包含许多系统管理程序。
+> 包含许多系统管理程序。
 ```{=html}
 </td>
 ```
@@ -2646,7 +2646,7 @@ root 帐户的家目录。
 ```{=html}
 <td>
 ```
-大多数安装在系统中的软件包会包含一些文档。在/usr/share/doc 目录下， 我们可以找到按照软件包分类的文档。
+> 大多数安装在系统中的软件包会包含一些文档。在/usr/share/doc 目录下， 我们可以找到按照软件包分类的文档。
 ```{=html}
 </td>
 ```
@@ -2666,7 +2666,7 @@ root 帐户的家目录。
 ```{=html}
 <td>
 ```
-除了/tmp 和/home 目录之外，相对来说，目前我们看到的目录是静态的，这是说， 它们的内容不会改变。/var 目录存放的是动态文件。各种数据库，假脱机文件， 用户邮件等等，都位于在这里。
+> 除了/tmp 和/home 目录之外，相对来说，目前我们看到的目录是静态的，这是说， 它们的内容不会改变。/var 目录存放的是动态文件。各种数据库，假脱机文件， 用户邮件等等，都位于在这里。
 ```{=html}
 </td>
 ```
@@ -2686,7 +2686,7 @@ root 帐户的家目录。
 ```{=html}
 <td>
 ```
-这个/var/log 目录包含日志文件、各种系统活动的记录。这些文件非常重要，并且 应该时时监测它们。其中最重要的一个文件是 /var/log/messages。注意，为了系统安全，在一些系统中， 你必须是超级用户才能查看这些日志文件。
+> 这个/var/log 目录包含日志文件、各种系统活动的记录。这些文件非常重要，并且 应该时时监测它们。其中最重要的一个文件是 /var/log/messages。注意，为了系统安全，在一些系统中， 你必须是超级用户才能查看这些日志文件。
 ```{=html}
 </td>
 ```
@@ -2700,31 +2700,31 @@ root 帐户的家目录。
 
 As we look around, we are likely to see a directory listing with an entry like this:
 
-在我们到处查看时，我们可能会看到一个目录，列出像这样的一条信息：
+> 在我们到处查看时，我们可能会看到一个目录，列出像这样的一条信息：
 
     lrwxrwxrwx 1 root root 11 2007-08-11 07:34 libc.so.6 -> libc-2.6.so
 
 Notice how the first letter of the listing is "l" and the entry seems to have two filenames? This is a special kind of a file called a symbolic link (also known as a soft link or symlink.) In most Unix-like systems it is possible to have a file referenced by multiple names. While the value of this may not be obvious, it is really a useful feature.
 
-注意看，为何这条信息第一个字符是"l"，并且有两个文件名呢？ 这是一个特殊文件，叫做符号链接（也称为软链接或者 symlink ）。 在大多数"类 Unix" 系统中， 有可能一个文件被多个文件名所指向。这个特性实际中真的很有用。
+> 注意看，为何这条信息第一个字符是"l"，并且有两个文件名呢？ 这是一个特殊文件，叫做符号链接（也称为软链接或者 symlink ）。 在大多数"类 Unix" 系统中， 有可能一个文件被多个文件名所指向。这个特性实际中真的很有用。
 
 Picture this scenario: a program requires the use of a shared resource of some kind contained in a file named "foo," but "foo" has frequent version changes. It would be good to include the version number in the filename so the administrator or other interested party could see what version of "foo" is installed. This presents a problem. If we change the name of the shared resource, we have to track down every program that might use it and change it to look for a new resource name every time a new version of the resource is installed. That doesn't sound like fun at all.
 
-描绘一下这样的情景：一个程序要求使用某个包含在名为"foo"文件中的共享资源，但是"foo"经常改变版本号。 这样，在文件名中包含版本号，会是一个好主意，因此管理员或者其它相关方，会知道安装了哪个"foo"版本。 这会导致另一个问题。如果我们更改了共享资源的名字，那么我们必须跟踪每个可能使用了 这个共享资源的程序，当每次这个资源的新版本被安装后，都要让使用了它的程序去寻找新的资源名。 这听起来很没趣。
+> 描绘一下这样的情景：一个程序要求使用某个包含在名为"foo"文件中的共享资源，但是"foo"经常改变版本号。 这样，在文件名中包含版本号，会是一个好主意，因此管理员或者其它相关方，会知道安装了哪个"foo"版本。 这会导致另一个问题。如果我们更改了共享资源的名字，那么我们必须跟踪每个可能使用了 这个共享资源的程序，当每次这个资源的新版本被安装后，都要让使用了它的程序去寻找新的资源名。 这听起来很没趣。
 
 Here is where symbolic links save the day. Let's say we install version 2.6 of "foo," which has the filename "foo-2.6" and then create a symbolic link simply called "foo" that points to "foo-2.6." This means that when a program opens the file "foo", it is actually opening the file "foo-2.6". Now everybody is happy. The programs that rely on "foo" can find it and we can still see what actual version is installed. When it is time to upgrade to "foo-2.7," we just add the file to our system, delete the symbolic link "foo" and create a new one that points to the new version. Not only does this solve the problem of the version upgrade, but it also allows us to keep both versions on our machine. Imagine that "foo-2.7" has a bug (damn those developers!) and we need to revert to the old version. Again, we just delete the symbolic link pointing to the new version and create a new symbolic link pointing to the old version.
 
-符号链接避免了这种情况。比方说，我们安装了文件 "foo" 的 2.6 版本，它的 文件名是 "foo-2.6"，然后创建了叫做 "foo" 的符号链接，这个符号链接指向 "foo-2.6"。 这意味着，当一个程序打开文件 "foo" 时，它实际上是打开文件 "foo-2.6"。 现在，每个人都很高兴。依赖于 "foo" 文件的程序能找到这个文件，并且我们能知道安装了哪个文件版本。 当升级到 "foo-2.7" 版本的时候，仅添加这个文件到文件系统中，删除符号链接 "foo"， 创建一个指向新版本的符号链接。这不仅解决了版本升级问题，而且还允许在系统中保存两个不同的文件版本。 假想 "foo-2.7" 有个错误（该死的开发者！），那我们得回到原来的版本。 一样的操作，我们只需要删除指向新版本的符号链接，然后创建指向旧版本的符号链接就可以了。
+> 符号链接避免了这种情况。比方说，我们安装了文件 "foo" 的 2.6 版本，它的 文件名是 "foo-2.6"，然后创建了叫做 "foo" 的符号链接，这个符号链接指向 "foo-2.6"。 这意味着，当一个程序打开文件 "foo" 时，它实际上是打开文件 "foo-2.6"。 现在，每个人都很高兴。依赖于 "foo" 文件的程序能找到这个文件，并且我们能知道安装了哪个文件版本。 当升级到 "foo-2.7" 版本的时候，仅添加这个文件到文件系统中，删除符号链接 "foo"， 创建一个指向新版本的符号链接。这不仅解决了版本升级问题，而且还允许在系统中保存两个不同的文件版本。 假想 "foo-2.7" 有个错误（该死的开发者！），那我们得回到原来的版本。 一样的操作，我们只需要删除指向新版本的符号链接，然后创建指向旧版本的符号链接就可以了。
 
 The directory listing above (from the /lib directory of a Fedora system) shows a symbolic link called "libc.so.6" that points to a shared library file called "libc-2.6.so." This means that programs looking for "libc.so.6" will actually get the file "libc-2.6.so." We will learn how to create symbolic links in the next chapter.
 
-在上面列出的目录（来自于 Fedora 的 /lib 目录）展示了一个叫做 "libc.so.6" 的符号链接，这个符号链接指向一个 叫做 "libc-2.6.so" 的共享库文件。这意味着，寻找文件 "libc.so.6" 的程序，实际上得到是文件 "libc-2.6.so"。 在下一章节，我们将学习如何建立符号链接。
+> 在上面列出的目录（来自于 Fedora 的 /lib 目录）展示了一个叫做 "libc.so.6" 的符号链接，这个符号链接指向一个 叫做 "libc-2.6.so" 的共享库文件。这意味着，寻找文件 "libc.so.6" 的程序，实际上得到是文件 "libc-2.6.so"。 在下一章节，我们将学习如何建立符号链接。
 
 ### 硬链接
 
 While we are on the subject of links, we need to mention that there is a second type of link called a hard link. Hard links also allow files to have multiple names, but they do it in a different way. We'll talk more about the differences between symbolic and hard links in the next chapter.
 
-讨论到链接问题，我们需要提一下，还有一种链接类型，叫做硬链接。硬链接同样允许文件有多个名字， 但是硬链接以不同的方法来创建多个文件名。在下一章中，我们会谈到更多符号链接与硬链接之间的差异问题。
+> 讨论到链接问题，我们需要提一下，还有一种链接类型，叫做硬链接。硬链接同样允许文件有多个名字， 但是硬链接以不同的方法来创建多个文件名。在下一章中，我们会谈到更多符号链接与硬链接之间的差异问题。
 
 ### 拓展阅读
 

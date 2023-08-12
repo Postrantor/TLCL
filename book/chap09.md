@@ -5,11 +5,11 @@ title: 键盘高级操作技巧
 
 I often kiddingly describe Unix as "the operating system for people who like to type." Of course, the fact that it even has a command line is a testament to that. But command line users don't like to type that much. Why else would so many commands have such short names like cp, ls, mv, and rm? In fact, one of the most cherished goals of the command line is laziness; doing the most work with the fewest number of keystrokes. Another goal is never having to lift your fingers from the keyboard, never reaching for the mouse. In this chapter, we will look at bash features that make keyboard use faster and more efficient.
 
-开玩笑地说，我经常把 Unix 描述为"这个操作系统是为喜欢敲键盘的人们而生的。" 当然，Unix 有命令行这件事证明了我所说的话。但是命令行用户不喜欢敲入 那么多字。要不为什么会有如此多的命令有这样简短的命令名，像cp、ls、mv和 rm？事实上 ，命令行最为珍视的目标之一就是懒惰；用最少的击键次数来完成最多的工作。另一个 目标是你的手指永远不必离开键盘，永不触摸鼠标。在这一章节，我们将看一下 bash 特性 ，这些特性使键盘使用起来更加迅速，更加高效。
+> 开玩笑地说，我经常把 Unix 描述为"这个操作系统是为喜欢敲键盘的人们而生的。" 当然，Unix 有命令行这件事证明了我所说的话。但是命令行用户不喜欢敲入 那么多字。要不为什么会有如此多的命令有这样简短的命令名，像cp、ls、mv和 rm？事实上 ，命令行最为珍视的目标之一就是懒惰；用最少的击键次数来完成最多的工作。另一个 目标是你的手指永远不必离开键盘，永不触摸鼠标。在这一章节，我们将看一下 bash 特性 ，这些特性使键盘使用起来更加迅速，更加高效。
 
 The following commands will make an appearance:
 
-以下命令将会露面：
+> 以下命令将会露面：
 
 -   clear - Clear the screen
 
@@ -27,13 +27,13 @@ Bash 使用了一个名为 Readline 的库（一系列功能的集合，可以�
 
 Note: Some of the key sequences below (particularly those which use the Alt key) may be intercepted by the GUI for other functions. All of the key sequences should work properly when using a virtual console.
 
-注意：当我们处于图形化环境时，下面一些按键组合（尤其使用 Alt 键的组合），可能会被图形界面拦截来触发其它的功能。 但是当切换到虚拟控制台时，所有的按键组合都会正常工作。
+> 注意：当我们处于图形化环境时，下面一些按键组合（尤其使用 Alt 键的组合），可能会被图形界面拦截来触发其它的功能。 但是当切换到虚拟控制台时，所有的按键组合都会正常工作。
 
 ### 移动光标
 
 The following table lists the keys used to move the cursor:
 
-下表列出了移动光标所使用的按键：
+> 下表列出了移动光标所使用的按键：
 
 ```{=html}
 <table class="multi">
@@ -214,7 +214,7 @@ Clear the screen and move the cursor to the top left corner. The clear command d
 ```{=html}
 <caption class="cap">
 ```
-表9-1: 光标移动命令
+> 表9-1: 光标移动命令
 ```{=html}
 </caption>
 ```
@@ -224,14 +224,14 @@ Clear the screen and move the cursor to the top left corner. The clear command d
 ```{=html}
 <th class="title">
 ```
-按键
+> 按键
 ```{=html}
 </th>
 ```
 ```{=html}
 <th class="title">
 ```
-行动
+> 行动
 ```{=html}
 </th>
 ```
@@ -251,7 +251,7 @@ Ctrl-a
 ```{=html}
 <td valign="top">
 ```
-移动光标到行首。
+> 移动光标到行首。
 ```{=html}
 </td>
 ```
@@ -271,7 +271,7 @@ Ctrl-e
 ```{=html}
 <td valign="top">
 ```
-移动光标到行尾。
+> 移动光标到行尾。
 ```{=html}
 </td>
 ```
@@ -291,7 +291,7 @@ Ctrl-f
 ```{=html}
 <td valign="top">
 ```
-光标前移一个字符；和右箭头作用一样。
+> 光标前移一个字符；和右箭头作用一样。
 ```{=html}
 </td>
 ```
@@ -311,7 +311,7 @@ Ctrl-b
 ```{=html}
 <td valign="top">
 ```
-光标后移一个字符；和左箭头作用一样。
+> 光标后移一个字符；和左箭头作用一样。
 ```{=html}
 </td>
 ```
@@ -331,7 +331,7 @@ Alt-f
 ```{=html}
 <td valign="top">
 ```
-光标前移一个字。
+> 光标前移一个字。
 ```{=html}
 </td>
 ```
@@ -351,7 +351,7 @@ Alt-b
 ```{=html}
 <td valign="top">
 ```
-光标后移一个字。
+> 光标后移一个字。
 ```{=html}
 </td>
 ```
@@ -371,7 +371,7 @@ Ctrl-l
 ```{=html}
 <td valign="top">
 ```
-清空屏幕，移动光标到左上角。clear 命令完成同样的工作。
+> 清空屏幕，移动光标到左上角。clear 命令完成同样的工作。
 ```{=html}
 </td>
 ```
@@ -385,7 +385,7 @@ Ctrl-l
 
 Table 9-2 lists keyboard commands that are used to edit characters on the command line.
 
-表9－2列出了键盘命令，这些命令用来在命令行中编辑字符。
+> 表9－2列出了键盘命令，这些命令用来在命令行中编辑字符。
 
 ```{=html}
 <table class="multi">
@@ -526,7 +526,7 @@ Convert the characters from the cursor location to the end of the word to upperc
 ```{=html}
 <caption class="cap">
 ```
-表9-2: 文本编辑命令
+> 表9-2: 文本编辑命令
 ```{=html}
 </caption>
 ```
@@ -536,14 +536,14 @@ Convert the characters from the cursor location to the end of the word to upperc
 ```{=html}
 <th class="title">
 ```
-按键
+> 按键
 ```{=html}
 </th>
 ```
 ```{=html}
 <th class="title">
 ```
-行动
+> 行动
 ```{=html}
 </th>
 ```
@@ -563,7 +563,7 @@ Ctrl-d
 ```{=html}
 <td valign="top">
 ```
-删除光标位置的字符。
+> 删除光标位置的字符。
 ```{=html}
 </td>
 ```
@@ -583,7 +583,7 @@ Ctrl-t
 ```{=html}
 <td valign="top">
 ```
-光标位置的字符和光标前面的字符互换位置。
+> 光标位置的字符和光标前面的字符互换位置。
 ```{=html}
 </td>
 ```
@@ -603,7 +603,7 @@ Alt-t
 ```{=html}
 <td valign="top">
 ```
-光标位置的字和其前面的字互换位置。
+> 光标位置的字和其前面的字互换位置。
 ```{=html}
 </td>
 ```
@@ -623,7 +623,7 @@ Alt-l
 ```{=html}
 <td valign="top">
 ```
-把从光标位置到字尾的字符转换成小写字母。
+> 把从光标位置到字尾的字符转换成小写字母。
 ```{=html}
 </td>
 ```
@@ -643,7 +643,7 @@ Alt-u
 ```{=html}
 <td valign="top">
 ```
-把从光标位置到字尾的字符转换成大写字母。
+> 把从光标位置到字尾的字符转换成大写字母。
 ```{=html}
 </td>
 ```
@@ -798,7 +798,7 @@ Yank text from the kill-ring and insert it at the cursor location.
 ```{=html}
 <caption class="cap">
 ```
-表9-3: 剪切和粘贴命令
+> 表9-3: 剪切和粘贴命令
 ```{=html}
 </caption>
 ```
@@ -808,14 +808,14 @@ Yank text from the kill-ring and insert it at the cursor location.
 ```{=html}
 <th class="title">
 ```
-按键
+> 按键
 ```{=html}
 </th>
 ```
 ```{=html}
 <th class="title">
 ```
-行动
+> 行动
 ```{=html}
 </th>
 ```
@@ -835,7 +835,7 @@ Ctrl-k
 ```{=html}
 <td valign="top">
 ```
-剪切从光标位置到行尾的文本。
+> 剪切从光标位置到行尾的文本。
 ```{=html}
 </td>
 ```
@@ -855,7 +855,7 @@ Ctrl-u
 ```{=html}
 <td valign="top">
 ```
-剪切从光标位置到行首的文本。
+> 剪切从光标位置到行首的文本。
 ```{=html}
 </td>
 ```
@@ -875,7 +875,7 @@ Alt-d
 ```{=html}
 <td valign="top">
 ```
-剪切从光标位置到词尾的文本。
+> 剪切从光标位置到词尾的文本。
 ```{=html}
 </td>
 ```
@@ -895,7 +895,7 @@ Alt-Backspace
 ```{=html}
 <td valign="top">
 ```
-剪切从光标位置到词头的文本。如果光标在一个单词的开头，剪切前一个单词。
+> 剪切从光标位置到词头的文本。如果光标在一个单词的开头，剪切前一个单词。
 ```{=html}
 </td>
 ```
@@ -915,7 +915,7 @@ Ctrl-y
 ```{=html}
 <td valign="top">
 ```
-把剪切环中的文本粘贴到光标位置。
+> 把剪切环中的文本粘贴到光标位置。
 ```{=html}
 </td>
 ```
@@ -949,51 +949,51 @@ shell 能帮助你的另一种方式是通过一种叫做自动补全的机制�
 
 Try typing the following but don't press the Enter key:
 
-试着输入下面的命令，但不要按下 Enter 键：
+> 试着输入下面的命令，但不要按下 Enter 键：
 
     [me@linuxbox ~]$ ls l
 
 Now press the tab key:
 
-现在按下 tab 键：
+> 现在按下 tab 键：
 
     [me@linuxbox ~]$ ls ls-output.txt
 
 See how the shell completed the line for you? Let's try another one. Again, don't press Enter:
 
-看一下 shell 是怎样补全这一行的？让我们再试试另一个例子。这回，也 不要按下 Enter:
+> 看一下 shell 是怎样补全这一行的？让我们再试试另一个例子。这回，也 不要按下 Enter:
 
     [me@linuxbox ~]$ ls D
 
 Press tab:
 
-按下 tab:
+> 按下 tab:
 
     [me@linuxbox ~]$ ls D
 
 No completion, just a beep. This happened because "D" matches more than one entry in the directory. For completion to be successful, the "clue" you give it has to be unambiguous. If we go further:
 
-没有补全，只是嘟嘟响。因为"D"不止匹配目录中的一个条目。为了自动补全执行成功， 你给它的"线索"不能模棱两可。如果我们继续输入：
+> 没有补全，只是嘟嘟响。因为"D"不止匹配目录中的一个条目。为了自动补全执行成功， 你给它的"线索"不能模棱两可。如果我们继续输入：
 
     [me@linuxbox ~]$ ls Do
 
 Then press tab:
 
-然后按下 tab：
+> 然后按下 tab：
 
     [me@linuxbox ~]$ ls Documents
 
 The completion is successful.
 
-自动补全成功了。
+> 自动补全成功了。
 
 While this example shows completion of pathnames, which is its most common use, completion will also work on variables (if the beginning of the word is a "\$"), user names (if the word begins with "\~"), commands (if the word is the first word on the line.) and host names (if the beginning of the word is "@"). Host name completion only works for host names listed in /etc/hosts.
 
-这个实例展示了路径名自动补全，这是最常用的形式。自动补全也能对变量（如果 字的开头是一个"\$"）、用户名字（单词以"\~"开始）、命令（如果单词是一行的第一个单词） 和主机名（如果单词的开头是"@"）起作用。主机名自动补全只对包含在文件/etc/hosts 中的主机名有效。
+> 这个实例展示了路径名自动补全，这是最常用的形式。自动补全也能对变量（如果 字的开头是一个"\$"）、用户名字（单词以"\~"开始）、命令（如果单词是一行的第一个单词） 和主机名（如果单词的开头是"@"）起作用。主机名自动补全只对包含在文件/etc/hosts 中的主机名有效。
 
 There are a number of control and meta key sequences that are associated with completion:
 
-有一系列的控制和元键序列与自动补全相关联：
+> 有一系列的控制和元键序列与自动补全相关联：
 
 ```{=html}
 <table class="multi">
@@ -1074,7 +1074,7 @@ Insert all possible completions. This is useful when you want to use more than o
 ```{=html}
 <caption class="cap">
 ```
-表9-4: 自动补全命令
+> 表9-4: 自动补全命令
 ```{=html}
 </caption>
 ```
@@ -1084,14 +1084,14 @@ Insert all possible completions. This is useful when you want to use more than o
 ```{=html}
 <th class="title">
 ```
-按键
+> 按键
 ```{=html}
 </th>
 ```
 ```{=html}
 <th class="title">
 ```
-行动
+> 行动
 ```{=html}
 </th>
 ```
@@ -1111,7 +1111,7 @@ Alt-?
 ```{=html}
 <td valign="top">
 ```
-显示可能的自动补全列表。在大多数系统中，你也可以完成这个通过按 两次 tab 键，这会更容易些。
+> 显示可能的自动补全列表。在大多数系统中，你也可以完成这个通过按 两次 tab 键，这会更容易些。
 ```{=html}
 </td>
 ```
@@ -1131,7 +1131,7 @@ Alt-\*
 ```{=html}
 <td valign="top">
 ```
-插入所有可能的自动补全。当你想要使用多个可能的匹配项时，这个很有帮助。
+> 插入所有可能的自动补全。当你想要使用多个可能的匹配项时，这个很有帮助。
 ```{=html}
 </td>
 ```
@@ -1159,31 +1159,31 @@ Alt-\*
 
 As we discovered in Chapter 2, bash maintains a history of commands that have been entered. This list of commands is kept in your home directory in a file called .bash_history. The history facility is a useful resource for reducing the amount of typing you have to do, especially when combined with command line editing.
 
-正如我们在第二章中讨论到的，bash 维护着一个已经执行过的命令的历史列表。这个命令列表 被保存在你家目录下，一个叫做 .bash_history 的文件里。这个 history 工具是个有用资源， 因为它可以减少你敲键盘的次数，尤其当和命令行编辑联系起来时。
+> 正如我们在第二章中讨论到的，bash 维护着一个已经执行过的命令的历史列表。这个命令列表 被保存在你家目录下，一个叫做 .bash_history 的文件里。这个 history 工具是个有用资源， 因为它可以减少你敲键盘的次数，尤其当和命令行编辑联系起来时。
 
 ### 搜索历史命令
 
 At any time, we can view the contents of the history list by:
 
-在任何时候，我们都可以浏览历史列表的内容，通过：
+> 在任何时候，我们都可以浏览历史列表的内容，通过：
 
     [me@linuxbox ~]$ history | less
 
 By default, bash stores the last five hundred commands you have entered. We will see how to adjust this value in a later chapter. Let's say we want to find the commands we used to list /usr/bin. One way we could do this:
 
-在默认情况下，bash 会存储你所输入的最后 500 个命令。在随后的章节里，我们会知道 怎样调整这个数值。比方说我们想在自己曾经用过的命令中，找出和/usr/bin这一目录相关的。那么我们就可以这样做：
+> 在默认情况下，bash 会存储你所输入的最后 500 个命令。在随后的章节里，我们会知道 怎样调整这个数值。比方说我们想在自己曾经用过的命令中，找出和/usr/bin这一目录相关的。那么我们就可以这样做：
 
     [me@linuxbox ~]$ history | grep /usr/bin
 
 And let's say that among our results we got a line containing an interesting command like this:
 
-比方说在我们的搜索结果之中，我们得到一行，包含了有趣的命令，像这样；
+> 比方说在我们的搜索结果之中，我们得到一行，包含了有趣的命令，像这样；
 
     88  ls -l /usr/bin > ls-output.txt
 
 The number "88" is the line number of the command in the history list. We could use this immediately using another type of expansion called history expansion. To use our discovered line we could do this:
 
-数字 "88" 是这个命令在历史列表中的行号。我们可以使用另一种叫做 历史命令展开的方式，来调用"88"所代表的这一行命令：
+> 数字 "88" 是这个命令在历史列表中的行号。我们可以使用另一种叫做 历史命令展开的方式，来调用"88"所代表的这一行命令：
 
     [me@linuxbox ~]$ !88
 
@@ -1195,13 +1195,13 @@ bash 会把 "!88" 展开成为历史列表中88行的内容。还有其它的历
 
 First type Ctrl-r:
 
-首先输入 Ctrl-r:
+> 首先输入 Ctrl-r:
 
     (reverse-i-search)`':
 
 The prompt changes to indicate that we are performing a reverse incremental search. It is "reverse" because we are searching from "now" to some time in the past. Next, we start typing our search text. In this example "/usr/bin":
 
-提示符改变，显示我们正在执行反向增量搜索。搜索过程是"反向的"，因为我们按照从"现在"到过去 某个时间段的顺序来搜寻。下一步，我们开始输入要查找的文本。在这个例子里是 "/usr/bin"：
+> 提示符改变，显示我们正在执行反向增量搜索。搜索过程是"反向的"，因为我们按照从"现在"到过去 某个时间段的顺序来搜寻。下一步，我们开始输入要查找的文本。在这个例子里是 "/usr/bin"：
 
     (reverse-i-search)`/usr/bin': ls -l /usr/bin > ls-output.txt
 
@@ -1209,13 +1209,13 @@ The prompt changes to indicate that we are performing a reverse incremental sear
 
 Immediately, the search returns our result. With our result, we can execute the command by pressing Enter, or we can copy the command to our current command line for further editing by typing Ctrl-j. Let's copy it. Type Ctrl-j:
 
-即刻，搜索返回我们需要的结果。我们可以按下 Enter 键来执行这个命令，或者我们可以按下Ctrl-j复制 这个命令到我们当前的命令行，来进一步编辑它。好了现在我们复制它，输入 Ctrl-j：
+> 即刻，搜索返回我们需要的结果。我们可以按下 Enter 键来执行这个命令，或者我们可以按下Ctrl-j复制 这个命令到我们当前的命令行，来进一步编辑它。好了现在我们复制它，输入 Ctrl-j：
 
     [me@linuxbox ~]$ ls -l /usr/bin > ls-output.txt
 
 Our shell prompt returns and our command line is loaded and ready for action! The table below lists some of the keystrokes used to manipulate the history list:
 
-我们的 shell 提示符重新出现，命令行加载完毕，准备接受下一命令！ 下表列出了一些按键组合， 这些按键可以用来操作历史列表：
+> 我们的 shell 提示符重新出现，命令行加载完毕，准备接受下一命令！ 下表列出了一些按键组合， 这些按键可以用来操作历史列表：
 
 ```{=html}
 <table class="multi">
@@ -1416,7 +1416,7 @@ Execute the current item in the history list and advance to the next one. This i
 ```{=html}
 <caption class="cap">
 ```
-表9-5: 历史命令
+> 表9-5: 历史命令
 ```{=html}
 </caption>
 ```
@@ -1426,14 +1426,14 @@ Execute the current item in the history list and advance to the next one. This i
 ```{=html}
 <th class="title">
 ```
-按键
+> 按键
 ```{=html}
 </th>
 ```
 ```{=html}
 <th class="title">
 ```
-行为
+> 行为
 ```{=html}
 </th>
 ```
@@ -1453,7 +1453,7 @@ Ctrl-p
 ```{=html}
 <td valign="top">
 ```
-移动到上一个历史条目。类似于上箭头按键。
+> 移动到上一个历史条目。类似于上箭头按键。
 ```{=html}
 </td>
 ```
@@ -1473,7 +1473,7 @@ Ctrl-n
 ```{=html}
 <td valign="top">
 ```
-移动到下一个历史条目。类似于下箭头按键。
+> 移动到下一个历史条目。类似于下箭头按键。
 ```{=html}
 </td>
 ```
@@ -1493,7 +1493,7 @@ Alt-\<
 ```{=html}
 <td valign="top">
 ```
-移动到历史列表开头。
+> 移动到历史列表开头。
 ```{=html}
 </td>
 ```
@@ -1513,7 +1513,7 @@ Alt-\>
 ```{=html}
 <td valign="top">
 ```
-移动到历史列表结尾，即当前命令行。
+> 移动到历史列表结尾，即当前命令行。
 ```{=html}
 </td>
 ```
@@ -1533,7 +1533,7 @@ Ctrl-r
 ```{=html}
 <td valign="top">
 ```
-反向增量搜索。从当前命令行开始，向上增量搜索。
+> 反向增量搜索。从当前命令行开始，向上增量搜索。
 ```{=html}
 </td>
 ```
@@ -1553,7 +1553,7 @@ Alt-p
 ```{=html}
 <td valign="top">
 ```
-反向搜索，非增量搜索。（输入要查找的字符串，按下 Enter来执行搜索）。
+> 反向搜索，非增量搜索。（输入要查找的字符串，按下 Enter来执行搜索）。
 ```{=html}
 </td>
 ```
@@ -1573,7 +1573,7 @@ Alt-n
 ```{=html}
 <td valign="top">
 ```
-向前搜索，非增量。
+> 向前搜索，非增量。
 ```{=html}
 </td>
 ```
@@ -1593,7 +1593,7 @@ Ctrl-o
 ```{=html}
 <td valign="top">
 ```
-执行历史列表中的当前项，并移到下一个。如果你想要执行历史列表中一系列的命令，这很方便。
+> 执行历史列表中的当前项，并移到下一个。如果你想要执行历史列表中一系列的命令，这很方便。
 ```{=html}
 </td>
 ```
@@ -1607,7 +1607,7 @@ Ctrl-o
 
 The shell offers a specialized type of expansion for items in the history list by using the "!" character. We have already seen how the exclamation point can be followed by a number to insert an entry from the history list. There are a number of other expansion features:
 
-通过使用 "!" 字符，shell 为历史列表中的命令，提供了一个特殊的展开类型。我们已经知道一个感叹号 ，其后再加上一个数字，可以把来自历史列表中的命令插入到命令行中。这里还有一些其它的展开特性：
+> 通过使用 "!" 字符，shell 为历史列表中的命令，提供了一个特殊的展开类型。我们已经知道一个感叹号 ，其后再加上一个数字，可以把来自历史列表中的命令插入到命令行中。这里还有一些其它的展开特性：
 
 ```{=html}
 <table class="multi">
@@ -1728,7 +1728,7 @@ Repeat last history list item containing string.
 ```{=html}
 <caption class="cap">
 ```
-表9-6: 历史展开命令
+> 表9-6: 历史展开命令
 ```{=html}
 </caption>
 ```
@@ -1738,14 +1738,14 @@ Repeat last history list item containing string.
 ```{=html}
 <th class="title">
 ```
-序列
+> 序列
 ```{=html}
 </th>
 ```
 ```{=html}
 <th class="title">
 ```
-行为
+> 行为
 ```{=html}
 </th>
 ```
@@ -1765,7 +1765,7 @@ Repeat last history list item containing string.
 ```{=html}
 <td valign="top">
 ```
-重复最后一次执行的命令。可能按下上箭头按键和 enter 键更容易些。
+> 重复最后一次执行的命令。可能按下上箭头按键和 enter 键更容易些。
 ```{=html}
 </td>
 ```
@@ -1785,7 +1785,7 @@ Repeat last history list item containing string.
 ```{=html}
 <td valign="top">
 ```
-重复历史列表中第 number 行的命令。
+> 重复历史列表中第 number 行的命令。
 ```{=html}
 </td>
 ```
@@ -1805,7 +1805,7 @@ Repeat last history list item containing string.
 ```{=html}
 <td valign="top">
 ```
-重复最近历史列表中，以这个字符串开头的命令。
+> 重复最近历史列表中，以这个字符串开头的命令。
 ```{=html}
 </td>
 ```
@@ -1825,7 +1825,7 @@ Repeat last history list item containing string.
 ```{=html}
 <td valign="top">
 ```
-重复最近历史列表中，包含这个字符串的命令。
+> 重复最近历史列表中，包含这个字符串的命令。
 ```{=html}
 </td>
 ```
@@ -1837,11 +1837,11 @@ Repeat last history list item containing string.
 ```
 I would caution against using the "!string" and "!?string" forms unless you are absolutely sure of the contents of the history list items.
 
-应该小心谨慎地使用 "!string" 和 "!?string" 格式，除非你完全确信历史列表条目的内容。
+> 应该小心谨慎地使用 "!string" 和 "!?string" 格式，除非你完全确信历史列表条目的内容。
 
 There are many more elements available in the history expansion mechanism, but this subject is already too arcane and our heads may explode if we continue. The HISTORY EXPANSION section of the bash man page goes into all the gory details. Feel free to explore!
 
-在历史展开机制中，还有许多可利用的特点，但是这个题目已经太晦涩难懂了， 如果我们再继续讨论的话，我们的头可能要爆炸了。bash 手册页的 HISTORY EXPANSION 部分详尽地讲述了所有要素。
+> 在历史展开机制中，还有许多可利用的特点，但是这个题目已经太晦涩难懂了， 如果我们再继续讨论的话，我们的头可能要爆炸了。bash 手册页的 HISTORY EXPANSION 部分详尽地讲述了所有要素。
 
 > script
 >
@@ -1861,7 +1861,7 @@ There are many more elements available in the history expansion mechanism, but t
 
 In this chapter we have covered some of the keyboard tricks that the shell provides to help hardcore typists reduce their workloads. I suspect that as time goes by and you become more involved with the command line, you will refer back to this chapter to pick up more of these tricks. For now, consider them optional and potentially helpful.
 
-在这一章中，我们已经讨论了一些由 shell 提供的键盘操作技巧，这些技巧是来帮助打字员减少工作量的。 随着时光流逝，你和命令行打交道越来越多，我猜想你会重新翻阅这一章的内容，学会更多的技巧。现在不用一下子全记住。
+> 在这一章中，我们已经讨论了一些由 shell 提供的键盘操作技巧，这些技巧是来帮助打字员减少工作量的。 随着时光流逝，你和命令行打交道越来越多，我猜想你会重新翻阅这一章的内容，学会更多的技巧。现在不用一下子全记住。
 
 ### 拓展阅读
 

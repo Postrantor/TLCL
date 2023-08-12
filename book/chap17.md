@@ -5,11 +5,11 @@ title: 网络系统
 
 When it comes to networking, there is probably nothing that cannot be done with Linux. Linux is used to build all sorts of networking systems and appliances, including firewalls, routers, name servers, NAS (Network Attached Storage) boxes and on and on.
 
-当谈及到网络系统层面，几乎任何东西都能由 Linux 来实现。Linux 被用来创建各式各样的网络系统和装置， 包括防火墙，路由器，名称服务器，网络连接式存储设备等等。
+> 当谈及到网络系统层面，几乎任何东西都能由 Linux 来实现。Linux 被用来创建各式各样的网络系统和装置， 包括防火墙，路由器，名称服务器，网络连接式存储设备等等。
 
 Just as the subject of networking is vast, so are the number of commands that can be used to configure and control it. We will focus our attention on just a few of the most frequently used ones. The commands chosen for examination include those used to monitor networks and those used to transfer files. In addition, we are going to explore the ssh program that is used to perform remote logins. This chapter will cover:
 
-被用来配置和操作网络系统的命令数目，就如网络系统一样巨大。我们仅仅会关注一些最经常 使用到的命令。我们要研究的命令包括那些被用来监测网络和传输文件的命令。另外，我们 还会探讨用来远端登录的 ssh 程序。这章会介绍：
+> 被用来配置和操作网络系统的命令数目，就如网络系统一样巨大。我们仅仅会关注一些最经常 使用到的命令。我们要研究的命令包括那些被用来监测网络和传输文件的命令。另外，我们 还会探讨用来远端登录的 ssh 程序。这章会介绍：
 
 -   ping - Send an ICMP ECHO_REQUEST to network hosts
 
@@ -37,7 +37,7 @@ Just as the subject of networking is vast, so are the number of commands that ca
 
 We're going to assume a little background in networking. In this, the Internet age, everyone using a computer needs a basic understanding of networking concepts. To make full use of this chapter we should be familiar with the following terms:
 
-我们假定你已经知道了一点网络系统背景知识。在这个因特网时代，每个计算机用户需要理解基本的网络 系统概念。为了能够充分利用这一章节的内容，我们应该熟悉以下术语：
+> 我们假定你已经知道了一点网络系统背景知识。在这个因特网时代，每个计算机用户需要理解基本的网络 系统概念。为了能够充分利用这一章节的内容，我们应该熟悉以下术语：
 
 -   IP (Internet Protocol) address
 
@@ -53,13 +53,13 @@ We're going to assume a little background in networking. In this, the Internet a
 
 Please see the "Further Reading" section below for some useful articles regarding these terms.
 
-请查看下面的"拓展阅读"部分，有几篇关于这些术语的有用文章。
+> 请查看下面的"拓展阅读"部分，有几篇关于这些术语的有用文章。
 
 ------------------------------------------------------------------------
 
 Note: Some of the commands we will cover may (depending on your distribution) require the installation of additional packages from your distribution's repositories, and some may require superuser privileges to execute.
 
-注意：一些将要讲到的命令可能（取决于系统发行版）需要从系统发行版的仓库中安装额外的软件包， 并且一些命令可能需要超级用户权限才能执行。
+> 注意：一些将要讲到的命令可能（取决于系统发行版）需要从系统发行版的仓库中安装额外的软件包， 并且一些命令可能需要超级用户权限才能执行。
 
 ------------------------------------------------------------------------
 
@@ -67,31 +67,31 @@ Note: Some of the commands we will cover may (depending on your distribution) re
 
 Even if you're not the system administrator, it's often helpful to examine the performance and operation of a network.
 
-即使你不是一名系统管理员，检查一个网络的性能和运作情况也是经常有帮助的。
+> 即使你不是一名系统管理员，检查一个网络的性能和运作情况也是经常有帮助的。
 
 #### ping
 
 The most basic network command is ping. The ping command sends a special network packet called an ICMP ECHO_REQUEST to a specified host. Most network devices receiving this packet will reply to it, allowing the network connection to be verified.
 
-最基本的网络命令是 ping。这个 ping 命令发送一个特殊的网络数据包，叫做 ICMP ECHO_REQUEST，到 一台指定的主机。大多数接收这个包的网络设备将会回复它，来允许网络连接验证。
+> 最基本的网络命令是 ping。这个 ping 命令发送一个特殊的网络数据包，叫做 ICMP ECHO_REQUEST，到 一台指定的主机。大多数接收这个包的网络设备将会回复它，来允许网络连接验证。
 
 ------------------------------------------------------------------------
 
 Note: It is possible to configure most network devices (including Linux hosts) to ignore these packets. This is usually done for security reasons, to partially obscure a host from a potential attacker. It is also common for firewalls to be configured to block IMCP traffic.
 
-注意：大多数网络设备（包括 Linux 主机）都可以被配置为忽略这些数据包。通常，这样做是出于网络安全 原因，部分地遮蔽一台主机免受一个潜在攻击者地侵袭。配置防火墙来阻塞 IMCP 流量也很普遍。
+> 注意：大多数网络设备（包括 Linux 主机）都可以被配置为忽略这些数据包。通常，这样做是出于网络安全 原因，部分地遮蔽一台主机免受一个潜在攻击者地侵袭。配置防火墙来阻塞 IMCP 流量也很普遍。
 
 ------------------------------------------------------------------------
 
 For example, to see if we can reach linuxcommand.org (one of our favorite sites ;-), we can use use ping like this:
 
-例如，看看我们能否连接到网站 linuxcommand.org（我们最喜欢的网站之一 ;-）， 我们可以这样使用 ping 命令：
+> 例如，看看我们能否连接到网站 linuxcommand.org（我们最喜欢的网站之一 ;-）， 我们可以这样使用 ping 命令：
 
     [me@linuxbox ~]$ ping linuxcommand.org
 
 Once started, ping continues to send packets at a specified interval (default is one second) until it is interrupted:
 
-一旦启动，ping 命令会持续在特定的时间间隔内（默认是一秒）发送数据包，直到它被中断：
+> 一旦启动，ping 命令会持续在特定的时间间隔内（默认是一秒）发送数据包，直到它被中断：
 
     [me@linuxbox ~]$ ping linuxcommand.org
     PING linuxcommand.org (66.35.250.210) 56(84) bytes of data.
@@ -109,19 +109,19 @@ Once started, ping continues to send packets at a specified interval (default is
 
 After it is interrupted (in this case after the sixth packet) by pressing Ctrl-c, ping prints performance statistics. A properly performing network will exhibit zero percent packet loss. A successful "ping" will indicate that the elements of the network (its interface cards, cabling, routing and gateways) are in generally good working order.
 
-按下组合键 Ctrl-c，中断这个命令之后，ping 打印出运行统计信息。一个正常工作的网络会报告 零个数据包丢失。一个成功执行的"ping"命令会意味着网络的各个部件（网卡，电缆，路由，网关） 都处于正常的工作状态。
+> 按下组合键 Ctrl-c，中断这个命令之后，ping 打印出运行统计信息。一个正常工作的网络会报告 零个数据包丢失。一个成功执行的"ping"命令会意味着网络的各个部件（网卡，电缆，路由，网关） 都处于正常的工作状态。
 
 #### traceroute
 
 The traceroute program (some systems use the similar tracepath program instead) displays a listing of all the "hops" network traffic takes to get from the local system to a specified host. For example, to see the route taken to reach slashdot.org, we would do this:
 
-这个 traceroute 程序（一些系统使用相似的 tracepath 程序来代替）会显示从本地到指定主机 要经过的所有"跳数"的网络流量列表。例如，看一下到达 slashdot.org 需要经过的路由， 我们将这样做：
+> 这个 traceroute 程序（一些系统使用相似的 tracepath 程序来代替）会显示从本地到指定主机 要经过的所有"跳数"的网络流量列表。例如，看一下到达 slashdot.org 需要经过的路由， 我们将这样做：
 
     [me@linuxbox ~]$ traceroute slashdot.org
 
 The output looks like this:
 
-命令输出看起来像这样：
+> 命令输出看起来像这样：
 
     traceroute to slashdot.org (216.34.181.45), 30 hops max, 40 byte
     packets
@@ -138,7 +138,7 @@ The output looks like this:
 
 In the output, we can see that connecting from our test system to slashdot.org requires traversing sixteen routers. For routers that provided identifying information, we see their host names, IP addresses and performance data, which includes three samples of round-trip time from the local system to the router. For routers that do not provide identifying information (because of router configuration, network congestion, firewalls, etc.), we see asterisks as in the line for hop number two.
 
-从输出结果中，我们可以看到连接测试系统到 slashdot.org 网站需要经由16个路由器。对于那些 提供标识信息的路由器，我们能看到它们的主机名，IP 地址和性能数据，这些数据包括三次从本地到 此路由器的往返时间样本。对于那些没有提供标识信息的路由器（由于路由器配置，网络拥塞，防火墙等 方面的原因），我们会看到几个星号，正如行中所示。
+> 从输出结果中，我们可以看到连接测试系统到 slashdot.org 网站需要经由16个路由器。对于那些 提供标识信息的路由器，我们能看到它们的主机名，IP 地址和性能数据，这些数据包括三次从本地到 此路由器的往返时间样本。对于那些没有提供标识信息的路由器（由于路由器配置，网络拥塞，防火墙等 方面的原因），我们会看到几个星号，正如行中所示。
 
 #### netstat
 
@@ -162,15 +162,15 @@ netstat 程序被用来检查各种各样的网络设置和统计数据。通过
 
 In the example above, we see that our test system has two network interfaces. The first, called eth0, is the Ethernet interface and the second, called lo, is the loopback interface, a virtual interface that the system uses to "talk to itself."
 
-在上述实例中，我们看到我们的测试系统有两个网络接口。第一个，叫做 eth0，是 以太网接口，和第二个，叫做 lo，是内部回环网络接口，它是一个虚拟接口，系统用它来 "自言自语"。
+> 在上述实例中，我们看到我们的测试系统有两个网络接口。第一个，叫做 eth0，是 以太网接口，和第二个，叫做 lo，是内部回环网络接口，它是一个虚拟接口，系统用它来 "自言自语"。
 
 When performing causal network diagnostics, the important things to look for are the presence of the word "UP" at the beginning of the fourth line for each interface, indicating that the network interface is enabled, and the presence of a valid IP address in the inet addr field on the second line. For systems using DHCP (Dynamic Host Configuration Protocol), a valid IP address in this field will verify that the DHCP is working.
 
-当执行日常网络诊断时，要查看的重要信息是每个网络接口第四行开头出现的单词 "UP"，说明这个网络接口已经生效，还要查看第二行中 inet addr 字段出现的有效 IP 地址。对于使用 DHCP（动态主机配置协议）的系统，在 这个字段中的一个有效 IP 地址则证明了 DHCP 工作正常。
+> 当执行日常网络诊断时，要查看的重要信息是每个网络接口第四行开头出现的单词 "UP"，说明这个网络接口已经生效，还要查看第二行中 inet addr 字段出现的有效 IP 地址。对于使用 DHCP（动态主机配置协议）的系统，在 这个字段中的一个有效 IP 地址则证明了 DHCP 工作正常。
 
 Using the "-r" option will display the kernel's network routing table. This shows how the network is configured to send packets from network to network:
 
-使用这个"-r"选项会显示内核的网络路由表。这展示了系统是如何配置网络之间发送数据包的。
+> 使用这个"-r"选项会显示内核的网络路由表。这展示了系统是如何配置网络之间发送数据包的。
 
     [me@linuxbox ~]$ netstat -r
     Kernel IP routing table
@@ -181,11 +181,11 @@ Using the "-r" option will display the kernel's network routing table. This show
 
 In this simple example, we see a typical routing table for a client machine on a LAN (Local Area Network) behind a firewall/router. The first line of the listing shows the destination 192.168.1.0. IP addresses that end in zero refer to networks rather than individual hosts, so this destination means any host on the LAN. The next field, Gateway, is the name or IP address of the gateway (router) used to go from the current host to the destination network. An asterisk in this field indicates that no gateway is needed.
 
-在这个简单的例子里面，我们看到了，位于防火墙之内的局域网中，一台客户端计算机的典型路由表。 第一行显示了目的地 192.168.1.0。IP 地址以零结尾是指网络，而不是独立主机， 所以这个目的地意味着局域网中的任何一台主机。下一个字段，Gateway， 是网关（路由器）的名字或 IP 地址，用它来连接当前的主机和目的地的网络。 若这个字段显示一个星号，则表明不需要网关。
+> 在这个简单的例子里面，我们看到了，位于防火墙之内的局域网中，一台客户端计算机的典型路由表。 第一行显示了目的地 192.168.1.0。IP 地址以零结尾是指网络，而不是独立主机， 所以这个目的地意味着局域网中的任何一台主机。下一个字段，Gateway， 是网关（路由器）的名字或 IP 地址，用它来连接当前的主机和目的地的网络。 若这个字段显示一个星号，则表明不需要网关。
 
 The last line contains the destination default. This means any traffic destined for a network that is not otherwise listed in the table. In our example, we see that the gateway is defined as a router with the address of 192.168.1.1, which presumably knows what to do with the destination traffic.
 
-最后一行包含目的地 default。指的是发往任何表上没有列出的目的地网络的流量。 在我们的实例中，我们看到网关被定义为地址 192.168.1.1 的路由器，它应该能 知道怎样来处理目的地流量。
+> 最后一行包含目的地 default。指的是发往任何表上没有列出的目的地网络的流量。 在我们的实例中，我们看到网关被定义为地址 192.168.1.1 的路由器，它应该能 知道怎样来处理目的地流量。
 
 The netstat program has many options and we have only looked at a couple. Check out the netstat man page for a complete list.
 
@@ -195,7 +195,7 @@ netstat 程序有许多选项，我们仅仅讨论了几个。查看 netstat 命
 
 What good is a network unless we know how to move files across it? There are many programs that move data over networks. We will cover two of them now and several more in later sections.
 
-如果不能通过网络来传输文件，那么要网络有什么用呢？有许多程序可以用来在网络中 传送数据。我们先讨论两个，随后的章节里再介绍几个。
+> 如果不能通过网络来传输文件，那么要网络有什么用呢？有许多程序可以用来在网络中 传送数据。我们先讨论两个，随后的章节里再介绍几个。
 
 #### ftp
 
@@ -209,7 +209,7 @@ FTP（它的原始版本）并不是安全的，因为它会以明码形式发�
 
 In the example below, we show a typical session with the ftp program downloading an Ubuntu iso image located in the /pub/cd_images/Ubuntu-8.04 directory of the anonymous FTP server fileserver:
 
-在下面的例子中，我们将展示一个典型的会话，从匿名 FTP 服务器，其名字是 fileserver， 的/pub/\_images/Ubuntu-8.04的目录下，使用 ftp 程序下载一个 Ubuntu 系统映像文件。
+> 在下面的例子中，我们将展示一个典型的会话，从匿名 FTP 服务器，其名字是 fileserver， 的/pub/\_images/Ubuntu-8.04的目录下，使用 ftp 程序下载一个 Ubuntu 系统映像文件。
 
     [me@linuxbox ~]$ ftp fileserver
     Connected to fileserver.localdomain.
@@ -241,7 +241,7 @@ In the example below, we show a typical session with the ftp program downloading
 
 Here is an explanation of the commands entered during this session:
 
-这里是对会话期间所输入命令的解释说明：
+> 这里是对会话期间所输入命令的解释说明：
 
 ```{=html}
 <table class="multi">
@@ -422,7 +422,7 @@ Log off the remote server and end the ftp program session. The commands quit and
 ```{=html}
 <caption class="cap">
 ```
-表17-1:
+> 表17-1:
 ```{=html}
 </caption>
 ```
@@ -432,14 +432,14 @@ Log off the remote server and end the ftp program session. The commands quit and
 ```{=html}
 <th class="title">
 ```
-命令
+> 命令
 ```{=html}
 </th>
 ```
 ```{=html}
 <th class="title">
 ```
-意思
+> 意思
 ```{=html}
 </th>
 ```
@@ -459,7 +459,7 @@ ftp fileserver
 ```{=html}
 <td valign="top">
 ```
-唤醒 ftp 程序，让它连接到 FTP 服务器，fileserver。
+> 唤醒 ftp 程序，让它连接到 FTP 服务器，fileserver。
 ```{=html}
 </td>
 ```
@@ -479,7 +479,7 @@ anonymous
 ```{=html}
 <td valign="top">
 ```
-登录名。输入登录名后，将出现一个密码提示。一些服务器将会接受空密码， 其它一些则会要求一个邮件地址形式的密码。如果是这种情况，试着输入 "user@example.com"。
+> 登录名。输入登录名后，将出现一个密码提示。一些服务器将会接受空密码， 其它一些则会要求一个邮件地址形式的密码。如果是这种情况，试着输入 "user@example.com"。
 ```{=html}
 </td>
 ```
@@ -499,7 +499,7 @@ cd pub/cd_images/Ubuntu-8.04
 ```{=html}
 <td valign="top">
 ```
-跳转到远端系统中，要下载文件所在的目录下， 注意在大多数匿名的 FTP 服务器中，支持公共下载的文件都能在目录 pub 下找到
+> 跳转到远端系统中，要下载文件所在的目录下， 注意在大多数匿名的 FTP 服务器中，支持公共下载的文件都能在目录 pub 下找到
 ```{=html}
 </td>
 ```
@@ -519,7 +519,7 @@ ls
 ```{=html}
 <td valign="top">
 ```
-列出远端系统中的目录。
+> 列出远端系统中的目录。
 ```{=html}
 </td>
 ```
@@ -539,7 +539,7 @@ lcd Desktop
 ```{=html}
 <td valign="top">
 ```
-跳转到本地系统中的 \~/Desktop 目录下。在实例中，ftp 程序在工作目录 \~ 下被唤醒。 这个命令把工作目录改为 \~/Desktop
+> 跳转到本地系统中的 \~/Desktop 目录下。在实例中，ftp 程序在工作目录 \~ 下被唤醒。 这个命令把工作目录改为 \~/Desktop
 ```{=html}
 </td>
 ```
@@ -559,7 +559,7 @@ get ubuntu-8.04-desktop-i386.iso
 ```{=html}
 <td valign="top">
 ```
-告诉远端系统传送文件到本地。因为本地系统的工作目录 已经更改到了 \~/Desktop，所以文件会被下载到此目录。
+> 告诉远端系统传送文件到本地。因为本地系统的工作目录 已经更改到了 \~/Desktop，所以文件会被下载到此目录。
 ```{=html}
 </td>
 ```
@@ -579,7 +579,7 @@ bye
 ```{=html}
 <td valign="top">
 ```
-退出远端服务器，结束 ftp 程序会话。也可以使用命令 quit 和 exit。
+> 退出远端服务器，结束 ftp 程序会话。也可以使用命令 quit 和 exit。
 ```{=html}
 </td>
 ```
@@ -591,7 +591,7 @@ bye
 ```
 Typing "help" at the "ftp\>" prompt will display a list of the supported commands. Using ftp on a server where sufficient permissions have been granted, it is possible to perform many ordinary file management tasks. It's clumsy, but it does work.
 
-在 "ftp\>" 提示符下，输入 "help"，会显示所支持命令的列表。使用 ftp 登录到一台 授予了用户足够权限的服务器中，则可以执行很多普通的文件管理任务。虽然很笨拙， 但它真能工作。
+> 在 "ftp\>" 提示符下，输入 "help"，会显示所支持命令的列表。使用 ftp 登录到一台 授予了用户足够权限的服务器中，则可以执行很多普通的文件管理任务。虽然很笨拙， 但它真能工作。
 
 #### lftp - 更好的 ftp
 
@@ -603,7 +603,7 @@ ftp 并不是唯一的命令行形式的 FTP 客户端。实际上，还有很�
 
 Another popular command line program for file downloading is wget. It is useful for downloading content from both web and FTP sites. Single files, multiple files, and even entire sites can be downloaded. To download the first page of linuxcommand.org we could do this:
 
-另一个流行的用来下载文件的命令行程序是 wget。若想从网络和 FTP 网站两者上都能下载数据，wget 是很有用处的。 不只能下载单个文件，多个文件，甚至整个网站都能下载。下载 linuxcommand.org 网站的首页， 我们可以这样做：
+> 另一个流行的用来下载文件的命令行程序是 wget。若想从网络和 FTP 网站两者上都能下载数据，wget 是很有用处的。 不只能下载单个文件，多个文件，甚至整个网站都能下载。下载 linuxcommand.org 网站的首页， 我们可以这样做：
 
     [me@linuxbox ~]$ wget http://linuxcommand.org/index.php
     --11:02:51-- http://linuxcommand.org/index.php
@@ -619,19 +619,19 @@ Another popular command line program for file downloading is wget. It is useful 
 
 The program's many options allow wget to recursively download, download files in the background (allowing you to log off but continue downloading), and complete the download of a partially downloaded file. These features are well documented in its better-than-average man page.
 
-这个程序的许多选项允许 wget 递归地下载，在后台下载文件（你退出后仍在下载），能完成未下载 全的文件。这些特性在其优秀的命令手册中有着详尽地说明。
+> 这个程序的许多选项允许 wget 递归地下载，在后台下载文件（你退出后仍在下载），能完成未下载 全的文件。这些特性在其优秀的命令手册中有着详尽地说明。
 
 ### 与远程主机安全通信
 
 For many years, Unix-like operating systems have had the ability to be administered remotely via a network. In the early days, before the general adoption of the Internet, there were a couple of popular programs used to log in to remote hosts. These were the rlogin and telnet programs. These programs, however, suffer from the same fatal flaw that the ftp program does; they transmit all their communications (including login names and passwords) in cleartext. This makes them wholly inappropriate for use in the Internet age.
 
-通过网络来远程操控类 Unix 的操作系统已经有很多年了。早些年，在因特网普遍推广之前，有 一些受欢迎的程序被用来登录远程主机。它们是 rlogin 和 telnet 程序。然而这些程序，拥有和 ftp 程序 一样的致命缺点；它们以明码形式来传输所有的交流信息（包括登录命令和密码）。这使它们完全不 适合使用在因特网时代。
+> 通过网络来远程操控类 Unix 的操作系统已经有很多年了。早些年，在因特网普遍推广之前，有 一些受欢迎的程序被用来登录远程主机。它们是 rlogin 和 telnet 程序。然而这些程序，拥有和 ftp 程序 一样的致命缺点；它们以明码形式来传输所有的交流信息（包括登录命令和密码）。这使它们完全不 适合使用在因特网时代。
 
 #### ssh
 
 To address this problem, a new protocol called SSH (Secure Shell) was developed. SSH solves the two basic problems of secure communication with a remote host. First, it authenticates that the remote host is who it says it is (thus preventing so-called "man in the middle" attacks), and second, it encrypts all of the communications between the local and remote hosts.
 
-为了解决这个问题，开发了一款新的协议，叫做 SSH（Secure Shell）。 SSH 解决了这两个基本的和远端主机安全交流的问题。首先，它要认证远端主机是否为它 所知道的那台主机（这样就阻止了所谓的"中间人"的攻击），其次，它加密了本地与远程主机之间 所有的通讯信息。
+> 为了解决这个问题，开发了一款新的协议，叫做 SSH（Secure Shell）。 SSH 解决了这两个基本的和远端主机安全交流的问题。首先，它要认证远端主机是否为它 所知道的那台主机（这样就阻止了所谓的"中间人"的攻击），其次，它加密了本地与远程主机之间 所有的通讯信息。
 
 SSH consists of two parts. An SSH server runs on the remote host, listening for incoming connections on port twenty-two, while an SSH client is used on the local system to communicate with the remote server.
 
@@ -639,19 +639,19 @@ SSH 由两部分组成。SSH 服务端运行在远端主机上，在端口 22 �
 
 Most Linux distributions ship an implementation of SSH called OpenSSH from the BSD project. Some distributions include both the client and the server packages by default (for example, Red Hat), while others (such as Ubuntu) only supply the client. To enable a system to receive remote connections, it must have the OpenSSH-server package installed, configured and running, and (if the system is either running or is behind a firewall) it must allow incoming network connections on TCP port 22.
 
-大多数 Linux 发行版自带一个提供 SSH 功能的软件包，叫做 OpenSSH，来自于 BSD 项目。一些发行版 默认包含客户端和服务端两个软件包（例如 Red Hat），而另一些（比方说 Ubuntu）则只提供客户端。 为了能让系统接受远端的连接，它必须安装 OpenSSH-server 软件包，配置，运行它， 并且（如果系统正在运行，或者系统在防火墙之后）它必须允许在 TCP 端口 22 上接收网络连接。
+> 大多数 Linux 发行版自带一个提供 SSH 功能的软件包，叫做 OpenSSH，来自于 BSD 项目。一些发行版 默认包含客户端和服务端两个软件包（例如 Red Hat），而另一些（比方说 Ubuntu）则只提供客户端。 为了能让系统接受远端的连接，它必须安装 OpenSSH-server 软件包，配置，运行它， 并且（如果系统正在运行，或者系统在防火墙之后）它必须允许在 TCP 端口 22 上接收网络连接。
 
 ------------------------------------------------------------------------
 
 Tip: If you don't have a remote system to connect to but want to try these examples, make sure the OpenSSH-server package is installed on your system and use localhost as the name of the remote host. That way, your machine will create network connections with itself.
 
-小贴示：如果你没有远端系统去连接，但还想试试这些实例，则确认安装了 OpenSSH-server 软件包 ，则可使用 localhost 作为远端主机的名字。这种情况下，计算机会和它自己创建网络连接。
+> 小贴示：如果你没有远端系统去连接，但还想试试这些实例，则确认安装了 OpenSSH-server 软件包 ，则可使用 localhost 作为远端主机的名字。这种情况下，计算机会和它自己创建网络连接。
 
 ------------------------------------------------------------------------
 
 The SSH client program used to connect to remote SSH servers is called, appropriately enough, ssh. To connect to a remote host named remote-sys, we would use the ssh client program like so:
 
-用来与远端 SSH 服务器相连接的 SSH 客户端程序，顺理成章，叫做 ssh。想要连接到名叫 remote-sys 的远端主机，我们可以这样使用 ssh 客户端程序：
+> 用来与远端 SSH 服务器相连接的 SSH 客户端程序，顺理成章，叫做 ssh。想要连接到名叫 remote-sys 的远端主机，我们可以这样使用 ssh 客户端程序：
 
     [me@linuxbox ~]$ ssh remote-sys
     The authenticity of host 'remote-sys (192.168.1.4)' can't be
@@ -662,7 +662,7 @@ The SSH client program used to connect to remote SSH servers is called, appropri
 
 The first time the connection is attempted, a message is displayed indicating that the authenticity of the remote host cannot be established. This is because the client program has never seen this remote host before. To accept the credentials of the remote host, enter "yes" when prompted. Once the connection is established, the user is prompted for his/her password:
 
-第一次尝试连接，提示信息表明远端主机的真实性不能确立。这是因为客户端程序以前从没有 看到过这个远端主机。为了接受远端主机的身份验证凭据，输入"yes"。一旦建立了连接，会提示 用户输入他或她的密码：
+> 第一次尝试连接，提示信息表明远端主机的真实性不能确立。这是因为客户端程序以前从没有 看到过这个远端主机。为了接受远端主机的身份验证凭据，输入"yes"。一旦建立了连接，会提示 用户输入他或她的密码：
 
     Warning: Permanently added 'remote-sys,192.168.1.4' (RSA) to the list
     of known hosts.
@@ -670,18 +670,18 @@ The first time the connection is attempted, a message is displayed indicating th
 
 After the password is successfully entered, we receive the shell prompt from the remote system:
 
-成功地输入密码之后，我们会接收到远端系统的 shell 提示符：
+> 成功地输入密码之后，我们会接收到远端系统的 shell 提示符：
 
     Last login: Sat Aug 30 13:00:48 2008
     [me@remote-sys ~]$
 
 The remote shell session continues until the user enters the exit command at the remote shell prompt, thereby closing the remote connection. At this point, the local shell session resumes and the local shell prompt reappears.
 
-远端 shell 会话一直存在，直到用户输入 exit 命令后，则关闭了远程连接。这时候，本地的 shell 会话 恢复，本地 shell 提示符重新出现。
+> 远端 shell 会话一直存在，直到用户输入 exit 命令后，则关闭了远程连接。这时候，本地的 shell 会话 恢复，本地 shell 提示符重新出现。
 
 It is also possible to connect to remote systems using a different user name. For example, if the local user "me" had an account named "bob" on a remote system, user me could log in to the account bob on the remote system as follows:
 
-也有可能使用不同的用户名连接到远程系统。例如，如果本地用户"me"，在远端系统中有一个帐号名 "bob"，则用户 me 能够用 bob 帐号登录到远端系统，如下所示：
+> 也有可能使用不同的用户名连接到远程系统。例如，如果本地用户"me"，在远端系统中有一个帐号名 "bob"，则用户 me 能够用 bob 帐号登录到远端系统，如下所示：
 
     [me@linuxbox ~]$ ssh bob@remote-sys
     bob@remote-sys's password:
@@ -690,7 +690,7 @@ It is also possible to connect to remote systems using a different user name. Fo
 
 As stated before, ssh verifies the authenticity of the remote host. If the remote host does not successfully authenticate, the following message appears:
 
-正如之前所讲到的，ssh 验证远端主机的真实性。如果远端主机不能成功地通过验证，则会提示以下信息：
+> 正如之前所讲到的，ssh 验证远端主机的真实性。如果远端主机不能成功地通过验证，则会提示以下信息：
 
     [me@linuxbox ~]$ ssh remote-sys
     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -705,21 +705,21 @@ As stated before, ssh verifies the authenticity of the remote host. If the remot
 
 This message is caused by one of two possible situations. First, an attacker may be attempting a "man-in-the-middle" attack. This is rare, since everybody knows that ssh alerts the user to this. The more likely culprit is that the remote system has been changed somehow; for example, its operating system or SSH server has been reinstalled. In the interests of security and safety however, the first possibility should not be dismissed out of hand. Always check with the administrator of the remote system when this message occurs.
 
-有两种可能的情形会提示这些信息。第一，某个攻击者企图制造"中间人"袭击。这很少见， 因为每个人都知道 ssh 会针对这种状况发出警告。最有可能的罪魁祸首是远端系统已经改变了； 例如，它的操作系统或者是 SSH 服务器重新安装了。然而，为了安全起见，第一个可能性不应该 被轻易否定。当这条消息出现时，总要与远端系统的管理员查对一下。
+> 有两种可能的情形会提示这些信息。第一，某个攻击者企图制造"中间人"袭击。这很少见， 因为每个人都知道 ssh 会针对这种状况发出警告。最有可能的罪魁祸首是远端系统已经改变了； 例如，它的操作系统或者是 SSH 服务器重新安装了。然而，为了安全起见，第一个可能性不应该 被轻易否定。当这条消息出现时，总要与远端系统的管理员查对一下。
 
 After it has been determined that the message is due to a benign cause, it is safe to correct the problem on the client side. This is done by using a text editor (vim perhaps) to remove the obsolete key from the \~/.ssh/known_hosts file. In the example message above, we see this:
 
-当确定了这条消息归结为一个良性的原因之后，那么在客户端更正问题就很安全了。 使用文本编辑器（可能是 vim）从文件\~/.ssh/known_hosts 中删除废弃的钥匙， 就解决了问题。在上面的例子里，我们看到这样一句话：
+> 当确定了这条消息归结为一个良性的原因之后，那么在客户端更正问题就很安全了。 使用文本编辑器（可能是 vim）从文件\~/.ssh/known_hosts 中删除废弃的钥匙， 就解决了问题。在上面的例子里，我们看到这样一句话：
 
     Offending key in /home/me/.ssh/known_hosts:1
 
 This means that line one of the known_hosts file contains the offending key. Delete this line from the file, and the ssh program will be able to accept new authentication credentials from the remote system.
 
-这意味着 known_hosts 文件的第一行包含那个冲突的钥匙。从文件中删除这一行，则 ssh 程序 就能够从远端系统接受新的身份验证凭据。
+> 这意味着 known_hosts 文件的第一行包含那个冲突的钥匙。从文件中删除这一行，则 ssh 程序 就能够从远端系统接受新的身份验证凭据。
 
 Besides opening a shell session on a remote system, ssh also allows us to execute a single command on a remote system. For example, to execute the free command on a remote host named remote-sys and have the results displayed on the local system:
 
-除了能够在远端系统中打开一个 shell 会话，ssh 程序也允许我们在远端系统中执行单个命令。 例如，在名为 remote-sys 的远端主机上，执行 free 命令，并把输出结果显示到本地系统 shell 会话中。
+> 除了能够在远端系统中打开一个 shell 会话，ssh 程序也允许我们在远端系统中执行单个命令。 例如，在名为 remote-sys 的远端主机上，执行 free 命令，并把输出结果显示到本地系统 shell 会话中。
 
     [me@linuxbox ~]$ ssh remote-sys free
     me@twin4's password:
@@ -734,7 +734,7 @@ Besides opening a shell session on a remote system, ssh also allows us to execut
 
 It's possible to use this technique in more interesting ways, such as this example in which we perform an ls on the remote system and redirect the output to a file on the local system:
 
-有可能以更有趣的方式来利用这项技术，比方说下面的例子，我们在远端系统中执行 ls 命令， 并把命令输出重定向到本地系统中的一个文件里面。
+> 有可能以更有趣的方式来利用这项技术，比方说下面的例子，我们在远端系统中执行 ls 命令， 并把命令输出重定向到本地系统中的一个文件里面。
 
     [me@linuxbox ~]$ ssh remote-sys 'ls \*' > dirlist.txt
     me@twin4's password:
@@ -742,7 +742,7 @@ It's possible to use this technique in more interesting ways, such as this examp
 
 Notice the use of the single quotes in the command above. This is done because we do not want the pathname expansion performed on the local machine; rather, we want it to be performed on the remote system. Likewise, if we had wanted the output redirected to a file on the remote machine, we could have placed the redirection operator and the filename within the single quotes:
 
-注意，上面的例子中使用了单引号。这样做是因为我们不想路径名展开操作在本地执行，而希望 它在远端系统中被执行。同样地，如果我们想要把输出结果重定向到远端主机的文件中，我们可以 把重定向操作符和文件名都放到单引号里面。
+> 注意，上面的例子中使用了单引号。这样做是因为我们不想路径名展开操作在本地执行，而希望 它在远端系统中被执行。同样地，如果我们想要把输出结果重定向到远端主机的文件中，我们可以 把重定向操作符和文件名都放到单引号里面。
 
     [me@linuxbox ~]$ ssh remote-sys 'ls * > dirlist.txt'
 
@@ -781,13 +781,13 @@ OpenSSH 软件包也包含两个程序，它们可以利用 SSH 加密通道在�
 
 As with ssh, you may apply a user name to the beginning of the remote host's name if the desired remote host account name does not match that of the local system:
 
-和 ssh 命令一样，如果所需的远端主机帐户名与本地系统中的不一致， 那么你可以把用户名添加到远端主机名的开头：
+> 和 ssh 命令一样，如果所需的远端主机帐户名与本地系统中的不一致， 那么你可以把用户名添加到远端主机名的开头：
 
     [me@linuxbox ~]$ scp bob@remote-sys:document.txt .
 
 The second SSH file copying program is sftp which, as its name implies, is a secure replacement for the ftp program. sftp works much like the original ftp program that we used earlier; however, instead of transmitting everything in cleartext, it uses an SSH encrypted tunnel. sftp has an important advantage over conventional ftp in that it does not require an FTP server to be running on the remote host. It only requires the SSH server. This means that any remote machine that can connect with the SSH client can also be used as a FTP-like server. Here is a sample session:
 
-第二个 SSH 文件复制程序是 sftp，顾名思义，它是 ftp 程序的安全替代品。sftp 工作起来与我们 之前使用的 ftp 程序很相似；然而，它不用明码形式来传递数据，它使用加密的 SSH 通道。sftp 有一个 重要特性强于传统的 ftp 命令，就是 sftp 不需要远端系统中运行 FTP 服务端。它仅仅需要 SSH 服务端。 这意味着任何一台能用 SSH 客户端连接的远端机器，也可当作类似于 FTP 的服务器来使用。 这里是一个样本会话：
+> 第二个 SSH 文件复制程序是 sftp，顾名思义，它是 ftp 程序的安全替代品。sftp 工作起来与我们 之前使用的 ftp 程序很相似；然而，它不用明码形式来传递数据，它使用加密的 SSH 通道。sftp 有一个 重要特性强于传统的 ftp 命令，就是 sftp 不需要远端系统中运行 FTP 服务端。它仅仅需要 SSH 服务端。 这意味着任何一台能用 SSH 客户端连接的远端机器，也可当作类似于 FTP 的服务器来使用。 这里是一个样本会话：
 
     [me@linuxbox ~]$ sftp remote-sys
     Connecting to remote-sys...
@@ -805,7 +805,7 @@ The second SSH file copying program is sftp which, as its name implies, is a sec
 
 Tip: The SFTP protocol is supported by many of the graphical file managers found in Linux distributions. Using either Nautilus (GNOME) or Konqueror (KDE), we can enter a URI beginning with sftp:// into the location bar and operate on files stored on a remote system running an SSH server.
 
-小贴示：SFTP 协议被许多 Linux 发行版中的图形化文件管理器支持。使用 Nautilus (GNOME), 或者是 Konqueror (KDE)，我们都能在位置栏中输入以 sftp:// 开头的 URI，来操作存储在运行着 SSH 服务端的远端系统中的文件。
+> 小贴示：SFTP 协议被许多 Linux 发行版中的图形化文件管理器支持。使用 Nautilus (GNOME), 或者是 Konqueror (KDE)，我们都能在位置栏中输入以 sftp:// 开头的 URI，来操作存储在运行着 SSH 服务端的远端系统中的文件。
 
 ------------------------------------------------------------------------
 

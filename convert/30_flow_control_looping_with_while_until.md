@@ -1,6 +1,7 @@
 ---
 layout: book
 title: 流程控制：while/until 循环
+flow_control_looping_with_while_until
 ---
 
 In the previous chapter, we developed a menu-driven program to produce various kinds of system information. The program works, but it still has a significant usability problem. It only executes a single choice and then terminates. Even worse, if an invalid selection is made, the program terminates with an error, without giving the user an opportunity to try again. It would be better if we could somehow construct the program so that it could repeat the menu display and selection over and over, until the user chooses to exit the program.

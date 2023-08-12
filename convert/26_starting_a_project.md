@@ -1,6 +1,7 @@
 ---
 layout: book
 title: 启动一个项目
+starting_a_project
 ---
 
 Starting with this chapter, we will begin to build a program. The purpose of this project is to see how various shell features are used to create programs and, more importantly, create good programs.

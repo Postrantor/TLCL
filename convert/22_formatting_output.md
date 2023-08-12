@@ -1,6 +1,7 @@
 ---
 layout: book
 title: 格式化输出
+formatting_output
 ---
 
 In this chapter, we continue our look at text related tools, focusing on programs that are used to format text output, rather than changing the text itself. These tools are often used to prepare text for eventual printing, a subject that we will cover in the next chapter. The programs that we will cover in this chapter include:

@@ -1,6 +1,7 @@
 ---
 layout: book
 title: 自定制 shell 提示符
+customizing_the_prompt
 ---
 
 In this chapter we will look at a seemingly trivial detail --- our shell prompt. This examination will reveal some of the inner workings of the shell and the terminal emulator program itself.

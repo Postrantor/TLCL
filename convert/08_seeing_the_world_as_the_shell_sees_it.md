@@ -1,6 +1,7 @@
 ---
 layout: book
 title: 从 shell 眼中看世界
+seeing_the_world_as_the_shell_sees_it
 ---
 
 In this chapter we are going to look at some of the "magic" that occurs on the command line when you press the enter key. While we will examine several interesting and complex features of the shell, we will do it with just one new command:

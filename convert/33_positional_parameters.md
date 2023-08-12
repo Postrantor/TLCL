@@ -1,6 +1,7 @@
 ---
 layout: book
 title: 位置参数
+positional_parameters
 ---
 
 One feature that has been missing from our programs is the ability to accept and process command line options and arguments. In this chapter, we will examine the shell features that allow our programs to get access to the contents of the command line.

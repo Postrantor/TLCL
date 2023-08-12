@@ -1,6 +1,7 @@
 ---
 layout: book
 title: 存储媒介
+storage_media
 ---
 
 In previous chapters we've looked at manipulating data at the file level. In this chapter, we will consider data at the device level. Linux has amazing capabilities for handling storage devices, whether physical storage, such as hard disks, or network storage, or virtual storage devices like RAID (Redundant Array of Independent Disks) and LVM (Logical Volume Manager).

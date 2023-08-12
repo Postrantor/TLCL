@@ -1,6 +1,7 @@
 ---
 layout: book
 title: 数组
+arrays
 ---
 
 In the last chapter, we looked at how the shell can manipulate strings and numbers. The data types we have looked at so far are known in computer science circles as scalar variables; that is, variables that contain a single value.

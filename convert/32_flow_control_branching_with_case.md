@@ -1,6 +1,7 @@
 ---
 layout: book
 title: 流程控制：case 分支
+flow_control_branching_with_case
 ---
 
 In this chapter, we will continue to look at flow control. In Chapter 28, we constructed some simple menus and built the logic used to act on a user's selection. To do this, we used a series of if commands to identify which of the possible choices has been selected. This type of construct appears frequently in programs, so much so that many programming languages (including the shell) provide a flow control mechanism for multiple-choice decisions.

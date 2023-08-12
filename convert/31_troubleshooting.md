@@ -1,6 +1,7 @@
 ---
 layout: book
 title: 疑难排解
+troubleshooting
 ---
 
 As our scripts become more complex, it's time to take a look at what happens when things go wrong and they don't do what we want. In this chapter, we'll look at some of the common kinds of errors that occur in scripts, and describe a few useful techniques that can be used to track down and eradicate problems.

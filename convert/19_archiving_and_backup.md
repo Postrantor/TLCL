@@ -1,6 +1,7 @@
 ---
 layout: book
 title: 归档和备份
+archiving_and_backup
 ---
 
 One of the primary tasks of a computer system's administrator is keeping the system's data secure. One way this is done is by performing timely backups of the system's files. Even if you're not system administrators, it is often useful to make copies of things and to move large collections of files from place to place and from device to device. In this chapter, we will look at several common programs that are used to manage collections of files. There are the file compression programs:

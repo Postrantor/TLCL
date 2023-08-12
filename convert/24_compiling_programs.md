@@ -1,6 +1,7 @@
 ---
 layout: book
 title: 编译程序
+compiling_programs
 ---
 
 In this chapter, we will look at how to build programs by compiling source code.

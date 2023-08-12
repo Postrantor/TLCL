@@ -1,6 +1,7 @@
 ---
 layout: book
 title: 读取键盘输入
+reading_keyboard_input
 ---
 
 The scripts we have written so far lack a feature common in most computer programs --- interactivity. That is, the ability of the program to interact with the user. While many programs don't need to be interactive, some programs benefit from being able to accept input directly from the user. Take, for example, this script from the previous chapter:

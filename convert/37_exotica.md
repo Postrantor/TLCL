@@ -1,6 +1,7 @@
 ---
 layout: book
 title: 奇珍异宝
+exotica
 ---
 
 In this, the final chapter of our journey, we will look at some odds and ends. While we have certainly covered a lot of ground in the previous chapters, there are many bash features that we have not covered. Most are fairly obscure, and useful mainly to those integrating bash into a Linux distribution. However, there are a few that, while not in common use, are helpful for certain programming problems. We will cover them here.

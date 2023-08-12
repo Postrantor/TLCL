@@ -1,6 +1,7 @@
 ---
 layout: book
 title: 软件包管理
+package_management
 ---
 
 If we spend any time in the Linux community, we hear many opinions as to which of the many Linux distributions is "best." Often, these discussions get really silly, focusing on such things as the prettiness of the desktop background (some people won't use Ubuntu because its default color scheme is brown!) and other trivial matters.

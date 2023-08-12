@@ -1,6 +1,7 @@
 ---
 layout: book
 title: 正则表达式
+regular_expressions
 ---
 
 In the next few chapters, we are going to look at tools used to manipulate text. As we have seen, text data plays an important role on all Unix-like systems, such as Linux. But before we can fully appreciate all of the features offered by these tools, we have to first examine a technology that is frequently associated with the most sophisticated uses of these tools --- regular expressions.

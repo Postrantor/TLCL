@@ -1,6 +1,7 @@
 ---
 layout: book
 title: 编写第一个 Shell 脚本
+writing_your_first_script
 ---
 
 In the preceding chapters, we have assembled an arsenal of command line tools. While these tools can solve many kinds of computing problems, we are still limited to manually using them one by one on the command line. Wouldn't it be great if we could get the shell to do more of the work? We can. By joining our tools together into programs of our own design, the shell can carry out complex sequences of tasks all by itself. We can enable it to do this by writing shell scripts.

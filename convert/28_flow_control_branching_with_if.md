@@ -1,6 +1,7 @@
 ---
 layout: book
 title: 流程控制：if 分支结构
+flow_control_branching_with_if
 ---
 
 In the last chapter, we were presented with a problem. How can we make our report generator script adapt to the privileges of the user running the script? The solution to this problem will require us to find a way to "change directions" within our script, based on a the results of a test. In programming terms, we need the program to branch. Let's consider a simple example of logic expressed in pseudocode, a simulation of a computer language intended for human consumption:

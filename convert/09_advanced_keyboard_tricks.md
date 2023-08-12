@@ -1,6 +1,7 @@
 ---
 layout: book
 title: 键盘高级操作技巧
+advanced_keyboard_tricks
 ---
 
 I often kiddingly describe Unix as "the operating system for people who like to type." Of course, the fact that it even has a command line is a testament to that. But command line users don't like to type that much. Why else would so many commands have such short names like cp, ls, mv, and rm? In fact, one of the most cherished goals of the command line is laziness; doing the most work with the fewest number of keystrokes. Another goal is never having to lift your fingers from the keyboard, never reaching for the mouse. In this chapter, we will look at bash features that make keyboard use faster and more efficient.

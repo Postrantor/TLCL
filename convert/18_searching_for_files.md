@@ -1,6 +1,7 @@
 ---
 layout: book
 title: 查找文件
+searching_for_files
 ---
 
 As we have wandered around our Linux system, one thing has become abundantly clear: a typical Linux system has a lot of files! This begs the question, "how do we find things?" We already know that the Linux file system is well organized according to conventions that have been passed down from one generation of Unix-like system to the next, but the sheer number of files can present a daunting problem. In this chapter, we will look at two tools that are used to find files on a system. These tools are:

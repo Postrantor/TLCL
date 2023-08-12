@@ -1,6 +1,7 @@
 ---
 layout: book
 title: 字符串和数字
+strings_and_numbers
 ---
 
 Computer programs are all about working with data. In past chapters, we have focused on processing data at the file level. However, many programming problems need to be solved using smaller units of data such as strings and numbers.

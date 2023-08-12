@@ -1,6 +1,7 @@
 ---
 layout: book
 title: 文本处理
+text_processing
 ---
 
 All Unix-like operating systems rely heavily on text files for several types of data storage. So it makes sense that there are many tools for manipulating text. In this chapter, we will look at programs that are used to "slice and dice" text. In the next chapter, we will look at more text processing, focusing on programs that are used to format text for printing and other kinds of human consumption.

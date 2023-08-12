@@ -48,11 +48,11 @@ This book is a broad overview of "living" on the Linux command line. Unlike some
 
 This is not a book about Linux system administration. While any serious discussion of the command line will invariably lead to system administration topics, this book only touches on a few administration issues. It will, however, prepare the reader for additional study by providing a solid foundation in the use of the command line, an essential tool for any serious system administration task.
 
-**这不是一本关于 Linux 系统管理的书**。然而任何一个关于命令行的深入讨论，都一定会牵涉到 系统管理方面的内容，这本书仅仅提到一点儿管理方面的知识。但是这本书为读者准备好了学习更多内容的坚实基础，毕竟要胜任系统管理工作也需要良好的命令行使用基本功。
+> **这不是一本关于 Linux 系统管理的书**。然而任何一个关于命令行的深入讨论，**都一定会牵涉到系统管理方面的内容**，这本书仅仅提到一点儿管理方面的知识。但是这本书为读者准备好了学习更多内容的坚实基础，毕竟要胜任系统管理工作也需要良好的命令行使用基本功。
 
 This book is very Linux-centric. Many other books try to broaden their appeal by including other platforms such as generic Unix and MacOS X. In doing so, they "water down" their content to feature only general topics. This book, on the other hand, only covers contemporary Linux distributions. Ninety-five percent of the content is useful for users of other Unix-like systems, but this book is highly targeted at the modern Linux command line user.
 
-**这本书是围绕 Linux 而写的**。许多书籍，为了扩大自身的影响力，会包含一些其它平台的知识，比如 Unix, MacOS X 等。这样做，很多内容只能比较空泛的去讲了。另一方面，这本书只研究了当代 Linux 发行版。虽然，对于使用其它类 Unix 系统的用户来说，书中 95％的内容是有用的，但这本书主要面向的对象是现代 Linux 命令行用户。
+> **这本书是围绕 Linux 而写的**。许多书籍，为了扩大自身的影响力，会包含一些其它平台的知识，比如 Unix, MacOS X 等。这样做，很多内容只能比较空泛的去讲了。另一方面，这本书只研究了当代 Linux 发行版。虽然，对于使用其它类 Unix 系统的用户来说，书中 95％的内容是有用的，但这本书主要面向的对象是现代 Linux 命令行用户。
 
 ### 谁应该读这本书
 
@@ -66,7 +66,7 @@ That being said, there is no shortcut to Linux enlightenment. Learning the comma
 
 On the other hand, learning the Linux command line is extremely rewarding. If you think you're a "power user" now, just wait. You don't know what real power is --- yet. And, unlike many other computer skills, knowledge of the command line is long lasting. The skills learned today will still be useful ten years from now. The command line has survived the test of time.
 
-> 另一方面，学习 Linux 命令行会让你受益匪浅，给你极大的回报。如果你认为 现在你已经是高手了。别急，其实你还不知道什么才是真正的高手。不像其他一些计算机技能，一段时间之后可能就被淘汰了，命令行知识却不会落伍，你今天所学到的，在十年以后 都会有用处。命令行通过了时间的考验。
+> 另一方面，学习 Linux 命令行会让你受益匪浅，给你极大的回报。**如果你认为 现在你已经是高手了。别急，其实你还不知道什么才是真正的高手。** 不像其他一些计算机技能，一段时间之后可能就被淘汰了，命令行知识却不会落伍，你今天所学到的，在十年以后 都会有用处。命令行通过了时间的考验。
 
 It is also assumed that you have no programming experience, but not to worry, we'll start you down that path as well.
 
@@ -90,10 +90,11 @@ This book is divided into five parts, each covering some aspect of the command l
 - Part 3 -- Configuration And The Environment covers editing configuration files that control the computer's operation from the command line.
 - Part 4 -- Common Tasks And Essential Tools explores many of the ordinary tasks that are commonly performed from the command line. Unix-like operating systems, such as Linux, contain many "classic" command line programs that are used to perform powerful operations on data.
 - Part 5 -- Writing Shell Scripts introduces shell programming, an admittedly rudimentary, but easy to learn, technique for automating many common computing tasks. By learning shell programming, you will become familiar with concepts that can be applied to many other programming languages.
-- 第二部分 --- 学习 shell 开始探究命令行基本语言，包括命令组成结构，文件系统浏览，编写命令行，查找命令帮助文档。
-- 第三部分 --- 配置文件及环境 讲述了如何编写配置文件，通过配置文件，用命令行来 操控计算机。
-- 第四部分 --- 常见任务及主要工具 探究了许多命令行经常执行的普通任务。类似于 Unix 的操作系统，例如 Linux, 包括许多经典的命令行程序，这些程序可以用来对数据进行 强大的操作。
-- 第五部分 --- 编写 Shell 脚本 介绍了 shell 编程，一个无可否认的基本技能，能够自动化许多 常见的计算任务，很容易学。通过学习 shell 编程，你会逐渐熟悉一些关于编程语言方面的概念，这些概念也适用于其他的编程语言。
+
+> - 第二部分 --- 学习 shell 开始探究命令行基本语言，包括命令组成结构，文件系统浏览，编写命令行，查找命令帮助文档。
+> - 第三部分 --- 配置文件及环境 讲述了如何编写配置文件，通过配置文件，用命令行来 操控计算机。
+> - 第四部分 --- 常见任务及主要工具 探究了许多命令行经常执行的普通任务。类似于 Unix 的操作系统，例如 Linux, 包括许多经典的命令行程序，这些程序可以用来对数据进行 强大的操作。
+> - 第五部分 --- 编写 Shell 脚本 介绍了 shell 编程，一个无可否认的基本技能，能够自动化许多 常见的计算任务，很容易学。通过学习 shell 编程，你会逐渐熟悉一些关于编程语言方面的概念，这些概念也适用于其他的编程语言。
 
 ### 怎样阅读这本书
 
@@ -109,8 +110,9 @@ To use this book, all you will need is a working Linux installation. You can get
 
 1. Install Linux on a (not so new) computer. It doesn't matter which distribution you choose, though most people today start out with either Ubuntu, Fedora, or OpenSUSE. If in doubt, try Ubuntu first. Installing a modern Linux distribution can be ridiculously easy or ridiculously difficult depending on your hardware. I suggest a desktop computer that is a couple of years old and has at least 256 megabytes of RAM and 6 gigabytes of free hard disk space. Avoid laptops and wireless networks if at all possible, as these are often more difficult to get working.
 2. Use a "Live CD." One of the cool things you can do with many Linux distributions is run them directly from a CDROM without installing them at all. Just go into your BIOS setup and set your computer to "Boot from CDROM," insert the live CD, and reboot. Using a live CD is a great way to test a computer for Linux compatibility prior to installation. The disadvantage of using a live CD is that it may be very slow compared to having Linux installed on your hard drive. Both Ubuntu and Fedora (among others) have live CD versions.
-3. 在一台（不用很新）的电脑上安装 Linux。你选择哪个 Linux 发行版安装，是无关紧要的事。虽然大多数人一开始选择安装 Ubuntu, Fedora, 或者 OpenSUSE。如果你拿不定主意，那就先试试 Ubuntu。由于主机硬件配置不同，安装 Linux 时，你可能不费吹灰之力就装上了，也可能费了九牛二虎之力还装不上。所以我建议，一台使用了几年的台式机，至少要有 256M 的内存，6G 的硬盘可用空间。尽可能避免安装时使用 笔记本电脑和无线网络，它们经常不能工作。
-4. 使用"Live CD." 许多 Linux 发行版都自带一个比较酷的功能，你可以直接从系统安装盘 CDROM 中运行 Linux，而不必安装 Linux。开机进入 BIOS 设置界面，更改引导项，设置为"从 CDROM 启动"。插入 live CD，然后重启。采用 live CD 而非直接安装可以很好的测试你的电脑对 linux 的兼容性。缺点就是相较于在硬盘上安装 linux，这种方式 过程较慢。Ubuntu 和 Fedora 等都有 live CD 的版本。
+
+> 1. 在一台（不用很新）的电脑上安装 Linux。你选择哪个 Linux 发行版安装，是无关紧要的事。虽然大多数人一开始选择安装 Ubuntu, Fedora, 或者 OpenSUSE。如果你拿不定主意，那就先试试 Ubuntu。由于主机硬件配置不同，安装 Linux 时，你可能不费吹灰之力就装上了，也可能费了九牛二虎之力还装不上。所以我建议，一台使用了几年的台式机，至少要有 256M 的内存，6G 的硬盘可用空间。尽可能避免安装时使用 笔记本电脑和无线网络，它们经常不能工作。
+> 2. 使用"Live CD." 许多 Linux 发行版都自带一个比较酷的功能，你可以直接从系统安装盘 CDROM 中运行 Linux，而不必安装 Linux。开机进入 BIOS 设置界面，更改引导项，设置为"从 CDROM 启动"。插入 live CD，然后重启。采用 live CD 而非直接安装可以很好的测试你的电脑对 linux 的兼容性。缺点就是相较于在硬盘上安装 linux，这种方式 过程较慢。Ubuntu 和 Fedora 等都有 live CD 的版本。
 
 Regardless of how you install Linux, you will need to have occasional superuser (i.e., administrative) privileges to carry out the lessons in this book.
 

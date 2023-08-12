@@ -2,7 +2,6 @@
 layout: book
 title: 什么是 shell
 ---
-
 When we speak of the command line, we are really referring to the shell. The shell is a program that takes keyboard commands and passes them to the operating system to carry out. Almost all Linux distributions supply a shell program from the GNU Project called bash. The name "bash" is an acronym for "Bourne Again SHell", a reference to the fact bash is an enhanced replacement for sh, the original Unix shell program written by Steve Bourne.
 
 > 一说到命令行，我们真正指的是 shell。shell 就是一个程序，它接受从键盘输入的命令，然后把命令传递给操作系统去执行。几乎所有的 Linux 发行版都提供一个名为 bash 的 来自 GNU 项目的 shell 程序。**"bash" 是 "Bourne Again SHell" 的首字母缩写，是最初在 Unix 上由 Steve Bourne 写成 shell 程序 sh 的增强版。**

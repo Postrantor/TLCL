@@ -3,7 +3,6 @@ layout: book
 title: 奇珍异宝
 exotica
 ---
-
 In this, the final chapter of our journey, we will look at some odds and ends. While we have certainly covered a lot of ground in the previous chapters, there are many bash features that we have not covered. Most are fairly obscure, and useful mainly to those integrating bash into a Linux distribution. However, there are a few that, while not in common use, are helpful for certain programming problems. We will cover them here.
 
 > 在我们 bash 学习旅程中的最后一站，我们将看一些零星的知识点。当然我们在之前的章节中已经 涵盖了很多方面，但是还有许多 bash 特性我们没有涉及到。其中大部分特性相当晦涩，主要对 那些把 bash 集成到 Linux 发行版的程序有用处。然而还有一些特性，虽然不常用， 但是对某些程序问题是很有帮助的。我们将在这里介绍它们。
@@ -18,13 +17,17 @@ Group command:
 
 > 组命令：
 
-    { command1; command2; [command3; ...] }
+```
+{ command1; command2; [command3; ...] }
+```
 
 Subshell:
 
 > 子 shell：
 
-    (command1; command2; [command3;...])
+```
+(command1; command2; [command3;...])
+```
 
 The two forms differ in that a group command surrounds its commands with braces and a subshell uses parentheses. It is important to note that, due to the way bash implements group commands, the braces must be separated from the commands by a space and the last command must be terminated with either a semicolon or a newline prior to the closing brace.
 
@@ -34,27 +37,35 @@ So what are group commands and subshells good for? While they have an important 
 
 > 那么组命令和子 shell 命令对什么有好处呢？ 尽管它们有一个很重要的差异（我们马上会接触到），但它们都是用来管理重定向的。 让我们考虑一个对多个命令执行重定向的脚本片段。
 
-    ls -l > output.txt
-    echo "Listing of foo.txt" >> output.txt
-    cat foo.txt >> output.txt
+```
+ls -l > output.txt
+echo "Listing of foo.txt" >> output.txt
+cat foo.txt >> output.txt
+```
 
 This is pretty straightforward. Three commands with their output redirected to a file named output.txt. Using a group command, we could code this as follows:
 
 > 这些代码相当简洁明了。三个命令的输出都重定向到一个名为 output.txt 的文件中。 使用一个组命令，我们可以重新编 写这些代码，如下所示：
 
-    { ls -l; echo "Listing of foo.txt"; cat foo.txt; } > output.txt
+```
+{ ls -l; echo "Listing of foo.txt"; cat foo.txt; } > output.txt
+```
 
 Using a subshell is similar:
 
 > 使用一个子 shell 是相似的：
 
-    (ls -l; echo "Listing of foo.txt"; cat foo.txt) > output.txt
+```
+(ls -l; echo "Listing of foo.txt"; cat foo.txt) > output.txt
+```
 
 Using this technique we have saved ourselves some typing, but where a group command or subshell really shines is with pipelines. When constructing a pipeline of commands, it is often useful to combine the results of several commands into a single stream. Group commands and subshells make this easy:
 
 > 使用这样的技术，我们为我们自己节省了一些打字时间，但是组命令和子 shell 真正闪光的地方是与管道线相结合。 当构建一个管道线命令的时候，通常把几个命令的输出结果合并成一个流是很有用的。 组命令和子 shell 使这种操作变得很简单：
 
-    { ls -l; echo "Listing of foo.txt"; cat foo.txt; } | lpr
+```
+{ ls -l; echo "Listing of foo.txt"; cat foo.txt; } | lpr
+```
 
 Here we have combined the output of our three commands and piped them into the input of lpr to produce a printed report.
 
@@ -64,84 +75,88 @@ In the script that follows, we will use groups commands and look at several prog
 
 > 在下面的脚本中，我们将使用组命令，看几个与关联数组结合使用的编程技巧。这个脚本，称为 array-2，当给定一个目录名，打印出目录中的文件列表， 伴随着每个文件的文件所有者和组所有者。在文件列表的末尾，脚本打印出属于每个所有者和组的文件数目。 这里我们看到的（为简单起见而缩短的）结果，是给定脚本的目录为 /usr/bin 的时候：
 
-    [me@linuxbox ~]$ array-2 /usr/bin
-    /usr/bin/2to3-2.6                 root        root
-    /usr/bin/2to3                     root        root
-    /usr/bin/a2p                      root        root
-    /usr/bin/abrowser                 root        root
-    /usr/bin/aconnect                 root        root
-    /usr/bin/acpi_fakekey             root        root
-    /usr/bin/acpi_listen              root        root
-    /usr/bin/add-apt-repository       root        root
-    .
-    .
-    .
-    /usr/bin/zipgrep                  root        root
-    /usr/bin/zipinfo                  root        root
-    /usr/bin/zipnote                  root        root
-    /usr/bin/zip                      root        root
-    /usr/bin/zipsplit                 root        root
-    /usr/bin/zjsdecode                root        root
-    /usr/bin/zsoelim                  root        root
+```
+[me@linuxbox ~]$ array-2 /usr/bin
+/usr/bin/2to3-2.6                 root        root
+/usr/bin/2to3                     root        root
+/usr/bin/a2p                      root        root
+/usr/bin/abrowser                 root        root
+/usr/bin/aconnect                 root        root
+/usr/bin/acpi_fakekey             root        root
+/usr/bin/acpi_listen              root        root
+/usr/bin/add-apt-repository       root        root
+.
+.
+.
+/usr/bin/zipgrep                  root        root
+/usr/bin/zipinfo                  root        root
+/usr/bin/zipnote                  root        root
+/usr/bin/zip                      root        root
+/usr/bin/zipsplit                 root        root
+/usr/bin/zjsdecode                root        root
+/usr/bin/zsoelim                  root        root
 
-    File owners:
-    daemon  : 1 file(s)
-    root    : 1394 file(s) File group owners:
-    crontab : 1 file(s)
-    daemon  : 1 file(s)
-    lpadmin : 1 file(s)
-    mail    : 4 file(s)
-    mlocate : 1 file(s)
-    root    : 1380 file(s)
-    shadow  : 2 file(s)
-    ssh     : 1 file(s)
-    tty     : 2 file(s)
-    utmp    : 2 file(s)
+File owners:
+daemon  : 1 file(s)
+root    : 1394 file(s) File group owners:
+crontab : 1 file(s)
+daemon  : 1 file(s)
+lpadmin : 1 file(s)
+mail    : 4 file(s)
+mlocate : 1 file(s)
+root    : 1380 file(s)
+shadow  : 2 file(s)
+ssh     : 1 file(s)
+tty     : 2 file(s)
+utmp    : 2 file(s)
+```
 
 Here is a listing (with line numbers) of the script:
 
 > 这里是脚本代码列表（带有行号）：
 
-    1     #!/bin/bash
-    2
-    3     # array-2: Use arrays to tally file owners
-    4
-    5     declare -A files file_group file_owner groups owners
-    6
-    7     if [[ ! -d "$1" ]]; then
-    8        echo "Usage: array-2 dir" >&2
-    9        exit 1
-    10    fi
-    11
-    12    for i in "$1"/*; do
-    13       owner=$(stat -c %U "$i")
-    14       group=$(stat -c %G "$i")
-    15        files["$i"]="$i"
-    16        file_owner["$i"]=$owner
-    17        file_group["$i"]=$group
-    18        ((++owners[$owner]))
-    19        ((++groups[$group]))
-    20    done
-    21
-    22    # List the collected files
-    23    { for i in "${files[@]}"; do
-    24    printf "%-40s %-10s %-10s\n" \
-    25    "$i" ${file_owner["$i"]} ${file_group["$i"]}
-    26    done } | sort
-    27    echo
-    28
-    29   # List owners
-    30    echo "File owners:"
-    31    { for i in "${!owners[@]}"; do
-    32    printf "%-10s: %5d file(s)\n" "$i" ${owners["$i"]}
-    33    done } | sort
-    34    echo
-    35
-    36    # List groups
-    37    echo "File group owners:"
-    38    { for i in "${!groups[@]}"; do
-    39    printf "%-10s: %5d file(s)\n" "$i" ${groups["$i"]}
-    40    done } | sort
+```
+1     #!/bin/bash
+2
+3     # array-2: Use arrays to tally file owners
+4
+5     declare -A files file_group file_owner groups owners
+6
+7     if [[ ! -d "$1" ]]; then
+8        echo "Usage: array-2 dir" >&2
+9        exit 1
+10    fi
+11
+12    for i in "$1"/*; do
+13       owner=$(stat -c %U "$i")
+14       group=$(stat -c %G "$i")
+15        files["$i"]="$i"
+16        file_owner["$i"]=$owner
+17        file_group["$i"]=$group
+18        ((++owners[$owner]))
+19        ((++groups[$group]))
+20    done
+21
+22    # List the collected files
+23    { for i in "${files[@]}"; do
+24    printf "%-40s %-10s %-10s\n" \
+25    "$i" ${file_owner["$i"]} ${file_group["$i"]}
+26    done } | sort
+27    echo
+28
+29   # List owners
+30    echo "File owners:"
+31    { for i in "${!owners[@]}"; do
+32    printf "%-10s: %5d file(s)\n" "$i" ${owners["$i"]}
+33    done } | sort
+34    echo
+35
+36    # List groups
+37    echo "File group owners:"
+38    { for i in "${!groups[@]}"; do
+39    printf "%-10s: %5d file(s)\n" "$i" ${groups["$i"]}
+40    done } | sort
+```
 
 Let's take a look at the mechanics of this script:
 
@@ -149,7 +164,7 @@ Let's take a look at the mechanics of this script:
 
 Line 5: Associative arrays must be created with the declare command using the -A option. In this script we create five arrays as follows:
 
-> 行5： 关联数组必须用带有 -A 选项的 declare 命令创建。在这个脚本中我们创建了如下五个数组：
+> 行 5： 关联数组必须用带有 -A 选项的 declare 命令创建。在这个脚本中我们创建了如下五个数组：
 
 files contains the names of the files in the directory, indexed by filename
 
@@ -173,23 +188,23 @@ owners 包含了属于索引的所有者的文件数目
 
 Lines 7-10: Checks to see that a valid directory name was passed as a positional parameter. If not, a usage message is displayed and the script exits with an exit status of 1.
 
-> 行7-10：查看是否一个有效的目录名作为位置参数传递给程序。如果不是，就会显示一条使用信息，并且脚本退出，退出状态为1。
+> 行 7-10：查看是否一个有效的目录名作为位置参数传递给程序。如果不是，就会显示一条使用信息，并且脚本退出，退出状态为 1。
 
 Lines 12-20: Loop through the files in the directory. Using the stat command, lines 13 and 14 extract the names of the file owner and group owner and assign the values to their respective arrays (lines 16, 17) using the name of the file as the array index. Likewise the file name itself is assigned to the files array (line 15).
 
-> 行12-20：循环遍历目录中的所有文件。使用 stat 命令，行13和行14抽取文件所有者和组所有者， 并把值赋给它们各自的数组（行16，17），使用文件名作为数组索引。同样地，文件名自身也赋值给 files 数组。
+> 行 12-20：循环遍历目录中的所有文件。使用 stat 命令，行 13 和行 14 抽取文件所有者和组所有者， 并把值赋给它们各自的数组（行 16，17），使用文件名作为数组索引。同样地，文件名自身也赋值给 files 数组。
 
 Lines 18-19: The total number of files belonging to the file owner and group owner are incremented by one.
 
-> 行18-19：属于文件所有者和组所有者的文件总数各自加1。
+> 行 18-19：属于文件所有者和组所有者的文件总数各自加 1。
 
 Lines 22-27: The list of files is output. This is done using the "\${array\[@\]}" parameter expansion which expands into the entire list of array element with each element treated as a separate word. This allows for the possibility that a file name may contain embedded spaces. Also note that the entire loop is enclosed in braces thus forming a group command. This permits the entire output of the loop to be piped into the sort command. This is necessary because the expansion of the array elements is not sorted.
 
-> 行22-27：输出文件列表。为做到这一点，使用了 "\${array\[@\]}" 参数展开，展开成整个的数组元素列表， 并且每个元素被当做是一个单独的词。从而允许文件名包含空格的情况。也要注意到整个循环是包裹在花括号中， 从而形成了一个组命令。这样就允许整个循环输出会被管道输送给 sort 命令的输入。这是必要的，因为 展开的数组元素是无序的。
+> 行 22-27：输出文件列表。为做到这一点，使用了 "\${array\[@\]}" 参数展开，展开成整个的数组元素列表， 并且每个元素被当做是一个单独的词。从而允许文件名包含空格的情况。也要注意到整个循环是包裹在花括号中， 从而形成了一个组命令。这样就允许整个循环输出会被管道输送给 sort 命令的输入。这是必要的，因为 展开的数组元素是无序的。
 
 Lines 29-40: These two loops are similar to the file list loop except that they use the "\${! array\[@\]}" expansion which expands into the list of array indexes rather than the list of array elements.
 
-> 行29-40：这两个循环与文件列表循环相似，除了它们使用 "\${!array\[@\]}" 展开，展开成数组索引的列表 而不是数组元素的。
+> 行 29-40：这两个循环与文件列表循环相似，除了它们使用 "\${!array\[@\]}" 展开，展开成数组索引的列表 而不是数组元素的。
 
 #### 进程替换
 
@@ -199,10 +214,12 @@ While they look similar and can both be used to combine streams for redirection,
 
 We saw an example of the subshell environment problem in Chapter 28, when we discovered that a read command in a pipeline does not work as we might intuitively expect. To recap, if we construct a pipeline like this:
 
-> 我们在第20章中看到过一个子 shell 运行环境问题的例子，当我们发现管道线中的一个 read 命令 不按我们所期望的那样工作的时候。为了重现问题，我们构建一个像这样的管道线：
+> 我们在第 20 章中看到过一个子 shell 运行环境问题的例子，当我们发现管道线中的一个 read 命令 不按我们所期望的那样工作的时候。为了重现问题，我们构建一个像这样的管道线：
 
-    echo "foo" | read
-    echo $REPLY
+```
+echo "foo" | read
+echo $REPLY
+```
 
 The content of the REPLY variable is always empty because the read command is executed in a subshell, and its copy of REPLY is destroyed when the subshell terminates. Because commands in pipelines are always executed in subshells, any command that assigns variables will encounter this issue. Fortunately, the shell provides an exotic form of expansion called process substitution that can be used to work around this problem. Process substitution is expressed in two ways:
 
@@ -212,13 +229,17 @@ For processes that produce standard output:
 
 > 一种适用于产生标准输出的进程：
 
-    <(list)
+```
+<(list)
+```
 
 or, for processes that intake standard input:
 
 > 另一种适用于接受标准输入的进程：
 
-    >(list)
+```
+>(list)
+```
 
 where list is a list of commands.
 
@@ -228,15 +249,19 @@ To solve our problem with read, we can employ process substitution like this:
 
 > 为了解决我们的 read 命令问题，我们可以雇佣进程替换，像这样：
 
-    read < <(echo "foo")
-    echo $REPLY
+```
+read < <(echo "foo")
+echo $REPLY
+```
 
 Process substitution allows us to treat the output of a subshell as an ordinary file for purposes of redirection. In fact, since it is a form of expansion, we can examine its real value:
 
 > 进程替换允许我们把一个子 shell 的输出结果当作一个用于重定向的普通文件。事实上，因为它是一种展开形式，我们可以检验它的真实值：
 
-    [me@linuxbox ~]$ echo <(echo "foo")
-    /dev/fd/63
+```
+[me@linuxbox ~]$ echo <(echo "foo")
+/dev/fd/63
+```
 
 By using echo to view the result of the expansion, we see that the output of the subshell is being provided by a file named /dev/fd/63.
 
@@ -246,19 +271,21 @@ Process substitution is often used with loops containing read. Here is an exampl
 
 > 进程替换经常被包含 read 命令的循环用到。这里是一个 read 循环的例子，处理一个目录列表的内容，内容创建于一个子 shell：
 
-    #!/bin/bash
-    # pro-sub : demo of process substitution
-    while read attr links owner group size date time filename; do
-        cat <<- EOF
-            Filename:     $filename
-            Size:         $size
-            Owner:        $owner
-            Group:        $group
-            Modified:     $date $time
-            Links:        $links
-            Attributes:   $attr
-        EOF
-    done < <(ls -l | tail -n +2)
+```
+#!/bin/bash
+# pro-sub : demo of process substitution
+while read attr links owner group size date time filename; do
+    cat <<- EOF
+        Filename:     $filename
+        Size:         $size
+        Owner:        $owner
+        Group:        $group
+        Modified:     $date $time
+        Links:        $links
+        Attributes:   $attr
+    EOF
+done < <(ls -l | tail -n +2)
+```
 
 The loop executes read for each line of a directory listing. The listing itself is produced on the final line of the script. This line redirects the output of the process substitution into the standard input of the loop. The tail command is included in the process substitution pipeline to eliminate the first line of the listing, which is not needed.
 
@@ -268,32 +295,34 @@ When executed, the script produces output like this:
 
 > 当脚本执行后，脚本产生像这样的输出：
 
-    [me@linuxbox ~]$ pro_sub | head -n 20
-    Filename: addresses.ldif
-    Size: 14540
-    Owner: me
-    Group: me
-    Modified: 2009-04-02 11:12
-    Links:
-    1
-    Attributes: -rw-r--r--
-    Filename: bin
-    Size: 4096
-    Owner: me
-    Group: me
-    Modified: 2009-07-10 07:31
-    Links: 2
-    Attributes: drwxr-xr-x
-    Filename: bookmarks.html
-    Size: 394213
-    Owner: me
-    Group: me
+```
+[me@linuxbox ~]$ pro_sub | head -n 20
+Filename: addresses.ldif
+Size: 14540
+Owner: me
+Group: me
+Modified: 2009-04-02 11:12
+Links:
+1
+Attributes: -rw-r--r--
+Filename: bin
+Size: 4096
+Owner: me
+Group: me
+Modified: 2009-07-10 07:31
+Links: 2
+Attributes: drwxr-xr-x
+Filename: bookmarks.html
+Size: 394213
+Owner: me
+Group: me
+```
 
 ### 陷阱
 
 In Chapter 10, we saw how programs can respond to signals. We can add this capability to our scripts, too. While the scripts we have written so far have not needed this capabil- ity (because they have very short execution times, and do not create temporary files), larger and more complicated scripts may benefit from having a signal handling routine.
 
-> 在第10章中，我们看到过程序是怎样响应信号的。我们也可以把这个功能添加到我们的脚本中。然而到目前为止， 我们所编写过的脚本还不需要这种功能（因为它们运行时间非常短暂，并且不创建临时文件），大且更复杂的脚本 可能会受益于一个信息处理程序。
+> 在第 10 章中，我们看到过程序是怎样响应信号的。我们也可以把这个功能添加到我们的脚本中。然而到目前为止， 我们所编写过的脚本还不需要这种功能（因为它们运行时间非常短暂，并且不创建临时文件），大且更复杂的脚本 可能会受益于一个信息处理程序。
 
 When we design a large, complicated script, it is important to consider what happens if the user logs off or shuts down the computer while the script is running. When such an event occurs, a signal will be sent to all affected processes. In turn, the programs repre- senting those processes can perform actions to ensure a proper and orderly termination of the program. Let's say, for example, that we wrote a script that created a temporary file during its execution. In the course of good design, we would have the script delete the file when the script finishes its work. It would also be smart to have the script delete the file if a signal is received indicating that the program was going to be terminated prematurely.
 
@@ -303,7 +332,9 @@ bash provides a mechanism for this purpose known as a trap. Traps are implemente
 
 > 为满足这样需求，bash 提供了一种机制，众所周知的 trap。陷阱正好由内部命令 trap 实现。 trap 使用如下语法：
 
-    trap argument signal [signal...]
+```
+trap argument signal [signal...]
+```
 
 where argument is a string which will be read and treated as a command and signal is the specification of a signal that will trigger the execution of the interpreted command.
 
@@ -313,26 +344,30 @@ Here is a simple example:
 
 > 这里是一个简单的例子：
 
-    #!/bin/bash
-    # trap-demo : simple signal handling demo
-    trap "echo 'I am ignoring you.'" SIGINT SIGTERM
-    for i in {1..5}; do
-        echo "Iteration $i of 5"
-        sleep 5
-    done
+```
+#!/bin/bash
+# trap-demo : simple signal handling demo
+trap "echo 'I am ignoring you.'" SIGINT SIGTERM
+for i in {1..5}; do
+    echo "Iteration $i of 5"
+    sleep 5
+done
+```
 
 This script defines a trap that will execute an echo command each time either the SIGINT or SIGTERM signal is received while the script is running. Execution of the program looks like this when the user attempts to stop the script by pressing Ctrl-c:
 
 > 这个脚本定义一个陷阱，当脚本运行的时候，这个陷阱每当接受到一个 SIGINT 或 SIGTERM 信号时，就会执行一个 echo 命令。 当用户试图通过按下 Ctrl-c 组合键终止脚本运行的时候，该程序的执行结果看起来像这样：
 
-    [me@linuxbox ~]$ trap-demo
-    Iteration 1 of 5
-    Iteration 2 of 5
-    I am ignoring you.
-    Iteration 3 of 5
-    I am ignoring you.
-    Iteration 4 of 5
-    Iteration 5 of 5
+```
+[me@linuxbox ~]$ trap-demo
+Iteration 1 of 5
+Iteration 2 of 5
+I am ignoring you.
+Iteration 3 of 5
+I am ignoring you.
+Iteration 4 of 5
+Iteration 5 of 5
+```
 
 As we can see, each time the user attempts to interrupt the program, the message is printed instead.
 
@@ -342,22 +377,24 @@ Constructing a string to form a useful sequence of commands can be awkward, so i
 
 > 构建一个字符串来形成一个有用的命令序列是很笨拙的，所以通常的做法是指定一个 shell 函数作为命令。在这个例子中， 为每一个信号指定了一个单独的 shell 函数来处理：
 
-    #!/bin/bash
-    # trap-demo2 : simple signal handling demo
-    exit_on_signal_SIGINT () {
-        echo "Script interrupted." 2>&1
-        exit 0
-    }
-    exit_on_signal_SIGTERM () {
-        echo "Script terminated." 2>&1
-        exit 0
-    }
-    trap exit_on_signal_SIGINT SIGINT
-    trap exit_on_signal_SIGTERM SIGTERM
-    for i in {1..5}; do
-        echo "Iteration $i of 5"
-        sleep 5
-    done
+```
+#!/bin/bash
+# trap-demo2 : simple signal handling demo
+exit_on_signal_SIGINT () {
+    echo "Script interrupted." 2>&1
+    exit 0
+}
+exit_on_signal_SIGTERM () {
+    echo "Script terminated." 2>&1
+    exit 0
+}
+trap exit_on_signal_SIGINT SIGINT
+trap exit_on_signal_SIGTERM SIGTERM
+for i in {1..5}; do
+    echo "Iteration $i of 5"
+    sleep 5
+done
+```
 
 This script features two trap commands, one for each signal. Each trap, in turn, speci- fies a shell function to be executed when the particular signal is received. Note the inclu- sion of an exit command in each of the signal-handling functions. Without an exit, the script would continue after completing the function.
 
@@ -367,10 +404,12 @@ When the user presses Ctrl-c during the execution of this script, the results lo
 
 > 当用户在这个脚本执行期间，按下 Ctrl-c 组合键的时候，输出结果看起来像这样：
 
-    [me@linuxbox ~]$ trap-demo2
-    Iteration 1 of 5
-    Iteration 2 of 5
-    Script interrupted.
+```
+[me@linuxbox ~]$ trap-demo2
+Iteration 1 of 5
+Iteration 2 of 5
+Script interrupted.
+```
 
 > *Temporary Files*
 >
@@ -384,7 +423,7 @@ When the user presses Ctrl-c during the execution of this script, the results lo
 >
 > This will create a filename consisting of the program's name, followed by its process ID (PID), followed by a random integer. Note, however, that the \$RANDOM shell variable only returns a value in the range of 1-32767, which is not a very large range in computer terms, so a single instance of the variable is not sufficient to overcome a determined attacker.
 >
-> 这将创建一个由程序名字，程序进程的 ID（PID）文件名，和一个随机整数组成。注意，然而，该 \$RANDOM shell 变量 只能返回一个范围在1-32767内的整数值，这在计算机术语中不是一个很大的范围，所以一个单一的该变量实例是不足以克服一个坚定的攻击者的。
+> 这将创建一个由程序名字，程序进程的 ID（PID）文件名，和一个随机整数组成。注意，然而，该 \$RANDOM shell 变量 只能返回一个范围在 1-32767 内的整数值，这在计算机术语中不是一个很大的范围，所以一个单一的该变量实例是不足以克服一个坚定的攻击者的。
 >
 > A better way is to use the mktemp program (not to be confused with the mktemp standard library function) to both name and create the temporary file. The mktemp program accepts a template as an argument that is used to build the filename. The template should include a series of "X" characters, which are replaced by a corresponding number of random letters and numbers. The longer the series of "X" characters, the longer the series of random characters. Here is an example:
 >
@@ -424,29 +463,33 @@ We will demonstrate the wait command first. To do this, we will need two scripts
 
 > 首先我们将演示一下 wait 命令的用法。为此，我们需要两个脚本，一个父脚本：
 
-    #!/bin/bash
-    # async-parent : Asynchronous execution demo (parent)
-    echo "Parent: starting..."
-    echo "Parent: launching child script..."
-    async-child &
-    pid=$!
-    echo "Parent: child (PID= $pid) launched."
-    echo "Parent: continuing..."
-    sleep 2
-    echo "Parent: pausing to wait for child to finish..."
-    wait $pid
-    echo "Parent: child is finished. Continuing..."
-    echo "Parent: parent is done. Exiting."
+```
+#!/bin/bash
+# async-parent : Asynchronous execution demo (parent)
+echo "Parent: starting..."
+echo "Parent: launching child script..."
+async-child &
+pid=$!
+echo "Parent: child (PID= $pid) launched."
+echo "Parent: continuing..."
+sleep 2
+echo "Parent: pausing to wait for child to finish..."
+wait $pid
+echo "Parent: child is finished. Continuing..."
+echo "Parent: parent is done. Exiting."
+```
 
 and a child script:
 
 > 和一个子脚本：
 
-    #!/bin/bash
-    # async-child : Asynchronous execution demo (child)
-    echo "Child: child is running..."
-    sleep 5
-    echo "Child: child is done. Exiting."
+```
+#!/bin/bash
+# async-child : Asynchronous execution demo (child)
+echo "Child: child is running..."
+sleep 5
+echo "Child: child is done. Exiting."
+```
 
 In this example, we see that the child script is very simple. The real action is being per- formed by the parent. In the parent script, the child script is launched and put into the background. The process ID of the child script is recorded by assigning the pid variable with the value of the \$! shell parameter, which will always contain the process ID of the last job put into the background.
 
@@ -460,16 +503,18 @@ When executed, the parent and child scripts produce the following output:
 
 > 当执行后，父子脚本产生如下输出：
 
-    [me@linuxbox ~]$ async-parent
-    Parent: starting...
-    Parent: launching child script...
-    Parent: child (PID= 6741) launched.
-    Parent: continuing...
-    Child: child is running...
-    Parent: pausing to wait for child to finish...
-    Child: child is done. Exiting.
-    Parent: child is finished. Continuing...
-    Parent: parent is done. Exiting.
+```
+[me@linuxbox ~]$ async-parent
+Parent: starting...
+Parent: launching child script...
+Parent: child (PID= 6741) launched.
+Parent: continuing...
+Child: child is running...
+Parent: pausing to wait for child to finish...
+Child: child is done. Exiting.
+Parent: child is finished. Continuing...
+Parent: parent is done. Exiting.
+```
 
 ### 命名管道
 
@@ -483,25 +528,31 @@ There is a common programming architecture called client-server, which can make 
 
 The most widely used type of client-server system is, of course, a web browser communicating with a web server. The web browser acts as the client, making requests to the server and the server responds to the browser with web pages.
 
-> 最为广泛使用的客户端-服务器系统类型当然是一个web浏览器与一个web服务器之间进行通信。 web 浏览器作为客户端，向服务器发出请求，服务器响应请求，并把对应的网页发送给浏览器。
+> 最为广泛使用的客户端-服务器系统类型当然是一个 web 浏览器与一个 web 服务器之间进行通信。 web 浏览器作为客户端，向服务器发出请求，服务器响应请求，并把对应的网页发送给浏览器。
 
 Named pipes behave like files, but actually form first-in first-out (FIFO) buffers. As with ordinary (unnamed) pipes, data goes in one end and emerges out the other. With named pipes, it is possible to set up something like this:
 
 > 命名管道的行为类似于文件，但实际上形成了先入先出（FIFO）的缓冲。和普通（未命令的）管道一样， 数据从一端进入，然后从另一端出现。通过命名管道，有可能像这样设置一些东西：
 
-    process1 > named_pipe
+```
+process1 > named_pipe
+```
 
 and
 
 > 和
 
-    process2 < named_pipe
+```
+process2 < named_pipe
+```
 
 and it will behave as if:
 
 > 表现出来就像这样：
 
-    process1 | process2
+```
+process1 | process2
+```
 
 #### 设置一个命名管道
 
@@ -509,11 +560,13 @@ First, we must create a named pipe. This is done using the mkfifo command:
 
 > 首先，我们必须创建一个命名管道。使用 mkfifo 命令能够创建命名管道：
 
-    [me@linuxbox ~]$ mkfifo pipe1
-    [me@linuxbox ~]$ ls -l pipe1
-    prw-r--r-- 1 me
-    me
-    0 2009-07-17 06:41 pipe1
+```
+[me@linuxbox ~]$ mkfifo pipe1
+[me@linuxbox ~]$ ls -l pipe1
+prw-r--r-- 1 me
+me
+0 2009-07-17 06:41 pipe1
+```
 
 Here we use mkfifo to create a named pipe called pipe1. Using ls, we examine the file and see that the first letter in the attributes field is "p", indicating that it is a named pipe.
 
@@ -525,13 +578,17 @@ To demonstrate how the named pipe works, we will need two terminal windows (or a
 
 > 为了演示命名管道是如何工作的，我们将需要两个终端窗口（或用两个虚拟控制台代替）。 在第一个终端中，我们输入一个简单命令，并把命令的输出重定向到命名管道：
 
-    [me@linuxbox ~]$ ls -l > pipe1
+```
+[me@linuxbox ~]$ ls -l > pipe1
+```
 
 After we press the Enter key, the command will appear to hang. This is because there is nothing receiving data from the other end of the pipe yet. When this occurs, it is said that the pipe is blocked. This condition will clear once we attach a process to the other end and it begins to read input from the pipe. Using the second terminal window, we enter this command:
 
 > 我们按下 Enter 按键之后，命令将会挂起。这是因为在管道的另一端没有任何对象来接收数据。这种现象被称为管道阻塞。一旦我们绑定一个进程到管道的另一端，该进程开始从管道中读取输入的时候，管道阻塞现象就不存在了。 使用第二个终端窗口，我们输入这个命令：
 
-    [me@linuxbox ~]$ cat < pipe1
+```
+[me@linuxbox ~]$ cat < pipe1
+```
 
 and the directory listing produced from the first terminal window appears in the second terminal as the output from the cat command. The ls command in the first terminal successfully completes once it is no longer blocked.
 
@@ -545,28 +602,19 @@ Well, we have completed our journey. The only thing left to do now is practice, 
 
 ### 拓展阅读
 
--   The "Compound Commands" section of the bash man page contains a full description of group command and subshell notations.
+- The "Compound Commands" section of the bash man page contains a full description of group command and subshell notations.
+- bash 手册页的 "复合命令" 部分包含了对组命令和子 shell 表示法的详尽描述。
+- The EXPANSION section of the bash man page contains a subsection of process substitution.
+- bash 手册也的 EXPANSION 部分包含了一小部分进程替换的内容：
+- The Advanced Bash-Scripting Guide also has a discussion of process substitution:
+- 《高级 Bash 脚本指南》也有对进程替换的讨论：
 
--   bash 手册页的 "复合命令" 部分包含了对组命令和子 shell 表示法的详尽描述。
+  [http://tldp.org/LDP/abs/html/process-sub.html](http://tldp.org/LDP/abs/html/process-sub.html)
+- Linux Journal has two good articles on named pipes. The first, from September 1997:
+- 《Linux 杂志》有两篇关于命名管道的好文章。第一篇，源于 1997 年 9 月：
 
--   The EXPANSION section of the bash man page contains a subsection of process substitution.
+  [http://www.linuxjournal.com/article/2156](http://www.linuxjournal.com/article/2156)
+- and the second, from March 2009:
+- 和第二篇，源于 2009 年 3 月：
 
--   bash 手册也的 EXPANSION 部分包含了一小部分进程替换的内容：
-
--   The Advanced Bash-Scripting Guide also has a discussion of process substitution:
-
--   《高级 Bash 脚本指南》也有对进程替换的讨论：
-
-    <http://tldp.org/LDP/abs/html/process-sub.html>
-
--   Linux Journal has two good articles on named pipes. The first, from September 1997:
-
--   《Linux 杂志》有两篇关于命名管道的好文章。第一篇，源于1997年9月：
-
-    <http://www.linuxjournal.com/article/2156>
-
--   and the second, from March 2009:
-
--   和第二篇，源于2009年3月：
-
-    <http://www.linuxjournal.com/content/using-named-pipes-fifos-bash>
+  [http://www.linuxjournal.com/content/using-named-pipes-fifos-bash](http://www.linuxjournal.com/content/using-named-pipes-fifos-bash)

@@ -2,22 +2,16 @@
 layout: book
 title: 文件系统中跳转
 ---
-
 The first thing we need to learn to do (besides just typing) is how to navigate the file system on our Linux system. In this chapter we will introduce the following commands:
 
 > 我们需要学习的第一件事（除了打字之外）是如何在 Linux 文件系统中跳转。 在这部分，我们将介绍以下命令：
 
--   pwd - Print name of current working directory
-
--   cd - Change directory
-
--   ls - List directory contents
-
--   pwd --- 打印出当前工作目录名
-
--   cd --- 更改目录
-
--   ls --- 列出目录内容
+- pwd - Print name of current working directory
+- cd - Change directory
+- ls - List directory contents
+- pwd --- 打印出当前工作目录名
+- cd --- 更改目录
+- ls --- 列出目录内容
 
 ### 理解文件系统树
 
@@ -33,9 +27,9 @@ Note that unlike Windows, which has a separate file system tree for each storage
 
 Most of us are probably familiar with a graphical file manager which represents the file system tree as in Figure 1. Notice that the tree is usually shown upended, that is, with the root at the top and the various branches descending below.
 
-![](images/3.png) \\ 图1: 由图形化文件管理器显示的文件系统树 {: .figure}
+![](images/3.png) \\ 图 1: 由图形化文件管理器显示的文件系统树 {: .figure}
 
-> 大多数人都可能熟悉如图1所示描述文件系统树的图形文件管理器。注意， 通常这是一棵 倒置的树，也就是说，树根在最上面，而各个枝干在下面展开。
+> 大多数人都可能熟悉如图 1 所示描述文件系统树的图形文件管理器。注意， 通常这是一棵 倒置的树，也就是说，树根在最上面，而各个枝干在下面展开。
 
 However, the command line has no pictures, so to navigate the file system tree we need to think of it in a different way.
 
@@ -45,8 +39,10 @@ Imagine that the file system is a maze shaped like an upside-down tree and we ar
 
 > 把文件系统想象成一个迷宫形状，就像一棵倒立的大树，我们站在迷宫的中间位置。 在任意时刻，我们处于一个目录里面，我们能看到这个目录包含的所有文件， 以及通往上面目录（父目录）的路径，和下面的各个子目录。我们所在的目录则称为 当前工作目录。我们使用 pwd（print working directory(的缩写)）命令，来显示当前工作目录。
 
-    [me@linuxbox ~]$ pwd
-    /home/me
+```
+[me@linuxbox ~]$ pwd
+/home/me
+```
 
 When we first log in to our system (or start a terminal emulator session) our current working directory is set to our home directory. Each user account is given its own home directory and when operating as a regular user, the home directory is the only place the user is allowed to write files.
 
@@ -58,8 +54,10 @@ To list the files and directories in the current working directory, we use the l
 
 > 列出一个目录包含的文件及子目录，使用 ls 命令。
 
-    [me@linuxbox ~]$ ls
-    Desktop Documents Music Pictures Public Templates Videos
+```
+[me@linuxbox ~]$ ls
+Desktop Documents Music Pictures Public Templates Videos
+```
 
 Actually, we can use the ls command to list the contents of any directory, not just the current working directory, and there are many other fun things it can do as well. We'll spend more time with ls in the next chapter.
 
@@ -77,11 +75,13 @@ An absolute pathname begins with the root directory and follows the tree branch 
 
 > 绝对路径开始于根目录，紧跟着目录树的一个个分支，一直到达所期望的目录或文件。 例如，你的系统中有一个目录，大多数系统程序都安装在这个目录下。这个目录的 路径名是 /usr/bin。它意味着从根目录（用开头的"/"表示）开始，有一个叫"usr" 的 目录包含了目录 "bin"。
 
-    [me@linuxbox ~]$ cd /usr/bin
-    [me@linuxbox bin]$ pwd
-    /usr/bin
-    [me@linuxbox bin]$ ls
-    ...Listing of many, many files ...
+```
+[me@linuxbox ~]$ cd /usr/bin
+[me@linuxbox bin]$ pwd
+/usr/bin
+[me@linuxbox bin]$ ls
+...Listing of many, many files ...
+```
 
 Now we can see that we have changed the current working directory to /usr/bin and that it is full of files. Notice how the shell prompt has changed? As a convenience, it is usually set up to automatically display the name of the working directory.
 
@@ -97,25 +97,31 @@ The "." symbol refers to the working directory and the ".." symbol refers to the
 
 > 符号 "." 指的是工作目录，".." 指的是工作目录的父目录。举个例子， 让我们再次把工作目录切换到 /usr/bin：
 
-    [me@linuxbox ~]$ cd /usr/bin
-    [me@linuxbox bin]$ pwd
-    /usr/bin
+```
+[me@linuxbox ~]$ cd /usr/bin
+[me@linuxbox bin]$ pwd
+/usr/bin
+```
 
 Okay, now let's say that we wanted to change the working directory to the parent of /usr/bin which is /usr. We could do that two different ways. Either with an absolute pathname:
 
 > 好了，比方说我们想更改工作目录到 /usr/bin 的父目录 /usr。可以通过两种方法来实现。可以使用以下绝对路径名：
 
-    [me@linuxbox bin]$ cd /usr
-    [me@linuxbox usr]$ pwd
-    /usr
+```
+[me@linuxbox bin]$ cd /usr
+[me@linuxbox usr]$ pwd
+/usr
+```
 
 Or, with a relative pathname:
 
 > 或者， 也可以使用相对路径：
 
-    [me@linuxbox bin]$ cd ..
-    [me@linuxbox usr]$ pwd
-    /usr
+```
+[me@linuxbox bin]$ cd ..
+[me@linuxbox usr]$ pwd
+/usr
+```
 
 Two different methods with identical results. Which one should we use? The one that requires the least typing!
 
@@ -125,23 +131,29 @@ Likewise, we can change the working directory from /usr to /usr/bin in two diffe
 
 > 同样地，从目录 /usr/ 到 /usr/bin 也有两种途径。可以使用绝对路径：
 
-    [me@linuxbox usr]$ cd /usr/bin
-    [me@linuxbox bin]$ pwd
-    /usr/bin
+```
+[me@linuxbox usr]$ cd /usr/bin
+[me@linuxbox bin]$ pwd
+/usr/bin
+```
 
 Or, with a relative pathname:
 
 > 或者，也可以用相对路径：
 
-    [me@linuxbox usr]$ cd ./bin
-    [me@linuxbox bin]$ pwd
-    /usr/bin
+```
+[me@linuxbox usr]$ cd ./bin
+[me@linuxbox bin]$ pwd
+/usr/bin
+```
 
 Now, there is something important that I must point out here. In almost all cases, you can omit the "./". It is implied. Typing:
 
 > 有一件很重要的事，我必须指出来。在几乎所有的情况下，你可以省略"./"。它是隐含的。输入：
 
-    [me@linuxbox usr]$ cd bin
+```
+[me@linuxbox usr]$ cd bin
+```
 
 does the same thing. In general, if you do not specify a pathname to something, the working directory will be assumed.
 
@@ -151,234 +163,310 @@ does the same thing. In general, if you do not specify a pathname to something, 
 
 In table 3-1 we see some useful ways the current working directory can be quickly changed.
 
-> 在表3-1中，列举出了一些快速改变当前工作目录的有效方法。
+> 在表 3-1 中，列举出了一些快速改变当前工作目录的有效方法。
 
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 3-1: cd Shortcuts
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <thead>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Shortcut
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Result
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </thead>
 ```
+
 ```{=html}
 <tbody>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 cd
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 Changes the working directory to your home directory.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 cd -
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 Changes the working directory to the previous working directory.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td id="tdlist">
 ```
+
 cd \~user_name
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 Changes the working directory to the home directory of user_name. For example, cd \~bob will change the directory to the home directory of user "bob."
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </tbody>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表3-1: cd 快捷键
+
+> 表 3-1: cd 快捷键
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <thead>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 快捷键
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 运行结果
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </thead>
 ```
+
 ```{=html}
 <tbody>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 cd
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 > 更改工作目录到你的家目录。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 cd -
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 > 更改工作目录到先前的工作目录。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td id="tdlist">
 ```
+
 cd \~user_name
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 > 更改工作目录到用户家目录。例如, cd \~bob 会更改工作目录到用户"bob"的家目录。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </tbody>
 ```
+
 ```{=html}
 </table>
 ```
+
 > Important Facts About Filenames
 >
-> 1.  Filenames that begin with a period character are hidden. This only means that ls will not list them unless you say ls -a. When your account was created, several hidden files were placed in your home directory to configure things for your account. Later on we will take a closer look at some of these files to see how you can customize your environment. In addition, some applications place their configuration and settings files in your home directory as hidden files.
->
-> 2.  Filenames and commands in Linux, like Unix, are case sensitive. The filenames "File1" and "file1" refer to different files.
->
-> 3.  Linux has no concept of a "file extension" like some other operating systems. You may name files any way you like. The contents and/or purpose of a file is determined by other means. Although Unix-like operating system don't use file extensions to determine the contents/purpose of files, some application programs do.
->
-> 4.  Though Linux supports long filenames which may contain embedded spaces and punctuation characters, limit the punctuation characters in the names of files you create to period, dash, and underscore. Most importantly, do not embed spaces in filenames. If you want to represent spaces between words in a filename, use underscore characters. You will thank yourself later.
+> 1. Filenames that begin with a period character are hidden. This only means that ls will not list them unless you say ls -a. When your account was created, several hidden files were placed in your home directory to configure things for your account. Later on we will take a closer look at some of these files to see how you can customize your environment. In addition, some applications place their configuration and settings files in your home directory as hidden files.
+> 2. Filenames and commands in Linux, like Unix, are case sensitive. The filenames "File1" and "file1" refer to different files.
+> 3. Linux has no concept of a "file extension" like some other operating systems. You may name files any way you like. The contents and/or purpose of a file is determined by other means. Although Unix-like operating system don't use file extensions to determine the contents/purpose of files, some application programs do.
+> 4. Though Linux supports long filenames which may contain embedded spaces and punctuation characters, limit the punctuation characters in the names of files you create to period, dash, and underscore. Most importantly, do not embed spaces in filenames. If you want to represent spaces between words in a filename, use underscore characters. You will thank yourself later.
 >
 > 关于文件名的重要规则
 >
-> 1.  以 "." 字符开头的文件名是隐藏文件。这仅表示，ls 命令不能列出它们， 用 ls -a 命令就可以了。当你创建帐号后，几个配置帐号的隐藏文件被放置在 你的家目录下。稍后，我们会仔细研究一些隐藏文件，来定制你的系统环境。 另外，一些应用程序也会把它们的配置文件以隐藏文件的形式放在你的家目录下面。
->
-> 2.  文件名和命令名是大小写敏感的。文件名 "File1" 和 "file1" 是指两个不同的文件名。
->
-> 3.  Linux 没有"文件扩展名"的概念，不像其它一些系统。可以用你喜欢的任何名字 来给文件起名。文件内容或用途由其它方法来决定。虽然类 Unix 的操作系统， 不用文件扩展名来决定文件的内容或用途，但是有些应用程序会。
->
-> 4.  虽然 Linux 支持长文件名，文件名可能包含空格，标点符号，但标点符号仅限 使用 "."，"－"，下划线。最重要的是，不要在文件名中使用空格。如果你想表示词与 词间的空格，用下划线字符来代替。将来你就会明白这样做的好处。
+> 1. 以 "." 字符开头的文件名是隐藏文件。这仅表示，ls 命令不能列出它们， 用 ls -a 命令就可以了。当你创建帐号后，几个配置帐号的隐藏文件被放置在 你的家目录下。稍后，我们会仔细研究一些隐藏文件，来定制你的系统环境。 另外，一些应用程序也会把它们的配置文件以隐藏文件的形式放在你的家目录下面。
+> 2. 文件名和命令名是大小写敏感的。文件名 "File1" 和 "file1" 是指两个不同的文件名。
+> 3. Linux 没有"文件扩展名"的概念，不像其它一些系统。可以用你喜欢的任何名字 来给文件起名。文件内容或用途由其它方法来决定。虽然类 Unix 的操作系统， 不用文件扩展名来决定文件的内容或用途，但是有些应用程序会。
+> 4. 虽然 Linux 支持长文件名，文件名可能包含空格，标点符号，但标点符号仅限 使用 "."，"－"，下划线。最重要的是，不要在文件名中使用空格。如果你想表示词与 词间的空格，用下划线字符来代替。将来你就会明白这样做的好处。

@@ -2,30 +2,20 @@
 layout: book
 title: 操作文件和目录
 ---
-
 At this point, we are ready for some real work! This chapter will introduce the following commands:
 
 > 此时此刻，我们已经准备好了做些真正的工作！这一章节将会介绍以下命令：
 
--   cp -- Copy files and directories
-
--   mv -- Move/rename files and directories
-
--   mkdir -- Create directories
-
--   rm -- Remove files and directories
-
--   ln -- Create hard and symbolic links
-
--   cp --- 复制文件和目录
-
--   mv --- 移动/重命名文件和目录
-
--   mkdir --- 创建目录
-
--   rm --- 删除文件和目录
-
--   ln --- 创建硬链接和符号链接
+- cp -- Copy files and directories
+- mv -- Move/rename files and directories
+- mkdir -- Create directories
+- rm -- Remove files and directories
+- ln -- Create hard and symbolic links
+- cp --- 复制文件和目录
+- mv --- 移动/重命名文件和目录
+- mkdir --- 创建目录
+- rm --- 删除文件和目录
+- ln --- 创建硬链接和符号链接
 
 These five commands are among the most frequently used Linux commands. They are used for manipulating both files and directories.
 
@@ -39,7 +29,9 @@ The answer is power and flexibility. While it is easy to perform simple file man
 
 > 答案是命令行程序，功能强大灵活。虽然图形文件管理器能轻松地实现简单的文件操作，但是对于 复杂的文件操作任务，则使用命令行程序比较容易完成。例如，怎样拷贝一个目录下的 HTML 文件到目标目录，同时保证只拷贝目标目录不存在或者版本比目标目录的文件更新的文件？ 要完成这个任务，使用文件管理器相当难，使用命令行相当容易：
 
-    cp -u *.html destination
+```
+cp -u *.html destination
+```
 
 ### 通配符
 
@@ -50,539 +42,751 @@ Before we begin using our commands, we need to talk about a shell feature that m
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 5-1: Wildcards
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Wildcard
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Meaning
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \*
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Matches any characters
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 ?
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Matches any single character
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \[characters\]
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Matches any character that is a member of the set characters
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \[!characters\]
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Matches any character that is not a member of the set characters
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 \[\[:class:\]\]
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Matches any character that is a member of the specified class
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表5-1: 通配符
+
+> 表 5-1: 通配符
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 通配符
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 意义
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \*
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 匹配任意多个字符（包括零个或一个）
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 ?
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 匹配任意一个字符（不包括零个）
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \[characters\]
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 匹配任意一个属于字符集（characters）中的字符
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \[!characters\]
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 匹配任意一个不是字符集中的字符
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 \[\[:class:\]\]
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 匹配任意一个属于指定字符类中的字符
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 Table 5-2 lists the most commonly used character classes:
 
-> 表5-2列出了最常使用的字符类：
+> 表 5-2 列出了最常使用的字符类：
 
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 5-2: Commonly Used Character Classes
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Character Class
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Meaning
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 \[:alnum:\]
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 Matches any alphanumeric character
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 \[:alpha:\]
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 Matches any alphabetic character
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 \[:digit:\]
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 Matches any numeral
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td width="25%">
 ```
+
 \[:lower:\]
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 Matches any lowercase letter
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 \[:upper:\]
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 Matches any uppercase letter
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表5-2: 普遍使用的字符类
+
+> 表 5-2: 普遍使用的字符类
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 字符类
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 意义
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 \[:alnum:\]
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 > 匹配任意一个字母或数字
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 \[:alpha:\]
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 > 匹配任意一个字母
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 \[:digit:\]
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 > 匹配任意一个数字
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 \[:lower:\]
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 > 匹配任意一个小写字母
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td width="25%">
 ```
+
 \[:upper:\]
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 > 匹配任意一个大写字母
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 Using wildcards makes it possible to construct very sophisticated selection criteria for filenames. Here are some examples of patterns and what they match:
 
 > 借助通配符，为文件名构建非常复杂的选择标准成为可能。下面是一些类型匹配的范例:
@@ -590,429 +794,599 @@ Using wildcards makes it possible to construct very sophisticated selection crit
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 5-3: Wildcard Examples
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Pattern
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Matches
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \*
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 All files
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 g\*
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 All file beginning with "g"
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 b\*.txt
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Any file beginning with "b" followed by any characters and ending with ".txt"
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Data???
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Any file beginning with "Data" followed by exactly three characters
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \[abc\]\*
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Any file beginning with either an "a", a "b", or a "c"
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 BACKUP.\[0-9\]\[0-9\]\[0-9\]
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Any file beginning with "BACKUP." followed by exactly three numerals
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \[\[:upper:\]\]\*
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Any file beginning with an uppercase letter
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \[\[:digit:\]\]\*
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Any file not beginning with a numeral
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 \*\[\[:lower:\]123\]
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Any file ending with a lowercase letter or the numerals "1", "2", or "3"
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表5-3: 通配符范例
+
+> 表 5-3: 通配符范例
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 模式
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 匹配对象
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \*
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 所有文件
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 g\*
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 文件名以"g"开头的文件
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 b\*.txt
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 以"b"开头，中间有零个或任意多个字符，并以".txt"结尾的文件
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Data???
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
-> 以"Data"开头，其后紧接着3个字符的文件
+
+> 以"Data"开头，其后紧接着 3 个字符的文件
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \[abc\]\*
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 文件名以"a","b",或"c"开头的文件
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 BACKUP.\[0-9\]\[0-9\]\[0-9\]
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
-> 以"BACKUP."开头，并紧接着3个数字的文件
+
+> 以"BACKUP."开头，并紧接着 3 个数字的文件
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \[\[:upper:\]\]\*
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 以大写字母开头的文件
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \[\[:digit:\]\]\*
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 不以数字开头的文件
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 \*\[\[:lower:\]123\]
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 文件名以小写字母结尾，或以 "1"，"2"，或 "3" 结尾的文件
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 Wildcards can be used with any command that accepts filenames as arguments, but we'll talk more about that in Chapter 8.
 
 > 接受文件名作为参数的任何命令，都可以使用通配符，我们会在第八章更深入地谈到这个知识点。
@@ -1033,13 +1407,10 @@ Wildcards can be used with any command that accepts filenames as arguments, but 
 >
 > 通配符非常重要，不仅因为它们经常用在命令行中，而且一些图形文件管理器也支持它们。
 >
-> -   In Nautilus (the file manager for GNOME), you can select files using the Edit/Select Pattern menu item. Just enter a file selection pattern with wildcards and the files in the currently viewed directory will be highlighted for selection.
->
-> -   In Dolphin and Konqueror (the file managers for KDE), you can enter wildcards directly on the location bar. For example, if you want to see all the files starting with a lowercase "u" in the /usr/bin directory, type "/usr/bin/u\*" into the location bar and it will display the result.
->
-> -   在 Nautilus (GNOME 文件管理器）中，可以通过 Edit/Select 模式菜单项来选择文件。 输入一个用通配符表示的文件选择模式后，那么当前所浏览的目录中，所匹配的文件名就会高亮显示。
->
-> -   在 Dolphin 和 Konqueror（KDE 文件管理器）中，可以在地址栏中直接输入通配符。例如， 如果你想查看目录 /usr/bin 中，所有以小写字母 'u' 开头的文件， 在地址栏中敲入 '/usr/bin/u\*'，则 文件管理器会显示匹配的结果。
+> - In Nautilus (the file manager for GNOME), you can select files using the Edit/Select Pattern menu item. Just enter a file selection pattern with wildcards and the files in the currently viewed directory will be highlighted for selection.
+> - In Dolphin and Konqueror (the file managers for KDE), you can enter wildcards directly on the location bar. For example, if you want to see all the files starting with a lowercase "u" in the /usr/bin directory, type "/usr/bin/u\*" into the location bar and it will display the result.
+> - 在 Nautilus (GNOME 文件管理器）中，可以通过 Edit/Select 模式菜单项来选择文件。 输入一个用通配符表示的文件选择模式后，那么当前所浏览的目录中，所匹配的文件名就会高亮显示。
+> - 在 Dolphin 和 Konqueror（KDE 文件管理器）中，可以在地址栏中直接输入通配符。例如， 如果你想查看目录 /usr/bin 中，所有以小写字母 'u' 开头的文件， 在地址栏中敲入 '/usr/bin/u\*'，则 文件管理器会显示匹配的结果。
 >
 > Many ideas originally found in the command line interface make their way into the graphical interface, too. It is one of the many things that make the Linux desktop so powerful.
 >
@@ -1051,19 +1422,25 @@ The mkdir command is used to create directories. It works like this:
 
 mkdir 命令是用来创建目录的。它这样工作：
 
-    mkdir directory...
+```
+mkdir directory...
+```
 
 **A note on notation:** When three periods follow an argument in the description of a command (as above), it means that the argument can be repeated, thus:
 
 **注意:** 在描述一个命令时（如上所示），当有三个圆点跟在一个命令的参数后面， 这意味着那个参数可以跟多个，就像这样：
 
-    mkdir dir1
+```
+mkdir dir1
+```
 
 would create a single directory named "dir1", while
 
 > 会创建一个名为"dir1"的目录，而
 
-    mkdir dir1 dir2 dir3
+```
+mkdir dir1 dir2 dir3
+```
 
 would create three directokries named "dir1", "dir2", "dir3".
 
@@ -1075,13 +1452,17 @@ The cp command copies files or directories. It can be used two different ways:
 
 cp 命令，复制文件或者目录。它有两种使用方法：
 
-    cp item1 item2
+```
+cp item1 item2
+```
 
 to copy the single file or directory "item1" to file or directory "item2" and:
 
 > 复制单个文件或目录"item1"到文件或目录"item2"，和：
 
-    cp item... directory
+```
+cp item... directory
+```
 
 to copy multiple items (either files or directories) into a directory.
 
@@ -1096,548 +1477,764 @@ Here are some of the commonly used options (the short option and the equivalent 
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 5-4: cp Options
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Option
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Meaning
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 -a, --archive
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Copy the files and directories and all of their attributes, including ownerships and permissions. Normally, copies take on the default attributes of the user performing the copy
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 -i, --interactive
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Before overwriting an existing file, prompt the user for confirmation. If this option is not specified, cp will silently overwrite files.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 -r, --recursive
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Recursively copy directories and their contents. This option (or the -a option) is required when copying directories.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 -u, --update
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 When copying files from one directory to another, only copy files that either don't exist, or are newer than the existing corresponding files, in the destination directory.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 -v, --verbose
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Display informative messages as the copy is performed.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表5-4: cp 选项
+
+> 表 5-4: cp 选项
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 选项
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 意义
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 -a, --archive
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 复制文件和目录，以及它们的属性，包括拥有者和所有权。 通常情况下，文件拷贝具有执行拷贝操作的用户的默认属性。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 -i, --interactive
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 在覆盖已存在文件之前，提示用户确认。如果这个选项不指定， cp 命令会默认覆盖文件。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 -r, --recursive
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 递归地复制目录及目录中的内容。当复制目录时， 需要这个选项（或者 -a 选项）。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 -u, --update
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 当把文件从一个目录复制到另一个目录时，仅复制 目标目录中不存在的文件，或者是文件内容新于目标目录中已经存在文件的内容的文件。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 -v, --verbose
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 显示翔实的命令操作信息
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 5-5: cp Examples
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Command
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Results
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 cp file1 file2
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Copy file1 to file2. If file2 exists, it is overwritten with the contents of file1. If file2 does not exist, it is created.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 cp -i file1 file2
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Same as above, except that if file2 exists, the user is prompted before it is overwritten.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 cp file1 file2 dir1
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Copy file1 and file2 into directory dir1. dir1 must already exist.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 cp dir1/\* dir2
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Using a wildcard, all the files in dir1 are copied into dir2. dir2 must already exist.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 cp -r dir1 dir2
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Copy the contents of directory dir1 to directory dir2. If directory dir2 does not exist, it is created and, after the copy, will contain the same contents as directory dir1. If directory dir2 does exist, then directory dir1 (and its contents) will be copied into dir2.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表5-5: cp 实例
+
+> 表 5-5: cp 实例
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 命令
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 运行结果
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 cp file1 file2
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 复制文件 file1 内容到文件 file2。如果 file2 已经存在， file2 的内容会被 file1 的内容覆盖。如果 file2 不存在，则会创建 file2。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 cp -i file1 file2
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 这条命令和上面的命令一样，除了如果文件 file2 存在的话，在文件 file2 被覆盖之前， 会提示用户确认信息。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 cp file1 file2 dir1
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 复制文件 file1 和文件 file2 到目录 dir1。目录 dir1 必须存在。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 cp dir1/\* dir2
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 使用一个通配符，在目录 dir1 中的所有文件都被复制到目录 dir2 中。 dir2 必须已经存在。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 cp -r dir1 dir2
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 复制目录 dir1 中的内容到目录 dir2。如果目录 dir2 不存在， 创建目录 dir2，操作完成后，目录 dir2 中的内容和 dir1 中的一样。 如果目录 dir2 存在，则目录 dir1 (和目录中的内容)将会被复制到 dir2 中。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ### mv - 移动和重命名文件
 
 The mv command performs both file moving and file renaming, depending on how it is used. In either case, the original filename no longer exists after the operation. mv is used in much the same way as cp:
 
 mv 命令可以执行文件移动和文件命名任务，这取决于你怎样使用它。任何一种 情况下，完成操作之后，原来的文件名不再存在。mv 使用方法与 cp 很相像：
 
-    mv item1 item2
+```
+mv item1 item2
+```
 
 to move or rename file or directory "item1" to "item2" or:
 
 > 把文件或目录 "item1" 移动或重命名为 "item2", 或者：
 
-    mv item... directory
+```
+mv item... directory
+```
 
 to move one or more items from one directory to another.
 
@@ -1652,382 +2249,532 @@ mv 与 cp 共享了很多一样的选项：
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 5-6: mv options
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Option
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Meaning
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 -i --interactive
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
-Before overwriting an existing file, prompt the user for confirmation. `<b>`{=html}If this option is not specified, mv command will silently overwrite files`</b>`{=html}
+
+Before overwriting an existing file, prompt the user for confirmation. `<b>`{=html}If this option is not specified, mv command will silently overwrite files `</b>`{=html}
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 -u --update
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 When moving files from one directory to another, only move files that either don't exist, or are newer than the existing corresponding files in the destination directory.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 -v --verbose
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Display informative messages as the move is performed.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表5-6: mv 选项
+
+> 表 5-6: mv 选项
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 选项
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 意义
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 -i --interactive
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 在覆盖一个已经存在的文件之前，提示用户确认信息。 `<b>`{=html}如果不指定这个选项，mv 命令会默认覆盖文件内容。`</b>`{=html}
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 -u --update
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 当把文件从一个目录移动另一个目录时，只是移动不存在的文件， 或者文件内容新于目标目录相对应文件的内容的文件。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 -v --verbose
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 当操作 mv 命令时，显示翔实的操作信息。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 5-7: mv Examples
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td class="title">
 ```
+
 mv file1 file2
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td class="title">
 ```
+
 Move file1 to file2. `<b>`{=html}If file2 exists, it is overwritten with the contents of files. `</b>`{=html}If file2 does not exist, it is created. `<b>`{=html}In either case, file1 ceases to exist.`</b>`{=html}
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 mv -i file1 file2
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Same as above, except that if file2 exists, the user is prompted before it is overwritten.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 mv file1 file2 dir1
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Move file1 and file2 into dirctory dir1. dir1 must already exist.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 mv dir1 dir2
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 if directory dir2 does not exist, create directory dir2 and move the contents of directory dir1 into dir2 and delete directory dir1. if directory dir2 does exist, move directory dir1 (and its contents) into directory dir2.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表5-7: mv 实例
+
+> 表 5-7: mv 实例
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td class="title">
 ```
+
 mv file1 file2
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td class="title">
 ```
+
 > 移动 file1 到 file2。`<b>`{=html}如果 file2 存在，它的内容会被 file1 的内容覆盖。 `</b>`{=html}如果 file2 不存在，则创建 file2。`<b>`{=html} 这两种情况下，file1 都不再存在。`</b>`{=html}
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 mv -i file1 file2
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 除了如果 file2 存在的话，在 file2 被覆盖之前，用户会得到 提示信息外，这个和上面的选项一样。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 mv file1 file2 dir1
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 移动 file1 和 file2 到目录 dir1 中。dir1 必须已经存在。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 mv dir1 dir2
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 如果目录 dir2 不存在，创建目录 dir2，并且移动目录 dir1 的内容到 目录 dir2 中，同时删除目录 dir1。如果目录 dir2 存在，移动目录 dir1（及它的内容）到目录 dir2。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ### rm - 删除文件和目录
 
 The rm command is used to remove(delete)files and directories:
 
 rm 命令用来删除文件和目录：
 
-    rm item...
+```
+rm item...
+```
 
 where "item" is one or more files or directories.
 
@@ -2042,455 +2789,635 @@ Here are some of the common options for rm:
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 5-8: rm Options
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Option
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Meaning
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 -i, --interactive
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Before deleting an existing file, prompt the user for confirmation. `<b>`{=html}If this option is not specified, rm will silently delete files.`</b>`{=html}
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 -r, --recursive
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Recursively delete directories. This means that if a directory being deleted has subdirectories, delete them too. To delete a directory, this option must be specified.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 -f, --force
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Ignore nonexistent files and do not prompt. This overrides the --interactive option.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 -v, --verbose
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Display informative messages as the deletion is performed.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表5-8: rm 选项
+
+> 表 5-8: rm 选项
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 选项
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 意义
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 -i, --interactive
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
-> 在删除已存在的文件前，提示用户确认信息。 `<b>`{=html}如果不指定这个选项，rm 会默默地删除文件`</b>`{=html}
+
+> 在删除已存在的文件前，提示用户确认信息。 `<b>`{=html}如果不指定这个选项，rm 会默默地删除文件 `</b>`{=html}
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 -r, --recursive
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 递归地删除文件，这意味着，如果要删除一个目录，而此目录 又包含子目录，那么子目录也会被删除。要删除一个目录，必须指定这个选项。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 -f, --force
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 忽视不存在的文件，不显示提示信息。这选项覆盖了"--interactive"选项。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 -v, --verbose
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 在执行 rm 命令时，显示翔实的操作信息。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 5-9: rm Examples
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Command
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Results
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 rm file1
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Delete file1 silently
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 rm -i file1
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Same as above, except that the user is prompted for confirmation before the deletion is performed.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 rm -r file1 dir1
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Delete file1 and dir1 and its contents.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 rm -rf file1 dir1
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Same as above, except that if either file1 or dir1 do not exist, rm will continue silently.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表5-9: rm 实例
+
+> 表 5-9: rm 实例
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 命令
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 运行结果
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 rm file1
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 默默地删除文件
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 rm -i file1
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 除了在删除文件之前，提示用户确认信息之外，和上面的命令作用一样。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 rm -r file1 dir1
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 删除文件 file1, 目录 dir1，及 dir1 中的内容。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 rm -rf file1 dir1
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 同上，除了如果文件 file1，或目录 dir1 不存在的话，rm 仍会继续执行。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 > Be Careful With rm!
 >
 > 小心 rm!
@@ -2525,13 +3452,17 @@ The ln command is used to create either hard or symbolic links. It is used in on
 
 ln 命令既可创建硬链接，也可以创建符号链接。可以用两者中的任意一种形式来使用它：
 
-    ln file link
+```
+ln file link
+```
 
 to create a hard link, and:
 
 > 创建硬链接，和：
 
-    ln -s item link
+```
+ln -s item link
+```
 
 to create a symbolic link where "item" is either a file or a directory.
 
@@ -2543,13 +3474,12 @@ Hard links are the original Unix way of creating links; symbolic links are more 
 
 > 与更加现代的符号链接相比，硬链接是最初 Unix 创建链接的方式。每个文件默认会有一个硬链接， 这个硬链接给予文件名字。我们每创建一个硬链接，就为一个文件创建了一个额外的目录项。 硬链接有两个重要局限性：
 
-1.  A hard link cannot reference a file outside its own file system. This means a link may not reference a file that is not on the same disk partition as the link itself.
-
-2.  A hard link may not reference a directory.
+1. A hard link cannot reference a file outside its own file system. This means a link may not reference a file that is not on the same disk partition as the link itself.
+2. A hard link may not reference a directory.
 
 \^ 1. 一个硬链接不能关联它所在文件系统之外的文件。这是说一个链接不能关联 与链接本身不在同一个磁盘分区上的文件。
 
-2.  一个硬链接不能关联一个目录。
+2. 一个硬链接不能关联一个目录。
 
 A hard link is indistinguishable from the file itself. Unlike a symbolic link, when you list a directory containing a hard link you will see no special indication of the link. When a hard link is deleted, the link is removed but the contents of the file itself continue to exist (that is, its space is not deallocated) until all links to the file are deleted. It is important to be aware of hard links because you might encounter them from time to time, but modern practice prefers symbolic links, which we will cover next.
 
@@ -2581,15 +3511,19 @@ The mkdir command is used to create a directory. To create our playground direct
 
 mkdir 命令被用来创建目录。首先确定我们在我们的家目录下，然后创建 playground 目录：
 
-    [me@linuxbox ~]$ cd
-    [me@linuxbox ~]$ mkdir playground
+```
+[me@linuxbox ~]$ cd
+[me@linuxbox ~]$ mkdir playground
+```
 
 To make our playground a little more interesting, let's create a couple of directories inside it called "dir1" and "dir2". To do this, we will change our current working directory to playground and execute another mkdir:
 
 > 为了让我们的游戏场更加有趣，在 playground 目录下创建一对目录 ，分别叫做 "dir1" 和 "dir2"。更改我们的当前工作目录到 playground，然后 执行 mkdir 命令：
 
-    [me@linuxbox ~]$ cd playground
-    [me@linuxbox playground]$ mkdir dir1 dir2
+```
+[me@linuxbox ~]$ cd playground
+[me@linuxbox playground]$ mkdir dir1 dir2
+```
 
 Notice that the mkdir command will accept multiple arguments allowing us to create both directories with a single command.
 
@@ -2601,31 +3535,39 @@ Next, let's get some data into our playground. We'll do this by copying a file. 
 
 > 下一步，让我们输入一些数据到我们的游戏场中。我们可以通过复制一个文件来实现目的。 我们使用 cp 命令从 /etc 目录复制 passwd 文件到当前工作目录下：
 
-    [me@linuxbox playground]$ cp /etc/passwd .
+```
+[me@linuxbox playground]$ cp /etc/passwd .
+```
 
 Notice how we used the shorthand for the current working directory, the single trailing period. So now if we perform an ls, we will see our file:
 
 > 请注意，我们使用命令末尾的一个圆点来简化当前工作目录的写法。如果我们执行 ls 命令， 可以看到我们的文件：
 
-    [me@linuxbox playground]$ ls -l
-    total 12
-    drwxrwxr-x 2  me  me   4096 2008-01-10 16:40 dir1
-    drwxrwxr-x 2  me  me   4096 2008-01-10 16:40 dir2
-    -rw-r--r-- 1  me  me   1650 2008-01-10 16:07 passwd
+```
+[me@linuxbox playground]$ ls -l
+total 12
+drwxrwxr-x 2  me  me   4096 2008-01-10 16:40 dir1
+drwxrwxr-x 2  me  me   4096 2008-01-10 16:40 dir2
+-rw-r--r-- 1  me  me   1650 2008-01-10 16:07 passwd
+```
 
 Now, just for fun, let's repeat the copy using the "-v" option (verbose) to see what it does:
 
 > 现在，仅仅是为了好玩，重复操作复制命令，使用"-v"选项（详细），看看它做了些什么：
 
-    [me@linuxbox playground]$ cp -v /etc/passwd .
-    `/etc/passwd' -> `./passwd'
+```
+[me@linuxbox playground]$ cp -v /etc/passwd .
+`/etc/passwd' -> `./passwd'
+```
 
 The cp command performed the copy again, but this time displayed a concise message indicating what operation it was performing. Notice that cp overwrote the first copy without any warning. Again this is a case of cp assuming that you know what you're are doing. To get a warning, we'll include the "-i" (interactive) option:
 
 cp 命令再一次执行了复制操作，但是这次显示了一条简洁的信息，指明它 进行了什么操作。注意，cp 没有警告，就覆盖了第一次复制的文件。这是一个案例， cp 会假设你知道自己在做什么。如果希望得到警告的话，需要加入"-i"（互动）选项：
 
-    [me@linuxbox playground]$ cp -i /etc/passwd .
-    cp: overwrite `./passwd'?
+```
+[me@linuxbox playground]$ cp -i /etc/passwd .
+cp: overwrite `./passwd'?
+```
 
 Responding to the prompt by entering a "y" will cause the file to be overwritten, any other character (for example, "n") will cause cp to leave the file alone.
 
@@ -2637,50 +3579,64 @@ Now, the name "passwd" doesn't seem very playful and this is a playground, so le
 
 > 现在，"passwd" 这个名字，看起来不怎么有趣，这是个游戏场，所以我们给它改个名字：
 
-    [me@linuxbox playground]$ mv passwd fun
+```
+[me@linuxbox playground]$ mv passwd fun
+```
 
 Let's pass the fun around a little by moving our renamed file to each of the directories and back again:
 
 > 让我们来传送 fun 文件，通过移动重命名的文件到各个子目录， 然后再把它移回到当前目录：
 
-    [me@linuxbox playground]$ mv fun dir1
+```
+[me@linuxbox playground]$ mv fun dir1
+```
 
 to move it first to directory dir1, then:
 
 > 首先，把 fun 文件移动目录 dir1 中，然后：
 
-    [me@linuxbox playground]$ mv dir1/fun dir2
+```
+[me@linuxbox playground]$ mv dir1/fun dir2
+```
 
 to move it from dir1 to dir2, then:
 
 > 再把 fun 文件从 dir1 移到目录 dir2, 然后：
 
-    [me@linuxbox playground]$ mv dir2/fun .
+```
+[me@linuxbox playground]$ mv dir2/fun .
+```
 
 to finally bringing it back to the current working directory. Next, let's see the effect of mv on directories. First we will move our data file into dir1 again:
 
 > 最后，再把 fun 文件带回到当前工作目录。接下来，来看看移动目录的效果。 首先，我们先移动我们的数据文件到 dir1 目录：
 
-    [me@linuxbox playground]$ mv fun dir1
+```
+[me@linuxbox playground]$ mv fun dir1
+```
 
 then move dir1 into dir2 and confirm it with ls:
 
 > 然后移动 dir1 到 dir2 目录，用 ls 来确认执行结果:
 
-    [me@linuxbox playground]$ mv dir1 dir2
-    [me@linuxbox playground]$ ls -l dir2
-    total 4
-    drwxrwxr-x 2 me me 4096 2008-01-11 06:06 dir1
-    [me@linuxbox playground]$ ls -l dir2/dir1
-    total 4
-    -rw-r--r-- 1 me me 1650 2008-01-10 16:33 fun
+```
+[me@linuxbox playground]$ mv dir1 dir2
+[me@linuxbox playground]$ ls -l dir2
+total 4
+drwxrwxr-x 2 me me 4096 2008-01-11 06:06 dir1
+[me@linuxbox playground]$ ls -l dir2/dir1
+total 4
+-rw-r--r-- 1 me me 1650 2008-01-10 16:33 fun
+```
 
 Note that since dir2 already existed, mv moved dir1 into dir2. If dir2 had not existed, mv would have renamed dir1 to dir2. Lastly, let's put everything back:
 
 > 注意：因为目录 dir2 已经存在，mv 命令会把 dir1 移动到 dir2 目录中。如果 dir2 不存在， mv 会把 dir1 重命名为 dir2。最后，让我们把所有的东西放回原处：
 
-    [me@linuxbox playground]$ mv dir2/dir1 .
-    [me@linuxbox playground]$ mv dir1/fun .
+```
+[me@linuxbox playground]$ mv dir2/dir1 .
+[me@linuxbox playground]$ mv dir1/fun .
+```
 
 ### 创建硬链接
 
@@ -2688,20 +3644,24 @@ Now we'll try some links. First the hard links. We'll create some links to our d
 
 > 现在，我们试着创建链接。首先是硬链接。我们创建一些关联我们 数据文件的链接：
 
-    [me@linuxbox playground]$ ln fun fun-hard
-    [me@linuxbox playground]$ ln fun dir1/fun-hard
-    [me@linuxbox playground]$ ln fun dir2/fun-hard
+```
+[me@linuxbox playground]$ ln fun fun-hard
+[me@linuxbox playground]$ ln fun dir1/fun-hard
+[me@linuxbox playground]$ ln fun dir2/fun-hard
+```
 
 So now we have four instances of the file "fun". Let's take a look our playground directory:
 
 > 所以现在，我们有四个文件"fun"的实例。看一下目录 playground 中的内容：
 
-    [me@linuxbox playground]$ ls -l
-    total 16
-    drwxrwxr-x 2 me  me 4096 2008-01-14 16:17 dir1
-    drwxrwxr-x 2 me  me 4096 2008-01-14 16:17 dir2
-    -rw-r--r-- 4 me  me 1650 2008-01-10 16:33 fun
-    -rw-r--r-- 4 me  me 1650 2008-01-10 16:33 fun-hard
+```
+[me@linuxbox playground]$ ls -l
+total 16
+drwxrwxr-x 2 me  me 4096 2008-01-14 16:17 dir1
+drwxrwxr-x 2 me  me 4096 2008-01-14 16:17 dir2
+-rw-r--r-- 4 me  me 1650 2008-01-10 16:33 fun
+-rw-r--r-- 4 me  me 1650 2008-01-10 16:33 fun-hard
+```
 
 One thing you notice is that the second field in the listing for fun and fun-hard both contain a "4" which is the number of hard links that now exist for the file. You'll remember that a file will always have at least one because the file's name is created by a link. So, how do we know that fun and fun-hard are, in fact, the same file? In this case, ls is not very helpful. While we can see that fun and fun-hard are both the same size (field 5), our listing provides no way to be sure. To solve this problem, we're going to have to dig a little deeper.
 
@@ -2715,12 +3675,14 @@ The ls command has a way to reveal this information. It is invoked with the "-i"
 
 ls 命令有一种方法，来展示（文件索引节点）的信息。在命令中加上"-i"选项：
 
-    [me@linuxbox playground]$ ls -li
-    total 16
-    12353539 drwxrwxr-x 2 me  me 4096  2008-01-14  16:17  dir1
-    12353540 drwxrwxr-x 2 me  me 4096  2008-01-14  16:17  dir2
-    12353538 -rw-r--r-- 4 me  me 1650  2008-01-10  16:33  fun
-    12353538 -rw-r--r-- 4 me  me 1650  2008-01-10  16:33  fun-hard
+```
+[me@linuxbox playground]$ ls -li
+total 16
+12353539 drwxrwxr-x 2 me  me 4096  2008-01-14  16:17  dir1
+12353540 drwxrwxr-x 2 me  me 4096  2008-01-14  16:17  dir2
+12353538 -rw-r--r-- 4 me  me 1650  2008-01-10  16:33  fun
+12353538 -rw-r--r-- 4 me  me 1650  2008-01-10  16:33  fun-hard
+```
 
 In this version of the listing, the first field is the inode number and, as we can see, both fun and fun-hard share the same inode number, which confirms they are the same file.
 
@@ -2736,28 +3698,34 @@ Creating symbolic links is similar to creating hard links:
 
 > 符号链接的建立过程相似于创建硬链接：
 
-    [me@linuxbox playground]$ ln -s fun fun-sym
-    [me@linuxbox playground]$ ln -s ../fun dir1/fun-sym
-    [me@linuxbox playground]$ ln -s ../fun dir2/fun-sym
+```
+[me@linuxbox playground]$ ln -s fun fun-sym
+[me@linuxbox playground]$ ln -s ../fun dir1/fun-sym
+[me@linuxbox playground]$ ln -s ../fun dir2/fun-sym
+```
 
 The first example is pretty straightforward, we simply add the "-s" option to create a symbolic link rather than a hard link. But what about the next two? Remember, when we create a symbolic link, we are creating a text description of where the target file is relative to the symbolic link. It's easier to see if we look at the ls output:
 
 > 第一个例子相当直接，在 ln 命令中，简单地加上"-s"选项就可以创建一个符号链接， 而不是一个硬链接。下面两个例子又是怎样呢？ 记住，当我们创建一个符号链接 的时候，会建立一个文本，其中描述了目标文件的具体位置。如果我们看看 ls 命令的输出结果，比较容易理解。
 
-    [me@linuxbox playground]$ ls -l dir1
-    total 4
-    -rw-r--r-- 4 me  me 1650 2008-01-10 16:33 fun-hard
-    lrwxrwxrwx 1 me  me    6 2008-01-15 15:17 fun-sym -> ../fun
+```
+[me@linuxbox playground]$ ls -l dir1
+total 4
+-rw-r--r-- 4 me  me 1650 2008-01-10 16:33 fun-hard
+lrwxrwxrwx 1 me  me    6 2008-01-15 15:17 fun-sym -> ../fun
+```
 
 The listing for fun-sym in dir1 shows that is it a symbolic link by the leading "l" in the first field and that it points to "../fun", which is correct. Relative to the location of fun-sym, fun is in the directory above it. Notice too, that the length of the symbolic link file is 6, the number of characters in the string "../fun" rather than the length of the file to which it is pointing.
 
-> 目录 dir1 中，fun-sym 的列表说明了它是一个符号链接，通过在第一字段中的首字符"l" 可知，并且它还指向"../fun"，也是正确的。相对于 fun-sym 的存储位置，fun 在它的 上一个目录。同时注意，符号链接文件的长度是6，这是字符串"../fun"所包含的字符数， 而不是符号链接所指向的文件长度。
+> 目录 dir1 中，fun-sym 的列表说明了它是一个符号链接，通过在第一字段中的首字符"l" 可知，并且它还指向"../fun"，也是正确的。相对于 fun-sym 的存储位置，fun 在它的 上一个目录。同时注意，符号链接文件的长度是 6，这是字符串"../fun"所包含的字符数， 而不是符号链接所指向的文件长度。
 
 When creating symbolic links, you can either use absolute pathnames:
 
 > 当建立符号链接时，你既可以使用绝对路径名：
 
-    ln -s /home/me/playground/fun dir1/fun-sym
+```
+ln -s /home/me/playground/fun dir1/fun-sym
+```
 
 or relative pathnames, as we did in our earlier example. Using relative pathnames is more desirable because it allows a directory containing symbolic links to be renamed and/or moved without breaking the links.
 
@@ -2767,10 +3735,12 @@ In addition to regular files, symbolic links can also reference directories:
 
 > 除了普通文件，符号链接也能关联目录：
 
-    [me@linuxbox playground]$ ln -s dir1 dir1-sym
-    [me@linuxbox playground]$ ls -l
-    total 16
-    ...省略
+```
+[me@linuxbox playground]$ ln -s dir1 dir1-sym
+[me@linuxbox playground]$ ls -l
+total 16
+...省略
+```
 
 ### 移动文件和目录
 
@@ -2778,45 +3748,55 @@ As we covered earlier, the rm command is used to delete files and directories. W
 
 > 正如我们之前讨论的，rm 命令被用来删除文件和目录。我们将要使用它 来清理一下我们的游戏场。首先，删除一个硬链接：
 
-    [me@linuxbox playground]$ rm fun-hard
-    [me@linuxbox playground]$ ls -l
-    total 12
-    ...省略
+```
+[me@linuxbox playground]$ rm fun-hard
+[me@linuxbox playground]$ ls -l
+total 12
+...省略
+```
 
 That worked as expected. The file fun-hard is gone and the link count shown for fun is reduced from four to three, as indicated in the second field of the directory listing. Next, we'll delete the file fun, and just for enjoyment, we'll include the "-i" option to show what that does:
 
-> 结果不出所料。文件 fun-hard 消失了，文件 fun 的链接数从4减到3，正如 目录列表第二字段所示。下一步，我们会删除文件 fun，仅为了娱乐，我们会加入"-i" 选项，看一看它的作用：
+> 结果不出所料。文件 fun-hard 消失了，文件 fun 的链接数从 4 减到 3，正如 目录列表第二字段所示。下一步，我们会删除文件 fun，仅为了娱乐，我们会加入"-i" 选项，看一看它的作用：
 
-    [me@linuxbox playground]$ rm -i fun
-    rm: remove regular file `fun'?
+```
+[me@linuxbox playground]$ rm -i fun
+rm: remove regular file `fun'?
+```
 
 Enter "y" at the prompt and the file is deleted. But let's look at the output of ls now. Noticed what happened to fun-sym? Since it's a symbolic link pointing to a now- nonexistent file, the link is broken:
 
 > 在提示符下输入"y"，删除文件。让我们看一下 ls 的输出结果。注意，fun-sym 发生了 什么事? 因为它是一个符号链接，指向已经不存在的文件，链接已经坏了：
 
-    [me@linuxbox playground]$ ls -l
-    total 8
-    drwxrwxr-x 2 me  me     4096 2008-01-15 15:17 dir1
-    lrwxrwxrwx 1 me  me        4 2008-01-16 14:45 dir1-sym -> dir1
-    drwxrwxr-x 2 me  me     4096 2008-01-15 15:17 dir2
-    lrwxrwxrwx 1 me  me        3 2008-01-15 15:15 fun-sym -> fun
+```
+[me@linuxbox playground]$ ls -l
+total 8
+drwxrwxr-x 2 me  me     4096 2008-01-15 15:17 dir1
+lrwxrwxrwx 1 me  me        4 2008-01-16 14:45 dir1-sym -> dir1
+drwxrwxr-x 2 me  me     4096 2008-01-15 15:17 dir2
+lrwxrwxrwx 1 me  me        3 2008-01-15 15:15 fun-sym -> fun
+```
 
 Most Linux distributions configure ls to display broken links. On a Fedora box, broken links are displayed in blinking red text! The presence of a broken link is not, in and of itself dangerous but it is rather messy. If we try to use a broken link we will see this:
 
 > 大多数 Linux 的发行版本配置 ls 显示损坏的链接。在 Fedora 系统中，坏的链接以闪烁的 红色文本显示！损坏链接的出现，并不危险，但是相当混乱。如果我们试着使用 损坏的链接，会看到以下情况：
 
-    [me@linuxbox playground]$ less fun-sym
-    fun-sym: No such file or directory
+```
+[me@linuxbox playground]$ less fun-sym
+fun-sym: No such file or directory
+```
 
 Let's clean up a little. We'll delete the symbolic links:
 
 > 稍微清理一下现场。删除符号链接：
 
-    [me@linuxbox playground]$ rm fun-sym dir1-sym
-    [me@linuxbox playground]$ ls -l
-    total 8
-    drwxrwxr-x 2 me  me    4096 2008-01-15 15:17 dir1
-    drwxrwxr-x 2 me  me    4096 2008-01-15 15:17 dir2
+```
+[me@linuxbox playground]$ rm fun-sym dir1-sym
+[me@linuxbox playground]$ ls -l
+total 8
+drwxrwxr-x 2 me  me    4096 2008-01-15 15:17 dir1
+drwxrwxr-x 2 me  me    4096 2008-01-15 15:17 dir2
+```
 
 One thing to remember about symbolic links is that most file operations are carried out on the link's target, not the link itself. rm is an exception. When you delete a link, it is the link that is deleted, not the target.
 
@@ -2826,8 +3806,10 @@ Finally, we will remove our playground. To do this, we will return to our home d
 
 > 最后，我们将删除我们的游戏场。为了完成这个工作，我们将返回到 我们的家目录，然后用 rm 命令加上选项(-r)，来删除目录 playground， 和目录下的所有内容，包括子目录：
 
-    [me@linuxbox playground]$ cd
-    [me@linuxbox ~]$ rm -r playground
+```
+[me@linuxbox playground]$ cd
+[me@linuxbox ~]$ rm -r playground
+```
 
 > Creating Symlinks With The GUI
 >

@@ -2,38 +2,24 @@
 layout: book
 title: 使用命令
 ---
-
 Up to this point, we have seen a series of mysterious commands, each with its own mysterious options and arguments. In this chapter, we will attempt to remove some of that mystery and even create some of our own commands. The commands introduced in this chapter are:
 
 > 在这之前，我们已经知道了一系列神秘的命令，每个命令都有自己奇妙的 选项和参数。在这一章中，我们将试图去掉一些神秘性，甚至创建我们自己 的命令。这一章将介绍以下命令：
 
--   type -- Indicate how a command name is interpreted
-
--   type -- 说明一个命令名是如何被解释的（这里的"解释"是一个计算机术语，例如，解释型语言）
-
--   which -- Display which executable program will be executed
-
--   which -- 显示会执行哪个可执行程序
-
--   man -- Display a command's manual page
-
--   man -- 显示命令手册页
-
--   apropos -- Display a list of appropriate commands
-
--   apropos -- 显示一系列适合的命令
-
--   info -- Display a command's info entry
-
--   info -- 显示命令 info
-
--   whatis -- Display a very brief description of a command
-
--   whatis -- 显示一个命令的简洁描述
-
--   alias -- Create an alias for a command
-
--   alias -- 创建命令别名
+- type -- Indicate how a command name is interpreted
+- type -- 说明一个命令名是如何被解释的（这里的"解释"是一个计算机术语，例如，解释型语言）
+- which -- Display which executable program will be executed
+- which -- 显示会执行哪个可执行程序
+- man -- Display a command's manual page
+- man -- 显示命令手册页
+- apropos -- Display a list of appropriate commands
+- apropos -- 显示一系列适合的命令
+- info -- Display a command's info entry
+- info -- 显示命令 info
+- whatis -- Display a very brief description of a command
+- whatis -- 显示一个命令的简洁描述
+- alias -- Create an alias for a command
+- alias -- 创建命令别名
 
 ### 到底什么是命令？
 
@@ -41,21 +27,16 @@ A command can be one of four different things:
 
 > 命令可以是下面四种形式之一：
 
-1.  An executable program like all those files we saw in /usr/bin. Within this category, programs can be compiled binaries such as programs written in C and C++, or programs written in scripting languages such as the shell, perl, python, ruby, etc.
-
-2.  A command built into the shell itself. bash supports a number of commands internally called shell builtins. The cd command, for example, is a shell builtin.
-
-3.  A shell function. These are miniature shell scripts incorporated into the environment. We will cover configuring the environment and writing shell functions in later chapters, but for now, just be aware that they exist.
-
-4.  An alias. Commands that we can define ourselves, built from other commands.
+1. An executable program like all those files we saw in /usr/bin. Within this category, programs can be compiled binaries such as programs written in C and C++, or programs written in scripting languages such as the shell, perl, python, ruby, etc.
+2. A command built into the shell itself. bash supports a number of commands internally called shell builtins. The cd command, for example, is a shell builtin.
+3. A shell function. These are miniature shell scripts incorporated into the environment. We will cover configuring the environment and writing shell functions in later chapters, but for now, just be aware that they exist.
+4. An alias. Commands that we can define ourselves, built from other commands.
 
 \^ 1. 一个可执行程序，就像我们所看到的位于目录/usr/bin 中的文件一样。 这一类程序可以是用诸如 C 和 C++ 语言写成的程序然后编译得到的二进制文件, 也可以是由诸如 shell，perl，python，ruby 等等脚本语言写成的程序。
 
-2.  一个内建于 shell 自身的命令。bash 支持若干命令，内部叫做 shell 内部命令 (builtins)。例如，cd 命令，就是一个 shell 内部命令。
-
-3.  一个 shell 函数。这些是小规模的 shell 脚本，它们混合到环境变量中。 在后续的章节里，我们将讨论配置环境变量以及书写 shell 函数。但是现在， 仅仅意识到它们的存在就可以了。
-
-4.  一个命令别名。我们可以定义自己的命令，建立在其它命令之上。
+2. 一个内建于 shell 自身的命令。bash 支持若干命令，内部叫做 shell 内部命令 (builtins)。例如，cd 命令，就是一个 shell 内部命令。
+3. 一个 shell 函数。这些是小规模的 shell 脚本，它们混合到环境变量中。 在后续的章节里，我们将讨论配置环境变量以及书写 shell 函数。但是现在， 仅仅意识到它们的存在就可以了。
+4. 一个命令别名。我们可以定义自己的命令，建立在其它命令之上。
 
 ### 识别命令
 
@@ -69,18 +50,22 @@ The type command is a shell builtin that displays the kind of command the shell 
 
 type 命令是 shell 内部命令，它会显示命令的类型，给出一个特定的命令名（做为参数）。 它像这样工作：
 
-    type command
+```
+type command
+```
 
 Where "command" is the name of the command you want to examine. Here are some examples:
 
 command 是你要检测的命令名。这里有些例子：
 
-    [me@linuxbox ~]$ type type
-    type is a shell builtins
-    [me@linuxbox ~]$ type ls
-    ls is aliased to `ls --color=tty`
-    [me@linuxbox ~]$ type cp
-    cp is /bin/cp
+```
+[me@linuxbox ~]$ type type
+type is a shell builtins
+[me@linuxbox ~]$ type ls
+ls is aliased to `ls --color=tty`
+[me@linuxbox ~]$ type cp
+cp is /bin/cp
+```
 
 Here we see the results for three different commands. Notice that the one for ls (taken from a Fedora system) and how the ls command is actually an alias for the ls command with the "\--color=tty" option added. Now we know why the output from ls is displayed in color!
 
@@ -92,17 +77,21 @@ Sometimes there is more than one version of an executable program installed on a
 
 > 有时候在一个操作系统中，不只安装了可执行程序的一个版本。虽然在桌面系统中这并不普遍， 但在大型服务器中却很平常。为了确定所给定的执行程序的准确位置，使用 which 命令：
 
-    [me@linuxbox ~]$ which ls
-    /bin/ls
+```
+[me@linuxbox ~]$ which ls
+/bin/ls
+```
 
 which only works for executable programs, not builtins nor aliases that are substitutes for actual executable programs. When we try to use which on a shell builtin, for example, cd, we either get no response or an error message:
 
 which 命令只对可执行程序有效，不包括内建命令和命令别名。 当我们试着使用 shell 内建命令时，例如，cd 命令，我们或者得不到回应，或者是个错误信息：
 
-    [me@linuxbox ~]$ which cd
-    /usr/bin/which: no cd in
-    (/opt/jre1.6.0_03/bin:/usr/lib/qt-3.3/bin:/usr/kerberos/bin:/opt/jre1
-    .6.0_03/bin:/usr/lib/ccache:/usr/local/bin:/usr/bin:/bin:/home/me/bin)
+```
+[me@linuxbox ~]$ which cd
+/usr/bin/which: no cd in
+(/opt/jre1.6.0_03/bin:/usr/lib/qt-3.3/bin:/usr/kerberos/bin:/opt/jre1
+.6.0_03/bin:/usr/lib/ccache:/usr/local/bin:/usr/bin:/bin:/home/me/bin)
+```
 
 which is a fancy way of saying "command not found."
 
@@ -120,15 +109,19 @@ bash has a built-in help facility available for each of the shell builtins. To u
 
 bash 有一个内建的 help 命令，可查找每一个 shell 内建命令的文档。输入"help"，接着是 shell 内部命令名。例如：
 
-    [me@linuxbox ~]$ help cd
-    cd: cd [-L|-P] [dir]
-    Change ...
+```
+[me@linuxbox ~]$ help cd
+cd: cd [-L|-P] [dir]
+Change ...
+```
 
 A note on notation: When square brackets appear in the description of a command's syntax, they indicate optional items. A vertical bar character indicates mutually exclusive items. In the case of the cd command above:
 
 > 注意：出现在命令语法说明中的方括号证的内容是可选的项目。一个竖杠字符 表示互斥选项。在上面 cd 命令的例子中：
 
-    cd [-L|-P] [dir]
+```
+cd [-L|-P] [dir]
+```
 
 This notation says that the command cd may be followed optionally by either a "-L" or a "-P" and further, optionally followed by the argument "dir".
 
@@ -144,9 +137,11 @@ Many executable programs support a "\--help" option that displays a description 
 
 > 许多可执行程序支持一个 \--help 选项，这个选项是显示命令所支持的语法和选项说明。例如：
 
-    [me@linuxbox ~]$ mkdir --help
-    Usage: mkdir [OPTION] DIRECTORY...
-    Create ...
+```
+[me@linuxbox ~]$ mkdir --help
+Usage: mkdir [OPTION] DIRECTORY...
+Create ...
+```
 
 Some programs don't support the "\--help" option, but try it anyway. Often it results in an error message that will reveal the same usage information.
 
@@ -158,7 +153,9 @@ Most executable programs intended for command line use provide a formal piece of
 
 > 许多希望被命令行使用的可执行程序，提供了一个正式的文档，叫做手册或手册页(man page)。一个特殊的叫做 man 的分页程序，可用来浏览他们。它是这样使用的：
 
-    man program
+```
+man program
+```
 
 where "program" is the name of the command to view.
 
@@ -168,7 +165,9 @@ Man pages vary somewhat in format but generally contain a title, a synopsis of t
 
 > 手册文档的格式有点不同，一般地包含一个标题、命令语法的纲要、命令用途的说明、 以及每个命令选项的列表和说明。然而，手册文档通常并不包含实例，它打算 作为一本参考手册，而不是教程。作为一个例子，浏览一下 ls 命令的手册文档：
 
-    [me@linuxbox ~]$ man ls
+```
+[me@linuxbox ~]$ man ls
+```
 
 On most Linux systems, man uses less to display the manual page, so all of the familiar less commands work while displaying the page.
 
@@ -181,424 +180,590 @@ man 所显示的参考手册，被分成几个章节，它们不仅仅包括用�
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 6-1: Man Page Organization
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <thead>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Section
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Contents
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </thead>
 ```
+
 ```{=html}
 <tbody>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 1
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 User commands
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 2
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 Programming interfaces kernel system calls
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 3
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 Programming interfaces to the C library
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 4
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 Special files such as device nodes and drivers
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 5
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 File formats
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 6
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 Games and amusements such as screen savers
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 7
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 Miscellaneous
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 8
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 System administration commands
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </tbody>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表6-1: 手册页的组织形式
+
+> 表 6-1: 手册页的组织形式
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <thead>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 章节
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 内容
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </thead>
 ```
+
 ```{=html}
 <tbody>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 1
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 > 用户命令
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 2
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 > 程序接口内核系统调用
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 3
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 C 库函数程序接口
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 4
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 > 特殊文件，比如说设备结点和驱动程序
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 5
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 > 文件格式
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 6
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 > 游戏娱乐，如屏幕保护程序
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 7
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 > 其他方面
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 8
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 > 系统管理员命令
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </tbody>
 ```
+
 ```{=html}
 </table>
 ```
+
 Sometimes we need to look in a specific section of the manual to find what we are looking for. This is particularly true if we are looking for a file format that is also the name of a command. Without specifying a section number, we will always get the first instance of a match, probably in section 1. To specify a section number, we use man like this:
 
 > 有时候，我们需要查看参考手册的特定章节，从而找到我们需要的信息。 如果我们要查找一种文件格式，而同时它也是一个命令名时,这种情况尤其正确。 没有指定章节号，我们总是得到第一个匹配项，可能在第一章节。我们这样使用 man 命令， 来指定章节号：
 
-    man section search_term
+```
+man section search_term
+```
 
 For example:
 
 > 例如：
 
-    [me@linuxbox ~]$ man 5 passwd
+```
+[me@linuxbox ~]$ man 5 passwd
+```
 
 This will display the man page describing the file format of the /etc/passwd file.
 
@@ -610,9 +775,11 @@ It is also possible to search the list of man pages for possible matches based o
 
 > 我们也可以搜索全部参考手册来找到自己需要的命令，这个方法虽然很粗糙但有时很有用。 下面是一个以"floppy"为关键词来搜索参考手册的例子：
 
-    [me@linuxbox ~]$ apropos floppy
-    create_floppy_devices (8)   - udev callout to create all possible
-    ...
+```
+[me@linuxbox ~]$ apropos floppy
+create_floppy_devices (8)   - udev callout to create all possible
+...
+```
 
 The first field in each line of output is the name of the man page, the second field shows the section. Note that the man command with the "-k" option performs the exact same function as apropos.
 
@@ -642,12 +809,14 @@ The GNU Project provides an alternative to man pages for their programs, called 
 
 GNU 项目提供了一个命令程序手册页的替代物，称为"info"。info 内容可通过 info 阅读器 程序读取。info 页是超级链接形式的，和网页很相似。这有个例子：
 
-    File: coreutils.info,    Node: ls invocation,    Next: dir invocation,
-     Up: Directory listing
+```
+File: coreutils.info,    Node: ls invocation,    Next: dir invocation,
+ Up: Directory listing
 
-    10.1 `ls': List directory contents
-    ==================================
-    ...
+10.1 `ls': List directory contents
+==================================
+...
+```
 
 The info program reads info files, which are tree structured into individual nodes, each containing a single topic. Info files contain hyperlinks that can move you from node to node. A hyperlink can be identified by its leading asterisk, and is activated by placing the cursor upon it and pressing the enter key.
 
@@ -660,418 +829,582 @@ To invoke info, type "info" followed optionally by the name of a program. Below 
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Tbale 6-2: info Commands
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <thead>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Command
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Action
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </thead>
 ```
+
 ```{=html}
 <tbody>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 ?
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 Display command help
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 PgUp or Backspace
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 Display privious page
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 PgDn or Space
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 Display next page
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 n
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 Next - Display the next node
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 p
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 Previous - Display the previous node
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 u
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 Up - Display the parent node of the currently displayed node, usually a menu.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 Enter
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 Follow the hyperlink at the cursor location
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td>
 ```
+
 q
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td>
 ```
+
 Quit
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </tbody>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 > 表 6-2: info 命令
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <thead>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 命令
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 行为
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </thead>
 ```
+
 ```{=html}
 <tbody>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 ?
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 显示命令帮助
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 PgUp or Backspace
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 显示上一页
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 PgDn or Space
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 显示下一页
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 n
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 下一个 - 显示下一个结点
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 p
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 上一个 - 显示上一个结点
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 u
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Up - 显示当前所显示结点的父结点，通常是个菜单
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Enter
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 激活光标位置下的超级链接
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 q
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 退出
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </tbody>
 ```
+
 ```{=html}
 </table>
 ```
+
 Most of the command line programs we have discussed so far are part of the GNU Project's "coreutils" package, so typing:
 
 > 到目前为止，我们所讨论的大多数命令行程序，属于 GNU 项目"coreutils"包，所以输入：
 
-    [me@linuxbox ~]$ info coreutils
+```
+[me@linuxbox ~]$ info coreutils
+```
 
 will display a menu page with hyperlinks to each program contained in the coreutils package.
 
@@ -1089,81 +1422,103 @@ Now for our very first experience with programming! We will create a command of 
 
 > 现在是时候，感受第一次编程经历了！我们将用 alias 命令创建我们自己的命令。但在 开始之前，我们需要展示一个命令行小技巧。可以把多个命令放在同一行上，命令之间 用";"分开。它像这样工作：
 
-    command1; command2; command3...
+```
+command1; command2; command3...
+```
 
 Here's the example we will use:
 
 > 我们会用到下面的例子：
 
-    [me@linuxbox ~]$ cd /usr; ls; cd -
-    bin  games    kerberos  lib64    local  share  tmp
-    ...
-    [me@linuxbox ~]$
+```
+[me@linuxbox ~]$ cd /usr; ls; cd -
+bin  games    kerberos  lib64    local  share  tmp
+...
+[me@linuxbox ~]$
+```
 
 As we can see, we have combined three commands on one line. First we change directory to /usr then list the directory and finally return to the original directory (by using 'cd -') so we end up where we started. Now let's turn this sequence into a new command using alias. The first thing we have to do is dream up a name for our new command. Let's try "test". Before we do that, it would be a good idea to find out if the name "test" is already being used. To find out, we can use the type command again:
 
 > 正如我们看到的，我们在一行上联合了三个命令。首先更改目录到/usr，然后列出目录 内容，最后回到之前的目录（用命令"cd -"）,结束在开始的地方。现在，通过 alias 命令 把这一串命令转变为一个命令。我们要做的第一件事就是为我们的新命令构想一个名字。 比方说"test"。在使用"test"之前，最好先查明"test"命令名是否已经存在于系统中。 为此，可以使用 type 命令：
 
-    [me@linuxbox ~]$ type test
-    test is a shell builtin
+```
+[me@linuxbox ~]$ type test
+test is a shell builtin
+```
 
 Oops! The name "test" is already taken. Let's try "foo":
 
 > 哦！"test"名字已经被使用了。试一下"foo":
 
-    [me@linuxbox ~]$ type foo
-    bash: type: foo: not found
+```
+[me@linuxbox ~]$ type foo
+bash: type: foo: not found
+```
 
 Great! "foo" is not taken. So let's create our alias:
 
 > 太棒了！"foo"还没被占用。创建命令别名：
 
-    [me@linuxbox ~]$ alias foo='cd /usr; ls; cd -'
+```
+[me@linuxbox ~]$ alias foo='cd /usr; ls; cd -'
+```
 
 Notice the structure of this command:
 
 > 注意命令结构：
 
-    alias name='string'
+```
+alias name='string'
+```
 
 After the command "alias" we give alias a name followed immediately (no whitespace allowed) by an equals sign, followed immediately by a quoted string containing the meaning to be assigned to the name. After we define our alias, it can be used anywhere the shell would expect a command. Let's try it:
 
 > 在命令"alias"之后，输入"name"，紧接着（没有空格）是一个等号，等号之后是 一串用引号引起的字符串，字符串的内容要赋值给 name。我们定义了别名之后， 这个命令别名可以使用在任何地方。试一下：
 
-    [me@linuxbox ~]$ foo
-    bin   games   kerberos  lib64    local   share  tmp
-    ...
-    [me@linuxbox ~]$
+```
+[me@linuxbox ~]$ foo
+bin   games   kerberos  lib64    local   share  tmp
+...
+[me@linuxbox ~]$
+```
 
 We can also use the type command again to see our alias:
 
 > 我们也可以使用 type 命令来查看我们的别名：
 
-    [me@linuxbox ~]$ type foo
-    foo is aliased to `cd /usr; ls ; cd -'
+```
+[me@linuxbox ~]$ type foo
+foo is aliased to `cd /usr; ls ; cd -'
+```
 
 To remove an alias, the unalias command is used, like so:
 
 > 删除别名，使用 unalias 命令，像这样：
 
-    [me@linuxbox ~]$ unalias foo
-    [me@linuxbox ~]$ type foo
-    bash: type: foo: not found
+```
+[me@linuxbox ~]$ unalias foo
+[me@linuxbox ~]$ type foo
+bash: type: foo: not found
+```
 
 While we purposefully avoided naming our alias with an existing command name, it is not uncommon to do so. This is often done to apply a commonly desired option to each invocation of a common command. For instance, we saw earlier how the ls command is often aliased to add color support:
 
 > 虽然我们有意避免使用已经存在的命令名来命名我们的别名，但有时候也会故意这么做。通常， 会把一个普遍用到的选项加到一个经常使用的命令后面。例如，之前见到的 ls 命令，会 带有色彩支持：
 
-    [me@linuxbox ~]$ type ls
-    ls is aliased to 'ls --color=tty'
+```
+[me@linuxbox ~]$ type ls
+ls is aliased to 'ls --color=tty'
+```
 
 To see all the aliases defined in the environment, use the alias command without arguments. Here are some of the aliases defined by default on a Fedora system. Try and figure out what they all do:
 
 > 要查看所有定义在系统环境中的别名，可使用不带参数的 alias 命令。下面是 Fedora 系统中 默认定义的别名。试着弄明白它们是做什么的：
 
-    [me@linuxbox ~]$ alias
-    alias l.='ls -d .* --color=tty'
-    ...
+```
+[me@linuxbox ~]$ alias
+alias l.='ls -d .* --color=tty'
+...
+```
 
 There is one tiny problem with defining aliases on the command line. They vanish when your shell session ends. In a later chapter, we will see how to add our own aliases to the files that establish the environment each time we log on, but for now, enjoy the fact that we have taken our first, albeit tiny, step into the world of shell programming!
 
@@ -1177,30 +1532,21 @@ Now that we have learned how to find the documentation for commands, go and look
 
 ### 拓展阅读
 
--   There are many online sources of documentation for Linux and the command line. Here are some of the best:
+- There are many online sources of documentation for Linux and the command line. Here are some of the best:
+- 在网上，有许多关于 Linux 和命令行的文档。以下是其中最好的一些：
+- The Bash Reference Manual is a reference guide to the bash shell. It's still a reference work but contains examples and is easier to read than the bash man page.
+- Bash 参考手册是一本 bash shell 的参考指南。它仍然是一本参考书，但是包含了很多 实例，而且它比 bash 手册页容易阅读。
 
--   在网上，有许多关于 Linux 和命令行的文档。以下是其中最好的一些：
+  [http://www.gnu.org/software/bash/manual/bashref.html](http://www.gnu.org/software/bash/manual/bashref.html)
+- The Bash FAQ contains answers to frequently asked questions regarding bash. This list is aimed at intermediate to advanced users, but contains a lot of good information.
+- Bash FAQ 包含关于 bash，而经常提到的问题的答案。这个列表面向 bash 的中高级用户， 但它包含了许多有帮助的信息。
 
--   The Bash Reference Manual is a reference guide to the bash shell. It's still a reference work but contains examples and is easier to read than the bash man page.
+  [http://mywiki.wooledge.org/BashFAQ](http://mywiki.wooledge.org/BashFAQ)
+- The GNU Project provides extensive documentation for its programs, which form the core of the Linux command line experience. You can see a complete list here:
+- GNU 项目为它的程序提供了大量的文档，这些文档组成了 Linux 命令行实验的核心。 这里你可以看到一个完整的列表：
 
--   Bash 参考手册是一本 bash shell 的参考指南。它仍然是一本参考书，但是包含了很多 实例，而且它比 bash 手册页容易阅读。
+  [http://www.gnu.org/manual/manual.html](http://www.gnu.org/manual/manual.html)
+- Wikipedia has an interesting article on man pages:
+- Wikipedia 有一篇关于手册页的有趣文章：
 
-    <http://www.gnu.org/software/bash/manual/bashref.html>
-
--   The Bash FAQ contains answers to frequently asked questions regarding bash. This list is aimed at intermediate to advanced users, but contains a lot of good information.
-
--   Bash FAQ 包含关于 bash，而经常提到的问题的答案。这个列表面向 bash 的中高级用户， 但它包含了许多有帮助的信息。
-
-    <http://mywiki.wooledge.org/BashFAQ>
-
--   The GNU Project provides extensive documentation for its programs, which form the core of the Linux command line experience. You can see a complete list here:
-
--   GNU 项目为它的程序提供了大量的文档，这些文档组成了 Linux 命令行实验的核心。 这里你可以看到一个完整的列表：
-
-    <http://www.gnu.org/manual/manual.html>
-
--   Wikipedia has an interesting article on man pages:
-
--   Wikipedia 有一篇关于手册页的有趣文章：
-
-    <http://en.wikipedia.org/wiki/Man_page>
+  [http://en.wikipedia.org/wiki/Man_page](http://en.wikipedia.org/wiki/Man_page)

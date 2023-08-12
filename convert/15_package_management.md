@@ -3,7 +3,6 @@ layout: book
 title: 软件包管理
 package_management
 ---
-
 If we spend any time in the Linux community, we hear many opinions as to which of the many Linux distributions is "best." Often, these discussions get really silly, focusing on such things as the prettiness of the desktop background (some people won't use Ubuntu because its default color scheme is brown!) and other trivial matters.
 
 > 如果我们在 Linux 社区里已经混了一段时间了，会看到很多关于哪个 Linux 发行版是"最佳"的争论。 这些争论通常非常幼稚，集中在一些像桌面背景的漂亮程度（一些人不使用 Ubuntu， 只是因为 Ubuntu 默认主题颜色是棕色的！）和其它的琐碎东西上。
@@ -25,149 +24,207 @@ Different distributions use different packaging systems and as a general rule, a
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 15-1: Major Packaging System Families
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Packaging System
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Distributions (Partial Listing)
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 Debian Style (.deb)
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian, Ubuntu, Xandros, Linspire
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Red Hat Style (.rpm)
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Fedora, CentOS, Red Hat Enterprise Linux, OpenSUSE, Mandriva, PCLinuxOS
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表15-1: 主要的包管理系统家族
+
+> 表 15-1: 主要的包管理系统家族
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 包管理系统
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 发行版 (部分列表)
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 Debian Style (.deb)
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian, Ubuntu, Xandros, Linspire
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Red Hat Style (.rpm)
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Fedora, CentOS, Red Hat Enterprise Linux, OpenSUSE, Mandriva, PCLinuxOS
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ### 软件包管理系统是怎样工作的
 
 The method of software distribution found in the proprietary software industry usually entails buying a piece of installation media such as an "install disk" and then running an "installation wizard" to install a new application on the system.
@@ -200,7 +257,7 @@ A distribution may maintain several different repositories for different stages 
 
 A distribution may also have related third-party repositories. These are often needed to supply software that, for legal reasons such as patents or DRM anti-circumvention issues, cannot be included with the distribution. Perhaps the best known case is that of encrypted DVD support, which is not legal in the United States. The third-party repositories operate in countries where software patents and anti-circumvention laws do not apply. These repositories are usually wholly independent of the distribution they support and to use them, one must know about them and manually include them in the configuration files for the package management system.
 
-> 一个系统发行版可能也会拥有相关第三方的包仓库。这些库需要支持一些因法律原因， 比如说专利或者是 DRM 反规避问题，而不能被包含到发行版中的软件。可能最著名的案例就是 对加密DVD的播放支持，在美国这是不合法的。第三方包仓库在一些软件专利和反规避法案不 生效的国家中设立并分发资源。这些库通常完全地独立于它们所支持的包仓库，要想使用它们， 你必须了解它们，手动地把它们包含到软件包管理系统的配置文件中。
+> 一个系统发行版可能也会拥有相关第三方的包仓库。这些库需要支持一些因法律原因， 比如说专利或者是 DRM 反规避问题，而不能被包含到发行版中的软件。可能最著名的案例就是 对加密 DVD 的播放支持，在美国这是不合法的。第三方包仓库在一些软件专利和反规避法案不 生效的国家中设立并分发资源。这些库通常完全地独立于它们所支持的包仓库，要想使用它们， 你必须了解它们，手动地把它们包含到软件包管理系统的配置文件中。
 
 ### 依赖性
 
@@ -217,191 +274,267 @@ Package management systems usually consist of two types of tools: low-level tool
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table15- 2: Packaging System Tools
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Distributions
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Low-Level Tools
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 High-Level Tools
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian-Style
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 dpkg
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 apt-get, aptitude
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Fedora, Red Hat Enterprise Linux, CentOS
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 rpm
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 yum
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表15-2: 包管理工具
+
+> 表 15-2: 包管理工具
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 发行版
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 底层工具
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 上层工具
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian-Style
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 dpkg
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 apt-get, aptitude
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Fedora, Red Hat Enterprise Linux, CentOS
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 rpm
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 yum
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ### 常见软件包管理任务
 
 There are many operations that can be performed with the command line package management tools. We will look at the most common. Be aware that the low-level tools also support creation of package files, an activity outside the scope of this book. In the discussion below, the term "package_name" refers to the actual name of a package rather than the term "package_file," which is the name of the file that contains the package.
@@ -417,154 +550,214 @@ Using the high-level tools to search repository metadata, a package can be locat
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 15-3: Package Search Commands
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Style
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Command(s)
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 apt-get update; apt-cache search search_string
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Red Hat
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 yum search search_string
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表15-3: 软件包查找工具
+
+> 表 15-3: 软件包查找工具
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 风格
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 命令
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 apt-get update; apt-cache search search_string
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Red Hat
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 yum search search_string
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 Example: To search a yum repository for the emacs text editor, this command could be used:
 
 > 例如：搜索一个 yum 包仓库来查找 emacs 文本编辑器，使用以下命令：
 
-    yum search emacs
+```
+yum search emacs
+```
 
 ### 从包仓库中安装一个软件包
 
@@ -575,154 +768,214 @@ High-level tools permit a package to be downloaded from a repository and install
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 15-4: Package Installation Commands
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Style
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Command(s)
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 apt-get update; apt-get install package_name
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Red Hat
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 yum install package_name
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表15-4: 软件包安装命令
+
+> 表 15-4: 软件包安装命令
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 风格
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 命令
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 apt-get update; apt-get install package_name
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Red Hat
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 yum install package_name
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 Example: To install the emacs text editor from an apt repository:
 
 > 例如：从一个 apt 包仓库来安装 emacs 文本编辑器：
 
-    apt-get update; apt-get install emacs
+```
+apt-get update; apt-get install emacs
+```
 
 ### 通过软件包文件来安装软件
 
@@ -733,162 +986,222 @@ If a package file has been downloaded from a source other than a repository, it 
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 15-5: Low-Level Package Installation Commands
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Style
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Command(s)
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 dpkg --install package_file
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Red Hat
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 rpm -i package_file
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表15-5: 底层软件包安装命令
+
+> 表 15-5: 底层软件包安装命令
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 风格
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 命令
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 dpkg --install package_file
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Red Hat
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 rpm -i package_file
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 Example: If the emacs-22.1-7.fc7-i386.rpm package file had been downloaded from a non-repository site, it would be installed this way:
 
 > 例如：如果已经从一个并非包仓库的网站下载了软件包文件 emacs-22.1-7.fc7-i386.rpm， 则可以通过这种方法来安装它：
 
-    rpm -i emacs-22.1-7.fc7-i386.rpm
+```
+rpm -i emacs-22.1-7.fc7-i386.rpm
+```
 
-------------------------------------------------------------------------
+---
 
 Note: Since this technique uses the low-level rpm program to perform the installation, no dependency resolution is performed. If rpm discovers a missing dependency, rpm will exit with an error.
 
 > 注意：因为这项技术使用底层的 rpm 程序来执行安装任务，所以没有运行依赖解析。 如果 rpm 程序发现缺少了一个依赖，则会报错并退出。
 
-------------------------------------------------------------------------
+---
 
 ### 卸载软件
 
@@ -899,154 +1212,214 @@ Packages can be uninstalled using either the high-level or low-tools. The high-l
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table15-6: Package Removal Commands
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Style
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Command(s)
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 apt-get remove package_name
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Red Hat
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 yum erase package_name
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表15-6: 软件包删除命令
+
+> 表 15-6: 软件包删除命令
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 风格
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 命令
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 apt-get remove package_name
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Red Hat
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 yum erase package_name
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 Example: To uninstall the emacs package from a Debian-style system:
 
 > 例如：从 Debian 风格的系统中卸载 emacs 软件包：
 
-    apt-get remove emacs
+```
+apt-get remove emacs
+```
 
 ### 经过包仓库来更新软件包
 
@@ -1057,154 +1430,214 @@ The most common package management task is keeping the system up-to-date with th
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 15-7: Package Update Commands
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Style
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Command(s)
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 apt-get update; apt-get upgrade
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Red Hat
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 yum update
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表15-7: 软件包更新命令
+
+> 表 15-7: 软件包更新命令
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 风格
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 命令
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 apt-get update; apt-get upgrade
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Red Hat
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 yum update
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 Example: To apply any available updates to the installed packages on a Debian-style system:
 
 > 例如：更新安装在 Debian 风格系统中的软件包：
 
-    apt-get update; apt-get upgrade
+```
+apt-get update; apt-get upgrade
+```
 
 ### 经过软件包文件来升级软件
 
@@ -1215,162 +1648,222 @@ If an updated version of a package has been downloaded from a non-repository sou
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 15-8: Low-Level Package Upgrade Commands
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Style
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Command(s)
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 dpkg --install package_file
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Red Hat
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 rpm -U package_file
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表15-8: 底层软件包升级命令
+
+> 表 15-8: 底层软件包升级命令
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 风格
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 命令
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 dpkg --install package_file
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Red Hat
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 rpm -U package_file
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 Example: Updating an existing installation of emacs to the version contained in the package file emacs-22.1-7.fc7-i386.rpm on a Red Hat system:
 
 > 例如：把 Red Hat 系统中所安装的 emacs 的版本更新到软件包文件 emacs-22.1-7.fc7-i386.rpmz 所包含的 emacs 版本。
 
-    rpm -U emacs-22.1-7.fc7-i386.rpm
+```
+rpm -U emacs-22.1-7.fc7-i386.rpm
+```
 
-------------------------------------------------------------------------
+---
 
 Note: dpkg does not have a specific option for upgrading a package versus installing one as rpm does.
 
 > 注意：rpm 程序安装一个软件包和升级一个软件包所用的选项是不同的，而 dpkg 程序所用的选项是相同的。
 
-------------------------------------------------------------------------
+---
 
 ### 列出所安装的软件包
 
@@ -1381,149 +1874,207 @@ These commands can be used to display a list of all the packages installed on th
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 15-9: Package Listing Commands
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Style
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Command(s)
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 dpkg --list
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Red Hat
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 rpm -qa
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表15-9: 列出所安装的软件包命令
+
+> 表 15-9: 列出所安装的软件包命令
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 风格
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 命令
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 dpkg --list
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Red Hat
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 rpm -qa
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ### 确定是否安装了一个软件包
 
 These low-level tools can be used to display whether a specified package is installed:
@@ -1533,154 +2084,214 @@ These low-level tools can be used to display whether a specified package is inst
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 15-10: Package Status Commands
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Style
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Command(s)
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 dpkg --status package_name
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Red Hat
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 rpm -q package_name
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表15-10: 软件包状态命令
+
+> 表 15-10: 软件包状态命令
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 风格
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 命令
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 dpkg --status package_name
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Red Hat
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 rpm -q package_name
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 Example: To determine if the emacs package is installed on a Debian style system:
 
 > 例如：确定是否 Debian 风格的系统中安装了这个 emacs 软件包：
 
-    dpkg --status emacs
+```
+dpkg --status emacs
+```
 
 ### 显示所安装软件包的信息
 
@@ -1691,154 +2302,214 @@ If the name of an installed package is known, the following commands can be used
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 15-11: Package Information Commands
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Style
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Command(s)
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 apt-cache show package_name
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Red Hat
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 yum info package_name
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表15-11: 查看软件包信息命令
+
+> 表 15-11: 查看软件包信息命令
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 风格
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 命令
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 apt-cache show package_name
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Red Hat
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 yum info package_name
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 Example: To see a description of the emacs package on a Debian-style system:
 
 > 例如：查看 Debian 风格的系统中 emacs 软件包的说明信息：
 
-    apt-cache show emacs
+```
+apt-cache show emacs
+```
 
 ### 查找安装了某个文件的软件包
 
@@ -1849,154 +2520,214 @@ To determine what package is responsible for the installation of a particular fi
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 15-12: Package File Identification Commands
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Style
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Command(s)
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 dpkg --search file_name
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Red Hat
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 rpm -qf file_name
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表15-12: 包文件识别命令
+
+> 表 15-12: 包文件识别命令
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 风格
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 命令
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Debian
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 dpkg --search file_name
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Red Hat
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 rpm -qf file_name
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 Example: To see what package installed the /usr/bin/vim file on a Red Hat system:
 
 > 例如：在 Red Hat 系统中，查看哪个软件包安装了/usr/bin/vim 这个文件
 
-    rpm -qf /usr/bin/vim
+```
+rpm -qf /usr/bin/vim
+```
 
 ### 总结归纳
 
@@ -2020,17 +2751,12 @@ In the chapters that follow, we will explore many different programs covering a 
 >
 > 设备驱动差不多也以同样的方式来处理，但它们不是系统发行版包仓库中单独的项目， 它们本身是 Linux 系统内核的一部分。一般来说，在 Linux 当中没有一个类似于"驱动盘"的东西。 Linux 内核要么支持一个设备，要不就不支持。Linux 内核支持很多设备，事实上，Linux 支持的设备数目多于 Windows 所支持的。当然，万一你需要的特定设备不被 Linux 支持，也于事无补。当那种情况 发生时，你需要查找一下原因。缺少驱动程序支持通常是由以下三种情况之一导致：
 >
-> 1.  *The device is too new.* Since many hardware vendors don't actively support Linux development, it falls upon a member of the Linux community to write the kernel driver code. This takes time.
->
-> 2.  *The device is too exotic.* Not all distributions include every possible device driver. Each distribution builds their own kernels, and since kernels are very configurable (which is what makes it possible to run Linux on everything from wristwatches to mainframes) they may have overlooked a particular device. By locating and downloading the source code for the driver, it is possible for you (yes, you) to compile and install the driver yourself. This process is not overly difficult, but it is rather involved. We'll talk about compiling software in a later chapter.
->
-> 3.  *The hardware vendor is hiding something.* They have neither released source code for a Linux driver, nor have they released the technical documentation for somebody to create one for them. This means that the hardware vendor is trying to keep the programming interfaces to the device a secret. Since we don't want secret devices in our computers, I suggest that you remove the offending hardware and pitch it into the trash, with your other useless items. \^
->
-> 4.  *设备太新。* 因为许多硬件供应商没有积极地支持 Linux 的发展，那么编写内核 驱动代码的任务就由一些 Linux 社区来承担，而这需要花费时间。
->
-> 5.  *设备太奇异。* 不是所有的发行版都包含每个可能的设备驱动。每个发行版会建立 它们自己的内核，因为内核是可以配置的（这使得从手表到主机的每台设备上运行 Linux 成为可能）， 这样它们可能会忽略某个特殊设备。通过定位和下载驱动程序的源码，可能需要你自己（是的，由你） 来编译和安装驱动。这个过程不是很难，而是需要参与的。我们将在随后的章节里来讨论编译软件。
->
-> 6.  *硬件供应商隐藏信息。* 他们既不发布应用于 Linux 系统的驱动程序代码， 也不发布技术文档来让某人创建它。这意味着硬件供应商试图保密此设备的程序接口。因为我们 不想在计算机中使用保密的设备，所以我建议删除这令人厌恶的硬件， 把它和其它无用的东西都扔到垃圾桶里。
+> 1. *The device is too new.* Since many hardware vendors don't actively support Linux development, it falls upon a member of the Linux community to write the kernel driver code. This takes time.
+> 2. *The device is too exotic.* Not all distributions include every possible device driver. Each distribution builds their own kernels, and since kernels are very configurable (which is what makes it possible to run Linux on everything from wristwatches to mainframes) they may have overlooked a particular device. By locating and downloading the source code for the driver, it is possible for you (yes, you) to compile and install the driver yourself. This process is not overly difficult, but it is rather involved. We'll talk about compiling software in a later chapter.
+> 3. *The hardware vendor is hiding something.* They have neither released source code for a Linux driver, nor have they released the technical documentation for somebody to create one for them. This means that the hardware vendor is trying to keep the programming interfaces to the device a secret. Since we don't want secret devices in our computers, I suggest that you remove the offending hardware and pitch it into the trash, with your other useless items. \^
+> 4. *设备太新。* 因为许多硬件供应商没有积极地支持 Linux 的发展，那么编写内核 驱动代码的任务就由一些 Linux 社区来承担，而这需要花费时间。
+> 5. *设备太奇异。* 不是所有的发行版都包含每个可能的设备驱动。每个发行版会建立 它们自己的内核，因为内核是可以配置的（这使得从手表到主机的每台设备上运行 Linux 成为可能）， 这样它们可能会忽略某个特殊设备。通过定位和下载驱动程序的源码，可能需要你自己（是的，由你） 来编译和安装驱动。这个过程不是很难，而是需要参与的。我们将在随后的章节里来讨论编译软件。
+> 6. *硬件供应商隐藏信息。* 他们既不发布应用于 Linux 系统的驱动程序代码， 也不发布技术文档来让某人创建它。这意味着硬件供应商试图保密此设备的程序接口。因为我们 不想在计算机中使用保密的设备，所以我建议删除这令人厌恶的硬件， 把它和其它无用的东西都扔到垃圾桶里。
 
 ### 拓展阅读
 
@@ -2038,26 +2764,19 @@ Spend some time getting to know the package management system for your distribut
 
 > 花些时间来了解你所用发行版中的软件包管理系统。每个发行版都提供了关于自带软件包管理工具的 文档。这里有一些资源：
 
--   The Debian GNU/Linux FAQ chapter on package management provides an overview of package management on Debian systems :
+- The Debian GNU/Linux FAQ chapter on package management provides an overview of package management on Debian systems :
+- Debian GNU/Linux FAQ 关于软件包管理一章对软件包管理进行了概述：
 
--   Debian GNU/Linux FAQ 关于软件包管理一章对软件包管理进行了概述：
+  [http://www.debian.org/doc/FAQ/ch-pkgtools.en.html](http://www.debian.org/doc/FAQ/ch-pkgtools.en.html)
+- The home page for the RPM project:
+- RPM 工程的主页：
 
-    <http://www.debian.org/doc/FAQ/ch-pkgtools.en.html>
+  [http://www.rpm.org](http://www.rpm.org)
+- The home page for the YUM project at Duke University:
+- 杜克大学 YUM 工程的主页：
 
--   The home page for the RPM project:
+  [http://linux.duke.edu/projects/yum/](http://linux.duke.edu/projects/yum/)
+- For a little background, the Wikipedia has an article on metadata:
+- 了解一点儿背景知识，Wikipedia 上有一篇关于 metadata 的文章：
 
--   RPM 工程的主页：
-
-    <http://www.rpm.org>
-
--   The home page for the YUM project at Duke University:
-
--   杜克大学 YUM 工程的主页：
-
-    <http://linux.duke.edu/projects/yum/>
-
--   For a little background, the Wikipedia has an article on metadata:
-
--   了解一点儿背景知识，Wikipedia 上有一篇关于 metadata 的文章：
-
-    <http://en.wikipedia.org/wiki/Metadata>
+  [http://en.wikipedia.org/wiki/Metadata](http://en.wikipedia.org/wiki/Metadata)

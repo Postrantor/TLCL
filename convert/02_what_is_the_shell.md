@@ -2,7 +2,6 @@
 layout: book
 title: 什么是 shell
 ---
-
 When we speak of the command line, we are really referring to the shell. The shell is a program that takes keyboard commands and passes them to the operating system to carry out. Almost all Linux distributions supply a shell program from the GNU Project called bash. The name "bash" is an acronym for "Bourne Again SHell", a reference to the fact bash is an enhanced replacement for sh, the original Unix shell program written by Steve Bourne.
 
 > 一说到命令行，我们真正指的是 shell。shell 就是一个程序，它接受从键盘输入的命令， 然后把命令传递给操作系统去执行。几乎所有的 Linux 发行版都提供一个名为 bash 的 来自 GNU 项目的 shell 程序。"bash" 是 "Bourne Again SHell" 的首字母缩写， 是最初在 Unix 上由 Steve Bourne 写成 shell 程序 sh 的增强版。
@@ -19,11 +18,13 @@ So let's get started. Launch the terminal emulator! Once it comes up, we should 
 
 > 好，开始吧。启动终端仿真器！一旦它运行起来，我们应该看到一行像这样的文字：
 
-    [me@linuxbox ~]$
+```
+[me@linuxbox ~]$
+```
 
 This is called a shell prompt and it will appear whenever the shell is ready to accept input. While it may vary in appearance somewhat depending on the distribution, it will usually include your username@machinename, followed by the current working directory (more about that in a little bit) and a dollar sign.
 
-> 这叫做 shell 提示符，当 shell 准备好了去接受输入时，它就会出现。然而， 它可能会以各种各样的面孔显示，这则取决于不同的 Linux 发行版， 它通常包括你的用户名@主机名，紧接着当前工作目录（稍后会有更多介绍）和一个美元符号。
+> 这叫做 shell 提示符，当 shell 准备好了去接受输入时，它就会出现。然而， 它可能会以各种各样的面孔显示，这则取决于不同的 Linux 发行版， 它通常包括你的用户名 @ 主机名，紧接着当前工作目录（稍后会有更多介绍）和一个美元符号。
 
 If the last character of the prompt is a pound sign ("\#") rather than a dollar sign, the terminal session has superuser privileges. This means either we are logged in as the root user or we selected a terminal emulator that provides superuser (administrative) privileges.
 
@@ -33,20 +34,24 @@ Assuming that things are good so far, let's try some typing. Type some gibberish
 
 > 假定到目前为止，所有事情都进展顺利，那我们试着键入字符吧。在提示符下敲入 一些像下面一样的乱七八糟的字符：
 
-    [me@linuxbox ~]$ kaekfjaeifj
+```
+[me@linuxbox ~]$ kaekfjaeifj
+```
 
 Since this command makes no sense, the shell will tell us so and give us another chance:
 
 > 因为这个命令没有任何意义，所以 shell 会提示错误信息，并让我们再试一下：
 
-    bash: kaekfjaeifj: command not found
-    [me@linuxbox ~]$
+```
+bash: kaekfjaeifj: command not found
+[me@linuxbox ~]$
+```
 
 ### 命令历史
 
 If we press the up-arrow key, we will see that the previous command "kaekfjaeifj" reappears after the prompt. This is called command history. Most Linux distributions remember the last five hundred commands by default. Press the down-arrow key and the previous command disappears.
 
-> 如果按下上箭头按键，我们会看到刚才输入的命令"kaekfjaeifj"重新出现在提示符之后。 这就叫做命令历史。许多 Linux 发行版默认保存最后输入的500个命令。 按下下箭头按键，先前输入的命令就消失了。
+> 如果按下上箭头按键，我们会看到刚才输入的命令"kaekfjaeifj"重新出现在提示符之后。 这就叫做命令历史。许多 Linux 发行版默认保存最后输入的 500 个命令。 按下下箭头按键，先前输入的命令就消失了。
 
 ### 移动光标
 
@@ -74,43 +79,51 @@ Now that we have learned to type, let's try a few simple commands. The first one
 
 > 现在，我们学习了怎样输入命令，那我们执行一些简单的命令吧。第一个命令是 date。 这个命令显示系统当前时间和日期。
 
-    [me@linuxbox ~]$ date
-    Thu Oct 25 13:51:54 EDT 2007
+```
+[me@linuxbox ~]$ date
+Thu Oct 25 13:51:54 EDT 2007
+```
 
 A related command is cal which, by default, displays a calendar of the current month.
 
 > 一个相关联的命令，cal，它默认显示当前月份的日历。
 
-    [me@linuxbox ~]$ cal
-    October 2007
-    Su Mo Tu We Th Fr Sa
-    1 2 3 4 5 6
-    7 8 9 10 11 12 13
-    14 15 16 17 18 19 20
-    21 22 23 24 25 26 27
-    28 29 30 31
+```
+[me@linuxbox ~]$ cal
+October 2007
+Su Mo Tu We Th Fr Sa
+1 2 3 4 5 6
+7 8 9 10 11 12 13
+14 15 16 17 18 19 20
+21 22 23 24 25 26 27
+28 29 30 31
+```
 
 To see the current amount of free space on your disk drives, type df:
 
 > 查看磁盘剩余空间的数量，输入 df:
 
-    [me@linuxbox ~]$ df
-    Filesystem           1K-blocks      Used Available Use% Mounted on
-    /dev/sda2             15115452   5012392   9949716  34% /
-    /dev/sda5             59631908  26545424  30008432  47% /home
-    /dev/sda1               147764     17370   122765   13% /boot
-    tmpfs                   256856         0   256856    0% /dev/shm
+```
+[me@linuxbox ~]$ df
+Filesystem           1K-blocks      Used Available Use% Mounted on
+/dev/sda2             15115452   5012392   9949716  34% /
+/dev/sda5             59631908  26545424  30008432  47% /home
+/dev/sda1               147764     17370   122765   13% /boot
+tmpfs                   256856         0   256856    0% /dev/shm
+```
 
 Likewise, to display the amount of free memory, type the free command.
 
 > 同样地，显示空闲内存的数量，输入命令 free 。
 
-    [me@linuxbox ~]$ free
-    total       used       free     shared    buffers     cached
-    Mem:       2059676     846456    1213220          0
-    44028      360568
-    -/+ buffers/cache:     441860    1617816
-    Swap:      1042428          0    1042428
+```
+[me@linuxbox ~]$ free
+total       used       free     shared    buffers     cached
+Mem:       2059676     846456    1213220          0
+44028      360568
+-/+ buffers/cache:     441860    1617816
+Swap:      1042428          0    1042428
+```
 
 ### 结束终端会话
 
@@ -118,7 +131,9 @@ We can end a terminal session by either closing the terminal emulator window, or
 
 > 我们可以通过关闭终端仿真器窗口，或者是在 shell 提示符下输入 exit 命令来终止一个终端会话：
 
-    [me@linuxbox ~]$ exit
+```
+[me@linuxbox ~]$ exit
+```
 
 ### 幕后控制台
 
@@ -130,12 +145,12 @@ Even if we have no terminal emulator running, several terminal sessions continue
 
 To learn more about Steve Bourne, father of the Bourne Shell, see this Wikipedia article:
 
--   想了解更多关于 Steve Bourne 的故事，Bourne Shell 之父，读一下这篇文章：
+- 想了解更多关于 Steve Bourne 的故事，Bourne Shell 之父，读一下这篇文章：
 
-    <http://en.wikipedia.org/wiki/Steve_Bourne>
+  [http://en.wikipedia.org/wiki/Steve_Bourne](http://en.wikipedia.org/wiki/Steve_Bourne)
 
 Here is an article about the concept of shells in computing:
 
--   这是一篇关于在计算机领域里，shell 概念的文章：
+- 这是一篇关于在计算机领域里，shell 概念的文章：
 
-    <http://en.wikipedia.org/wiki/Shell_(computing)>
+  [http://en.wikipedia.org/wiki/Shell_(computing)](http://en.wikipedia.org/wiki/Shell_(computing))

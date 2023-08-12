@@ -3,22 +3,18 @@ layout: book
 title: 键盘高级操作技巧
 advanced_keyboard_tricks
 ---
-
 I often kiddingly describe Unix as "the operating system for people who like to type." Of course, the fact that it even has a command line is a testament to that. But command line users don't like to type that much. Why else would so many commands have such short names like cp, ls, mv, and rm? In fact, one of the most cherished goals of the command line is laziness; doing the most work with the fewest number of keystrokes. Another goal is never having to lift your fingers from the keyboard, never reaching for the mouse. In this chapter, we will look at bash features that make keyboard use faster and more efficient.
 
-> 开玩笑地说，我经常把 Unix 描述为"这个操作系统是为喜欢敲键盘的人们而生的。" 当然，Unix 有命令行这件事证明了我所说的话。但是命令行用户不喜欢敲入 那么多字。要不为什么会有如此多的命令有这样简短的命令名，像cp、ls、mv和 rm？事实上 ，命令行最为珍视的目标之一就是懒惰；用最少的击键次数来完成最多的工作。另一个 目标是你的手指永远不必离开键盘，永不触摸鼠标。在这一章节，我们将看一下 bash 特性 ，这些特性使键盘使用起来更加迅速，更加高效。
+> 开玩笑地说，我经常把 Unix 描述为"这个操作系统是为喜欢敲键盘的人们而生的。" 当然，Unix 有命令行这件事证明了我所说的话。但是命令行用户不喜欢敲入 那么多字。要不为什么会有如此多的命令有这样简短的命令名，像 cp、ls、mv 和 rm？事实上 ，命令行最为珍视的目标之一就是懒惰；用最少的击键次数来完成最多的工作。另一个 目标是你的手指永远不必离开键盘，永不触摸鼠标。在这一章节，我们将看一下 bash 特性 ，这些特性使键盘使用起来更加迅速，更加高效。
 
 The following commands will make an appearance:
 
 > 以下命令将会露面：
 
--   clear - Clear the screen
-
--   history - Display the contents of the history list
-
--   clear － 清空屏幕
-
--   history － 显示历史列表内容
+- clear - Clear the screen
+- history - Display the contents of the history list
+- clear － 清空屏幕
+- history － 显示历史列表内容
 
 ### 命令行编辑
 
@@ -39,621 +35,865 @@ The following table lists the keys used to move the cursor:
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 9-1: Cursor Movement Commands
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Key
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Action
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 Ctrl-a
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Move cursor to the beginning of the line.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Ctrl-e
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Move cursor to the end of the line.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Ctrl-f
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Move cursor forward one character;same as the right arrow key.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Ctrl-b
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Move cursor backward one character;same as the left arrow key.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-f
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Move cursor forward one word.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-b
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Move cursor backward one word.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Ctrl-l
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Clear the screen and move the cursor to the top left corner. The clear command does the same thing.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表9-1: 光标移动命令
+
+> 表 9-1: 光标移动命令
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 按键
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 行动
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 Ctrl-a
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 移动光标到行首。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Ctrl-e
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 移动光标到行尾。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Ctrl-f
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 光标前移一个字符；和右箭头作用一样。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Ctrl-b
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 光标后移一个字符；和左箭头作用一样。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-f
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 光标前移一个字。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-b
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 光标后移一个字。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Ctrl-l
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 清空屏幕，移动光标到左上角。clear 命令完成同样的工作。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ### 修改文本
 
 Table 9-2 lists keyboard commands that are used to edit characters on the command line.
 
-> 表9－2列出了键盘命令，这些命令用来在命令行中编辑字符。
+> 表 9－2 列出了键盘命令，这些命令用来在命令行中编辑字符。
 
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 9-2: Text Editing Commands
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Key
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Action
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 Ctrl-d
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Delete the character at the cursor location
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Ctrl-t
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Transpose(exchange)the character at the cursor location with the one preceding it.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-t
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Transpose the word at the cursor location with the one preceding it.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-l
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Convert the characters from the cursor location to the end of the word to lowercase.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-u
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Convert the characters from the cursor location to the end of the word to uppercase.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表9-2: 文本编辑命令
+
+> 表 9-2: 文本编辑命令
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 按键
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 行动
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 Ctrl-d
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 删除光标位置的字符。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Ctrl-t
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 光标位置的字符和光标前面的字符互换位置。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-t
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 光标位置的字和其前面的字互换位置。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-l
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 把从光标位置到字尾的字符转换成小写字母。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-u
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 把从光标位置到字尾的字符转换成大写字母。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ### 剪切和粘贴文本
 
 The Readline documentation uses the terms killing and yanking to refer to what we would commonly call cutting and pasting. Items that are cut are stored in a buffer called the kill-ring.
@@ -663,269 +903,375 @@ Readline 的文档使用术语 killing 和 yanking 来指我们平常所说的�
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 9-3: Cut And Paste Commands
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Key
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Action
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 Ctrl-k
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Kill text from the cursor location to the end of line.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Ctrl-u
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Kill text from the cursor location to the beginning of the line.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-d
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Kill text from the cursor location to the end of the current word.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-Backspace
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Kill text from the cursor location to the beginning of the word. If the cursor is at the beginning of a word, kill the previous word.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Ctrl-y
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Yank text from the kill-ring and insert it at the cursor location.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表9-3: 剪切和粘贴命令
+
+> 表 9-3: 剪切和粘贴命令
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 按键
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 行动
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 Ctrl-k
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 剪切从光标位置到行尾的文本。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Ctrl-u
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 剪切从光标位置到行首的文本。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-d
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 剪切从光标位置到词尾的文本。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-Backspace
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 剪切从光标位置到词头的文本。如果光标在一个单词的开头，剪切前一个单词。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Ctrl-y
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 把剪切环中的文本粘贴到光标位置。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 > The Meta Key
 >
 > 元键
@@ -944,45 +1290,59 @@ Another way that the shell can help you is through a mechanism called completion
 
 shell 能帮助你的另一种方式是通过一种叫做自动补全的机制。当你敲入一个命令时， 按下 tab 键，自动补全就会发生。让我们看一下这是怎样工作的。给出一个看起来 像这样的家目录：
 
-    [me@linuxbox ~]$ ls
-    Desktop   ls-output.txt   Pictures   Templates   Videos
-    ....
+```
+[me@linuxbox ~]$ ls
+Desktop   ls-output.txt   Pictures   Templates   Videos
+....
+```
 
 Try typing the following but don't press the Enter key:
 
 > 试着输入下面的命令，但不要按下 Enter 键：
 
-    [me@linuxbox ~]$ ls l
+```
+[me@linuxbox ~]$ ls l
+```
 
 Now press the tab key:
 
 > 现在按下 tab 键：
 
-    [me@linuxbox ~]$ ls ls-output.txt
+```
+[me@linuxbox ~]$ ls ls-output.txt
+```
 
 See how the shell completed the line for you? Let's try another one. Again, don't press Enter:
 
 > 看一下 shell 是怎样补全这一行的？让我们再试试另一个例子。这回，也 不要按下 Enter:
 
-    [me@linuxbox ~]$ ls D
+```
+[me@linuxbox ~]$ ls D
+```
 
 Press tab:
 
 > 按下 tab:
 
-    [me@linuxbox ~]$ ls D
+```
+[me@linuxbox ~]$ ls D
+```
 
 No completion, just a beep. This happened because "D" matches more than one entry in the directory. For completion to be successful, the "clue" you give it has to be unambiguous. If we go further:
 
 > 没有补全，只是嘟嘟响。因为"D"不止匹配目录中的一个条目。为了自动补全执行成功， 你给它的"线索"不能模棱两可。如果我们继续输入：
 
-    [me@linuxbox ~]$ ls Do
+```
+[me@linuxbox ~]$ ls Do
+```
 
 Then press tab:
 
 > 然后按下 tab：
 
-    [me@linuxbox ~]$ ls Documents
+```
+[me@linuxbox ~]$ ls Documents
+```
 
 The completion is successful.
 
@@ -999,149 +1359,207 @@ There are a number of control and meta key sequences that are associated with co
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 9-4: Completion Commands
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Key
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Action
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 Alt-?
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Display list of possible completions. On most systems you can also do this by pressing the tab key a second time, which is much easier.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-\*
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Insert all possible completions. This is useful when you want to use more than one possible match.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表9-4: 自动补全命令
+
+> 表 9-4: 自动补全命令
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 按键
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 行动
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 Alt-?
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 显示可能的自动补全列表。在大多数系统中，你也可以完成这个通过按 两次 tab 键，这会更容易些。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-\*
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 插入所有可能的自动补全。当你想要使用多个可能的匹配项时，这个很有帮助。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 > Programmable Completion
 >
 > 可编程自动补全
@@ -1168,51 +1586,67 @@ At any time, we can view the contents of the history list by:
 
 > 在任何时候，我们都可以浏览历史列表的内容，通过：
 
-    [me@linuxbox ~]$ history | less
+```
+[me@linuxbox ~]$ history | less
+```
 
 By default, bash stores the last five hundred commands you have entered. We will see how to adjust this value in a later chapter. Let's say we want to find the commands we used to list /usr/bin. One way we could do this:
 
-> 在默认情况下，bash 会存储你所输入的最后 500 个命令。在随后的章节里，我们会知道 怎样调整这个数值。比方说我们想在自己曾经用过的命令中，找出和/usr/bin这一目录相关的。那么我们就可以这样做：
+> 在默认情况下，bash 会存储你所输入的最后 500 个命令。在随后的章节里，我们会知道 怎样调整这个数值。比方说我们想在自己曾经用过的命令中，找出和/usr/bin 这一目录相关的。那么我们就可以这样做：
 
-    [me@linuxbox ~]$ history | grep /usr/bin
+```
+[me@linuxbox ~]$ history | grep /usr/bin
+```
 
 And let's say that among our results we got a line containing an interesting command like this:
 
 > 比方说在我们的搜索结果之中，我们得到一行，包含了有趣的命令，像这样；
 
-    88  ls -l /usr/bin > ls-output.txt
+```
+88  ls -l /usr/bin > ls-output.txt
+```
 
 The number "88" is the line number of the command in the history list. We could use this immediately using another type of expansion called history expansion. To use our discovered line we could do this:
 
 > 数字 "88" 是这个命令在历史列表中的行号。我们可以使用另一种叫做 历史命令展开的方式，来调用"88"所代表的这一行命令：
 
-    [me@linuxbox ~]$ !88
+```
+[me@linuxbox ~]$ !88
+```
 
 bash will expand "!88" into the contents of the eighty-eighth line in the history list. There are other forms of history expansion that we will cover a little later. bash also provides the ability to search the history list incrementally. This means that we can tell bash to search the history list as we enter characters, with each additional character further refining our search. To start incremental search type Ctrl-r followed by the text you are looking for. When you find it, you can either type Enter to execute the command or type Ctrl-j to copy the line from the history list to the current command line. To find the next occurrence of the text (moving "up" the history list), type Ctrl-r again. To quit searching, type either Ctrl-g or Ctrl-c. Here we see it in action:
 
-bash 会把 "!88" 展开成为历史列表中88行的内容。还有其它的历史命令展开形式，我们一会儿 讨论它们。bash 也具有增量搜索历史列表的能力。意思是在字符输入的同时，bash 会去搜索历史列表（直接出结果，并高亮匹配的第一个字），每多输入一个字符都会使搜索结果更接近目标。输入 Ctrl-r来启动增量搜索， 接着输入你要寻找的字。当你找到它以后，你可以敲入 Enter 来执行命令， 或者输入 Ctrl-j，从历史列表中复制这一行到当前命令行。再次输入 Ctrl-r，来找到下一个 匹配项（历史列表中向上移动）。输入 Ctrl-g 或者 Ctrl-c，退出搜索。现在看看它的实际效果：
+bash 会把 "!88" 展开成为历史列表中 88 行的内容。还有其它的历史命令展开形式，我们一会儿 讨论它们。bash 也具有增量搜索历史列表的能力。意思是在字符输入的同时，bash 会去搜索历史列表（直接出结果，并高亮匹配的第一个字），每多输入一个字符都会使搜索结果更接近目标。输入 Ctrl-r 来启动增量搜索， 接着输入你要寻找的字。当你找到它以后，你可以敲入 Enter 来执行命令， 或者输入 Ctrl-j，从历史列表中复制这一行到当前命令行。再次输入 Ctrl-r，来找到下一个 匹配项（历史列表中向上移动）。输入 Ctrl-g 或者 Ctrl-c，退出搜索。现在看看它的实际效果：
 
-    [me@linuxbox ~]$
+```
+[me@linuxbox ~]$
+```
 
 First type Ctrl-r:
 
 > 首先输入 Ctrl-r:
 
-    (reverse-i-search)`':
+```
+(reverse-i-search)`':
+```
 
 The prompt changes to indicate that we are performing a reverse incremental search. It is "reverse" because we are searching from "now" to some time in the past. Next, we start typing our search text. In this example "/usr/bin":
 
 > 提示符改变，显示我们正在执行反向增量搜索。搜索过程是"反向的"，因为我们按照从"现在"到过去 某个时间段的顺序来搜寻。下一步，我们开始输入要查找的文本。在这个例子里是 "/usr/bin"：
 
-    (reverse-i-search)`/usr/bin': ls -l /usr/bin > ls-output.txt
+```
+(reverse-i-search)`/usr/bin': ls -l /usr/bin > ls-output.txt
+```
 
 > 上面这一行冒号后面的第一个"/"会高亮显示。
 
 Immediately, the search returns our result. With our result, we can execute the command by pressing Enter, or we can copy the command to our current command line for further editing by typing Ctrl-j. Let's copy it. Type Ctrl-j:
 
-> 即刻，搜索返回我们需要的结果。我们可以按下 Enter 键来执行这个命令，或者我们可以按下Ctrl-j复制 这个命令到我们当前的命令行，来进一步编辑它。好了现在我们复制它，输入 Ctrl-j：
+> 即刻，搜索返回我们需要的结果。我们可以按下 Enter 键来执行这个命令，或者我们可以按下 Ctrl-j 复制 这个命令到我们当前的命令行，来进一步编辑它。好了现在我们复制它，输入 Ctrl-j：
 
-    [me@linuxbox ~]$ ls -l /usr/bin > ls-output.txt
+```
+[me@linuxbox ~]$ ls -l /usr/bin > ls-output.txt
+```
 
 Our shell prompt returns and our command line is loaded and ready for action! The table below lists some of the keystrokes used to manipulate the history list:
 
@@ -1221,389 +1655,543 @@ Our shell prompt returns and our command line is loaded and ready for action! Th
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 9-5: History Commands
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Key
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Action
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 Ctrl-p
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Move to the previous history entry. Same action as the up arrow.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Ctrl-n
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Move to the next history entry. Same action as the down arrow.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-\<
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Move to the beginning (top) of the history list.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-\>
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Move to the end (bottom) of the history list, i.e., the current command line.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Ctrl-r
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Reverse incremental search. Searches incrementally from the current command line up the history list.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-p
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Reverse search, non-incremental. With this key, type in the search string and press enter before the search is performed.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-n
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Forward search, non-incremental.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Ctrl-o
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Execute the current item in the history list and advance to the next one. This is handy if you are trying to re-execute a sequence of commands in the history list.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表9-5: 历史命令
+
+> 表 9-5: 历史命令
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 按键
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 行为
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 Ctrl-p
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 移动到上一个历史条目。类似于上箭头按键。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Ctrl-n
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 移动到下一个历史条目。类似于下箭头按键。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-\<
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 移动到历史列表开头。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-\>
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 移动到历史列表结尾，即当前命令行。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Ctrl-r
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 反向增量搜索。从当前命令行开始，向上增量搜索。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-p
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
-> 反向搜索，非增量搜索。（输入要查找的字符串，按下 Enter来执行搜索）。
+
+> 反向搜索，非增量搜索。（输入要查找的字符串，按下 Enter 来执行搜索）。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Alt-n
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 向前搜索，非增量。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Ctrl-o
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 执行历史列表中的当前项，并移到下一个。如果你想要执行历史列表中一系列的命令，这很方便。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ### 历史命令展开
 
 The shell offers a specialized type of expansion for items in the history list by using the "!" character. We have already seen how the exclamation point can be followed by a number to insert an entry from the history list. There are a number of other expansion features:
@@ -1613,229 +2201,319 @@ The shell offers a specialized type of expansion for items in the history list b
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 9-6: History Expansion Commands
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Sequence
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Action
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 !!
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Repeat the last command. It is probably easier to press up arrow and enter.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 !number
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Repeat history list item number.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 !string
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Repeat last history list item starting with string.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 !?string
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Repeat last history list item containing string.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表9-6: 历史展开命令
+
+> 表 9-6: 历史展开命令
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 序列
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 行为
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top" width="25%">
 ```
+
 !!
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 重复最后一次执行的命令。可能按下上箭头按键和 enter 键更容易些。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 !number
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 重复历史列表中第 number 行的命令。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 !string
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 重复最近历史列表中，以这个字符串开头的命令。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 !?string
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 重复最近历史列表中，包含这个字符串的命令。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 I would caution against using the "!string" and "!?string" forms unless you are absolutely sure of the contents of the history list items.
 
 > 应该小心谨慎地使用 "!string" 和 "!?string" 格式，除非你完全确信历史列表条目的内容。
@@ -1866,8 +2544,7 @@ In this chapter we have covered some of the keyboard tricks that the shell provi
 
 ### 拓展阅读
 
--   The Wikipedia has a good article on computer terminals:
+- The Wikipedia has a good article on computer terminals:
+- Wikipedia 上有一篇关于计算机终端的好文章：
 
--   Wikipedia 上有一篇关于计算机终端的好文章：
-
-    <http://en.wikipedia.org/wiki/Computer_terminal>
+  [http://en.wikipedia.org/wiki/Computer_terminal](http://en.wikipedia.org/wiki/Computer_terminal)

@@ -3,7 +3,6 @@ layout: book
 title: 字符串和数字
 strings_and_numbers
 ---
-
 Computer programs are all about working with data. In past chapters, we have focused on processing data at the file level. However, many programming problems need to be solved using smaller units of data such as strings and numbers.
 
 > 所有的计算机程序都是用来和数据打交道的。在过去的章节中，我们专注于处理文件级别的数据。 然而，许多编程问题需要使用更小的数据单位来解决，比方说字符串和数字。
@@ -40,19 +39,23 @@ This has no effect on the expansion, but is required if the variable is adjacent
 
 > 虽然这对展开没有影响，但若该变量 a 与其它的文本相邻，可能会把 shell 搞糊涂了。在这个例子中，我们试图 创建一个文件名，通过把字符串 "\_file" 附加到变量 a 的值的后面。
 
-    [me@linuxbox ~]$ a="foo"
-    [me@linuxbox ~]$ echo "$a_file"
+```
+[me@linuxbox ~]$ a="foo"
+[me@linuxbox ~]$ echo "$a_file"
+```
 
 If we perform this sequence, the result will be nothing, because the shell will try to ex- pand a variable named a_file rather than a. This problem can be solved by adding braces:
 
 > 如果我们执行这个序列，没有任何输出结果，因为 shell 会试着展开一个称为 a_file 的变量，而不是 a。通过 添加花括号可以解决这个问题：
 
-    [me@linuxbox ~]$ echo "${a}_file"
-    foo_file
+```
+[me@linuxbox ~]$ echo "${a}_file"
+foo_file
+```
 
 We have also seen that positional parameters greater than 9 can be accessed by surround- ing the number in braces. For example, to access the eleventh positional parameter, we can do this:
 
-> 我们已经知道通过把数字包裹在花括号中，可以访问大于9的位置参数。例如，访问第十一个位置参数，我们可以这样做：
+> 我们已经知道通过把数字包裹在花括号中，可以访问大于 9 的位置参数。例如，访问第十一个位置参数，我们可以这样做：
 
 *\${11}*
 
@@ -68,16 +71,18 @@ If parameter is unset (i.e., does not exist) or is empty, this expansion results
 
 > 若 parameter 没有设置（例如，不存在）或者为空，展开结果是 word 的值。若 parameter 不为空，则展开结果是 parameter 的值。
 
-    [me@linuxbox ~]$ foo=
-    [me@linuxbox ~]$ echo ${foo:-"substitute value if unset"}
-    if unset
-    substitute value
-    [me@linuxbox ~]$ echo $foo
-    [me@linuxbox ~]$ foo=bar
-    [me@linuxbox ~]$ echo ${foo:-"substitute value if unset"}
-    bar
-    [me@linuxbox ~]$ echo $foo
-    bar
+```
+[me@linuxbox ~]$ foo=
+[me@linuxbox ~]$ echo ${foo:-"substitute value if unset"}
+if unset
+substitute value
+[me@linuxbox ~]$ echo $foo
+[me@linuxbox ~]$ foo=bar
+[me@linuxbox ~]$ echo ${foo:-"substitute value if unset"}
+bar
+[me@linuxbox ~]$ echo $foo
+bar
+```
 
 *\${parameter:=word}*
 
@@ -85,24 +90,26 @@ If parameter is unset or empty, this expansion results in the value of word. In 
 
 > 若 parameter 没有设置或为空，展开结果是 word 的值。另外，word 的值会赋值给 parameter。 若 parameter 不为空，展开结果是 parameter 的值。
 
-    [me@linuxbox ~]$ foo=
-    [me@linuxbox ~]$ echo ${foo:="default value if unset"}
-    default value if unset
-    [me@linuxbox ~]$ echo $foo
-    default value if unset
-    [me@linuxbox ~]$ foo=bar
-    [me@linuxbox ~]$ echo ${foo:="default value if unset"}
-    bar
-    [me@linuxbox ~]$ echo $foo
-    bar
+```
+[me@linuxbox ~]$ foo=
+[me@linuxbox ~]$ echo ${foo:="default value if unset"}
+default value if unset
+[me@linuxbox ~]$ echo $foo
+default value if unset
+[me@linuxbox ~]$ foo=bar
+[me@linuxbox ~]$ echo ${foo:="default value if unset"}
+bar
+[me@linuxbox ~]$ echo $foo
+bar
+```
 
-------------------------------------------------------------------------
+---
 
 Note: Positional and other special parameters cannot be assigned this way.
 
 > 注意： 位置参数或其它的特殊参数不能以这种方式赋值。
 
-------------------------------------------------------------------------
+---
 
 *\${parameter:?word}*
 
@@ -110,16 +117,18 @@ If parameter is unset or empty, this expansion causes the script to exit with an
 
 > 若 parameter 没有设置或为空，这种展开导致脚本带有错误退出，并且 word 的内容会发送到标准错误。若 parameter 不为空， 展开结果是 parameter 的值。
 
-    [me@linuxbox ~]$ foo=
-    [me@linuxbox ~]$ echo ${foo:?"parameter is empty"}
-    bash: foo: parameter is empty
-    [me@linuxbox ~]$ echo $?
-    1
-    [me@linuxbox ~]$ foo=bar
-    [me@linuxbox ~]$ echo ${foo:?"parameter is empty"}
-    bar
-    [me@linuxbox ~]$ echo $?
-    0
+```
+[me@linuxbox ~]$ foo=
+[me@linuxbox ~]$ echo ${foo:?"parameter is empty"}
+bash: foo: parameter is empty
+[me@linuxbox ~]$ echo $?
+1
+[me@linuxbox ~]$ foo=bar
+[me@linuxbox ~]$ echo ${foo:?"parameter is empty"}
+bar
+[me@linuxbox ~]$ echo $?
+0
+```
 
 *\${parameter:+word}*
 
@@ -127,12 +136,14 @@ If parameter is unset or empty, the expansion results in nothing. If parameter i
 
 > 若 parameter 没有设置或为空，展开结果为空。若 parameter 不为空， 展开结果是 word 的值会替换掉 parameter 的值；然而，parameter 的值不会改变。
 
-    [me@linuxbox ~]$ foo=
-    [me@linuxbox ~]$ echo ${foo:+"substitute value if set"}
+```
+[me@linuxbox ~]$ foo=
+[me@linuxbox ~]$ echo ${foo:+"substitute value if set"}
 
-    [me@linuxbox ~]$ foo=bar
-    [me@linuxbox ~]$ echo ${foo:+"substitute value if set"}
-    substitute value if set
+[me@linuxbox ~]$ foo=bar
+[me@linuxbox ~]$ echo ${foo:+"substitute value if set"}
+substitute value if set
+```
 
 ### 返回变量名的参数展开
 
@@ -148,10 +159,12 @@ This expansion returns the names of existing variables with names beginning with
 
 > 这种展开会返回以 prefix 开头的已有变量名。根据 bash 文档，这两种展开形式的执行结果相同。 这里，我们列出了所有以 BASH 开头的环境变量名：
 
-    [me@linuxbox ~]$ echo ${!BASH*}
-    BASH BASH_ARGC BASH_ARGV BASH_COMMAND BASH_COMPLETION
-    BASH_COMPLETION_DIR BASH_LINENO BASH_SOURCE BASH_SUBSHELL
-    BASH_VERSINFO BASH_VERSION
+```
+[me@linuxbox ~]$ echo ${!BASH*}
+BASH BASH_ARGC BASH_ARGV BASH_COMMAND BASH_COMPLETION
+BASH_COMPLETION_DIR BASH_LINENO BASH_SOURCE BASH_SUBSHELL
+BASH_VERSINFO BASH_VERSION
+```
 
 #### 字符串展开
 
@@ -165,9 +178,11 @@ expands into the length of the string contained by parameter. Normally, paramete
 
 > 展开成由 parameter 所包含的字符串的长度。通常，parameter 是一个字符串；然而，如果 parameter 是 @ 或者是 \* 的话， 则展开结果是位置参数的个数。
 
-    [me@linuxbox ~]$ foo="This string is long."
-    [me@linuxbox ~]$ echo "'$foo' is ${#foo} characters long."
-    'This string is long.' is 20 characters long.
+```
+[me@linuxbox ~]$ foo="This string is long."
+[me@linuxbox ~]$ echo "'$foo' is ${#foo} characters long."
+'This string is long.' is 20 characters long.
+```
 
 *\${parameter:offset}*
 
@@ -177,11 +192,13 @@ These expansions are used to extract a portion of the string contained in parame
 
 > 这些展开用来从 parameter 所包含的字符串中提取一部分字符。提取的字符始于 第 offset 个字符（从字符串开头算起）直到字符串的末尾，除非指定提取的长度。
 
-    [me@linuxbox ~]$ foo="This string is long."
-    [me@linuxbox ~]$ echo ${foo:5}
-    string is long.
-    [me@linuxbox ~]$ echo ${foo:5:6}
-    string
+```
+[me@linuxbox ~]$ foo="This string is long."
+[me@linuxbox ~]$ echo ${foo:5}
+string is long.
+[me@linuxbox ~]$ echo ${foo:5:6}
+string
+```
 
 If the value of offset is negative, it is taken to mean it starts from the end of the string rather than the beginning. Note that negative values must be preceded by a space to pre- vent confusion with the \${parameter:-word} expansion. length, if present, must not be less than zero.
 
@@ -191,11 +208,13 @@ If parameter is @, the result of the expansion is length positional parameters, 
 
 > 如果 parameter 是 @，展开结果是 length 个位置参数，从第 offset 个位置参数开始。
 
-    [me@linuxbox ~]$ foo="This string is long."
-    [me@linuxbox ~]$ echo ${foo: -5}
-    long.
-    [me@linuxbox ~]$ echo ${foo: -5:2}
-    lo
+```
+[me@linuxbox ~]$ foo="This string is long."
+[me@linuxbox ~]$ echo ${foo: -5}
+long.
+[me@linuxbox ~]$ echo ${foo: -5:2}
+lo
+```
 
 *\${parameter#pattern}*
 
@@ -205,11 +224,13 @@ These expansions remove a leading portion of the string contained in parameter d
 
 > 这些展开会从 paramter 所包含的字符串中清除开头一部分文本，这些字符要匹配定义的 pattern。pattern 是 通配符模式，就如那些用在路径名展开中的模式。这两种形式的差异之处是该 \# 形式清除最短的匹配结果， 而该 \## 模式清除最长的匹配结果。
 
-    [me@linuxbox ~]$ foo=file.txt.zip
-    [me@linuxbox ~]$ echo ${foo#*.}
-    txt.zip
-    [me@linuxbox ~]$ echo ${foo##*.}
-    zip
+```
+[me@linuxbox ~]$ foo=file.txt.zip
+[me@linuxbox ~]$ echo ${foo#*.}
+txt.zip
+[me@linuxbox ~]$ echo ${foo##*.}
+zip
+```
 
 *\${parameter%pattern}*
 
@@ -219,11 +240,13 @@ These expansions are the same as the \# and \## expansions above, except they re
 
 > 这些展开和上面的 \# 和 \## 展开一样，除了它们清除的文本从 parameter 所包含字符串的末尾开始，而不是开头。
 
-    [me@linuxbox ~]$ foo=file.txt.zip
-    [me@linuxbox ~]$ echo ${foo%.*}
-    file.txt
-    [me@linuxbox ~]$ echo ${foo%%.*}
-    file
+```
+[me@linuxbox ~]$ foo=file.txt.zip
+[me@linuxbox ~]$ echo ${foo%.*}
+file.txt
+[me@linuxbox ~]$ echo ${foo%%.*}
+file
+```
 
 *\${parameter/pattern/string}*
 
@@ -237,58 +260,64 @@ This expansion performs a search-and-replace upon the contents of parameter. If 
 
 > 这种形式的展开对 parameter 的内容执行查找和替换操作。如果找到了匹配通配符 pattern 的文本， 则用 string 的内容替换它。在正常形式下，只有第一个匹配项会被替换掉。在该 // 形式下，所有的匹配项都会被替换掉。 该 /# 要求匹配项出现在字符串的开头，而 /% 要求匹配项出现在字符串的末尾。/string 可能会省略掉，这样会 导致删除匹配的文本。
 
-    [me@linuxbox~]$ foo=JPG.JPG
-    [me@linuxbox ~]$ echo ${foo/JPG/jpg}
-    jpg.JPG
-    [me@linuxbox~]$ echo ${foo//JPG/jpg}
-    jpg.jpg
-    [me@linuxbox~]$ echo ${foo/#JPG/jpg}
-    jpg.JPG
-    [me@linuxbox~]$ echo ${foo/%JPG/jpg}
-    JPG.jpg
+```
+[me@linuxbox~]$ foo=JPG.JPG
+[me@linuxbox ~]$ echo ${foo/JPG/jpg}
+jpg.JPG
+[me@linuxbox~]$ echo ${foo//JPG/jpg}
+jpg.jpg
+[me@linuxbox~]$ echo ${foo/#JPG/jpg}
+jpg.JPG
+[me@linuxbox~]$ echo ${foo/%JPG/jpg}
+JPG.jpg
+```
 
 Parameter expansion is a good thing to know. The string manipulation expansions can be used as substitutes for other common commands such as sed and cut. Expansions improve the efficiency of scripts by eliminating the use of external programs. As an example, we will modify the longest-word program discussed in the previous chapter to use the parameter expansion ${#j} in place of the command substitution _$(echo \$j \| wc -c)\_ and its resulting subshell, like so:
 
 > 知道参数展开是件很好的事情。字符串操作展开可以用来替换其它常见命令比方说 sed 和 cut。 通过减少使用外部程序，展开提高了脚本的效率。举例说明，我们将修改在之前章节中讨论的 longest-word 程序， 用参数展开 \${#j} 取代命令 \$(echo \$j \| wc -c) 及其 subshell ，像这样：
 
-    #!/bin/bash
-    # longest-word3 : find longest string in a file
-    for i; do
-        if [[ -r $i ]]; then
-            max_word=
-            max_len=
-            for j in $(strings $i); do
-                len=${#j}
-                if (( len > max_len )); then
-                    max_len=$len
-                    max_word=$j
-                fi
-            done
-            echo "$i: '$max_word' ($max_len characters)"
-        fi
-        shift
-    done
+```
+#!/bin/bash
+# longest-word3 : find longest string in a file
+for i; do
+    if [[ -r $i ]]; then
+        max_word=
+        max_len=
+        for j in $(strings $i); do
+            len=${#j}
+            if (( len > max_len )); then
+                max_len=$len
+                max_word=$j
+            fi
+        done
+        echo "$i: '$max_word' ($max_len characters)"
+    fi
+    shift
+done
+```
 
 Next, we will compare the efficiency of the two versions by using the time command:
 
 > 下一步，我们将使用 time 命令来比较这两个脚本版本的效率：
 
-    [me@linuxbox ~]$ time longest-word2 dirlist-usr-bin.txt
-    dirlist-usr-bin.txt: 'scrollkeeper-get-extended-content-list' (38
-    characters)
-    real 0m3.618s
-    user 0m1.544s
-    sys 0m1.768s
-    [me@linuxbox ~]$ time longest-word3 dirlist-usr-bin.txt
-    dirlist-usr-bin.txt: 'scrollkeeper-get-extended-content-list' (38
-    characters)
-    real 0m0.060s
-    user 0m0.056s
-    sys 0m0.008s
+```
+[me@linuxbox ~]$ time longest-word2 dirlist-usr-bin.txt
+dirlist-usr-bin.txt: 'scrollkeeper-get-extended-content-list' (38
+characters)
+real 0m3.618s
+user 0m1.544s
+sys 0m1.768s
+[me@linuxbox ~]$ time longest-word3 dirlist-usr-bin.txt
+dirlist-usr-bin.txt: 'scrollkeeper-get-extended-content-list' (38
+characters)
+real 0m0.060s
+user 0m0.056s
+sys 0m0.008s
+```
 
 The original version of the script takes 3.618 seconds to scan the text file, while the new version, using parameter expansion, takes only 0.06 seconds --- a very significant improvement.
 
-> 原来的脚本扫描整个文本文件需耗时3.168秒，而该新版本，使用参数展开，仅仅花费了0.06秒 ------ 一个非常巨大的提高。
+> 原来的脚本扫描整个文本文件需耗时 3.168 秒，而该新版本，使用参数展开，仅仅花费了 0.06 秒 ------ 一个非常巨大的提高。
 
 #### 大小写转换
 
@@ -308,24 +337,28 @@ The declare command can be used to normalize strings to either upper or lowercas
 
 > 这个 declare 命令可以用来把字符串规范成大写或小写字符。使用 declare 命令，我们能强制一个 变量总是包含所需的格式，无论如何赋值给它。
 
-    #!/bin/bash
-    # ul-declare: demonstrate case conversion via declare
-    declare -u upper
-    declare -l lower
-    if [[ $1 ]]; then
-        upper="$1"
-        lower="$1"
-        echo $upper
-        echo $lower
-    fi
+```
+#!/bin/bash
+# ul-declare: demonstrate case conversion via declare
+declare -u upper
+declare -l lower
+if [[ $1 ]]; then
+    upper="$1"
+    lower="$1"
+    echo $upper
+    echo $lower
+fi
+```
 
 In the above script, we use declare to create two variables, upper and lower. We assign the value of the first command line argument (positional parameter 1) to each of the variables and then display them on the screen:
 
-> 在上面的脚本中，我们使用 declare 命令来创建两个变量，upper 和 lower。我们把第一个命令行参数的值（位置参数1）赋给 每一个变量，然后把变量值在屏幕上显示出来：
+> 在上面的脚本中，我们使用 declare 命令来创建两个变量，upper 和 lower。我们把第一个命令行参数的值（位置参数 1）赋给 每一个变量，然后把变量值在屏幕上显示出来：
 
-    [me@linuxbox ~]$ ul-declare aBc
-    ABC
-    abc
+```
+[me@linuxbox ~]$ ul-declare aBc
+ABC
+abc
+```
 
 As we can see, the command line argument ("aBc") has been normalized.
 
@@ -338,171 +371,233 @@ There are four parameter expansions that perform upper/lowercase conversion:
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 35-1: Case Conversion Parameter Expansions
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Format
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Result
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 ${parameter,,} </td> <td valign="top">Expand the value of parameter into all lowercase.</td> </tr> <tr> <td valign="top">${parameter,}
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Expand the value of parameter changing only the first character to lowercase.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 ${parameter^^} </td> <td valign="top">Expand the value of parameter into all uppercase letters.</td> </tr> <tr> <td valign="top">${parameter\^}
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Expand the value of parameter changing only the first character to uppercase (capitalization).
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 > 表 35-1: 大小写转换参数展开
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 格式
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 结果
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 ${parameter,,} </td> <td valign="top">把 parameter 的值全部展开成小写字母。</td> </tr> <tr> <td valign="top">${parameter,}
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 仅仅把 parameter 的第一个字符展开成小写字母。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 ${parameter^^} </td> <td valign="top">把 parameter 的值全部转换成大写字母。</td> </tr> <tr> <td valign="top">${parameter\^}
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 仅仅把 parameter 的第一个字符转换成大写字母（首字母大写）。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 Here is a script that demonstrates these expansions:
 
 > 这里是一个脚本，演示了这些展开格式：
 
-    #!/bin/bash
-    # ul-param - demonstrate case conversion via parameter expansion
-    if [[ $1 ]]; then
-        echo ${1,,}
-        echo ${1,}
-        echo ${1^^}
-        echo ${1^}
-    fi
+```
+#!/bin/bash
+# ul-param - demonstrate case conversion via parameter expansion
+if [[ $1 ]]; then
+    echo ${1,,}
+    echo ${1,}
+    echo ${1^^}
+    echo ${1^}
+fi
+```
 
 Here is the script in action:
 
 > 这里是脚本运行后的结果：
 
-    [me@linuxbox ~]$ ul-param aBc
-    abc
-    aBc
-    ABC
-    ABc
+```
+[me@linuxbox ~]$ ul-param aBc
+abc
+aBc
+ABC
+ABc
+```
 
 Again, we process the first command line argument and output the four variations supported by the parameter expansions. While this script uses the first positional parameter, parameter my be any string, variable, or string expression.
 
@@ -514,7 +609,9 @@ We looked at arithmetic expansion in Chapter 7. It is used to perform various ar
 
 > 我们在第七章中已经接触过算术展开了。它被用来对整数执行各种算术运算。它的基本格式是：
 
-    $((expression))
+```
+$((expression))
+```
 
 where expression is a valid arithmetic expression.
 
@@ -522,7 +619,7 @@ where expression is a valid arithmetic expression.
 
 This is related to the compound command (( )) used for arithmetic evaluation (truth tests) we encountered in Chapter 27.
 
-> 这个与复合命令 (( )) 有关，此命令用做算术求值（真测试），我们在第27章中遇到过。
+> 这个与复合命令 (( )) 有关，此命令用做算术求值（真测试），我们在第 27 章中遇到过。
 
 In previous chapters, we saw some of the common types of expressions and operators. Here, we will look at a more complete list.
 
@@ -532,246 +629,338 @@ In previous chapters, we saw some of the common types of expressions and operato
 
 Back in Chapter 9, we got a look at octal (base 8) and hexadecimal (base 16) numbers. In arithmetic expressions, the shell supports integer constants in any base.
 
-> 回到第9章，我们看过八进制（以8为底）和十六进制（以16为底）的数字。在算术表达式中，shell 支持任意进制的整型常量。
+> 回到第 9 章，我们看过八进制（以 8 为底）和十六进制（以 16 为底）的数字。在算术表达式中，shell 支持任意进制的整型常量。
 
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 35-2: Specifying Different Number Bases
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Notation
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Description
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 number
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 By default, numbers without any notation are treated as decimal (base 10) integers.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 0number
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 In arithmetic expressions, numbers with a leading zero are considered octal.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 0xnumber
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Hexadecimal notation
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 base#number
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 number is in base
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 > 表 35-2: 指定不同的数基
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 表示法
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 描述
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 number
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
-> 默认情况下，没有任何表示法的数字被看做是十进制数（以10为底）。
+
+> 默认情况下，没有任何表示法的数字被看做是十进制数（以 10 为底）。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 0number
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 在算术表达式中，以零开头的数字被认为是八进制数。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 0xnumber
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 十六进制表示法
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 base#number
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 number 以 base 为底
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 Some examples:
 
 > 一些例子：
 
-    [me@linuxbox ~]$ echo $((0xff))
-    255
-    [me@linuxbox ~]$ echo $((2#11111111))
-    255
+```
+[me@linuxbox ~]$ echo $((0xff))
+255
+[me@linuxbox ~]$ echo $((2#11111111))
+255
+```
 
 In the examples above, we print the value of the hexadecimal number ff (the largest two-digit number) and the largest eight-digit binary (base 2) number.
 
-> 在上面的示例中，我们打印出十六进制数 ff（最大的两位数）的值和最大的八位二进制数（以2为底）。
+> 在上面的示例中，我们打印出十六进制数 ff（最大的两位数）的值和最大的八位二进制数（以 2 为底）。
 
 #### 一元运算符
 
@@ -788,309 +977,431 @@ The ordinary arithmetic operators are listed in the table below:
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 35-3: Arithmetic Operators
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Operator
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Description
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \+
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Addition
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \-
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Subtraction
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \*
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Multiplication
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 /
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Integer division
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \*\*
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Exponentiation
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \%
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Modulo (remainder)
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 > 表 35-3: 算术运算符
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 运算符
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 描述
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \+
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 加
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \-
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 减
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \*
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 乘
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 /
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 整除
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \*\*
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 乘方
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \%
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 取模（余数）
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 Most of these are self-explanatory, but integer division and modulo require further discussion.
 
 > 其中大部分运算符是不言自明的，但是整除和取模运算符需要进一步解释一下。
@@ -1099,42 +1410,50 @@ Since the shell's arithmetic only operates on integers, the results of division 
 
 > 因为 shell 算术只操作整型，所以除法运算的结果总是整数：
 
-    [me@linuxbox ~]$ echo $(( 5 / 2 ))
-    2
+```
+[me@linuxbox ~]$ echo $(( 5 / 2 ))
+2
+```
 
 This makes the determination of a remainder in a division operation more important:
 
 > 这使得确定除法运算的余数更为重要：
 
-    [me@linuxbox ~]$ echo $(( 5 % 2 ))
-    1
+```
+[me@linuxbox ~]$ echo $(( 5 % 2 ))
+1
+```
 
 By using the division and modulo operators, we can determine that 5 divided by 2 results in 2, with a remainder of 1.
 
-> 通过使用除法和取模运算符，我们能够确定5除以2得数是2，余数是1。
+> 通过使用除法和取模运算符，我们能够确定 5 除以 2 得数是 2，余数是 1。
 
 Calculating the remainder is useful in loops. It allows an operation to be performed at specified intervals during the loop's execution. In the example below, we display a line of numbers, highlighting each multiple of 5:
 
-> 在循环中计算余数是很有用处的。在循环执行期间，它允许某一个操作在指定的间隔内执行。在下面的例子中， 我们显示一行数字，并高亮显示5的倍数：
+> 在循环中计算余数是很有用处的。在循环执行期间，它允许某一个操作在指定的间隔内执行。在下面的例子中， 我们显示一行数字，并高亮显示 5 的倍数：
 
-    #!/bin/bash
-    # modulo : demonstrate the modulo operator
-    for ((i = 0; i <= 20; i = i + 1)); do
-        remainder=$((i % 5))
-        if (( remainder == 0 )); then
-            printf "<%d> " $i
-        else
-            printf "%d " $i
-        fi
-    done
-    printf "\n"
+```
+#!/bin/bash
+# modulo : demonstrate the modulo operator
+for ((i = 0; i <= 20; i = i + 1)); do
+    remainder=$((i % 5))
+    if (( remainder == 0 )); then
+        printf "<%d> " $i
+    else
+        printf "%d " $i
+    fi
+done
+printf "\n"
+```
 
 When executed, the results look like this:
 
 > 当脚本执行后，输出结果看起来像这样：
 
-    [me@linuxbox ~]$ modulo
-    <0> 1 2 3 4 <5> 6 7 8 9 <10> 11 12 13 14 <15> 16 17 18 19 <20>
+```
+[me@linuxbox ~]$ modulo
+<0> 1 2 3 4 <5> 6 7 8 9 <10> 11 12 13 14 <15> 16 17 18 19 <20>
+```
 
 #### 赋值运算符
 
@@ -1142,24 +1461,26 @@ Although its uses may not be immediately apparent, arithmetic expressions may pe
 
 > 尽管它的使用不是那么明显，算术表达式可能执行赋值运算。虽然在不同的上下文中，我们已经执行了许多次赋值运算。 每次我们给变量一个值，我们就执行了一次赋值运算。我们也能在算术表达式中执行赋值运算：
 
-    [me@linuxbox ~]$ foo=
-    [me@linuxbox ~]$ echo $foo
-    [me@linuxbox ~]$ if (( foo = 5 ));then echo "It is true."; fi
-    It is true.
-    [me@linuxbox ~]$ echo $foo
-    5
+```
+[me@linuxbox ~]$ foo=
+[me@linuxbox ~]$ echo $foo
+[me@linuxbox ~]$ if (( foo = 5 ));then echo "It is true."; fi
+It is true.
+[me@linuxbox ~]$ echo $foo
+5
+```
 
 In the example above, we first assign an empty value to the variable foo and verify that it is indeed empty. Next, we perform an if with the compound command (( foo = 5 )). This process does two interesting things: 1) it assigns the value of 5 to the variable foo, and 2) it evaluates to true because foo was assigned a nonzero value.
 
-> 在上面的例子中，首先我们给变量 foo 赋了一个空值，然后验证 foo 的确为空。下一步，我们执行一个 if 复合命令 (( foo = 5 ))。 这个过程完成两件有意思的事情：1）它把5赋值给变量 foo，2）它计算测试条件为真，因为 foo 的值非零。
+> 在上面的例子中，首先我们给变量 foo 赋了一个空值，然后验证 foo 的确为空。下一步，我们执行一个 if 复合命令 (( foo = 5 ))。 这个过程完成两件有意思的事情：1）它把 5 赋值给变量 foo，2）它计算测试条件为真，因为 foo 的值非零。
 
-------------------------------------------------------------------------
+---
 
 Note: It is important to remember the exact meaning of the = in the expression above. A single = performs assignment. foo = 5 says "make foo equal to 5," while == evaluates equivalence. foo == 5 says "does foo equal 5?" This can be very confusing because the test command accepts a single = for string equiva- lence. This is yet another reason to use the more modern \[\[ \]\] and (( )) com- pound commands in place of test.
 
-> 注意： 记住上面表达式中 = 符号的真正含义非常重要。单个 = 运算符执行赋值运算。foo = 5 是说"使得 foo 等于5"， 而 == 运算符计算等价性。foo == 5 是说"是否 foo 等于5？"。这会让人感到非常迷惑，因为 test 命令接受单个 = 运算符 来测试字符串等价性。这也是使用更现代的 \[\[ \]\] 和 (( )) 复合命令来代替 test 命令的另一个原因。
+> 注意： 记住上面表达式中 = 符号的真正含义非常重要。单个 = 运算符执行赋值运算。foo = 5 是说"使得 foo 等于 5"， 而 == 运算符计算等价性。foo == 5 是说"是否 foo 等于 5？"。这会让人感到非常迷惑，因为 test 命令接受单个 = 运算符 来测试字符串等价性。这也是使用更现代的 \[\[ \]\] 和 (( )) 复合命令来代替 test 命令的另一个原因。
 
-------------------------------------------------------------------------
+---
 
 In addition to the =, the shell also provides notations that perform some very useful as- signments:
 
@@ -1168,492 +1489,682 @@ In addition to the =, the shell also provides notations that perform some very u
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 35-4: Assignment Operators
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title" width="25%">
 ```
+
 Notation
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Description
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 parameter = value
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Simple assignment. Assigns value to parameter.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 parameter += value
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Addition. Equivalent to parameter = parameter + value.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 parameter -= value
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Subtraction. Equivalent to parameter = parameter - value.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 parameter \*= value
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Multiplication. Equivalent to parameter = parameter \* value.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 parameter /= value
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Integer division. Equivalent to parameter = parameter / value.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 parameter %= value
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Modulo. Equivalent to parameter = parameter % value.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 parameter++
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Variable post-increment. Equivalent to parameter = parameter + 1 (however, see discussion below).
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 parameter--
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Variable post-decrement. Equivalent to parameter = parameter - 1.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 ++parameter
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Variable pre-increment. Equivalent to parameter = parameter + 1.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 --parameter
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Variable pre-decrement. Equivalent to parameter = parameter - 1.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表35-4: 赋值运算符
+
+> 表 35-4: 赋值运算符
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title" width="25%">
 ```
+
 > 表示法
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 描述
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 parameter = value
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 简单赋值。给 parameter 赋值。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 parameter += value
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 加。等价于 parameter = parameter + value。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 parameter -= value
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 减。等价于 parameter = parameter -- value。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 parameter \*= value
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 乘。等价于 parameter = parameter \* value。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 parameter /= value
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 整除。等价于 parameter = parameter / value。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 parameter %= value
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 取模。等价于 parameter = parameter % value。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 parameter++
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 后缀自增变量。等价于 parameter = parameter + 1 (但，要看下面的讨论)。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 parameter--
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 后缀自减变量。等价于 parameter = parameter - 1。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 ++parameter
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 前缀自增变量。等价于 parameter = parameter + 1。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 --parameter
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 前缀自减变量。等价于 parameter = parameter - 1。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 </table>
 ```
+
 These assignment operators provide a convenient shorthand for many common arithmetic tasks. Of special interest are the increment (++) and decrement (\--) operators, which increase or decrease the value of their parameters by one. This style of notation is taken from the C programming language and has been incorporated by several other programming languages, including bash.
 
-> 这些赋值运算符为许多常见算术任务提供了快捷方式。特别关注一下自增（++）和自减（\--）运算符，它们会把它们的参数值加1或减1。 这种风格的表示法取自C 编程语言并且被其它几种编程语言吸收，包括 bash。
+> 这些赋值运算符为许多常见算术任务提供了快捷方式。特别关注一下自增（++）和自减（\--）运算符，它们会把它们的参数值加 1 或减 1。 这种风格的表示法取自 C 编程语言并且被其它几种编程语言吸收，包括 bash。
 
 The operators may appear either at the front of a parameter or at the end. While they both either increment or decrement the parameter by one, the two placements have a subtle difference. If placed at the front of the parameter, the parameter is incremented (or decre- mented) before the parameter is returned. If placed after, the operation is performed after the parameter is returned. This is rather strange, but it is the intended behavior. Here is a demonstration:
 
-> 自增和自减运算符可能会出现在参数的前面或者后面。然而它们都是把参数值加1或减1，这两个位置有个微小的差异。 若运算符放置在参数的前面，参数值会在参数返回之前增加（或减少）。若放置在后面，则运算会在参数返回之后执行。 这相当奇怪，但这是它预期的行为。这里是个演示的例子：
+> 自增和自减运算符可能会出现在参数的前面或者后面。然而它们都是把参数值加 1 或减 1，这两个位置有个微小的差异。 若运算符放置在参数的前面，参数值会在参数返回之前增加（或减少）。若放置在后面，则运算会在参数返回之后执行。 这相当奇怪，但这是它预期的行为。这里是个演示的例子：
 
-    [me@linuxbox ~]$ foo=1
-    [me@linuxbox ~]$ echo $((foo++))
-    1
-    [me@linuxbox ~]$ echo $foo
-    2
+```
+[me@linuxbox ~]$ foo=1
+[me@linuxbox ~]$ echo $((foo++))
+1
+[me@linuxbox ~]$ echo $foo
+2
+```
 
 If we assign the value of one to the variable foo and then increment it with the ++ operator placed after the parameter name, foo is returned with the value of one. However, if we look at the value of the variable a second time, we see the incremented value. If we place the ++ operator in front of the parameter, we get the more expected behavior:
 
-> 如果我们把1赋值给变量 foo，然后通过把自增运算符 ++ 放到参数名 foo 之后来增加它，foo 返回1。 然而，如果我们第二次查看变量 foo 的值，我们看到它的值增加了1。若我们把 ++ 运算符放到参数 foo 之前， 我们得到更期望的行为：
+> 如果我们把 1 赋值给变量 foo，然后通过把自增运算符 ++ 放到参数名 foo 之后来增加它，foo 返回 1。 然而，如果我们第二次查看变量 foo 的值，我们看到它的值增加了 1。若我们把 ++ 运算符放到参数 foo 之前， 我们得到更期望的行为：
 
-    [me@linuxbox ~]$ foo=1
-    [me@linuxbox ~]$ echo $((++foo))
-    2
-    [me@linuxbox ~]$ echo $foo
-    2
+```
+[me@linuxbox ~]$ foo=1
+[me@linuxbox ~]$ echo $((++foo))
+2
+[me@linuxbox ~]$ echo $foo
+2
+```
 
 For most shell applications, prefixing the operator will be the most useful.
 
@@ -1663,16 +2174,18 @@ The ++ and \-- operators are often used in conjunction with loops. We will make 
 
 > 自增 ++ 和 自减 \-- 运算符经常和循环操作结合使用。我们将改进我们的 modulo 脚本，让代码更紧凑些：
 
-    #!/bin/bash
-    # modulo2 : demonstrate the modulo operator
-    for ((i = 0; i <= 20; ++i )); do
-        if (((i % 5) == 0 )); then
-            printf "<%d> " $i
-        else
-            printf "%d " $i
-        fi
-    done
-    printf "\n"
+```
+#!/bin/bash
+# modulo2 : demonstrate the modulo operator
+for ((i = 0; i <= 20; ++i )); do
+    if (((i % 5) == 0 )); then
+        printf "<%d> " $i
+    else
+        printf "%d " $i
+    fi
+done
+printf "\n"
+```
 
 #### 位运算符
 
@@ -1683,308 +2196,428 @@ One class of operators manipulates numbers in an unusual way. These operators wo
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 35-5: Bit Operators
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Operator
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Description
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \~
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Bitwise negation. Negate all the bits in a number.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \<\<
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Left bitwise shift. Shift all the bits in a number to the left.
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > Right bitwise shift. Shift all the bits in a number to the right.
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > </tr>
-> > ```
-> > ```{=html}
-> > <tr>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > &
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > Bitwise AND. Perform an AND operation on all the bits in two numbers.
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > </tr>
-> > ```
-> > ```{=html}
-> > <tr>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > \|
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > Bitwise OR. Perform an OR operation on all the bits in two numbers.
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > </tr>
-> > ```
-> > ```{=html}
-> > <tr>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > \^
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > Bitwise XOR. Perform an exclusive OR operation on all the bits in two numbers.
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > </tr>
-> > ```
-> > ```{=html}
-> > </table>
-> > ```
+
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> Right bitwise shift. Shift all the bits in a number to the right.
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> </tr>
+>> ```
+>>
+>> ```{=html}
+>> <tr>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> &
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> Bitwise AND. Perform an AND operation on all the bits in two numbers.
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> </tr>
+>> ```
+>>
+>> ```{=html}
+>> <tr>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> \|
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> Bitwise OR. Perform an OR operation on all the bits in two numbers.
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> </tr>
+>> ```
+>>
+>> ```{=html}
+>> <tr>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> \^
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> Bitwise XOR. Perform an exclusive OR operation on all the bits in two numbers.
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> </tr>
+>> ```
+>>
+>> ```{=html}
+>> </table>
+>> ```
+>>
 
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表35-5: 位运算符
+
+> 表 35-5: 位运算符
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 运算符
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 描述
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \~
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 按位取反。对一个数字所有位取反。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \<\<
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 位左移. 把一个数字的所有位向左移动。
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > 位右移. 把一个数字的所有位向右移动。
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > </tr>
-> > ```
-> > ```{=html}
-> > <tr>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > &
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > 位与。对两个数字的所有位执行一个 AND 操作。
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > </tr>
-> > ```
-> > ```{=html}
-> > <tr>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > \|
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > 位或。对两个数字的所有位执行一个 OR 操作。
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > </tr>
-> > ```
-> > ```{=html}
-> > <tr>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > \^
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > 位异或。对两个数字的所有位执行一个异或操作。
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > </tr>
-> > ```
-> > ```{=html}
-> > </table>
-> > ```
+
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> 位右移. 把一个数字的所有位向右移动。
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> </tr>
+>> ```
+>>
+>> ```{=html}
+>> <tr>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> &
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> 位与。对两个数字的所有位执行一个 AND 操作。
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> </tr>
+>> ```
+>>
+>> ```{=html}
+>> <tr>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> \|
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> 位或。对两个数字的所有位执行一个 OR 操作。
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> </tr>
+>> ```
+>>
+>> ```{=html}
+>> <tr>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> \^
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> 位异或。对两个数字的所有位执行一个异或操作。
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> </tr>
+>> ```
+>>
+>> ```{=html}
+>> </table>
+>> ```
+>>
 
 Note that there are also corresponding assignment operators (for example, \<\<=) for all but bitwise negation.
 
@@ -1992,474 +2625,648 @@ Note that there are also corresponding assignment operators (for example, \<\<=)
 
 Here we will demonstrate producing a list of powers of 2, using the left bitwise shift operator:
 
-> 这里我们将演示产生2的幂列表的操作，使用位左移运算符：
+> 这里我们将演示产生 2 的幂列表的操作，使用位左移运算符：
 
-    [me@linuxbox ~]$ for ((i=0;i<8;++i)); do echo $((1<<i)); done
-    1
-    2
-    4
-    8
-    16
-    32
-    64
-    128
+```
+[me@linuxbox ~]$ for ((i=0;i<8;++i)); do echo $((1<<i)); done
+1
+2
+4
+8
+16
+32
+64
+128
+```
 
 #### 逻辑运算符
 
 As we discovered in Chapter 27, the (( )) compound command supports a variety of comparison operators. There are a few more that can be used to evaluate logic. Here is the complete list:
 
-> 正如我们在第27章中所看到的，复合命令 (( )) 支持各种各样的比较运算符。还有一些可以用来计算逻辑运算。 这里是比较运算符的完整列表：
+> 正如我们在第 27 章中所看到的，复合命令 (( )) 支持各种各样的比较运算符。还有一些可以用来计算逻辑运算。 这里是比较运算符的完整列表：
 
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
+
 Table 35-6: Comparison Operators
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Operator
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 Description
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \<=
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 Less than or equal to
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > =
+>
 > ```{=html}
 > </td>
 > ```
+>
 > ```{=html}
 > <td valign="top">
 > ```
+>
 > great than or equal to
+>
 > ```{=html}
 > </td>
 > ```
+>
 > ```{=html}
 > </tr>
 > ```
+>
 > ```{=html}
 > <tr>
 > ```
+>
 > ```{=html}
 > <td valign="top">
 > ```
+>
 > \<
+>
 > ```{=html}
 > </td>
 > ```
+>
 > ```{=html}
 > <td valign="top">
 > ```
+>
 > less than
+>
 > ```{=html}
 > </td>
 > ```
+>
 > ```{=html}
 > </tr>
 > ```
+>
 > ```{=html}
 > <tr>
 > ```
+>
 > ```{=html}
 > <td valign="top">
 > ```
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > greater than
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > </tr>
-> > ```
-> > ```{=html}
-> > <tr>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > ==
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > Equal to
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > </tr>
-> > ```
-> > ```{=html}
-> > <tr>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > !=
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > Not equal to
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > </tr>
-> > ```
-> > ```{=html}
-> > <tr>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > &&
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > Logical AND
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > </tr>
-> > ```
-> > ```{=html}
-> > <tr>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > \|\|
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > Logical OR
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > </tr>
-> > ```
-> > ```{=html}
-> > <tr>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > expr1?expr2:expr3
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > Comparison (ternary) operator. If expression expr1 evaluates to be non-zero (arithmetic true) then expr2, else expr3.
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > </tr>
-> > ```
-> > ```{=html}
-> > </table>
-> > ```
+>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> greater than
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> </tr>
+>> ```
+>>
+>> ```{=html}
+>> <tr>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> ==
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> Equal to
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> </tr>
+>> ```
+>>
+>> ```{=html}
+>> <tr>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> !=
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> Not equal to
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> </tr>
+>> ```
+>>
+>> ```{=html}
+>> <tr>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> &&
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> Logical AND
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> </tr>
+>> ```
+>>
+>> ```{=html}
+>> <tr>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> \|\|
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> Logical OR
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> </tr>
+>> ```
+>>
+>> ```{=html}
+>> <tr>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> expr1?expr2:expr3
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> Comparison (ternary) operator. If expression expr1 evaluates to be non-zero (arithmetic true) then expr2, else expr3.
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> </tr>
+>> ```
+>>
+>> ```{=html}
+>> </table>
+>> ```
+>>
 
 ```{=html}
 <table class="multi">
 ```
+
 ```{=html}
 <caption class="cap">
 ```
-> 表35-6: 比较运算符
+
+> 表 35-6: 比较运算符
+
 ```{=html}
 </caption>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 运算符
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 <th class="title">
 ```
+
 > 描述
+
 ```{=html}
 </th>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 \<=
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > 小于或相等
+
 ```{=html}
 </td>
 ```
+
 ```{=html}
 </tr>
 ```
+
 ```{=html}
 <tr>
 ```
+
 ```{=html}
 <td valign="top">
 ```
+
 > =
+>
 > ```{=html}
 > </td>
 > ```
+>
 > ```{=html}
 > <td valign="top">
 > ```
+>
 > 大于或相等
+>
 > ```{=html}
 > </td>
 > ```
+>
 > ```{=html}
 > </tr>
 > ```
+>
 > ```{=html}
 > <tr>
 > ```
+>
 > ```{=html}
 > <td valign="top">
 > ```
+>
 > \<
+>
 > ```{=html}
 > </td>
 > ```
+>
 > ```{=html}
 > <td valign="top">
 > ```
+>
 > 小于
+>
 > ```{=html}
 > </td>
 > ```
+>
 > ```{=html}
 > </tr>
 > ```
+>
 > ```{=html}
 > <tr>
 > ```
+>
 > ```{=html}
 > <td valign="top">
 > ```
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > 大于
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > </tr>
-> > ```
-> > ```{=html}
-> > <tr>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > ==
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > 相等
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > </tr>
-> > ```
-> > ```{=html}
-> > <tr>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > !=
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > 不相等
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > </tr>
-> > ```
-> > ```{=html}
-> > <tr>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > &&
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > 逻辑与
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > </tr>
-> > ```
-> > ```{=html}
-> > <tr>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > \|\|
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > 逻辑或
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > </tr>
-> > ```
-> > ```{=html}
-> > <tr>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > expr1?expr2:expr3
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > <td valign="top">
-> > ```
-> > 条件（三元）运算符。若表达式 expr1 的计算结果为非零值（算术真），则 执行表达式 expr2，否则执行表达式 expr3。
-> > ```{=html}
-> > </td>
-> > ```
-> > ```{=html}
-> > </tr>
-> > ```
-> > ```{=html}
-> > </table>
-> > ```
+>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> 大于
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> </tr>
+>> ```
+>>
+>> ```{=html}
+>> <tr>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> ==
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> 相等
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> </tr>
+>> ```
+>>
+>> ```{=html}
+>> <tr>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> !=
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> 不相等
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> </tr>
+>> ```
+>>
+>> ```{=html}
+>> <tr>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> &&
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> 逻辑与
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> </tr>
+>> ```
+>>
+>> ```{=html}
+>> <tr>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> \|\|
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> 逻辑或
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> </tr>
+>> ```
+>>
+>> ```{=html}
+>> <tr>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> expr1?expr2:expr3
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> <td valign="top">
+>> ```
+>>
+>> 条件（三元）运算符。若表达式 expr1 的计算结果为非零值（算术真），则 执行表达式 expr2，否则执行表达式 expr3。
+>>
+>> ```{=html}
+>> </td>
+>> ```
+>>
+>> ```{=html}
+>> </tr>
+>> ```
+>>
+>> ```{=html}
+>> </table>
+>> ```
+>>
 
 When used for logical operations, expressions follow the rules of arithmetic logic; that is, expressions that evaluate as zero are considered false, while non-zero expressions are considered true. The (( )) compound command maps the results into the shell's normal exit codes:
 
 > 当表达式用于逻辑运算时，表达式遵循算术逻辑规则；也就是，表达式的计算结果是零，则认为假，而非零表达式认为真。 该 (( )) 复合命令把结果映射成 shell 正常的退出码：
 
-    [me@linuxbox ~]$ if ((1)); then echo "true"; else echo "false"; fi
-    true
-    [me@linuxbox ~]$ if ((0)); then echo "true"; else echo "false"; fi
-    false
+```
+[me@linuxbox ~]$ if ((1)); then echo "true"; else echo "false"; fi
+true
+[me@linuxbox ~]$ if ((0)); then echo "true"; else echo "false"; fi
+false
+```
 
 The strangest of the logical operators is the ternary operator. This operator (which is modeled after the one in the C programming language) performs a standalone logical test. It can be used as a kind of if/then/else statement. It acts on three arithmetic expressions (strings won't work), and if the first expression is true (or non-zero) the second expression is performed. Otherwise, the third expression is performed. We can try this on the command line:
 
 > 最陌生的逻辑运算符就是这个三元运算符了。这个运算符（仿照于 C 编程语言里的三元运算符）执行一个单独的逻辑测试。 它用起来类似于 if/then/else 语句。它操作三个算术表达式（字符串不会起作用），并且若第一个表达式为真（或非零）， 则执行第二个表达式。否则，执行第三个表达式。我们可以在命令行中实验一下：
 
-    [me@linuxbox~]$ a=0
-    [me@linuxbox~]$ ((a<1?++a:--a))
-    [me@linuxbox~]$ echo $a
-    1
-    [me@linuxbox~]$ ((a<1?++a:--a))
-    [me@linuxbox~]$ echo $a
-    0
+```
+[me@linuxbox~]$ a=0
+[me@linuxbox~]$ ((a<1?++a:--a))
+[me@linuxbox~]$ echo $a
+1
+[me@linuxbox~]$ ((a<1?++a:--a))
+[me@linuxbox~]$ echo $a
+0
+```
 
 Here we see a ternary operator in action. This example implements a toggle. Each time the operator is performed, the value of the variable a switches from zero to one or vice versa.
 
-> 这里我们看到一个实际使用的三元运算符。这个例子实现了一个切换。每次运算符执行的时候，变量 a 的值从零变为1，或反之亦然。
+> 这里我们看到一个实际使用的三元运算符。这个例子实现了一个切换。每次运算符执行的时候，变量 a 的值从零变为 1，或反之亦然。
 
 Please note that performing assignment within the expressions is not straightforward.
 
@@ -2469,51 +3276,59 @@ When attempted, bash will declare an error:
 
 > 当企图这样做时，bash 会声明一个错误：
 
-    [me@linuxbox ~]$ a=0
-    [me@linuxbox ~]$ ((a<1?a+=1:a-=1))
-    bash: ((: a<1?a+=1:a-=1: attempted assignment to non-variable (error token is "-=1")
+```
+[me@linuxbox ~]$ a=0
+[me@linuxbox ~]$ ((a<1?a+=1:a-=1))
+bash: ((: a<1?a+=1:a-=1: attempted assignment to non-variable (error token is "-=1")
+```
 
 This problem can be mitigated by surrounding the assignment expression with parentheses:
 
 > 通过把赋值表达式用括号括起来，可以解决这个错误：
 
-    [me@linuxbox ~]$ ((a<1?(a+=1):(a-=1)))
+```
+[me@linuxbox ~]$ ((a<1?(a+=1):(a-=1)))
+```
 
 Next, we see a more complete example of using arithmetic operators in a script that produces a simple table of numbers:
 
 > 下一步，我们看一个使用算术运算符更完备的例子，该示例产生一个简单的数字表格：
 
-    #!/bin/bash
-    # arith-loop: script to demonstrate arithmetic operators
-    finished=0
-    a=0
-    printf "a\ta**2\ta**3\n"
-    printf "=\t====\t====\n"
-    until ((finished)); do
-        b=$((a**2))
-        c=$((a**3))
-        printf "%d\t%d\t%d\n" $a $b $c
-        ((a<10?++a:(finished=1)))
-    done
+```
+#!/bin/bash
+# arith-loop: script to demonstrate arithmetic operators
+finished=0
+a=0
+printf "a\ta**2\ta**3\n"
+printf "=\t====\t====\n"
+until ((finished)); do
+    b=$((a**2))
+    c=$((a**3))
+    printf "%d\t%d\t%d\n" $a $b $c
+    ((a<10?++a:(finished=1)))
+done
+```
 
 In this script, we implement an until loop based on the value of the finished variable. Initially, the variable is set to zero (arithmetic false) and we continue the loop until it becomes non-zero. Within the loop, we calculate the square and cube of the counter variable **a**. At the end of the loop, the value of the counter variable is evaluated. If it is less than 10 (the maximum number of iterations), it is incremented by one, else the variable **finished** is given the value of one, making finished arithmetically true, thereby terminating the loop. Running the script gives this result:
 
-> 在这个脚本中，我们基于变量 finished 的值实现了一个 until 循环。首先，把变量 finished 的值设为零（算术假）， 继续执行循环之道它的值变为非零。在循环体内，我们计算计数器 a 的平方和立方。在循环末尾，计算计数器变量 a 的值。 若它小于10（最大迭代次数），则 a 的值加1，否则给变量 finished 赋值为1，使得变量 finished 算术为真， 从而终止循环。运行该脚本得到这样的结果：
+> 在这个脚本中，我们基于变量 finished 的值实现了一个 until 循环。首先，把变量 finished 的值设为零（算术假）， 继续执行循环之道它的值变为非零。在循环体内，我们计算计数器 a 的平方和立方。在循环末尾，计算计数器变量 a 的值。 若它小于 10（最大迭代次数），则 a 的值加 1，否则给变量 finished 赋值为 1，使得变量 finished 算术为真， 从而终止循环。运行该脚本得到这样的结果：
 
-    [me@linuxbox ~]$ arith-loop
-    a    a**2     a**3
-    =    ====     ====
-    0    0        0
-    1    1        1
-    2    4        8
-    3    9        27
-    4    16       64
-    5    25       125
-    6    36       216
-    7    49       343
-    8    64       512
-    9    81       729
-    10   100      1000
+```
+[me@linuxbox ~]$ arith-loop
+a    a**2     a**3
+=    ====     ====
+0    0        0
+1    1        1
+2    4        8
+3    9        27
+4    16       64
+5    25       125
+6    36       216
+7    49       343
+8    64       512
+9    81       729
+10   100      1000
+```
 
 ### bc - 一种高精度计算器语言
 
@@ -2527,10 +3342,12 @@ The bc program reads a file written in its own C-like language and executes it. 
 
 Let's start with a simple example. We'll write a bc script to add 2 plus 2:
 
-> 让我们从一个简单的例子开始。我们将编写一个 bc 脚本来执行2加2运算：
+> 让我们从一个简单的例子开始。我们将编写一个 bc 脚本来执行 2 加 2 运算：
 
-    /* A very simple bc script */
-    2 + 2
+```
+/* A very simple bc script */
+2 + 2
+```
 
 The first line of the script is a comment. bc uses the same syntax for comments as the C programming language. Comments, which may span multiple lines, begin with `/*` and end with `*/`.
 
@@ -2542,22 +3359,26 @@ If we save the bc script above as foo.bc, we can run it this way:
 
 > 如果我们把上面的 bc 脚本保存为 foo.bc，然后我们就能这样运行它：
 
-    [me@linuxbox ~]$ bc foo.bc
-    bc 1.06.94
-    Copyright 1991-1994, 1997, 1998, 2000, 2004, 2006 Free Software
-    Foundation, Inc.
-    This is free software with ABSOLUTELY NO WARRANTY.
-    For details type `warranty'.
-    4
+```
+[me@linuxbox ~]$ bc foo.bc
+bc 1.06.94
+Copyright 1991-1994, 1997, 1998, 2000, 2004, 2006 Free Software
+Foundation, Inc.
+This is free software with ABSOLUTELY NO WARRANTY.
+For details type `warranty'.
+4
+```
 
 If we look carefully, we can see the result at the very bottom, after the copyright message. This message can be suppressed with the -q (quiet) option. bc can also be used interactively:
 
 > 如果我们仔细观察，我们看到算术结果在最底部，版权信息之后。可以通过 -q（quiet）选项禁止这些版权信息。 bc 也能够交互使用：
 
-    [me@linuxbox ~]$ bc -q
-    2 + 2
-    4
-    quit
+```
+[me@linuxbox ~]$ bc -q
+2 + 2
+4
+quit
+```
 
 When using bc interactively, we simply type the calculations we wish to perform, and the results are immediately displayed. The bc command quit ends the interactive session.
 
@@ -2567,15 +3388,19 @@ It is also possible to pass a script to bc via standard input:
 
 > 也可能通过标准输入把一个脚本传递给 bc 程序：
 
-    [me@linuxbox ~]$ bc < foo.bc
-    4
+```
+[me@linuxbox ~]$ bc < foo.bc
+4
+```
 
 The ability to take standard input means that we can use here documents, here strings, and pipes to pass scripts. This is a here string example:
 
-> 这种接受标准输入的能力，意味着我们可以使用 here 文档，here字符串，和管道来传递脚本。这里是一个使用 here 字符串的例子：
+> 这种接受标准输入的能力，意味着我们可以使用 here 文档，here 字符串，和管道来传递脚本。这里是一个使用 here 字符串的例子：
 
-    [me@linuxbox ~]$ bc <<< "2+2"
-    4
+```
+[me@linuxbox ~]$ bc <<< "2+2"
+4
+```
 
 #### 一个脚本实例
 
@@ -2583,45 +3408,49 @@ As a real-world example, we will construct a script that performs a common calcu
 
 > 作为一个真实世界的例子，我们将构建一个脚本，用于计算每月的还贷金额。在下面的脚本中， 我们使用了 here 文档把一个脚本传递给 bc：
 
-    #!/bin/bash
-    # loan-calc : script to calculate monthly loan payments
-    PROGNAME=$(basename $0)
-    usage () {
-        cat <<- EOF
-        Usage: $PROGNAME PRINCIPAL INTEREST MONTHS
-        Where:
-        PRINCIPAL is the amount of the loan.
-        INTEREST is the APR as a number (7% = 0.07).
-        MONTHS is the length of the loan's term.
-        EOF
-    }
-    if (($# != 3)); then
-        usage
-        exit 1
-    fi
-    principal=$1
-    interest=$2
-    months=$3
-    bc <<- EOF
-        scale = 10
-        i = $interest / 12
-        p = $principal
-        n = $months
-        a = p * ((i * ((1 + i) ^ n)) / (((1 + i) ^ n) - 1))
-        print a, "\n"
+```
+#!/bin/bash
+# loan-calc : script to calculate monthly loan payments
+PROGNAME=$(basename $0)
+usage () {
+    cat <<- EOF
+    Usage: $PROGNAME PRINCIPAL INTEREST MONTHS
+    Where:
+    PRINCIPAL is the amount of the loan.
+    INTEREST is the APR as a number (7% = 0.07).
+    MONTHS is the length of the loan's term.
     EOF
+}
+if (($# != 3)); then
+    usage
+    exit 1
+fi
+principal=$1
+interest=$2
+months=$3
+bc <<- EOF
+    scale = 10
+    i = $interest / 12
+    p = $principal
+    n = $months
+    a = p * ((i * ((1 + i) ^ n)) / (((1 + i) ^ n) - 1))
+    print a, "\n"
+EOF
+```
 
 When executed, the results look like this:
 
 > 当脚本执行后，输出结果像这样：
 
-    [me@linuxbox ~]$ loan-calc 135000 0.0775 180
-    475
-    1270.7222490000
+```
+[me@linuxbox ~]$ loan-calc 135000 0.0775 180
+475
+1270.7222490000
+```
 
 This example calculates the monthly payment for a \$135,000 loan at 7.75% APR for 180 months (15 years). Notice the precision of the answer. This is determined by the value given to the special **scale** variable in the bc script. A full description of the bc scripting language is provided by the bc man page. While its mathematical notation is slightly different from that of the shell (bc more closely resembles C), most of it will be quite familiar, based on what we have learned so far.
 
-> 若贷款 135,000 美金，年利率为 7.75%，借贷180个月（15年），这个例子计算出每月需要还贷的金额。 注意这个答案的精确度。这是由脚本中变量 scale 的值决定的。bc 的手册页提供了对 bc 脚本语言的详尽描述。 虽然 bc 的数学符号与 shell 的略有差异（bc 与 C 更相近），但是基于目前我们所学的内容， 大多数符号是我们相当熟悉的。
+> 若贷款 135,000 美金，年利率为 7.75%，借贷 180 个月（15 年），这个例子计算出每月需要还贷的金额。 注意这个答案的精确度。这是由脚本中变量 scale 的值决定的。bc 的手册页提供了对 bc 脚本语言的详尽描述。 虽然 bc 的数学符号与 shell 的略有差异（bc 与 C 更相近），但是基于目前我们所学的内容， 大多数符号是我们相当熟悉的。
 
 ### 总结
 
@@ -2635,46 +3464,32 @@ While the basic functionality of the loan-calc script is in place, the script is
 
 > 虽然该 loan-calc 脚本的基本功能已经很到位了，但脚本还远远不够完善。为了额外加分，试着 给脚本 loan-calc 添加以下功能：
 
--   Full verification of the command line arguments
-
--   A command line option to implement an "interactive" mode that will prompt the user to input the principal, interest rate, and term of the loan.
-
--   A better format for the output.
-
--   完整的命令行参数验证
-
--   用一个命令行选项来实现"交互"模式，提示用户输入本金、利率和贷款期限
-
--   输出格式美化
+- Full verification of the command line arguments
+- A command line option to implement an "interactive" mode that will prompt the user to input the principal, interest rate, and term of the loan.
+- A better format for the output.
+- 完整的命令行参数验证
+- 用一个命令行选项来实现"交互"模式，提示用户输入本金、利率和贷款期限
+- 输出格式美化
 
 ### 拓展阅读
 
--   The Bash Hackers Wiki has a good discussion of parameter expansion:
+- The Bash Hackers Wiki has a good discussion of parameter expansion:
+- 《Bash Hackers Wiki》对参数展开有一个很好的论述：
 
--   《Bash Hackers Wiki》对参数展开有一个很好的论述：
+  [http://wiki.bash-hackers.org/syntax/pe](http://wiki.bash-hackers.org/syntax/pe)
+- The Bash Reference Manual covers this, too:
+- 《Bash 参考手册》也介绍了这个：
 
-    <http://wiki.bash-hackers.org/syntax/pe>
+  [http://www.gnu.org/software/bash/manual/bashref.html#Shell-Parameter-Expansion](http://www.gnu.org/software/bash/manual/bashref.html#Shell-Parameter-Expansion)
+- The Wikipedia has a good article describing bit operations:
+- Wikipedia 上面有一篇很好的文章描述了位运算：
 
--   The Bash Reference Manual covers this, too:
+  [http://en.wikipedia.org/wiki/Bit_operation](http://en.wikipedia.org/wiki/Bit_operation)
+- and an article on ternary operations:
+- 和一篇关于三元运算的文章：
 
--   《Bash 参考手册》也介绍了这个：
+  [http://en.wikipedia.org/wiki/Ternary_operation](http://en.wikipedia.org/wiki/Ternary_operation)
+- as well as a description of the formula for calculating loan payments used in our loan-calc script:
+- 还有一个对计算还贷金额公式的描述，我们的 loan-calc 脚本中用到了这个公式：
 
-    <http://www.gnu.org/software/bash/manual/bashref.html#Shell-Parameter-Expansion>
-
--   The Wikipedia has a good article describing bit operations:
-
--   Wikipedia 上面有一篇很好的文章描述了位运算：
-
-    <http://en.wikipedia.org/wiki/Bit_operation>
-
--   and an article on ternary operations:
-
--   和一篇关于三元运算的文章：
-
-    <http://en.wikipedia.org/wiki/Ternary_operation>
-
--   as well as a description of the formula for calculating loan payments used in our loan-calc script:
-
--   还有一个对计算还贷金额公式的描述，我们的 loan-calc 脚本中用到了这个公式：
-
-    <http://en.wikipedia.org/wiki/Amortization_calculator>
+  [http://en.wikipedia.org/wiki/Amortization_calculator](http://en.wikipedia.org/wiki/Amortization_calculator)
